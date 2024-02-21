@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --bg-color: #4361ee;
+    --bg-color-2: #faf9f9;
+    --main-color: #0496ff;
+    --second-color: #ffbc42;
+    --text-color: #2b2d42;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+html {
+    font-size: 60%;
+    text-decoration: none;
+    overflow-x: hidden;
+}
+
+section {
+    height: 100vh;
+    padding: 8rem 10% 8rem;
+}
+
+.login-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.form-box {
+    position: absolute;
+    width: 55%;
+    height: 100%;
+    background: var(--bg-color-2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    z-index: 1;
+}
+
+.form-box h2 {
+    font-size: 3.6rem;
+    text-align: center;
+    margin-top: 7rem;
+    margin-bottom: 2rem;
+}
+
+.form-box p {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+#error-messages {
+    background-color: var(--bg-color-2);
+    border-radius: 20px;
+}
+
+#error-messages p {
+    margin-bottom: 10px;
+}
+
+.input-box {
+    position: relative;
+    margin: 30px 0;
+    width: 400px;
+    display: flex;
+}
+
+.input-box label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    translate: 0.625rem 0.625rem;
+    color: var(--text-color);
+    background-color: var(--bg-color-2);
+    padding-inline: 0.25rem;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    pointer-events: none;
+    transition: translate 250ms,
+                background-color 250ms,
+                border-color 250ms;
+}
+
+.input-box:focus-within label,
+.input-box:not(:has(:placeholder-shown))
+label {
+    translate: 0.625rem -1.6rem;
+    border-color: var(--bg-color);
+}
+.input-box ::placeholder {
+    color: transparent;
+}
+
+.input-box input {
+    width: 100%;
+    height: 50px;
+    background: none;
+    padding: 0.625rem 1.3rem;
+    color: var(--text-color);
+    border: 2px solid var(--bg-color);
+    border-radius: 15px;
+    font-size: 1.4rem;
+}
+
+.input-box i {
+    position: absolute;
+    right: 12px;
+    font-size: 2rem;
+    top: 15px;
+}
+
+.form-box .btn-box {
+    width: 100%;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.form-box .btn-box button {
+    width: 20rem;
+    height: 40px;
+    border-radius: 15px;
+    background: var(--main-color);
+    color: var(--bg-color-2);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.form-box button:hover {
+    background: var(--bg-color);
+}
+
+.footer-text {
+    margin-top: 4rem;
+}
+
+.login-illustration {
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6rem;
+    flex-direction: column;
+    background: var(--main-color);
+    border-radius: 20px;
+    z-index: 0;
+}
+
+.illustration-create-account {
+    margin: 5rem 60px 0 0;
+    width: 100%;
+    color: var(--bg-color-2);
+    display: flex;
+    flex-direction: column;
+    gap: 2.6rem;
+}
+
+.logo {
+    margin-left: 6rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo img {
+    width: 50px;
+    border-radius: 20px;
+}
+
+.logo h3 {
+    font-size: 2rem;
+}
+
+.logo h3 span {
+    color: var(--second-color);
+}
+
+.illustration-create-account h2 {
+    font-size: 3.6rem;
+    text-align: center;
+}
+
+.illustration-create-account p {
+    margin: 5px 120px;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.illustration-create-account .btn-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.illustration-create-account .btn-box button {
+    width: 20rem;
+    height: 40px;
+    border-radius: 15px;
+    background: var(--second-color);
+    color: var(--bg-color-2);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.illustration-create-account button:hover {
+    background: #f8961e;
+}
+
+.illustraction-container {
+    width: 80%;
+    height: 40%;
+    margin-right: 60px;
+}
