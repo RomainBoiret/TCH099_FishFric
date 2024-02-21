@@ -66,7 +66,7 @@ section {
 .form-box p {
     font-size: 1.4rem;
     text-align: center;
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
 }
 
 #error-messages {
@@ -128,6 +128,26 @@ label {
     right: 12px;
     font-size: 2rem;
     top: 15px;
+}
+
+.remember-box {
+    width: auto;
+    font-size: 14.5px;
+}
+
+.remember-box label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.remember-box label input {
+    margin-left: 5px;
+}
+
+.remember {
+    width: 20px;
+    height: 20px;
 }
 
 .form-box .btn-box {
@@ -242,4 +262,109 @@ label {
     width: 80%;
     height: 40%;
     margin-right: 60px;
+}
+
+@media (max-width: 980px) {
+    section {
+        padding: 2rem 4% 2rem;
+    }
+
+    .login-container {
+        flex-direction: column;
+    }
+
+    .form-box {
+        width: 100%;
+        height: 70%;
+        font-size: 1rem;
+    }
+    
+    .form-box h2 {
+        font-size: 2.6rem;
+        margin-top: 2rem;
+        margin-bottom: 0;
+    }
+    
+    .form-box p {
+        font-size: 1.3rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+
+    .form-box form {
+        max-width: 70rem;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .form-box form .input-box {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+        margin: 2.5rem 0;
+    }
+
+    .form-box form .input-box input {
+        width: 100%;
+        height: 100%;
+        padding: 1.5rem;
+        color: var(--text-color);
+        background: transparent;
+    }
+
+    .form-box form .btn-box {
+        width: auto;
+        margin-top: 3rem;
+    }
+
+    .form-box form .btn-box .btn {
+        cursor: pointer;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    .footer-text {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .login-illustration {
+        margin-top: 40rem;
+        width: 100%;
+        height: 25rem;
+        gap: 2rem;
+        z-index: 2;
+    }
+
+    .illustration-create-account {
+        margin: 5rem 0 0 0;
+        gap: 2rem;
+    }
+
+    .logo {
+        width: 0;
+    }
+    
+    .logo img {
+        width: 0;
+    }
+    
+    .logo h3 {
+        font-size: 0;
+    }
+
+    .illustration-create-account {
+        margin-top: 0;
+    }
+
+    .illustration-create-account h2 {
+        font-size: 2.6rem;
+    }
+    
+    .illustration-create-account p {
+        margin: 1px 30px;
+        font-size: 1.4rem;
+    }
 }
