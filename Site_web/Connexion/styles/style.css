@@ -20,7 +20,9 @@
 }
 
 body {
-    background: var(--bg-color);
+    background: url("/Images/connexion/background.png") no-repeat;
+    background-size: cover;
+    background-position: center;
     color: var(--text-color);
 }
 
@@ -133,6 +135,9 @@ label {
 .remember-box {
     width: auto;
     font-size: 14.5px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
 }
 
 .remember-box label {
@@ -187,7 +192,7 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 6rem;
+    gap: 1rem;
     flex-direction: column;
     background: var(--main-color);
     border-radius: 20px;
@@ -195,7 +200,7 @@ label {
 }
 
 .illustration-create-account {
-    margin: 5rem 60px 0 0;
+    margin: 3rem 60px 0 0;
     width: 100%;
     color: var(--bg-color-2);
     display: flex;
@@ -259,9 +264,13 @@ label {
 }
 
 .illustraction-container {
-    width: 80%;
-    height: 40%;
+    width: 400px;
+    height: 800px;
     margin-right: 60px;
+    margin-bottom: 50px;
+    background: url("/Images/connexion/requin_connexion.png") no-repeat;
+    background-size: 240px;
+    background-position: center;
 }
 
 @media (max-width: 980px) {
@@ -274,6 +283,7 @@ label {
     }
 
     .form-box {
+        position: relative;
         width: 100%;
         height: 70%;
         font-size: 1rem;
@@ -331,16 +341,16 @@ label {
     }
 
     .login-illustration {
-        margin-top: 40rem;
+        margin-top: 2rem;
+        position: relative;
         width: 100%;
         height: 25rem;
         gap: 2rem;
-        z-index: 2;
     }
 
     .illustration-create-account {
         margin: 5rem 0 0 0;
-        gap: 2rem;
+        gap: 1rem;
     }
 
     .logo {
@@ -356,7 +366,7 @@ label {
     }
 
     .illustration-create-account {
-        margin-top: 0;
+        margin-top: 5rem;
     }
 
     .illustration-create-account h2 {
