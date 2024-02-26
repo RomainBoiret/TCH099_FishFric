@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentification</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -81,19 +81,19 @@
 
                                 <div class="input-box">
                                     <i class='bx bx-dialpad-alt'></i>
-                                    <input type="text" method="post" name="num_carte" placeholder="..." required>
+                                    <input type="text" name="num_carte" placeholder="..." required>
                                     <label for="num_carte">Numéro de carte</label>
                                 </div>
 
                                 <div class="input-box">
                                     <i class='bx bxs-calendar'></i>
-                                    <input type="tel" method="post" name="date_expiration" placeholder="..." required>
+                                    <input type="tel" name="date_expiration" placeholder="..." required>
                                     <label for="date_expiration">Date d’expiration</label>
                                 </div>
                 
                                 <div class="input-box">
                                     <i class='bx bxs-phone'></i>
-                                    <input type="text" method="post" name="num_tel_principal" placeholder="..." required>
+                                    <input type="text" name="num_tel_principal" placeholder="..." required>
                                     <label for="num_tel_principal">Numéro de téléphone principal</label>
                                 </div>
                             </form>
@@ -107,13 +107,13 @@
 
                                 <div class="input-box">
                                     <i class='bx bxs-envelope'></i>
-                                    <input type="text" method="post" name="courriel_id" placeholder="..." required>
+                                    <input type="text" name="courriel_id" placeholder="..." required>
                                     <label for="courriel_id">Courriel d'identification</label>
                                 </div>
 
                                 <div class="input-box">
                                     <i class='bx bxs-envelope'></i>
-                                    <input type="tel" method="post" name="conf_courriel_id" placeholder="..." required>
+                                    <input type="tel" name="conf_courriel_id" placeholder="..." required>
                                     <label for="conf_courriel_id">Confirmation de votre courriel</label>
                                 </div>
                             </form>
@@ -125,13 +125,13 @@
 
                                 <div class="input-box">
                                     <i class='bx bxs-lock'></i>
-                                    <input type="password" method="post" name="password" placeholder="..." required>
+                                    <input type="password" name="password" placeholder="..." required>
                                     <label for="password">Mot de passe</label>
                                 </div>
 
                                 <div class="input-box">
                                     <i class='bx bxs-lock'></i>
-                                    <input type="password" method="post" name="conf_password" placeholder="..." required>
+                                    <input type="password" name="conf_password" placeholder="..." required>
                                     <label for="conf_password">Confirmation de votre mot de passe</label>
                                 </div>
                             </form>
@@ -152,7 +152,11 @@
                             plongez dans l'aventure bancaire unique de Fish&Fric dès aujourd'hui !</p>
     
                         <div class="btn-box">
-                            <button type="submit" class="btn" id="login_account" onclick="window.location.href='../index.html'">Se Connecter</button>
+                            <button type="submit" class="btn" id="login_account" onclick="window.location.href='../index.php'">Se Connecter</button>
+                        </div>
+
+                        <div id="erreurs-messages">
+
                         </div>
                     </div>
     
@@ -161,6 +165,6 @@
             </div>
         </section>
     </main>
-    <script src="scripts/script.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>

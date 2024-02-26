@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentification</title>
-    <link rel="stylesheet" href="Connexion/styles/style.css">
+    <link rel="stylesheet" href="./Connexion/styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -12,19 +12,19 @@
     <section>
         <div class="login-container">
             <div class="form-box">
-                <form action="" method="post">
+                <form action="./Connexion/verifLogin.php" method="post">
                     <h2 class="heading">Page de Connexion</h2>
                     <p>Bon retour dans l'aquarium cher Fisher ! 🐋</p>
 
                     <div class="input-box">
                         <i class='bx bxs-user'></i>
-                        <input type="text" method="post" name="utilisateur" placeholder="..." required>
+                        <input type="text" name="id" placeholder="..." required>
                         <label for="username">Nom d'utilisateur</label>
                     </div>
     
                     <div class="input-box">
                         <i class='bx bxs-lock' ></i>
-                        <input type="password" method="post" name="mot_de_passe" placeholder="..." required>
+                        <input type="password" name="password" placeholder="..." required>
                         <label for="password">Mot de passe</label>
                     </div>
 
@@ -40,6 +40,25 @@
                     </div>
 
                     <div class="footer-text">
+                        <div id="erreur-message">
+                        </div>
+
+                        <script>
+                            //Chercher les erreurs depuis la variable de session
+                            let errorMessage = "<?php session_start(); echo isset($_SESSION['erreur']) ? $_SESSION['erreur'] : ''; ?>";
+                    
+                            //S'il y a des erreurs, les afficher dans le div
+                            if (errorMessage) {
+                                let errorDiv = document.getElementById("erreur-message");
+                                errorDiv.innerHTML = "<p style='color:red'>" + errorMessage + "</p>";
+                            }
+                    
+                            //Vider la variable de session d'erreurs
+                            <?php unset($_SESSION['erreur']); ?>
+
+                        </script>
+
+
                         <p>Copyright &copy; 2024 | All Rights Reserved.</p>
                     </div>
                 </form>
@@ -48,7 +67,7 @@
             <div class="login-illustration">
                 <div class="illustration-create-account">
                     <div class="logo">
-                        <img src="/Images/logo-website.jpg">
+                        <img src="./Images/logo-website.jpg">
                         <h3>Fish<span>&</span>Fric</h3>
                     </div>
 
@@ -58,7 +77,7 @@
                         plonge dans l'aventure bancaire unique de Fish&Fric dès aujourd'hui !</p>
 
                     <div class="btn-box">
-                        <button type="submit" class="btn" id="create_account" onclick="window.location.href='/Creer_un_compte/creerCompte.html'">Créer un Compte</button>
+                        <button type="submit" class="btn" id="create_account" onclick="window.location.href='./Creer_un_compte/creerCompte.html'">Créer un Compte</button>
                     </div>
                 </div>
 
@@ -67,6 +86,6 @@
         </div>
     </section>
 </main>
-    <script src="scripts/script.js"></script>
+    <script src="./Connexion/scripts/script.js"></script>
 </body>
 </html>
