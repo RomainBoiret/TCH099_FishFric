@@ -4,7 +4,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
 {
     //Connection a la base de donnee
     try {
-        require("../connexion.php");
+        require("../../connexion.php");
     } catch(Exception $e) {
         die("Connection echouee : " . $e->getMessage());
     }
@@ -25,7 +25,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
     if ($resultat->rowCount() == 0) {
         //On stocke le message d'erreur et on rafraîchit l'écran de connexion
         $_SESSION['erreur'] = "L'utilisateur saisi n'existe pas!";
-        header("Location: ../index.php");
+        header("Location: ../page_connexion.php");
         exit();
     }
 
@@ -45,7 +45,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
     else {
         //On stocke le message d'erreur et on rafraîchit l'écran de connexion
         $_SESSION['erreur'] = "Le mot de passe est erroné!";
-        header("Location: ../index.php");
+        header("Location: ../page_connexion.php");
         exit(); 
     }
 }

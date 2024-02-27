@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentification</title>
-    <link rel="stylesheet" href="./Connexion/styles/style.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -11,7 +11,7 @@
     <section>
         <div class="login-container">
             <div class="form-box">
-                <form action="./Connexion/verifLogin.php" method="post">
+                <form action="./API/verifLogin.php" method="post">
                     <h2 class="heading">Page de Connexion</h2>
                     <p>Bon retour dans l'aquarium cher Fisher ! 🐋</p>
 
@@ -75,7 +75,7 @@
                         plonge dans l'aventure bancaire unique de Fish&Fric dès aujourd'hui !</p>
 
                     <div class="btn-box">
-                        <button type="submit" class="btn" id="create_account" onclick="window.location.href='./Creer_un_compte/creerCompte.html'">Créer un Compte</button>
+                        <button type="submit" class="btn" id="create_account" onclick="window.location.href='../Creer_un_compte/creerCompte.html'">Créer un Compte</button>
                     </div>
                 </div>
 
