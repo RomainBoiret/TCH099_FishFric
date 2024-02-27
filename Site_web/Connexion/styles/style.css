@@ -61,7 +61,7 @@ section {
 .form-box h2 {
     font-size: 3.6rem;
     text-align: center;
-    margin-top: 7rem;
+    margin-top: 3rem;
     margin-bottom: 2rem;
 }
 
@@ -69,15 +69,6 @@ section {
     font-size: 1.4rem;
     text-align: center;
     margin-bottom: 4rem;
-}
-
-#error-messages {
-    background-color: var(--bg-color-2);
-    border-radius: 20px;
-}
-
-#error-messages p {
-    margin-bottom: 10px;
 }
 
 .input-box {
@@ -155,9 +146,13 @@ label {
     height: 20px;
 }
 
+#erreur-message p {
+    margin-bottom: 3rem;
+}
+
 .form-box .btn-box {
     width: 100%;
-    margin-top: 5rem;
+    margin-top: 3rem;
     display: flex;
     justify-content: center;
 }
@@ -181,7 +176,7 @@ label {
 }
 
 .footer-text {
-    margin-top: 4rem;
+    margin-top: 1rem;
 }
 
 .login-illustration {

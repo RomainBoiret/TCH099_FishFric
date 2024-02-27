@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,8 +28,8 @@
                     </div>
 
                     <div class="remember-box">
-                        <label for="remember"><input type="checkbox" name="remember" id="remember" class="remember">
-                            Se souvenir de mon nom d'utilisateur</label>
+                        <!-- <label for="remember"><input type="checkbox" name="remember" id="remember" class="remember">
+                            Se souvenir de mon nom d'utilisateur</label> -->
                         <label for="remember_account"><input type="checkbox" name="remember_account" id="remember_account" class="remember">
                             Rester connecté pendant 30 jours</label>
                     </div>
@@ -40,8 +39,7 @@
                     </div>
 
                     <div class="footer-text">
-                        <div id="erreur-message">
-                        </div>
+                        <div id="erreur-message"></div>
 
                         <script>
                             //Chercher les erreurs depuis la variable de session
