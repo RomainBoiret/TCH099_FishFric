@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,8 +17,8 @@
                             <div class="tab-navigation">
                                 <ul class="tab-menu">
                                     <li class="tab-btn active">Type de compte</li>
-                                    <li class="tab-btn">Information Bancaire</li>
-                                    <li class="tab-btn">Courriel d'Identification</li>
+                                    <li class="tab-btn">Informations personnelles</li>
+                                    <li class="tab-btn">Adresse courriel</li>
                                     <li class="tab-btn">Mot de Passe</li>
                                 </ul>
                             </div>
@@ -26,69 +26,64 @@
                     </div>
 
                     <div class="tab-content">
-
                         <div class="tab active">
                             <p>Sélectionnez l'un des produits suivants pour vous identifier.</p>
-                            <p>Assurez-vous d'avoir les informations requises sous la main.</p>
 
-                            <table>
-                                <tr>
-                                    <td>
-                                        <i class='bx bxs-credit-card-alt'></i>
-                                        <p>Carte de Crédit</p>
-                                        <ul>
-                                            <li>• -------------</li>
-                                            <li>• -------------</li>
-                                            <li>• -------------</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <i class='bx bxs-credit-card'></i>
-                                        <p>Compte Chèque</p>
-                                        <ul>
-                                            <li>• -------------</li>
-                                            <li>• -------------</li>
-                                            <li>• -------------</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class='bx bxs-florist'></i>
-                                        <p>Compte d’Investissement</p>
-                                        <ul>
-                                            <li>• -------------</li>
-                                            <li>• -------------</li>
-                                            <li>• -------------</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <i class='bx bxs-credit-card-front'></i>
-                                        <p>Compte Épargne</p>
-                                        <ul>
-                                            <li>• -------------</li>
-                                            <li>• -------------</li>
-                                            <li>• -------------</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="card-container">
+                                <div class="card disable">
+                                    <i class='bx bxs-credit-card-alt'></i>
+                                    <p>Carte de Crédit</p>
+                                </div>
+    
+                                <div class="card">
+                                    <i class='bx bxs-credit-card'></i>
+                                    <p>Compte Chèque</p>
+                                </div>
+                                    
+                                <div class="card disable">
+                                    <i class='bx bxs-credit-card-front'></i>
+                                    <p>Compte Épargne</p>
+                                </div>
+
+                                <div class="card disable">
+                                    <i class='bx bxs-florist'></i>
+                                    <p>Compte d’Investissement</p>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="tab">
                             <form action="" method="post">
-                                <p>Entrez vos informations de carte</p>
+                                <p>Entrez vos informations personnelles</p>
 
                                 <div class="input-box">
-                                    <i class='bx bx-dialpad-alt'></i>
-                                    <input type="text" name="num_carte" placeholder="..." required>
-                                    <label for="num_carte">Numéro de carte</label>
+                                    <i class='bx bxs-user'></i>
+                                    <input type="text" name="nom_user" placeholder="..." required>
+                                    <label for="num_user">Nom de famille</label>
                                 </div>
 
                                 <div class="input-box">
-                                    <i class='bx bxs-calendar'></i>
-                                    <input type="tel" name="date_expiration" placeholder="..." required>
-                                    <label for="date_expiration">Date d’expiration</label>
+                                    <i class='bx bx-user' ></i>
+                                    <input type="text" name="prenom_user" placeholder="..." required>
+                                    <label for="prenom_user">Prénom</label>
+                                </div>
+
+                                <div class="date-selection">
+                                    <p>Date de naissance</p>
+                                    <div class="select-container">
+                                        <select name="">
+                                            <option>1</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>jan</option>
+                                            <option>fev</option>
+                                        </select>
+                                        <select name="">
+                                            <option>2022</option>
+                                            <option>1900</option>
+                                        </select>
+                                    </div>
                                 </div>
                 
                                 <div class="input-box">
