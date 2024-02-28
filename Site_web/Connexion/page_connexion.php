@@ -11,7 +11,7 @@
     <section>
         <div class="login-container">
             <div class="form-box">
-                <form action="./API/verifLogin.php" method="post">
+                <form action="./verifLogin.php" method="post">
                     <h2 class="heading">Page de Connexion</h2>
                     <p>Bon retour dans l'aquarium cher Fisher ! 🐋</p>
 
@@ -43,7 +43,7 @@
 
                         <script>
                             //Chercher les erreurs depuis la variable de session
-                            let errorMessage = "<?php session_start(); echo isset($_SESSION['erreur']) ? $_SESSION['erreur'] : ''; ?>";
+                            let errorMessage = "<?php echo isset($_SESSION['erreur']) ? $_SESSION['erreur'] : ''; ?>";
                     
                             //S'il y a des erreurs, les afficher dans le div
                             if (errorMessage) {
@@ -65,7 +65,7 @@
             <div class="login-illustration">
                 <div class="illustration-create-account">
                     <div class="logo">
-                        <img src="./Images/logo-website.jpg">
+                        <img src="../Images/logo-website.jpg">
                         <h3>Fish<span>&</span>Fric</h3>
                     </div>
 
@@ -84,6 +84,6 @@
         </div>
     </section>
 </main>
-    <script src="./Connexion/scripts/script.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>

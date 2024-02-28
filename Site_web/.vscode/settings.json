@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/0861ae7e-9346-4a1d-ab55-9660e36a03bf/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/projet-integrateur",
+    "appService.deploySubpath": "."
+}
