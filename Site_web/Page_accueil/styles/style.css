@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --bleu-ocean-abysses: #004462;
+    --bleu-ocean-profond: #005a80;
+    --bleu-turquoise: #00b8d4;
+    --vert-eau: #aee1cd;
+    --sable-dore: #e1c16e;
+    --corail-fonce: #ff4747;
+    --corail: #ff6b6b;
+    --text-color: #2b2d42;
+    --white: #f0f3fa; 
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bleu-ocean-abysses);
+}
+
+html {
+    font-size: 60%;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--white);
+    color: var(--text-color);
+}
+
+header {
+    width: 100%;
+    height: 70px;
+    padding: 0 4.2%;
+    background: var(--bleu-ocean-profond);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2.5rem;
+    color: var(--white);
+    font-weight: 600;
+    padding: 0.5rem 10px;
+    border-radius: 10px;
+}
+
+.logo:hover {
+    background: var(--bleu-ocean-abysses);
+}
+
+.logo img {
+    width: 45px;
+    border-radius: 15px;
+}
+
+.logo span {
+    color: #ffbc42;
+    font-size: 2.5rem;
+}
+
+.navigation {
+    width: 550px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation a {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 2rem;
+    border-right: 1px solid var(--bleu-turquoise);
+}
+
+.navigation a:first-child {
+    border-left: 1px solid var(--bleu-turquoise);
+}
+.navigation a:hover {
+    background: var(--bleu-turquoise);
+    border-bottom: 5px solid var(--white);
+}
+
+.navigation button {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    cursor: pointer;
+    background: var(--bg-color);
+    border-right: 1px solid var(--bleu-turquoise);
+}
+
+.navigation button i {
+    font-size: 3rem;
+    color: var(--white);
+}
+
+.navigation button:hover {
+    background: var(--bleu-turquoise);
+}
+
+.accueil {
+    height: 90vh;
+    background: var(--white);
+}
+
+.accueil .accueil-connect {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    padding: 0 5%;
+}
+
+.accueil-connect h1 {
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 5rem;
+}
+
+.accueil-connect .btn {
+    margin-top: 15px;
+    width: 20rem;
+    height: 45px;
+    border-radius: 8px;
+    background: var(--bleu-ocean-profond);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.accueil-connect .btn i {
+    font-size: 3rem;
+}
+
+.accueil-connect .btn:hover {
+    background: var(--bleu-ocean-abysses);
+}
+
+.accueil .accueil-embed {
+    position: relative;
+    width: 100%;
+    height: 80%;
+    background: var(--sable-dore);
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.accueil-embed .create-account-part {
+    width: 50%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 0 5%;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+.create-account-part p {
+    font-size: 1.8rem;
+}
+
+.create-account-part .btn {
+    width: 25rem;
+    height: 50px;
+    border-radius: 8px;
+    background: var(--bleu-ocean-profond);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.create-account-part .btn i {
+    font-size: 3rem;
+}
+
+.create-account-part .btn:hover {
+    background: var(--bleu-ocean-abysses);
+}
+
+.accueil-embed .acceuil-illustration {
+    width: 50%;
+    height: 100%;
+    background: url('/Images/bateau_sur_eau.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.services {
+    height: 80vh;
+    background: var(--white);
+    padding: 0 4%;
+}
+
+.grid-template {
+    border-spacing: 2.5rem;
+}
+
+.grid-template th h2 {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.grid-template 
+.option-1, .option-2, .option-3,
+.option-4, .option-5, .option-6 {
+    width: 440px;
+    height: 160px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.grid-template 
+.option-1:hover, .option-2:hover, .option-3:hover,
+.option-4:hover, .option-5:hover, .option-6:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.option-1 {
+    background: var(--white);
+    background-size: cover;
+    background-position: center;
+}
+
+.option-2 {
+    background: var(--white);
+    background-size: cover;
+    background-position: center;
+}
+
+.option-3 {
+    background: var(--white);
+    background-size: cover;
+    background-position: center;
+}
+
+.option-4 {
+    background: var(--white);
+    background-size: cover;
+    background-position: center;
+}
+
+.option-5 {
+    background: var(--white);
+    background-size: cover;
+    background-position: center;
+}
+
+.option-6 {
+    background: var(--white);
+    background-size: cover;
+    background-position: center;
+}
