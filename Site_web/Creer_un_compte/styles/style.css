@@ -240,3 +240,29 @@ label {
     border: 2px solid red;
 }
 
+.illustration-container h1 {
+    font-size: 3.2rem;
+    font-weight: 600;
+}
+
+.illustration-container .btn-connecter {
+    width: 20rem;
+    height: 50px;
+    background: var(--sable-dore);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.illustration-container .btn-connecter:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 15px var(--sable-dore);
+}
+
+.illustration-container .btn-connecter a {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--white);
+}
