@@ -2,7 +2,7 @@
 
     //Connection a la base de donnee
     try{
-        require("connexion.php");
+        require("../connexion.php");
     }
     catch(Exception $e)
     {
