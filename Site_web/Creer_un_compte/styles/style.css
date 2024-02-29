@@ -12,15 +12,20 @@
 }
 
 :root {
-    --bg-color: #4361ee;
-    --bg-color-2: #faf9f9;
-    --main-color: #0496ff;
-    --second-color: #ffbc42;
+    --bleu-ocean-abysses: #004462;
+    --bleu-ocean-profond: #005a80;
+    --bleu-turquoise: #00b8d4;
+    --bleu-ocean-surface: #b1c9ef;
+    --vert-eau: #aee1cd;
+    --sable-dore: #e1c16e;
+    --corail-fonce: #ff4747;
+    --corail: #ff6b6b;
     --text-color: #2b2d42;
+    --white: #f0f3fa; 
 }
 
 body {
-    background: var(--bg-color);
+    background: var(--bleu-ocean-profond);
     color: var(--text-color);
 }
 
@@ -32,171 +37,103 @@ html {
 
 section {
     height: 100vh;
-    padding: 8rem 10% 8rem;
-}
-
-.account-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-}
-
-.form-box {
-    position: absolute;
-    width: 55%;
-    height: 100%;
-    background: var(--bg-color-2);
-    border-radius: 20px;
-    font-size: 1.3rem;
-    z-index: 1;
+    padding: 8rem 8%;
 }
 
 .main-container {
-    position: relative;
-}
-
-.tab-nav-bar {
-    position: relative;
-    margin: 20px 10px 15px 10px;
-}
-
-.tab-navigation {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: fit-content;
-    margin: 0 auto;
-}
-
-.tab-menu {
-    color: var(--text-color);
-    list-style: none;
-    background: var(--bg-color-2);
-    max-width: 800px;
-    padding: 10px;
-    white-space: nowrap;
-    border-bottom: 1px solid var(--bg-color-2);
-    border-radius: 50px;
-    box-shadow: var(--text-color);
-}
-
-.tab-btn {
-    color: var(--bg-color-2);
-    display: inline-block;
-    font-size: 1em;
-    font-weight: 400;
-    margin: 0 2px;
-    padding: 10px 20px;
-    border-radius: 30px;
-    background: var(--main-color);
-    cursor: pointer;
-    user-select: none;
-    transition: 0.3s ease;
-}
-
-.tab-btn:hover {
-    background: var(--bg-color);
-}
-
-.tab-btn.active {
-    background: var(--second-color);
-}
-
-.tab-content {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.tab {
-    position: absolute;
-    top: 0;
-    right: auto;
-    bottom: 0;
-    left: auto;
-    transform: translateX(25px);
-    opacity: 0;
-    content-visibility: hidden;
-}
-
-.tab.active {
-    transform: translateX(0);
-    content-visibility: visible;
-    opacity: 1;
-    transition: 1s ease;
-}
-
-.tab p {
-    text-align: center;
-    font-weight: 600;
-    font-size: 1.6rem;
-}
-
-.tab .card-container {
     width: 100%;
     height: 100%;
-    margin-top: 2.4rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.main-container .create-account-container {
+    width: 55%;
+    height: 100%;
+    background: var(--white);
     display: flex;
     flex-direction: column;
+    gap: 1.3rem;
+}
+
+.create-account-container .create-account-header {
+    padding: 3% 2%;
+}
+
+.create-account-container .create-account-header h1 {
+    font-size: 3.2rem;
+    font-weight: 600;
+}
+
+.create-account-container .create-account-embed {
+    width: 100%;
+    height: 15rem;
+    background: var(--bleu-ocean-surface);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 4% 2%;
+}
+
+.create-account-container .create-account-embed h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.create-account-container .create-account-embed p {
+    font-size: 1.6rem;
+    font-weight: 450;
+}
+
+.create-account-container .account-formulaire {
+    padding: 2%;
+    width: 100%;
+    height: 100%;
+}
+
+.account-formulaire form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-formulaire form .input-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     gap: 2rem;
 }
 
-.card-container .card {
-    width: 100%;
-    height: 70px;
+.input-content .input-box {
     display: flex;
-    align-items: center;
-    gap: 1.6rem;
-    padding: 2rem 1rem;
-    color: var(--bg-color-2);
-    font-size: 1.6rem;
-    border-radius: 10px;
-    background: var(--main-color);
-    transition: .5s ease;
-}
-
-.card-container .disable {
-    background: #adb5bd;
-}
-
-.card-container .card.disable:hover {
-    background: #adb5bd;
-    cursor: not-allowed;
-}
-
-.card-container .card:hover {
-    background: var(--bg-color);
-    cursor: pointer;
-}
-
-.card-container .card i {
-    font-size: 4rem;
-}
-
-.tab form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+    width: 50%;
+    height: 100%;
 }
 
-.input-box {
+.input-content .input-box .input-field {
     position: relative;
-    margin: 15px 0;
-    width: 400px;
+    width: 100%;
     display: flex;
 }
 
-.input-box label {
+.input-box .input-field label {
     position: absolute;
     top: 5px;
     left: 5px;
     translate: 0.625rem 0.625rem;
     color: var(--text-color);
-    background-color: var(--bg-color-2);
+    background-color: var(--white);
     padding-inline: 0.25rem;
     border: 2px solid transparent;
     border-radius: 5px;
@@ -207,209 +144,99 @@ section {
                 border-color 250ms;
 }
 
-.input-box:focus-within label,
-.input-box:not(:has(:placeholder-shown))
+.input-field:focus-within label,
+.input-field:not(:has(:placeholder-shown))
 label {
     translate: 0.625rem -1.6rem;
-    border-color: var(--bg-color);
+    border-color: var(--sable-dore);
 }
-.input-box ::placeholder {
+.input-field::placeholder {
     color: transparent;
 }
 
-.input-box input {
+.input-field input {
     width: 100%;
     height: 50px;
     background: none;
     padding: 0.625rem 1.3rem;
     color: var(--text-color);
-    border: 2px solid var(--bg-color);
-    border-radius: 15px;
+    border: 2px solid var(--sable-dore);
+    border-radius: 5px;
     font-size: 1.4rem;
 }
 
-.input-box i {
+.input-field i {
     position: absolute;
     right: 12px;
     font-size: 2rem;
     top: 15px;
 }
 
-.date-selection {
-    width: 100%;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+.btn-box {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    justify-content: space-between;
+    width: 34.5rem;
+    height: 5rem;
+    margin-bottom: 10px;
 }
 
-.date-selection p {
-    text-align: start;
-    font-weight: 500;
-    font-size: 1.5rem;
-}
-
-.date-selection .select-container{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.date-selection select {
-    width: 100px;
-    height: 40px;
-    border: 2px solid var(--bg-color);
-    border-radius: 10px;
-    padding: 8px 5px;
-    outline: 0;
-    font-size: 15px;
-}
-
-.form-box .btn-box {
-    width: 100%;
-    margin-top: 5rem;
-    display: flex;
+.btn-box .btn {
+    position: relative;
+    display: inline-flex;
     justify-content: center;
-}
-
-.form-box .btn-box button {
-    width: 20rem;
-    height: 40px;
-    border-radius: 15px;
-    background: var(--main-color);
-    color: var(--bg-color-2);
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: 1.6rem;
-    font-weight: 600;
-    transition: .3s;
-}
-
-.form-box button:hover {
-    background: var(--bg-color);
-}
-
-.btn-switch-container {
-    position: absolute;
-    width: 100%;
-    bottom: 2rem;
-}
-
-.btn-switch-container .btn-switch {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.btn-switch-container .btn-switch button {
-    width: 20rem;
-    height: 33px;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    border-radius: 15px;
-    background: var(--main-color);
-    color: var(--bg-color-2);
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: 1.6rem;
-    font-weight: 600;
-    transition: .3s;
-}
-
-.btn-switch-container .btn-switch button i {
-    font-size: 2.6rem;
-}
-
-.btn-switch-container .btn-switch button:hover {
-    background: var(--bg-color);
-}
-
-.account-illustration {
-    position: absolute;
-    right: 0;
-    width: 50%;
+    width: 15rem;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6rem;
-    flex-direction: column;
-    background: var(--main-color);
-    border-radius: 20px;
-    z-index: 0;
-}
-
-.illustration-create-account {
-    margin: 5rem 60px 0 12rem;
-    width: 100%;
-    color: var(--bg-color-2);
-    display: flex;
-    flex-direction: column;
-    gap: 2.6rem;
-}
-
-.logo {
-    margin-left: 5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.logo img {
-    width: 50px;
-    border-radius: 20px;
-}
-
-.logo h3 {
-    font-size: 2rem;
-}
-
-.logo h3 span {
-    color: var(--second-color);
-}
-
-.illustration-create-account h2 {
-    font-size: 3.6rem;
-    text-align: center;
-}
-
-.illustration-create-account p {
-    margin: 5px 120px;
-    font-size: 1.4rem;
-    text-align: center;
-}
-
-.illustration-create-account .btn-box {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.illustration-create-account .btn-box button {
-    width: 20rem;
-    height: 40px;
-    border-radius: 15px;
-    background: var(--second-color);
-    color: var(--bg-color-2);
-    border: none;
-    outline: none;
     cursor: pointer;
-    font-size: 1.6rem;
-    font-weight: 600;
-    transition: .3s;
+    background: var(--bleu-ocean-profond);
+    border: .2rem solid var(--bleu-ocean-profond);
+    border-radius: 20px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: .1rem;
+    color: var(--white);
+    z-index: 1;
+    overflow: hidden;
+    transition: .5s;
 }
 
-.illustration-create-account button:hover {
-    background: #f8961e;
+.btn-box .btn:hover {
+    color: var(--bleu-ocean-profond);
 }
 
-.illustraction-container {
-    width: 80%;
-    height: 40%;
-    margin-right: 60px;
+.btn-box .btn:nth-child(2) {
+    background: transparent;
+    color: var(--bleu-ocean-profond);
 }
+
+.btn-box .btn:nth-child(2):hover {
+    color: var(--white);
+}
+
+.btn-box .btn:nth-child(2)::before {
+    background: var(--bleu-ocean-profond);
+}
+
+.btn-box .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--white);
+    z-index: -1;
+    transition: .5s;
+}
+
+.btn-box .btn:hover::before {
+    width: 100%;
+}
+
+.main-container .illustration-container {
+    width: 45%;
+    height: 100%;
+    border: 2px solid red;
+}
+
