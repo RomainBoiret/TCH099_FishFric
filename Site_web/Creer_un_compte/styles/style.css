@@ -277,3 +277,26 @@ label {
     font-weight: 500;
     color: var(--white);
 }
+
+/*Style de div de message*/
+#messages {
+    display: flex;
+    justify-content: space-around;
+}
+
+#erreur-mdp p {
+    color: red;
+    font-size: 1.5rem;
+}
+
+#erreurs-reste p {
+    color: red;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#msg-succes {
+    color: green;
+    font-size: 1.5rem;
+}

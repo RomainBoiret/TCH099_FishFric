@@ -1,3 +1,10 @@
+<?php 
+    //Démarrer la session si elle n'existe pas
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,7 +26,7 @@
                         dès aujourd'hui.</p>
                 </div>
 
-                <button class="btn-connecter"><a href="#">Créer un compte</a></button>
+                <button class="btn-connecter" onclick="window.location.href='../Creer_un_compte/creerCompte.php'"><a>Créer un compte</a></button>
             </div>
 
             <div class="connexion-container">
@@ -30,7 +37,7 @@
                 </div>
 
                 <div class="connexion-formulaire">
-                    <form action="" method="post" class="formulaire">
+                    <form action="page_connexion.php" method="post" class="formulaire">
                         <div class="input-box">
                             <div class="input-field">
                                 <i class='bx bxs-user'></i>
@@ -40,8 +47,8 @@
     
                             <div class="input-field">
                                 <i class='bx bxs-lock'></i>
-                                <input type="password" name="mot_de_passe" placeholder="..." required>
-                                <label for="mot_de_passe">Mot de passe</label>
+                                <input type="password" name="password" placeholder="..." required>
+                                <label for="password">Mot de passe</label>
                             </div>
 
                             <div class="remember-box">
@@ -53,7 +60,7 @@
                         </div>
 
                         <div class="btn-box">
-                            <button type="submit" class="btn">Connexion</button>
+                            <button type="submit" class="btn" >Connexion</button>
                         </div>
                     </form>
                 </div>
@@ -69,11 +76,72 @@
     if (errorMessage) {
         let errorDiv = document.getElementById("erreur-message");
         errorDiv.innerHTML = "<p style='color:red'>" + errorMessage + "</p>";
+        <?php unset($_SESSION['erreur']); ?>
     }
 
     //Vider la variable de session d'erreurs
-    <?php unset($_SESSION['erreur']); ?>
 
 </script>
 </body>
 </html>
+
+<?php
+
+if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
+{
+    //Connection a la base de donnee
+    try {
+        require("../connexion.php");
+    } catch(Exception $e) {
+        die("Connection echouee : " . $e->getMessage());
+    }
+
+    //Démarrer la session 
+    session_start();
+
+    $courriel = $_POST['courriel'];
+    $password = $_POST['password'];
+
+    //Vérifier si le numéro de compte existe dans la BD
+    $requete = "SELECT * FROM Compte WHERE courriel = '$courriel'";
+    $resultat = $conn->query($requete);
+
+    //Si aucun utilisateur avec le courriel fourni existe 
+    if ($resultat->rowCount() == 0) {
+        //On affiche l'erreur que l'utilisateur est inexistant
+        echo "<script>";
+        echo "let erreurDiv = document.getElementById('erreur-message');";
+        echo 'erreurDiv.innerHTML = "<p>L\'utilisateur saisi n\'existe pas!</p>";';
+        echo '</script>';  
+    }
+
+    else {
+        //Aller chercher le mot de passe dans la base de données correspondant au courriel
+        $requete = "SELECT motDePasse FROM Compte WHERE courriel = '$courriel'";
+        $resultat = $conn->query($requete);
+        $resultat = $resultat->fetchColumn();
+
+        //Verfie si le mot de passe saisi correspond au mot de passe hashed de la BD
+        //if(password_verify($password, $resultat))
+        include "../Encryption/encryption.php";
+        if(AES256CBC_decrypter($resultat, CLE_ENCRYPTION) == $password)
+        {
+            //Si le mot de passe est bon, on envoie l'utilisateur vers la page de ses comptes et commence sa session
+            $_SESSION["utilisateur"] = $id;
+            header("Location: ../Liste_comptes/listeCompte.php"); //------METTRE LE LIEN DE LA PAGE PRINCIPALE DU COMPTE
+            exit(); 
+        } 
+        else {
+            //On Affiche l'erreur de mot de passe
+            echo "<script>";
+            echo "let erreurDiv = document.getElementById('erreur-message');";
+            echo 'erreurDiv.innerHTML = "<p style=\'red\'>Le mot de passe est erroné</p>";';
+            echo '</script>';    
+        }
+    }
+} else {
+    http_response_code(404);
+    echo "<h1>404 Introuvable</h1>";
+    echo "<p>La page demandée n'a pas été trouvée!.</p>";
+}
+?>
