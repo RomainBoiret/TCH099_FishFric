@@ -237,12 +237,20 @@ label {
 .main-container .illustration-container {
     width: 45%;
     height: 100%;
-    border: 2px solid red;
+    background: url('/Images/create-account-illustration.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20rem;
 }
 
 .illustration-container h1 {
     font-size: 3.2rem;
     font-weight: 600;
+    color: var(--white);
 }
 
 .illustration-container .btn-connecter {
@@ -254,6 +262,7 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: .3s;
 }
 
 .illustration-container .btn-connecter:hover {
