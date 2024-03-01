@@ -1,3 +1,10 @@
+<?php 
+    //Démarrer la session si elle n'existe pas
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,7 +26,7 @@
                         dès aujourd'hui.</p>
                 </div>
 
-                <button class="btn-connecter"><a href="#">Créer un compte</a></button>
+                <button class="btn-connecter" onclick="window.location.href='../Creer_un_compte/creerCompte.html'"><a>Créer un compte</a></button>
             </div>
 
             <div class="connexion-container">
@@ -53,7 +60,7 @@
                         </div>
 
                         <div class="btn-box">
-                            <button type="submit" class="btn">Connexion</button>
+                            <button type="submit" class="btn" >Connexion</button>
                         </div>
                     </form>
                 </div>
@@ -69,10 +76,10 @@
     if (errorMessage) {
         let errorDiv = document.getElementById("erreur-message");
         errorDiv.innerHTML = "<p style='color:red'>" + errorMessage + "</p>";
+        <?php unset($_SESSION['erreur']); ?>
     }
 
     //Vider la variable de session d'erreurs
-    <?php unset($_SESSION['erreur']); ?>
 
 </script>
 </body>

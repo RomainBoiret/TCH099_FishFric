@@ -10,8 +10,15 @@
             die("Connection echouee : " . $e->getMessage());
         }
 
+        //Démarrer la session si elle n'existe pas
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
+
         //Gestion d'erreurs
         $erreurs = array();
+        $erreurMdp = array();
 
         $nom = trim($_POST['nom']);
         $prenom = trim($_POST['prenom']);
@@ -42,10 +49,9 @@
         || !preg_match("/[A-Z]/", $password) || !preg_match("/[0-9]/", $password) 
         || !preg_match("/[@.#$%^&*!]/", $password)) 
 
-                $erreurs[] = "Le mot de passe est invalide! Il doit contenir:<br>" . 
+                $erreurMdp[] = "Le mot de passe est invalide! Il doit contenir:<br>" . 
                 "- Au moins 8 caractères<br>" . 
-                "- Au moins 1 lettre majuscule<br>" . 
-                "- Au moins 1 lettre minuscule<br>" . 
+                "- Au moins 1 lettre majuscule et minuscule<br>" . 
                 "- Au moins 1 caractère spécial<br>";
         
         //Vérifier si les 2 mots de passe sont identiques
@@ -65,7 +71,7 @@
         }
 
         //Si tout est valide, ajouter utilisateur a la base de données
-        if(count($erreurs) == 0)
+        if(count($erreurs) == 0 && count($erreurMdp) == 0)
         {
             //Hash le mot de passe
             $password = password_hash($password, PASSWORD_DEFAULT);
@@ -75,24 +81,27 @@
             $requete->execute();
 
             //Afficher page de connexion et message de succès
-            $messageSucces = "L'utilisateur a été créé avec succès!";
-            setcookie('success_message', $messageSucces, time() + 10, '/');
+            $_SESSION["addUser"] = "L'utilisateur a été créé avec succès!";
             header("Location: ../Connexion/page_connexion.php");
         }
 
         //Sinon, on affiche les erreurs
         else
         {
+            //réafficher le formulaire
             include "./creerCompte.html";
+
+            //Afficher les erreurs 
             echo '<script>';
-            echo 'let erreurDiv = document.getElementById("erreurs-messages");';
-            echo 'if(erreurDiv){';
-                for($i = 0; $i < count($erreurs); $i++)
-                {
-                    echo 'erreurDiv.innerHTML += "<p style=\'color:red\'>'. $erreurs[$i] . '</p>";';
-                }
-                echo '}';
-                echo '</script>';
+            echo 'let erreursDiv = document.getElementById("erreurs-reste");';
+            for($i = 0; $i < count($erreurs); $i++)
+            {
+                echo 'erreursDiv.innerHTML += "<p>' . $erreurs[$i] . '</p>";';
+            }
+            echo 'let erreurMdpDiv = document.getElementById("erreur-mdp");';
+            echo 'erreurMdpDiv.innerHTML += "<p>' . $erreurMdp[0] . '</p>";';
+
+            echo '</script>';
         }
     }
 

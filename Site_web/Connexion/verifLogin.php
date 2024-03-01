@@ -9,8 +9,9 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
         die("Connection echouee : " . $e->getMessage());
     }
 
+    //Démarrer la session 
     session_start();
-
+    
     //Gestion d'erreurs
     $erreurs = array();
 
