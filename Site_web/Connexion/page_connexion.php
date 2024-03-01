@@ -9,81 +9,71 @@
 <body>
 <main>
     <section>
-        <div class="login-container">
-            <div class="form-box">
-                <form action="./verifLogin.php" method="post">
-                    <h2 class="heading">Page de Connexion</h2>
-                    <p>Bon retour dans l'aquarium cher Fisher ! 🐋</p>
+        <div class="main-container">
+            <div class="illustration-container">
+                <div class="illustration-header">
+                    <h1>Vous êtes nouveau ?</h1>
 
-                    <div class="input-box">
-                        <i class='bx bxs-user'></i>
-                        <input type="text" name="id" placeholder="..." required>
-                        <label for="username">Nom d'utilisateur</label>
-                    </div>
-    
-                    <div class="input-box">
-                        <i class='bx bxs-lock' ></i>
-                        <input type="password" name="password" placeholder="..." required>
-                        <label for="password">Mot de passe</label>
-                    </div>
-
-                    <div class="remember-box">
-                        <!-- <label for="remember"><input type="checkbox" name="remember" id="remember" class="remember">
-                            Se souvenir de mon nom d'utilisateur</label> -->
-                        <label for="remember_account"><input type="checkbox" name="remember_account" id="remember_account" class="remember">
-                            Rester connecté pendant 30 jours</label>
-                    </div>
-
-                    <div class="btn-box">
-                        <button type="submit" class="btn" id="login">Connexion</button>
-                    </div>
-
-                    <div class="footer-text">
-                        <div id="erreur-message"></div>
-
-                        <script>
-                            //Chercher les erreurs depuis la variable de session
-                            let errorMessage = "<?php echo isset($_SESSION['erreur']) ? $_SESSION['erreur'] : ''; ?>";
-                    
-                            //S'il y a des erreurs, les afficher dans le div
-                            if (errorMessage) {
-                                let errorDiv = document.getElementById("erreur-message");
-                                errorDiv.innerHTML = "<p style='color:red'>" + errorMessage + "</p>";
-                            }
-                    
-                            //Vider la variable de session d'erreurs
-                            <?php unset($_SESSION['erreur']); ?>
-
-                        </script>
-
-
-                        <p>Copyright &copy; 2024 | All Rights Reserved.</p>
-                    </div>
-                </form>
-            </div>
-            
-            <div class="login-illustration">
-                <div class="illustration-create-account">
-                    <div class="logo">
-                        <img src="../Images/logo-website.jpg">
-                        <h3>Fish<span>&</span>Fric</h3>
-                    </div>
-
-                    <h2>Tu es nouveau ?</h2>
-
-                    <p>Rejoins notre communauté de clients satisfaits et 
-                        plonge dans l'aventure bancaire unique de Fish&Fric dès aujourd'hui !</p>
-
-                    <div class="btn-box">
-                        <button type="submit" class="btn" id="create_account" onclick="window.location.href='../Creer_un_compte/creerCompte.html'">Créer un Compte</button>
-                    </div>
+                    <p>Rejoignez notre communauté de clients satisfaits, 
+                        et plongez dans l'aventure bancaire unique de Fish&Fric
+                        dès aujourd'hui.</p>
                 </div>
 
-                <div class="illustraction-container"></div>
+                <button class="btn-connecter"><a href="#">Créer un compte</a></button>
+            </div>
+
+            <div class="connexion-container">
+                <div class="connexion-header">
+                    <h1>Page de connexion</h1>
+
+                    <p>Heureux de vous revoir chère Fisheur ! 🐳</p>
+                </div>
+
+                <div class="connexion-formulaire">
+                    <form action="" method="post" class="formulaire">
+                        <div class="input-box">
+                            <div class="input-field">
+                                <i class='bx bxs-user'></i>
+                                <input type="text" name="courriel" placeholder="..." required>
+                                <label for="courriel">Adresse courriel</label>
+                            </div>
+    
+                            <div class="input-field">
+                                <i class='bx bxs-lock'></i>
+                                <input type="password" name="mot_de_passe" placeholder="..." required>
+                                <label for="mot_de_passe">Mot de passe</label>
+                            </div>
+
+                            <div class="remember-box">
+                                <label for="remember_account"><input type="checkbox" name="remember_account" id="remember_account" class="remember">
+                                    Rester connecté pendant 30 jours</label>
+                            </div>
+
+                            <div id="erreur-message"></div>
+                        </div>
+
+                        <div class="btn-box">
+                            <button type="submit" class="btn">Connexion</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 </main>
-    <script src="./scripts/script.js"></script>
+<script>
+    //Chercher les erreurs depuis la variable de session
+    let errorMessage = "<?php echo isset($_SESSION['erreur']) ? $_SESSION['erreur'] : ''; ?>";
+
+    //S'il y a des erreurs, les afficher dans le div
+    if (errorMessage) {
+        let errorDiv = document.getElementById("erreur-message");
+        errorDiv.innerHTML = "<p style='color:red'>" + errorMessage + "</p>";
+    }
+
+    //Vider la variable de session d'erreurs
+    <?php unset($_SESSION['erreur']); ?>
+
+</script>
 </body>
 </html>

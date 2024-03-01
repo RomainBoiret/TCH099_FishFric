@@ -12,17 +12,20 @@
 }
 
 :root {
-    --bg-color: #4361ee;
-    --bg-color-2: #faf9f9;
-    --main-color: #0496ff;
-    --second-color: #ffbc42;
+    --bleu-ocean-abysses: #004462;
+    --bleu-ocean-profond: #005a80;
+    --bleu-turquoise: #00b8d4;
+    --bleu-ocean-surface: #b1c9ef;
+    --vert-eau: #aee1cd;
+    --sable-dore: #e1c16e;
+    --corail-fonce: #ff4747;
+    --corail: #ff6b6b;
     --text-color: #2b2d42;
+    --white: #f0f3fa; 
 }
 
 body {
-    background: url("/Images/connexion/background.png") no-repeat;
-    background-size: cover;
-    background-position: center;
+    background: var(--bleu-ocean-profond);
     color: var(--text-color);
 }
 
@@ -34,57 +37,82 @@ html {
 
 section {
     height: 100vh;
-    padding: 8rem 10% 8rem;
+    padding: 8rem 8%;
 }
 
-.login-container {
-    position: relative;
+.main-container {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
-.form-box {
-    position: absolute;
-    width: 55%;
+.main-container .connexion-container {
+    width: 40%;
     height: 100%;
-    background: var(--bg-color-2);
-    border-radius: 20px;
+    background: var(--white);
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.connexion-container .connexion-header {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
-    z-index: 1;
+    gap: 1rem;
 }
 
-.form-box h2 {
-    font-size: 3.6rem;
-    text-align: center;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
+.connexion-container .connexion-header h1 {
+    font-size: 3.2rem;
+    font-weight: 600;
 }
 
-.form-box p {
-    font-size: 1.4rem;
-    text-align: center;
-    margin-bottom: 4rem;
+.connexion-container .connexion-header p {
+    font-size: 1.6rem;
+    font-weight: 450;
 }
 
-.input-box {
+.connexion-container .connexion-formulaire {
+    width: 100%;
+    height: 70%;
+}
+
+.connexion-formulaire form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+}
+
+.connexion-formulaire form .input-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+    height: 50%;
+}
+
+.input-box .input-field {
     position: relative;
-    margin: 30px 0;
-    width: 400px;
+    width: 80%;
     display: flex;
 }
 
-.input-box label {
+.input-box .input-field label {
     position: absolute;
     top: 5px;
     left: 5px;
     translate: 0.625rem 0.625rem;
     color: var(--text-color);
-    background-color: var(--bg-color-2);
+    background-color: var(--white);
     padding-inline: 0.25rem;
     border: 2px solid transparent;
     border-radius: 5px;
@@ -95,28 +123,28 @@ section {
                 border-color 250ms;
 }
 
-.input-box:focus-within label,
-.input-box:not(:has(:placeholder-shown))
+.input-field:focus-within label,
+.input-field:not(:has(:placeholder-shown))
 label {
     translate: 0.625rem -1.6rem;
-    border-color: var(--bg-color);
+    border-color: var(--sable-dore);
 }
-.input-box ::placeholder {
+.input-field::placeholder {
     color: transparent;
 }
 
-.input-box input {
+.input-field input {
     width: 100%;
     height: 50px;
     background: none;
     padding: 0.625rem 1.3rem;
     color: var(--text-color);
-    border: 2px solid var(--bg-color);
-    border-radius: 15px;
+    border: 2px solid var(--sable-dore);
+    border-radius: 5px;
     font-size: 1.4rem;
 }
 
-.input-box i {
+.input-field i {
     position: absolute;
     right: 12px;
     font-size: 2rem;
@@ -124,7 +152,8 @@ label {
 }
 
 .remember-box {
-    width: auto;
+    width: 80%;
+    margin-right: 8px;
     font-size: 14.5px;
     display: flex;
     flex-direction: column;
@@ -150,225 +179,108 @@ label {
     margin-bottom: 3rem;
 }
 
-.form-box .btn-box {
-    width: 100%;
-    margin-top: 3rem;
+.btn-box {
+    position: relative;
     display: flex;
     justify-content: center;
+    width: 34.5rem;
+    height: 5rem;
 }
 
-.form-box .btn-box button {
-    width: 20rem;
-    height: 40px;
-    border-radius: 15px;
-    background: var(--main-color);
-    color: var(--bg-color-2);
-    border: none;
-    outline: none;
+.btn-box .btn {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+    height: 90%;
     cursor: pointer;
-    font-size: 1.6rem;
-    font-weight: 600;
-    transition: .3s;
+    background: var(--bleu-ocean-profond);
+    border: .2rem solid var(--bleu-ocean-profond);
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: .1rem;
+    color: var(--white);
+    z-index: 1;
+    overflow: hidden;
+    transition: .5s;
 }
 
-.form-box button:hover {
-    background: var(--bg-color);
+.btn-box .btn:hover {
+    color: var(--bleu-ocean-profond);
 }
 
-.footer-text {
-    margin-top: 1rem;
-}
-
-.login-illustration {
+.btn-box .btn::before {
+    content: '';
     position: absolute;
+    top: 0;
     left: 0;
-    width: 50%;
+    width: 0;
     height: 100%;
+    background: var(--white);
+    z-index: -1;
+    transition: .5s;
+}
+
+.btn-box .btn:hover::before {
+    width: 100%;
+}
+
+.main-container .illustration-container {
+    width: 60%;
+    height: 100%;
+    background: url('/Images/background-connexion.png') no-repeat;
+    background-size: cover;
+    background-position: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-    flex-direction: column;
-    background: var(--main-color);
-    border-radius: 20px;
-    z-index: 0;
+    gap: 20rem;
 }
 
-.illustration-create-account {
-    margin: 3rem 60px 0 0;
+.illustration-container .illustration-header {
     width: 100%;
-    color: var(--bg-color-2);
     display: flex;
     flex-direction: column;
-    gap: 2.6rem;
-}
-
-.logo {
-    margin-left: 6rem;
-    display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 2.5rem;
 }
 
-.logo img {
-    width: 50px;
-    border-radius: 20px;
-}
-
-.logo h3 {
-    font-size: 2rem;
-}
-
-.logo h3 span {
-    color: var(--second-color);
-}
-
-.illustration-create-account h2 {
-    font-size: 3.6rem;
-    text-align: center;
-}
-
-.illustration-create-account p {
-    margin: 5px 120px;
-    font-size: 1.4rem;
-    text-align: center;
-}
-
-.illustration-create-account .btn-box {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.illustration-create-account .btn-box button {
-    width: 20rem;
-    height: 40px;
-    border-radius: 15px;
-    background: var(--second-color);
-    color: var(--bg-color-2);
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: 1.6rem;
+.illustration-container h1 {
+    font-size: 3.2rem;
     font-weight: 600;
+    color: var(--white);
+}
+
+.illustration-container p {
+    width: 70%;
+    text-align: center;
+    color: var(--white);
+    font-size: 1.6rem;
+    font-weight: 450;
+}
+
+.illustration-container .btn-connecter {
+    width: 20rem;
+    height: 50px;
+    background: var(--sable-dore);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: .3s;
 }
 
-.illustration-create-account button:hover {
-    background: #f8961e;
+.illustration-container .btn-connecter:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 15px var(--sable-dore);
 }
 
-.illustraction-container {
-    width: 400px;
-    height: 800px;
-    margin-right: 60px;
-    margin-bottom: 50px;
-    background: url("/Images/connexion/requin_connexion.png") no-repeat;
-    background-size: 240px;
-    background-position: center;
-}
-
-@media (max-width: 980px) {
-    section {
-        padding: 2rem 4% 2rem;
-    }
-
-    .login-container {
-        flex-direction: column;
-    }
-
-    .form-box {
-        position: relative;
-        width: 100%;
-        height: 70%;
-        font-size: 1rem;
-    }
-    
-    .form-box h2 {
-        font-size: 2.6rem;
-        margin-top: 2rem;
-        margin-bottom: 0;
-    }
-    
-    .form-box p {
-        font-size: 1.3rem;
-        margin-bottom: 0;
-    }
-
-    .form-box form {
-        max-width: 70rem;
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    .form-box form .input-box {
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        width: 100%;
-        margin: 2.5rem 0;
-    }
-
-    .form-box form .input-box input {
-        width: 100%;
-        height: 100%;
-        padding: 1.5rem;
-        color: var(--text-color);
-        background: transparent;
-    }
-
-    .form-box form .btn-box {
-        width: auto;
-        margin-top: 3rem;
-    }
-
-    .form-box form .btn-box .btn {
-        cursor: pointer;
-        margin-left: 2rem;
-        margin-right: 2rem;
-    }
-
-    .footer-text {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .login-illustration {
-        margin-top: 2rem;
-        position: relative;
-        width: 100%;
-        height: 25rem;
-        gap: 2rem;
-    }
-
-    .illustration-create-account {
-        margin: 5rem 0 0 0;
-        gap: 1rem;
-    }
-
-    .logo {
-        width: 0;
-    }
-    
-    .logo img {
-        width: 0;
-    }
-    
-    .logo h3 {
-        font-size: 0;
-    }
-
-    .illustration-create-account {
-        margin-top: 5rem;
-    }
-
-    .illustration-create-account h2 {
-        font-size: 2.6rem;
-    }
-    
-    .illustration-create-account p {
-        margin: 1px 30px;
-        font-size: 1.4rem;
-    }
+.illustration-container .btn-connecter a {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--white);
 }
