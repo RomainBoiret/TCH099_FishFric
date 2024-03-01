@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="connexion-formulaire">
-                    <form action="" method="post" class="formulaire">
+                    <form action="page_connexion.php" method="post" class="formulaire">
                         <div class="input-box">
                             <div class="input-field">
                                 <i class='bx bxs-user'></i>
@@ -47,8 +47,8 @@
     
                             <div class="input-field">
                                 <i class='bx bxs-lock'></i>
-                                <input type="password" name="mot_de_passe" placeholder="..." required>
-                                <label for="mot_de_passe">Mot de passe</label>
+                                <input type="password" name="password" placeholder="..." required>
+                                <label for="password">Mot de passe</label>
                             </div>
 
                             <div class="remember-box">
@@ -84,3 +84,62 @@
 </script>
 </body>
 </html>
+
+<?php
+
+if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
+{
+    //Connection a la base de donnee
+    try {
+        require("../connexion.php");
+    } catch(Exception $e) {
+        die("Connection echouee : " . $e->getMessage());
+    }
+
+    //Démarrer la session 
+    session_start();
+
+    $courriel = $_POST['courriel'];
+    $password = $_POST['password'];
+
+    //Vérifier si le numéro de compte existe dans la BD
+    $requete = "SELECT * FROM Compte WHERE courriel = '$courriel'";
+    $resultat = $conn->query($requete);
+
+    //Si aucun utilisateur avec le courriel fourni existe 
+    if ($resultat->rowCount() == 0) {
+        //On affiche l'erreur que l'utilisateur est inexistant
+        echo "<script>";
+        echo "let erreurDiv = document.getElementById('erreur-message');";
+        echo 'erreurDiv.innerHTML = "<p>L\'utilisateur saisi n\'existe pas!</p>";';
+        echo '</script>';  
+    }
+
+    else {
+        //Aller chercher le mot de passe dans la base de données correspondant au courriel
+        $requete = "SELECT motDePasse FROM Compte WHERE courriel = '$courriel'";
+        $resultat = $conn->query($requete);
+        $resultat = $resultat->fetchColumn();
+
+        //Verfie si le mot de passe saisi correspond au mot de passe hashed de la BD
+        if(password_verify($password, $resultat))
+        {
+            //Si le mot de passe est bon, on envoie l'utilisateur vers la page de ses comptes et commence sa session
+            $_SESSION["utilisateur"] = $id;
+            header("Location: ../Liste_comptes/listeCompte.php"); //------METTRE LE LIEN DE LA PAGE PRINCIPALE DU COMPTE
+            exit(); 
+        } 
+        else {
+            //On Affiche l'erreur de mot de passe
+            echo "<script>";
+            echo "let erreurDiv = document.getElementById('erreur-message');";
+            echo 'erreurDiv.innerHTML = "<p style=\'red\'>Le mot de passe est erroné</p>";';
+            echo '</script>';    
+        }
+    }
+} else {
+    http_response_code(404);
+    echo "<h1>404 Introuvable</h1>";
+    echo "<p>La page demandée n'a pas été trouvée!.</p>";
+}
+?>

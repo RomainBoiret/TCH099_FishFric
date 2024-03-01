@@ -176,6 +176,8 @@ label {
 }
 
 #erreur-message p {
+    color: red;
+    font-size: 1.5rem;
     margin-bottom: 3rem;
 }
 
