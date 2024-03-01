@@ -26,33 +26,33 @@
             </div>
 
             <div class="account-formulaire">
-                <form action="" method="post" class="formulaire">
+                <form action="addUser.php" method="post" class="formulaire">
                     <div class="input-content">
                         <div class="input-box">
                             <div class="input-field">
                                 <i class='bx bxs-user'></i>
-                                <input type="text" name="nom_user" placeholder="..." required>
-                                <label for="num_user">Nom de famille</label>
+                                <input type="text" name="nom" placeholder="..." required>
+                                <label for="nom">Nom de famille</label>
                             </div>
     
                             <div class="input-field">
                                 <i class='bx bx-user' ></i>
-                                <input type="text" name="prenom_user" placeholder="..." required>
-                                <label for="prenom_user">Prénom</label>
+                                <input type="text" name="prenom" placeholder="..." required>
+                                <label for="prenom">Prénom</label>
                             </div>
     
                             <div class="input-field">
                                 <i class='bx bxs-phone'></i>
-                                <input type="text" name="num_tel_principal" placeholder="..." required>
-                                <label for="num_tel_principal">Numéro de téléphone</label>
+                                <input type="text" name="telephone" placeholder="..." required>
+                                <label for="telephone">Numéro de téléphone</label>
                             </div>
                         </div>
                 
                         <div class="input-box">
                             <div class="input-field">
                                 <i class='bx bxs-envelope'></i>
-                                <input type="text" name="courriel_id" placeholder="..." required>
-                                <label for="courriel_id">Adresse courriel</label>
+                                <input type="text" name="courriel" placeholder="..." required>
+                                <label for="courriel">Adresse courriel</label>
                             </div>
     
                             <div class="input-field">
@@ -69,6 +69,10 @@
                         </div>
                     </div>
                     
+                    <div id="erreurs-messages">
+
+                    </div>
+
                     <div class="btn-box">
                         <button type="submit" class="btn">Créer</button>
                         <button type="reset" class="btn">Effacer</button>
@@ -80,7 +84,7 @@
         <div class="illustration-container">
             <h1>Vous êtes déjà membre ?</h1>
 
-            <div class="btn-connecter"><a href="#">Se connecter</a></div>
+            <div class="btn-connecter"><a href="../Connexion/page_connexion.php">Se connecter</a></div>
         </div>
     </div>
 </section>

@@ -44,15 +44,21 @@
                         <script>
                             //Chercher les erreurs depuis la variable de session
                             let errorMessage = "<?php echo isset($_SESSION['erreur']) ? $_SESSION['erreur'] : ''; ?>";
+                            let addUserMessage = "<?php echo isset($_COOKIE['success_message']) ? $_COOKIE['success_message'] : ''; ?>";
                     
                             //S'il y a des erreurs, les afficher dans le div
+                            let errorDiv = document.getElementById("erreur-message");
+
                             if (errorMessage) {
-                                let errorDiv = document.getElementById("erreur-message");
                                 errorDiv.innerHTML = "<p style='color:red'>" + errorMessage + "</p>";
+                            }
+                            else if (addUserMessage) {
+                                errorDiv.innerHTML += "<p style=\'color:green\'>L\'utilisateur a été crée avec succès!</p>";
+
                             }
                     
                             //Vider la variable de session d'erreurs
-                            <?php unset($_SESSION['erreur']); ?>
+                            <?php unset($_SESSION['erreur']); session_destroy();?>
 
                         </script>
 
