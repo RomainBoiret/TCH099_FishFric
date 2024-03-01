@@ -292,7 +292,6 @@ p {
 
 .aquarium {
     height: 120vh;
-    /* background: #d5deef; */
     background: url('/Images/background-aquarium.png') no-repeat;
     background-size: cover;
     background-position: center;

@@ -45,6 +45,8 @@ section {
     height: 100%;
     display: flex;
     flex-direction: row;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .main-container .create-account-container {
