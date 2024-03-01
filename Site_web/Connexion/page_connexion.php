@@ -26,7 +26,7 @@
                         dès aujourd'hui.</p>
                 </div>
 
-                <button class="btn-connecter" onclick="window.location.href='../Creer_un_compte/creerCompte.html'"><a>Créer un compte</a></button>
+                <button class="btn-connecter" onclick="window.location.href='../Creer_un_compte/creerCompte.php'"><a>Créer un compte</a></button>
             </div>
 
             <div class="connexion-container">
