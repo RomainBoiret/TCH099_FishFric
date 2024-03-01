@@ -75,6 +75,9 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
         die("Connection echouee : " . $e->getMessage());
     }
 
+    //Inclure fichier qui contient la fonction de décryption
+    include "../Encryption/encryption.php";
+
     $courriel = $_POST['courriel'];
     $password = $_POST['password'];
 
@@ -98,13 +101,11 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
         $resultat = $resultat->fetchColumn();
 
         //Verfie si le mot de passe saisi correspond au mot de passe hashed de la BD
-        //if(password_verify($password, $resultat))
-        include "../Encryption/encryption.php";
         if(AES256CBC_decrypter($resultat, CLE_ENCRYPTION) == $password)
         {
             //Si le mot de passe est bon, on envoie l'utilisateur vers la page de ses comptes et commence sa session
             session_start();
-            $_SESSION["utilisateur"] = $id;
+            $_SESSION["utilisateur"] = $courriel;
             header("Location: ../Liste_compte/listeCompte.html");
             exit(); 
         } 

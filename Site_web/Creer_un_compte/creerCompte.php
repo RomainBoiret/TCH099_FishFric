@@ -90,7 +90,6 @@
     </div>
 </section>
 </main>
-<script src="./scripts/script.js"></script>
 </body>
 </html>
 
@@ -104,6 +103,9 @@
         {
             die("Connection echouee : " . $e->getMessage());
         }
+
+        //Inclure fichier qui contient la fonction d'encryption
+        include "../Encryption/encryption.php";
 
         //Gestion d'erreurs
         $erreurs = array();
@@ -162,15 +164,17 @@
         //Si tout est valide, ajouter utilisateur a la base de données
         if(count($erreurs) == 0 && count($erreurMdp) == 0)
         {
-            //Hash le mot de passe
-            include "../Encryption/encryption.php";
+            //Encrypter le mot de passe
             $mdp_encrypte = AES256CBC_encrypter($password, CLE_ENCRYPTION);
-            
-            //$password = password_hash($password, PASSWORD_DEFAULT);
 
-            //Effectuer la requête
+            //Effectuer la requête pour créer le compte utilisateur
             $requete = $conn->prepare("INSERT INTO Compte (courriel, prenom, nom, motDePasse, telephone) 
             VALUES ('$courriel', '$prenom', '$nom', '$mdp_encrypte', $telephone)");
+            $requete->execute();
+
+            //CRÉER COMPTE CHÈQUE-------
+            $requete = $conn->prepare("INSERT INTO CompteBancaire (compteId, solde, typeCompte, interet, ouverture, suspendu) VALUES
+            ((SELECT id FROM Compte WHERE courriel LIKE '$courriel'), 0, 'chèque', 0, NOW(), 0);");
             $requete->execute();
 
             //Mettre le message de succès 
