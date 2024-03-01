@@ -122,7 +122,9 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
         $resultat = $resultat->fetchColumn();
 
         //Verfie si le mot de passe saisi correspond au mot de passe hashed de la BD
-        if(password_verify($password, $resultat))
+        //if(password_verify($password, $resultat))
+        include "../Encryption/encryption.php";
+        if(AES256CBC_decrypter($resultat, CLE_ENCRYPTION) == $password)
         {
             //Si le mot de passe est bon, on envoie l'utilisateur vers la page de ses comptes et commence sa session
             $_SESSION["utilisateur"] = $id;

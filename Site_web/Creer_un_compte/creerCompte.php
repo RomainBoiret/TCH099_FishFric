@@ -163,11 +163,14 @@
         if(count($erreurs) == 0 && count($erreurMdp) == 0)
         {
             //Hash le mot de passe
-            $password = password_hash($password, PASSWORD_DEFAULT);
+            include "../Encryption/encryption.php";
+            $mdp_encrypte = AES256CBC_encrypter($password, CLE_ENCRYPTION);
+            
+            //$password = password_hash($password, PASSWORD_DEFAULT);
 
             //Effectuer la requête
             $requete = $conn->prepare("INSERT INTO Compte (courriel, prenom, nom, motDePasse, telephone) 
-            VALUES ('$courriel', '$prenom', '$nom', '$password', $telephone)");
+            VALUES ('$courriel', '$prenom', '$nom', '$mdp_encrypte', $telephone)");
             $requete->execute();
 
             //Mettre le message de succès 
