@@ -1,10 +1,3 @@
-<?php 
-    //Démarrer la session si elle n'existe pas
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-?>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -68,20 +61,6 @@
         </div>
     </section>
 </main>
-<script>
-    //Chercher les erreurs depuis la variable de session
-    let errorMessage = "<?php echo isset($_SESSION['erreur']) ? $_SESSION['erreur'] : ''; ?>";
-
-    //S'il y a des erreurs, les afficher dans le div
-    if (errorMessage) {
-        let errorDiv = document.getElementById("erreur-message");
-        errorDiv.innerHTML = "<p style='color:red'>" + errorMessage + "</p>";
-        <?php unset($_SESSION['erreur']); ?>
-    }
-
-    //Vider la variable de session d'erreurs
-
-</script>
 </body>
 </html>
 
@@ -95,9 +74,6 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
     } catch(Exception $e) {
         die("Connection echouee : " . $e->getMessage());
     }
-
-    //Démarrer la session 
-    session_start();
 
     $courriel = $_POST['courriel'];
     $password = $_POST['password'];
@@ -127,8 +103,9 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
         if(AES256CBC_decrypter($resultat, CLE_ENCRYPTION) == $password)
         {
             //Si le mot de passe est bon, on envoie l'utilisateur vers la page de ses comptes et commence sa session
+            session_start();
             $_SESSION["utilisateur"] = $id;
-            header("Location: ../Liste_comptes/listeCompte.php"); //------METTRE LE LIEN DE LA PAGE PRINCIPALE DU COMPTE
+            header("Location: ../Liste_compte/listeCompte.html");
             exit(); 
         } 
         else {
@@ -139,9 +116,5 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
             echo '</script>';    
         }
     }
-} else {
-    http_response_code(404);
-    echo "<h1>404 Introuvable</h1>";
-    echo "<p>La page demandée n'a pas été trouvée!.</p>";
 }
 ?>

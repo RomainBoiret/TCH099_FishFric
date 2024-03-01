@@ -198,9 +198,5 @@
 
             echo '</script>';
         }
-    } else {
-        http_response_code(404);
-        echo "<h1>404 Introuvable</h1>";
-        echo "<p>La page demandée n'a pas été trouvée!.</p>";
-    }
+    } 
 ?>
