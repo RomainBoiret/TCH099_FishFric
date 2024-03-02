@@ -21,7 +21,7 @@
                 <h2>Compte courant (compte chèques)</h2>
 
                 <p>Notre compte courant est parfait pour faire vos opérations de tous les jours.
-                    Vous pourrez choisir un autre type de compte ultérieurement</p>
+                    Vous pourrez ajouter d'autres types de compte ultérieurement.</p>
             </div>
 
             <div class="account-formulaire">
@@ -119,7 +119,7 @@
         $confirmation_mdp = trim($_POST['conf_password']);
 
         if(empty($prenom) || is_numeric($prenom))
-            $erreurs[] = "Le prenom saisi est invalide";
+            $erreurs[] = "Le prénom saisi est invalide";
 
         if(empty($nom) || is_numeric($nom))
             $erreurs[] = "Le nom saisi est invalide";
