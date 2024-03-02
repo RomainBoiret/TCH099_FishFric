@@ -1,16 +1,8 @@
 <?php
-//Vérifier si l'utilisateur a une session active
 session_start();
 
+//Vérifier si l'utilisateur a une session active
 include "../verifSession.php";
-
-// if (!isset($_SESSION['utilisateur'])) {
-//     //Si ce n'est pas le cas, rediriger l'utilisateur vers la page de connexion
-//     header("Location: ../Connexion/page_connexion.php");
-//     exit(); 
-// }
-
-//Sinon, afficher la page de la liste des comptes de l'utilisateur
 ?>
 
 <!DOCTYPE html>
