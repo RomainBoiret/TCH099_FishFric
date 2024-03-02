@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+//Vérifier que la session de l'utilisateur est en cours
+if (isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY']) < $_SESSION['DUREE_SESSION']) {
+    //Si c'est le cas, le rediriger directement sur sa liste de comptes, et mettre à jour le moment de dernière activité
+    $_SESSION['LAST_ACTIVITY'] = time();
+    header("Location: ../Liste_compte/listeCompte.php");
+    exit(); 
+}
+
+//Sinon, afficher le formulaire de connexion
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,8 +59,8 @@
                             </div>
 
                             <div class="remember-box">
-                                <label for="remember_account"><input type="checkbox" name="remember_account" id="remember_account" class="remember">
-                                    Rester connecté pendant 30 jours</label>
+                                <label for="remember_account"><input type="checkbox" name="checkbox" id="remember_account" class="remember">
+                                    Garder la session active pendant 8 heures</label>
                             </div>
 
                             <div id="erreur-message"></div>
@@ -65,7 +79,14 @@
 </html>
 
 <?php
+//Si la session de la personne a expiré, l'afficher
+if (isset($_SESSION["SESSION_EXPIRED"])) {
+    echo "<script>";
+    echo "document.getElementById('erreur-message').innerHTML = '<p style=\"color:red;\">Votre session a expiré!</p>';";
+    echo '</script>';    
+}
 
+//TRAITEMENT REQUÊTE POST
 if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
 {
     //Connection a la base de donnee
@@ -78,6 +99,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
     //Inclure fichier qui contient la fonction de décryption
     include "../Encryption/encryption.php";
 
+    //Chercher les saisies de la requête du formulaire
     $courriel = $_POST['courriel'];
     $password = $_POST['password'];
 
@@ -109,9 +131,19 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
             $resultat = $conn->query($requete);
             $id = $resultat->fetchColumn();
 
-            session_start();
+            //Vérifier si l'utilisateur veut rester connecté plus longtemps
+            if(isset($_POST['checkbox']) && $_POST['checkbox'] == 'on') {
+                //Laisser la session active pour 8 heures;
+                $_SESSION['DUREE_SESSION'] = 60*60*8; 
+            } else {
+                //la durée d'une session est de 300 secondes
+                $_SESSION['DUREE_SESSION'] = 300; 
+            }
+
+            //Mettre des variables de session pour la session de l'utilisateur et son temps d'activité
             $_SESSION["utilisateur"] = $id;
-            header("Location: ../Liste_compte/listeCompte.html");
+            $_SESSION['LAST_ACTIVITY'] = time(); 
+            header("Location: ../Liste_compte/listeCompte.php");
             exit(); 
         } 
         else {
