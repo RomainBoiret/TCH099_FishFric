@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+//Vérifier que la session de l'utilisateur est en cours
+if (isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY']) < 5) {
+    //Si c'est le cas, le rediriger directement sur sa liste de comptes
+    $_SESSION['LAST_ACTIVITY'] = time();
+    header("Location: ../Liste_compte/listeCompte.php");
+    exit(); 
+}
+
+//Afficher le formulaire de connexion
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -65,7 +79,14 @@
 </html>
 
 <?php
+//Si la session de la personne a expiré, l'afficher
+if (isset($_SESSION["SESSION_EXPIRED"])) {
+    echo "<script>";
+    echo "document.getElementById('erreur-message').innerHTML = '<p style=\"color:red;\">Votre session a expiré!</p>';";
+    echo '</script>';    
+}
 
+//TRAITEMENT REQUÊTE POST
 if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
 {
     //Connection a la base de donnee
@@ -109,9 +130,10 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
             $resultat = $conn->query($requete);
             $id = $resultat->fetchColumn();
 
-            session_start();
+            //Mettre des variables de session pour la session de l'utilisateur et son temps d'activité
             $_SESSION["utilisateur"] = $id;
-            header("Location: ../Liste_compte/listeCompte.html");
+            $_SESSION['LAST_ACTIVITY'] = time(); 
+            header("Location: ../Liste_compte/listeCompte.php");
             exit(); 
         } 
         else {
