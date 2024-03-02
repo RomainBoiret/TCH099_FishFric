@@ -188,7 +188,7 @@ section {
     font-weight: 600;
 }
 
-.main-compte .compte-content {
+.main-compte #compte-content {
     width: 100%;
     height: 90%;
     padding: 2% 1% 0;
@@ -207,7 +207,7 @@ section {
     background: #e0e7f2;
 }
 
-.compte-content .compte-box {
+#compte-content .compte-box {
     width: 100%;
     height: 18rem;
     background: var(--white);
@@ -219,7 +219,7 @@ section {
     padding: 2% 2.3%;
 }
 
-.compte-content .compte-box:first-child {
+#compte-content .compte-box:first-child {
     border-top: 1px dashed var(--text-color);
 }
 

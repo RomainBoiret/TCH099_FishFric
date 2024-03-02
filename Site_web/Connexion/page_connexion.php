@@ -104,8 +104,13 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
         if(AES256CBC_decrypter($resultat, CLE_ENCRYPTION) == $password)
         {
             //Si le mot de passe est bon, on envoie l'utilisateur vers la page de ses comptes et commence sa session
+            //D'abord chercher l'ID de l'utilisateur
+            $requete = "SELECT id FROM Compte WHERE courriel LIKE '$courriel'";
+            $resultat = $conn->query($requete);
+            $id = $resultat->fetchColumn();
+
             session_start();
-            $_SESSION["utilisateur"] = $courriel;
+            $_SESSION["utilisateur"] = $id;
             header("Location: ../Liste_compte/listeCompte.html");
             exit(); 
         } 

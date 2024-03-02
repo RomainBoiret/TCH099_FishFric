@@ -174,7 +174,7 @@
 
             //CRÉER COMPTE CHÈQUE-------
             $requete = $conn->prepare("INSERT INTO CompteBancaire (compteId, solde, typeCompte, interet, ouverture, suspendu) VALUES
-            ((SELECT id FROM Compte WHERE courriel LIKE '$courriel'), 0, 'chèque', 0, NOW(), 0);");
+            ((SELECT id FROM Compte WHERE courriel LIKE '$courriel'), 0, 'Compte chèque', 0, NOW(), 0);");
             $requete->execute();
 
             //Mettre le message de succès 
