@@ -63,7 +63,7 @@ include "../verifSession.php";
                 </div>
                 
                 <nav class="navigation">
-                    <button class="btn"><i class='bx bx-transfer-alt'></i>Virer entre comptes</button>
+                    <div onclick="togglePopup()" class="btn"><i class='bx bx-transfer-alt'></i>Virer entre comptes</div>
                     <button class="btn"><i class='bx bx-group'></i>Virer entre personnes</button>
                     <button class="btn"><i class='bx bx-money-withdraw'></i>Payer une facture</button>
                 </nav>
@@ -93,6 +93,56 @@ include "../verifSession.php";
             </div>
         </div>
     </div>
+
+    <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+
+        <div class="content">
+            <div class="close-btn" onclick="togglePopup()"><i class='bx bx-x'></i></div>
+            <h1>Virement entre comptes</h1>
+            
+            <div class="main-content-part">
+                <div class="virement-entre-compte">
+                    <div class="dropdown">
+                        <div class="select">
+                            <span class="selected">Compte chèque</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menu">
+                            <li class="active">Compte chèque</li>
+                            <li>Compte épargne</li>
+                            <li>Carte de Crédit</li>
+                            <li>Compte d'investissement</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="virement-entre-compte">
+                    <div class="dropdown">
+                        <div class="select">
+                            <span class="selected">Compte épargne</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menu">
+                            <li class="active">Compte épargne</li>
+                            <li>Compte chèque</li>
+                            <li>Carte de Crédit</li>
+                            <li>Compte d'investissement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="transfert-montant">
+                
+                <input type="text">
+            </div>
+
+            <div class="btn-box">
+                <button class="btn-virer">Virer</button>
+            </div>
+        </div>
+    </div>
 </section>
 </main>
 
@@ -101,5 +151,5 @@ include "../verifSession.php";
 
 </footer>
 </body>
-<script src="scripts/getComptes.js"></script>
+<script src="/Liste_compte/scripts/getComptes.js"></script>
 </html>
