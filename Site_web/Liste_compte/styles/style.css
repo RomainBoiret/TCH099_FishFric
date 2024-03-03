@@ -536,17 +536,50 @@ section {
 .content .main-content-part {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: row;
+    padding: 0 2%;
 }
 
 .main-content-part .virement-entre-compte {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.virement-entre-compte .virement-option {
+    width: 50rem;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.virement-entre-compte .virement-option p {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.virement-entre-compte .virement-option:first-child p {
+    margin-right: 13px;
+}
+
+.virement-entre-compte .virement-option .solde {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+}
+
+.virement-entre-compte .virement-option .solde i {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--text-color);
 }
 
 .dropdown {
-    min-width: 15em;
+    min-width: 25em;
     position: relative;
     margin: 2em;
 }
@@ -629,12 +662,56 @@ section {
     opacity: 1;
 }
 
+.virement-entre-compte .transfert-montant {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    margin-top: 4rem;
+}
+
+.transfert-montant .input-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.transfert-montant .input-box p {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.transfert-montant .input-box i {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.input-box .input-label {
+    width: 20rem;
+    height: 5rem;
+    border: 2px solid var(--sable-dore);
+    border-radius: 0.5em;
+    overflow: hidden;
+}
+
+.input-box .input-label input {
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
 .content .btn-box {
     width: 100%;
     height: 20%;
     display: flex;
     justify-content: center;
-    align-items: centers;
+    align-items: center;
 }
 
 .btn-box .btn-virer {
