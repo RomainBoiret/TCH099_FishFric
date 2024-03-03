@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //--------------------------------------AFFICHER la popup "transfert entre personne"--------------------------------------
-function togglePopup() {
+function togglePopupentreCompte() {
     document.getElementById("popup-1").classList.toggle("active");
 }
 

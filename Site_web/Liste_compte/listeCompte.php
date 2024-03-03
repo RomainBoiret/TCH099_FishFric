@@ -98,7 +98,7 @@ include "../verifSession.php";
         <div class="overlay"></div>
 
         <div class="content">
-            <div class="close-btn" onclick="togglePopup()"><i class='bx bx-x'></i></div>
+            <div class="close-btn" onclick="togglePopupentreCompte()"><i class='bx bx-x'></i></div>
             <h1>Virement entre comptes</h1>
             
             <div class="main-content-part">
@@ -141,6 +141,18 @@ include "../verifSession.php";
                         <div class="solde">2,854.12 <i class='bx bx-dollar'></i></div>
                     </div>
 
+                    <div class="transfert-montant">
+                        <div class="input-box">
+                            <p>Montant:</p>
+
+                            <div class="input-label">
+                                <input type="text">
+                            </div>
+
+                            <i class='bx bx-dollar'></i>
+                        </div>
+                    </div>
+                </div>
                     <div class="transfert-montant">
                         <div class="input-box">
                             <p>Montant:</p>
