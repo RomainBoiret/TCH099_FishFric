@@ -10,6 +10,10 @@
             die("Connexion échouée!: " .$e->getMessage());
         }
 
+        //FAIRE ROUTE GET AFFICHER INFOS DES COMPTES -----------------------------
+
+        //pregmatch...
+
         //Chercher les comptes de l'utilisateur avec la variable de session
         $idUtilisateur = $_SESSION['utilisateur'];
 
@@ -28,5 +32,10 @@
 
         //Encoder les informations des comptes en json
         echo json_encode(["comptes" => $comptes]);
+
+
+        //FAIRE ROUTE GET AFFICHER COMPTES POUR TRANSFERT ENTRE COMPTES -----------------------------
+        
+
     }
 ?>
