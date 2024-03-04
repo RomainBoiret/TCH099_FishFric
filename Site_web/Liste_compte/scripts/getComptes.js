@@ -53,9 +53,14 @@ document.addEventListener("DOMContentLoaded", function() {
     request.send();
 });
 
-//--------------------------------------AFFICHER la popup "transfert entre personne"--------------------------------------
+//--------------------------------------AFFICHER la popup "transfert entre comptes"--------------------------------------
 function togglePopupentreCompte() {
     document.getElementById("popup-1").classList.toggle("active");
+}
+
+//--------------------------------------AFFICHER la popup "transfert entre personnes"--------------------------------------
+function togglePopupentrePersonne() {
+    document.getElementById("popup-2").classList.toggle("active");
 }
 
 //--------------------------------------Dropdown menu animation--------------------------------------

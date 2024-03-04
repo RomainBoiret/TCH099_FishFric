@@ -160,6 +160,15 @@ include "../verifSession.php";
             </div>
         </div>
     </div>
+
+    <div class="popup" id="popup-2">
+        <div class="overlay"></div>
+
+        <div class="content">
+            <div class="close-btn" onclick="togglePopupentrePersonne()"><i class='bx bx-x'></i></div>
+            <h1>Virement entre comptes</h1>
+        </div>
+    </div>
 </section>
 </main>
 
