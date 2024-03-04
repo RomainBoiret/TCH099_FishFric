@@ -63,7 +63,7 @@ include "../verifSession.php";
                 </div>
                 
                 <nav class="navigation">
-                    <div onclick="togglePopup()" class="btn"><i class='bx bx-transfer-alt'></i>Virer entre comptes</div>
+                    <div onclick="togglePopup()" class="btn" id="popupBtn"><i class='bx bx-transfer-alt'></i>Virer entre comptes</div>
                     <button class="btn"><i class='bx bx-group'></i>Virer entre personnes</button>
                     <button class="btn"><i class='bx bx-money-withdraw'></i>Payer une facture</button>
                 </nav>
@@ -107,11 +107,11 @@ include "../verifSession.php";
                         <p>De:</p>
 
                         <div class="dropdown">
-                            <div class="select">
+                            <div class="select" id="select-1">
                                 <span class="selected">Compte chèque</span>
                                 <div class="caret"></div>
                             </div>
-                            <ul class="menu">
+                            <ul class="menu" id="menu-1">
                                 <li class="active">Compte chèque</li>
                                 <li>Compte épargne</li>
                                 <li>Carte de Crédit</li>
@@ -126,11 +126,11 @@ include "../verifSession.php";
                         <p>Vers:</p>
 
                         <div class="dropdown">
-                            <div class="select">
+                            <div class="select" id="select-2">
                                 <span class="selected">Compte épargne</span>
                                 <div class="caret"></div>
                             </div>
-                            <ul class="menu">
+                            <ul class="menu" id="menu-2">
                                 <li class="active">Compte épargne</li>
                                 <li>Compte chèque</li>
                                 <li>Carte de Crédit</li>
@@ -141,6 +141,18 @@ include "../verifSession.php";
                         <div class="solde">2,854.12 <i class='bx bx-dollar'></i></div>
                     </div>
 
+                    <div class="transfert-montant">
+                        <div class="input-box">
+                            <p>Montant:</p>
+
+                            <div class="input-label">
+                                <input type="text">
+                            </div>
+
+                            <i class='bx bx-dollar'></i>
+                        </div>
+                    </div>
+                </div>
                     <div class="transfert-montant">
                         <div class="input-box">
                             <p>Montant:</p>
