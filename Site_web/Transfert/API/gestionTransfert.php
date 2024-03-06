@@ -1,8 +1,8 @@
 <?php
-    if (isset($_POST["REQUEST_METHOD"]) && $_POST["REQUEST_METHOD"] == 'POST') {
+    if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == 'PUT') {
         //Gérer la connexion à la base de données
         try {
-            require("../connexion.php");
+            require("../../connexion.php");
         } catch(Exception $e) {
             die("Connexion échouée!: " .$e->getMessage());
         }
@@ -13,43 +13,36 @@
         //VÉRIFICATIONS DES DONNÉES DU POST-----------------------------------------
         //Vérif. ID compte bancaire source du transfert
         if(isset($donnees["idCompteBancaireProvenant"]) 
-        && is_numeric(trim($donnees["idCompteBancaireRecevant"])))
-            $idCompteBancaireProvenant = $donees["idCompteBancaireProvenant"];
+        && is_numeric(trim($donnees["idCompteBancaireRecevant"]))) {
+            $idCompteBancaireProvenant = $donnees["idCompteBancaireProvenant"];
+            $idCompteBancaireProvenant = intval(trim($idCompteBancaireProvenant));
+        }
+            
         else
             echo json_encode(['erreur' => "ID PROVENANT NON REÇU OU NON VALIDE", 'code' => 400]);
 
         //Vérif. ID compte bancaire destinataire du transfert
         if(isset($donnees["idCompteBancaireRecevant"]) 
-        && is_numeric(trim($donnees["idCompteBancaireRecevant"])))
-            $idCompteBancaireRecevant = $donees["idCompteBancaireRecevant"];
+        && is_numeric(trim($donnees["idCompteBancaireRecevant"]))) {
+            $idCompteBancaireRecevant = $donnees["idCompteBancaireRecevant"];
+            $idCompteBancaireRecevant = intval(trim($idCompteBancaireRecevant));
+        }
+
         else
             echo json_encode(['erreur' => "ID RECEVANT NON REÇU OU NON VALIDE", 'code' => 400]);
 
         //Vérifier qu'il y a un montant
-        if(isset($donnees["montant"]) && is_numeric($donnees["montant"])) 
+        if(isset($donnees["montant"]) && is_numeric($donnees["montant"])) {
             $montant = $donnees["montant"];
+            $montant = intval(trim($montant));
+        }
+    
         else
-            echo json_encode(['erreur' => "MONTANT NON REÇU OU NON VALIDE", 'code' => 400]);
+            echo json_encode(['erreur' => "Montant non valide", 'code' => 400]);
+        
 
-        //Vérifier qu'il y a une question de sécurité
-        if(isset($donnees['question']))
-            $question = $donnees['question'];
-        else
-            echo json_encode(['erreur' => "QUESTION NON REÇUE OU NON VALIDE", 'code' => 400]);
-
-        //Vérifier qu'il y a une réponse
-        if(isset($donnees['reponse']))
-            $reponse = $donnees['reponse'];
-        else
-            echo json_encode(['erreur' => "RÉPONSE NON REÇUE OU NON VALIDE", 'code' => 400]);
-
-        //Prepare toutes les données pour éviter les injections SQL
-        $idCompteBancaireProvenant = intval($conn-­>prepare(trim($idCompteBancaireProvenant)));
-        $idCompteBancaireRecevant = intval($conn-­>prepare(trim($idCompteBancaireRecevant)));
-        $montant = intval($conn-­>prepare(trim($montant)));
-
-        //TRANSFERT ENTRE UTILISATEURS-----------------------------------------
-        if (preg_match('/\/Transfert\/gestionTransfert\.php\/utilisateur$/', $_SERVER['REQUEST_URI'], $matches)) {
+        //TRANSFERT ENTRE UTILISATEURS, ENVOI-----------------------------------------
+        if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/utilisateurEnvoi$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Vérifier qu'il y a une question de sécurité
             if(isset($donnees['question']))
                 $question = $donnees['question'];
@@ -70,9 +63,9 @@
 
 
             //Prepare toutes les données pour éviter les injections SQL
-            $question = $conn-­>prepare(trim($question));
-            $reponse = $conn-­>prepare(trim($reponse));
-            $nomContact = $conn-­>prepare(trim($nomContact));
+            $question = (trim($question));
+            $reponse = (trim($reponse));
+            $nomContact = (trim($nomContact));
          
             //Actualiser le montant du compte bancaire provenant
             $sql = "UPDATE CompteBancaire SET solde = solde - $montant WHERE id = '$idCompteBancaireProvenant';";
@@ -81,25 +74,70 @@
             //Ajouter la transaction en attente
             $sql = "INSERT INTO TransactionBancaire (idCompteBancaireProvenant, idCompteBancaireRecevant, 
             dateTransaction, montant, typeTransaction, enAttente, question, reponse, nomContact) VALUES ('$idCompteBancaireProvenant, $idCompteBancaireRecevant, 
-            NOW(), '$montant', 'Virement entre utilisateurs', 1, '$question', '$reponse', '$nomContact';";
+            NOW(), '$montant', 'Virement entre utilisateurs', 1, '$question', '$reponse', '$nomContact');";
             $conn->query($sql);
         }
 
-        //TRANSFERT ENTRE comptes-----------------------------------------
-        else if (preg_match('/\/Transfert\/gestionTransfert\.php\/compte$/', $_SERVER['REQUEST_URI'], $matches)) {
+
+        //TRANSFERT ENTRE UTILISATEURS, RECEPTION-----------------------------------------
+        if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/utilisateurEnvoi$/', $_SERVER['REQUEST_URI'], $matches)) {
+            //Vérifier qu'il y a une question de sécurité
+            if(isset($donnees['question']))
+                $question = $donnees['question'];
+            else
+                echo json_encode(['erreur' => "QUESTION NON REÇUE OU NON VALIDE", 'code' => 400]);
+
+            //Vérifier qu'il y a une réponse
+            if(isset($donnees['reponse']))
+                $reponse = $donnees['reponse'];
+            else
+                echo json_encode(['erreur' => "RÉPONSE NON REÇUE OU NON VALIDE", 'code' => 400]);
+
+            //Vérifier qu'il y a une acceptation ou bien un refus du transfert
+            if(isset($donnees['accept']))
+                $nomContact = $donnees['nomContact'];
+            else
+                echo json_encode(['erreur' => "NOM DE CONTACT NON REÇU OU NON VALIDE", 'code' => 400]);
+
+
+            //Prepare toutes les données pour éviter les injections SQL
+            $question = (trim($question));
+            $reponse = (trim($reponse));
+            $nomContact = (trim($nomContact));
+         
             //Actualiser le montant du compte bancaire provenant
             $sql = "UPDATE CompteBancaire SET solde = solde - $montant WHERE id = '$idCompteBancaireProvenant';";
             $conn->query($sql);
 
-            //Actualiser le montant du compte bancaire recevant
-            $sql = "UPDATE CompteBancaire SET solde = solde + $montant WHERE id = '$idCompteBancaireRecevant';";
-            $conn->query($sql);
-
-            //Ajouter la transaction
+            //Ajouter la transaction en attente
             $sql = "INSERT INTO TransactionBancaire (idCompteBancaireProvenant, idCompteBancaireRecevant, 
-            dateTransaction, montant, typeTransaction) VALUES ('$idCompteBancaireProvenant, $idCompteBancaireRecevant, 
-            NOW(), '$montant', 'Virement entre comptes';";
+            dateTransaction, montant, typeTransaction, enAttente, question, reponse, nomContact) VALUES ('$idCompteBancaireProvenant, $idCompteBancaireRecevant, 
+            NOW(), '$montant', 'Virement entre utilisateurs', 1, '$question', '$reponse', '$nomContact');";
             $conn->query($sql);
+        }
+
+
+        //TRANSFERT ENTRE comptes-----------------------------------------
+        else if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/compte$/', $_SERVER['REQUEST_URI'], $matches)) {
+            if($idCompteBancaireProvenant != $idCompteBancaireRecevant) {
+                //Actualiser le montant du compte bancaire provenant
+                $sql = "UPDATE CompteBancaire SET solde = solde - $montant WHERE id = '$idCompteBancaireProvenant';";
+                $conn->query($sql);
+
+                //Actualiser le montant du compte bancaire recevant
+                $sql = "UPDATE CompteBancaire SET solde = solde + $montant WHERE id = '$idCompteBancaireRecevant';";
+                $conn->query($sql);
+
+                //Ajouter la transaction
+                $sql = "INSERT INTO TransactionBancaire (idCompteBancaireProvenant, idCompteBancaireRecevant, 
+                dateTransaction, montant, typeTransaction) VALUES ($idCompteBancaireProvenant, $idCompteBancaireRecevant, 
+                NOW(), '$montant', 'Virement entre comptes');";
+                $conn->query($sql);
+            } else {
+                //Le compte de banque provenant ne peut pas être le même que le compte en banque recevant
+                echo json_encode(['erreur' => 'Le compte de banque provenant ne peut pas être le même que 
+                    le compte en banque recevant', 'code' => 400]);
+            }
         }
 
         else { 

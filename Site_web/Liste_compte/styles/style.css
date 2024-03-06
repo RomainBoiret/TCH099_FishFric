@@ -573,7 +573,7 @@ section {
 }
 
 .virement-entre-compte table tr td span {
-    margin: 30px;
+    width: 100%;
 }
 
 .transfert-montant {
@@ -823,4 +823,9 @@ label {
     border: 2px solid var(--sable-dore);
     border-radius: 5px;
     font-size: 1.4rem;
+}
+
+#msg-erreur-virement-compte {
+    font-size: 1.4rem;
+    color: red;
 }
