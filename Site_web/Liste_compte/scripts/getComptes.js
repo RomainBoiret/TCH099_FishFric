@@ -68,14 +68,6 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
                     });
 
-                    //S'il n'y a pas 2 options sélectionnées, on arrête et on met un message d'erreur
-                    // if (!idCompteBancaireProvenant || !idCompteBancaireRecevant) {
-                    //     document.getElementById('msg-erreur-virement-compte').innerText = "Choisissez 1 compte source et un compte de destination";
-                    //     return;
-                    // }
-
-                    //S'
-
                     //Sinon tout va bien et on peut commencer notre requête
                     requeteVirement = new XMLHttpRequest();
                     requeteVirement.open('PUT', '/Transfert/API/gestionTransfert.php/compte', true);
@@ -88,15 +80,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     console.log("Json: " + donneesJsonVirement)
 
+                    //Messages d'erreurs ou de succès du virement
                     requeteVirement.onload = function() {
                         //Vérifier si la requête a marché
                         if (requeteVirement.readyState === 4 && requeteVirement.status === 200) {
                             //Décoder la réponse (qui est au format JSON)
                             let responseData = JSON.parse(requeteVirement.responseText);
 
-                            //S'il y a une réponse, c'est soit un message d'erreur ou de succès
-                            if (responseData) {
-                                document.getElementById('msg-erreur-virement-compte').innerText = responseData.erreur;
+                            //Afficher les messages d'erreur ou de succès
+                            document.getElementById('msg-erreur-virement-compte').innerText = "";
+                            let msg = document.createElement('span');
+
+                            if ("msgSucces" in responseData) {
+                                msg.innerText = responseData.msgSucces;
+                                msg.style.color = "green";
+                                document.getElementById('msg-erreur-virement-compte').appendChild(msg);
+                            }
+
+                            else {
+                                responseData.erreur.forEach(function(message) {
+                                    msg.innerText = message;
+                                    msg.style.color = "red";
+                                    document.getElementById('msg-erreur-virement-compte').appendChild(msg);
+                                })
                             }
 
                         } 
@@ -143,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //--------------------------------------AFFICHER la popup "transfert entre comptes"--------------------------------------
 function togglePopupentreCompte() {
     document.getElementById("popup-1").classList.toggle("active");
-    document.getElementById('msg-erreur-virement-compte').innerText = "";
+    document.getElementById('msg-erreur-virement-compte').innerText = ""; //Vider les messages d'erreurs
 }
 
 //--------------------------------------AFFICHER la popup "transfert entre personnes"--------------------------------------
