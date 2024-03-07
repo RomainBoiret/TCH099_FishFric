@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --bleu-ocean-abysses: #004462;
+    --bleu-ocean-profond: #005a80;
+    --bleu-turquoise: #00b8d4;
+    --bleu-ocean-surface: #b1c9ef;
+    --vert-eau: #aee1cd;
+    --sable-dore: #e1c16e;
+    --corail-fonce: #ff4747;
+    --corail: #ff6b6b;
+    --text-color: #2b2d42;
+    --white: #f0f3fa; 
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bleu-ocean-abysses);
+}
+
+html {
+    font-size: 60%;
+    overflow-x: hidden;
+}
+
+body {
+    background: #d5deef;
+    color: var(--text-color);
+}
+
+header {
+    width: 100%;
+    height: 10vh;
+    padding: 0 4.2%;
+    background: var(--bleu-ocean-profond);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2.5rem;
+    color: var(--white);
+    font-weight: 600;
+    padding: 0.5rem 10px;
+    border-radius: 10px;
+}
+
+.logo:hover {
+    background: var(--bleu-ocean-abysses);
+}
+
+.logo img {
+    width: 45px;
+    border-radius: 15px;
+}
+
+.logo span {
+    color: #ffbc42;
+    font-size: 2.5rem;
+}
+
+header .btn-deconnexion {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    width: 20rem;
+    height: 5rem;
+    margin-right: 10px;
+    cursor: pointer;
+    background: var(--sable-dore);
+    border: .2rem solid var(--sable-dore);
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: .1rem;
+    color: var(--bleu-ocean-profond);
+    z-index: 1;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.btn-deconnexion:hover {
+    color: var(--sable-dore);
+}
+
+.btn-deconnexion::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--bleu-ocean-profond);
+    z-index: -1;
+    transition: .5s;
+}
+
+.btn-deconnexion:hover::before {
+    width: 100%;
+}
+
+.btn-deconnexion i {
+    font-size: 2.3rem;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.btn-deconnexion a {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--white);
+}
+
+section {
+    height: auto;
+    padding: 2rem 4%;
+    display: flex;
+    justify-content: center;
+    background: url('/Images/background-compte.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e0e7f2;
+}
+
+.consulter-compte {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2% 1%;
+    overflow: hidden;
+}
+
+.consulter-compte .detail-compte {
+    width: 100%;
+    height: 16rem;
+    background: var(--sable-dore);
+    color: var(--text-color);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2% 2.3%;
+}
+
+.detail-compte .detail-compte-header {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-compte .detail-compte-header h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.detail-compte p {
+    color: var(--text-color);
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.detail-compte .montant-compte {
+    width: 50%;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 0.6rem;
+}
+
+.detail-compte .montant-compte .montant {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.detail-compte .detail-compte-footer {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-compte .detail-compte-footer p {
+    font-size: 1.3rem;
+}
+
+.consulter-compte .historique-compte {
+    width: 100%;
+    height: auto;
+    background: var(--white);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.historique-compte .title-historique {
+    width: 100%;
+    height: 5rem;
+    background: var(--bleu-ocean-surface);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0 2%;
+}
+
+.title-historique h4 {
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.title-historique i {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.consulter-compte .transaction-mois {
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid var(--text-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2%;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.consulter-compte .transaction-mois .mois {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.consulter-compte .transaction-mois .depenses-mois {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.consulter-compte .transaction-mois .depenses-mois i {
+    font-size: 2rem;
+    font-weight: 550;
+}
+
+.consulter-compte .transaction-mois {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.historique-compte .transfert-content {
+    width: 100%;
+    height: 26rem;
+    padding: 0.5% 1%;
+}
+
+.transfert-content .transfert-box {
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px dashed var(--text-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1%;
+}
+
+.transfert-content .transfert-box:last-child {
+    border: none;
+}
+
+.transfert-box .transfert-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.transfert-detail .detail-titre {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.transfert-detail .detail-date {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.transfert-box .transfert-montant-positif {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #55a630;
+}
+
+.transfert-box .transfert-montant-negatif {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #ef233c;
+}
+
+.historique-compte .footer-historique {
+    width: 100%;
+    height: 5rem;
+    border-top: 2px solid black;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 2%;
+}
+
+.historique-compte .footer-historique p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.historique-compte .footer-historique p:hover {
+    text-decoration: underline;
+}
+
+.footer-historique .btn-voir-plus {
+    width: 25px;
+    height: 25px;
+    background: #d5deef;
+    color: var(--text-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.footer-historique .btn-voir-plus:hover {
+    background: #b1c9ef;
+}
+
+.footer-historique .btn-voir-plus i {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
