@@ -63,8 +63,8 @@ include "../verifSession.php";
                 </div>
                 
                 <nav class="navigation">
-                    <div onclick="togglePopup()" class="btn" id="popupBtn"><i class='bx bx-transfer-alt'></i>Virer entre comptes</div>
-                    <button class="btn"><i class='bx bx-group'></i>Virer entre personnes</button>
+                    <div onclick="togglePopupentreCompte()" class="btn" id="btnPopupComptes"><i class='bx bx-transfer-alt'></i>Virer entre comptes</div>
+                    <div onclick="togglePopupentrePersonne()" class="btn" id="btnPopupPersonnes"><i class='bx bx-group'></i>Virer entre personnes</div>
                     <button class="btn"><i class='bx bx-money-withdraw'></i>Payer une facture</button>
                 </nav>
             </div>
@@ -103,72 +103,39 @@ include "../verifSession.php";
             
             <div class="main-content-part">
                 <div class="virement-entre-compte">
-                    <div class="virement-option">
-                        <p>De:</p>
+                    <table>
+                        <tbody id="tableVirementComptes">
+                            <tr>
+                                <th>De</th>
+                                <th>Vers</th>
+                                <th>Compte et descriptif</th>
+                                <th>Solde ($)</th>
+                            </tr>
+                        </tbody>    
+                    </table>
 
-                        <div class="dropdown">
-                            <div class="select" id="select-1">
-                                <span class="selected">Compte chèque</span>
-                                <div class="caret"></div>
-                            </div>
-                            <ul class="menu" id="menu-1">
-                                <li class="active">Compte chèque</li>
-                                <li>Compte épargne</li>
-                                <li>Carte de Crédit</li>
-                                <li>Compte d'investissement</li>
-                            </ul>
-                        </div>
+                    <!-- <div id="msg-erreur-virement-compte">
 
-                        <div class="solde">1,524.47 <i class='bx bx-dollar'></i></div>
-                    </div>
+                    </div> -->
 
-                    <div class="virement-option">
-                        <p>Vers:</p>
-
-                        <div class="dropdown">
-                            <div class="select" id="select-2">
-                                <span class="selected">Compte épargne</span>
-                                <div class="caret"></div>
-                            </div>
-                            <ul class="menu" id="menu-2">
-                                <li class="active">Compte épargne</li>
-                                <li>Compte chèque</li>
-                                <li>Carte de Crédit</li>
-                                <li>Compte d'investissement</li>
-                            </ul>
-                        </div>
-
-                        <div class="solde">2,854.12 <i class='bx bx-dollar'></i></div>
-                    </div>
-
-                    <div class="transfert-montant">
-                        <div class="input-box">
-                            <p>Montant:</p>
-
-                            <div class="input-label">
-                                <input type="text">
-                            </div>
-
-                            <i class='bx bx-dollar'></i>
-                        </div>
-                    </div>
                 </div>
-                    <div class="transfert-montant">
-                        <div class="input-box">
-                            <p>Montant:</p>
+            </div>
 
-                            <div class="input-label">
-                                <input type="text">
-                            </div>
+            <div class="transfert-montant">
+                <div class="input-box">
+                    <p>Montant:</p>
 
-                            <i class='bx bx-dollar'></i>
-                        </div>
+                    <div class="input-label">
+                        <input type="text" id="montant-virement-comptes">
+                        <i class='bx bx-dollar'></i>
                     </div>
                 </div>
             </div>
 
+            <div id="msg-erreur-virement-compte"></div>
+
             <div class="btn-box">
-                <button class="btn-virer">Virer</button>
+                <button class="btn-virer" id="btnVirerCompte">Virer</button>
             </div>
         </div>
     </div>
@@ -176,9 +143,67 @@ include "../verifSession.php";
     <div class="popup" id="popup-2">
         <div class="overlay"></div>
 
-        <div class="content">
+        <div class="content-2">
             <div class="close-btn" onclick="togglePopupentrePersonne()"><i class='bx bx-x'></i></div>
-            <h1>Virement entre comptes</h1>
+            <h1>Virement entre personnes</h1>
+
+            <div class="main-content-part">
+                <div class="virement-entre-personne">
+                    <table>
+                        <tbody id="tableVirementPersonnes">
+                            <tr>
+                                <th>De</th>
+                                <th>Compte et descriptif</th>
+                                <th>Solde ($)</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="virement-formulaire">
+                        <form action="" method="post" class="formulaire">
+                            <div class="input-box">
+                                <div class="input-field">
+                                    <input type="text" name="courriel_dest" placeholder="..." id="courrielDest" required>
+                                    <label for="courriel_dest">Courriel du destinataire</label>
+                                </div>
+
+                                <div class="input-field">
+                                    <input type="text" name="quest_rep" placeholder="..." id="reponse" required>
+                                    <label for="quest_rep">Réponse</label>
+                                </div>
+                            </div>
+
+                            <div class="input-box">
+                                <div class="input-field">
+                                    <input type="text" name="quest_secu" placeholder="..." id="question" required>
+                                    <label for="quest_secu">Question de sécurité</label>
+                                </div>
+
+                                <div class="input-field">
+                                    <input type="text" name="conf_quest_rep" placeholder="..." id="confReponse" required>
+                                    <label for="conf_quest_rep">Confirmer la réponse</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="transfert-montant">
+                        <div class="input-box">
+                            <p>Montant:</p>
+
+                            <div class="input-label">
+                                <input type="text" id="montant-virement-personne">
+                                <i class='bx bx-dollar'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="msg-erreur-virement-personne"></div>
+            
+            <div class="btn-box">
+                <button class="btn-virer" id="btnVirerPersonne">Virer</button>
+            </div>
         </div>
     </div>
 </section>
