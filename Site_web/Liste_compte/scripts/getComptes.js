@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 compteHtml += '<div class="montant">' + compte.solde + '</div></div></div>';
                 compteHtml += '<p>Numéro de compte: ' + compte.id + '</p>';
                 compteHtml += '<div class="btn-menu"><i class="bx bxs-right-arrow-circle">';
-                compteHtml += '</i><a href="#">Détails du compte</a></div></div>';                                                              
+                compteHtml += '</i><a href="/consulterCompte/consulterCompte.php?id=' + compte.id + '">Détails du compte</a></div></div>';                                                              
 
                 comptes += compteHtml;
             });
@@ -214,19 +214,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     requeteVirement.send(donneesJsonVirement);
 
 
-
-
-
-
-
-
-
                 })
             });
         } 
         
+
         else {
-            //Afficher l'erreur s'il y a lieu
+            //Afficher l'erreur de la requête GET s'il y a lieu
             console.error('Request failed with status code:', requeteGetComptes.status);
         }
     };

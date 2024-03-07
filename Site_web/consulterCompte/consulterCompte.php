@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+//Vérifier si l'utilisateur a une session active
+include "../verifSession.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +17,12 @@
 <body>
     <!-- header design -->
 <header>
-    <a href="#" class="logo">
+    <a href="/Liste_Compte/listeCompte.php" class="logo">
         <img src="/Images/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
 
-    <button class="btn-deconnexion" onclick="window.location.href='../deconnexion.php'"><i class='bx bx-log-out-circle'></i><a>Se déconnecter</a></button>
+    <button class="btn-deconnexion" onclick="window.location.href='../../deconnexion.php'"><i class='bx bx-log-out-circle'></i><a>Se déconnecter</a></button>
 </header>
 <main>
 
@@ -34,9 +41,7 @@
             <p>Numéro de compte: 11-105-4528</p>
 
             <div class="detail-compte-footer">
-                <p>Date de création: 02/12/2023</p>
-
-                <p>Propriétaire: Jean de La Fontaine</p>
+                <p>Date d'ouverture: 02/12/2023</p>
             </div>
         </div>
 
@@ -101,6 +106,6 @@
 <footer>
 
 </footer>
-<script src="/consulterCompte/scripts/script.js"></script>
+<script src="/consulterCompte/scripts/consulterCompte.js"></script>
 </body>
 </html>
