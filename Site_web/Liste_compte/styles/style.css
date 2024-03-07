@@ -825,7 +825,7 @@ label {
     font-size: 1.4rem;
 }
 
-#msg-erreur-virement-compte {
+#msg-erreur-virement-compte, #msg-erreur-virement-personne {
     display: flex;
     flex-direction: column;
     font-size: 1.4rem;

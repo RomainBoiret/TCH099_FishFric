@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById('tableVirementComptes').innerHTML = comptes;
 
                 //--------------------------------------REQUÊTE PUT VIREMENT--------------------------------------
-                document.getElementById('btnVirer').addEventListener('click', function() {
+                document.getElementById('btnVirerCompte').addEventListener('click', function() {
                     //Chercher les données à envoyer à la requête
                     let montant = document.getElementById("montant-virement-comptes").value;
                     console.log(montant)
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
                     });
 
-                    //Sinon tout va bien et on peut commencer notre requête
+                    //On peut commencer notre requête
                     requeteVirement = new XMLHttpRequest();
                     requeteVirement.open('PUT', '/Transfert/API/gestionTransfert.php/compte', true);
                     
@@ -77,8 +77,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     const donneesJsonVirement = JSON.stringify({"idCompteBancaireProvenant": idCompteBancaireProvenant,
                                                                 "idCompteBancaireRecevant": idCompteBancaireRecevant,
                                                                 "montant": montant});
-
-                    console.log("Json: " + donneesJsonVirement)
 
                     //Messages d'erreurs ou de succès du virement
                     requeteVirement.onload = function() {
@@ -125,10 +123,106 @@ document.addEventListener("DOMContentLoaded", function() {
             })
 
             //--------------------------------------AFFICHER COMPTES virement entre personnes--------------------------------------
-            //...
+            document.getElementById("btnPopupPersonnes").addEventListener('click', function() {
+                comptes = '<tr><th>De</th><th>Compte et descriptif</th><th>Solde ($)</th></tr>';
+                
+                responseData.comptes.forEach(function(compte) {
+                    //Afficher chaque compte dans le tableau, ajouter le HTML dynamiquement
+                    comptes += '<tr><td><input type="radio" name="choix" id="' + compte.id + '"></td>';
+                    comptes += '<td><span>' + compte.typeCompte + ' </span>';
+                    comptes += '<span>ID: ' + compte.id + ' </span>';
+                    comptes += '</td><td><span>' + compte.solde + '</span></td></tr>';               
+                });
+
+                //Ajouter le HTML dans la table
+                document.getElementById('tableVirementPersonnes').innerHTML = comptes;
+
+                //--------------------------------------REQUÊTE PUT VIREMENT--------------------------------------
+                document.getElementById('btnVirerPersonne').addEventListener('click', function() {
+                    //Chercher les données à envoyer à la requête
+                    let montant = document.getElementById("montant-virement-personne").value;
+                    let idCompteBancaireProvenant;
+
+                    ["choix"].forEach(option => {
+                        const selectedOption = document.querySelector(`input[name=${option}]:checked`);
+
+                        if (selectedOption) {
+                            idCompteBancaireProvenant = selectedOption.id;
+                        }
+                    });
+
+                    //Chercher les données du virement
+                    let courrielDest = document.getElementById('courrielDest').value;
+                    let question = document.getElementById('question').value;
+                    let reponse = document.getElementById('reponse').value;
+                    let confReponse = document.getElementById('confReponse').value;
+
+                    //On peut commencer notre requête
+                    requeteVirement = new XMLHttpRequest();
+                    requeteVirement.open('PUT', '/Transfert/API/gestionTransfert.php/utilisateurEnvoi', true);
+                    
+                    //Stocke les donnees a envoyer en format JSON
+                    requeteVirement.setRequestHeader('Content-Type', 'application/json');
+                    const donneesJsonVirement = JSON.stringify({"idCompteBancaireProvenant": idCompteBancaireProvenant,
+                                                                "montant": montant,
+                                                                "courrielDest": courrielDest,
+                                                                "question": question,
+                                                                "reponse": reponse,
+                                                                "confReponse": confReponse});
+
+                    console.log("Json: " + donneesJsonVirement)
+
+                    //Messages d'erreurs ou de succès du virement
+                    requeteVirement.onload = function() {
+                        //Vérifier si la requête a marché
+                        if (requeteVirement.readyState === 4 && requeteVirement.status === 200) {
+                            //Décoder la réponse (qui est au format JSON)
+                            let responseData = JSON.parse(requeteVirement.responseText);
+
+                            //Afficher les messages d'erreur ou de succès
+                            document.getElementById('msg-erreur-virement-personne').innerText = "";
+                            let msg = document.createElement('span');
+
+                            if ("msgSucces" in responseData) {
+                                msg.innerText = responseData.msgSucces;
+                                msg.style.color = "green";
+                                document.getElementById('msg-erreur-virement-personne').appendChild(msg);
+                            }
+
+                            else {
+                                responseData.erreur.forEach(function(message) {
+                                    msg.innerText = message;
+                                    msg.style.color = "red";
+                                    document.getElementById('msg-erreur-virement-personne').appendChild(msg);
+                                })
+                            }
+
+                        } 
+        
+                        else {
+                            //Afficher l'erreur s'il y a lieu
+                            console.error('Request failed with status code:', requeteVirement.status);
+                        }
+                    }
+
+                    //Message d'erreur de la requête
+                    requeteVirement.onerror = function() {
+                        console.error('La requête n\'a pas fonctionné!');
+                    };
+
+                    //Envoyer la requête
+                    requeteVirement.send(donneesJsonVirement);
 
 
 
+
+
+
+
+
+
+                })
+            });
         } 
         
         else {
@@ -155,6 +249,7 @@ function togglePopupentreCompte() {
 //--------------------------------------AFFICHER la popup "transfert entre personnes"--------------------------------------
 function togglePopupentrePersonne() {
     document.getElementById("popup-2").classList.toggle("active");
+    document.getElementById('msg-erreur-virement-personne').innerText = ""; //Vider les messages d'erreurs
 }
 
 //Fonction enlever la sélection quand le popup se ferme

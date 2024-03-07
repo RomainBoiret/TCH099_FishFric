@@ -111,26 +111,12 @@ include "../verifSession.php";
                                 <th>Compte et descriptif</th>
                                 <th>Solde ($)</th>
                             </tr>
-
-                            <tr>
-                                <td><input type="radio" name="option-1" id="option-1"></td>
-                                <td><input type="radio" name="option-2" id="option-2"></td>
-                                <td>
-                                    <span>Compte chèque</span>
-                                    <span>ID: 11-105-4528</span>
-                                </td>
-                                <td>
-                                    <span>4,567.89</span>
-                                </td>
-                            </tr>
-
-
                         </tbody>    
                     </table>
 
-                    <div id="msg-erreur-virement-compte">
+                    <!-- <div id="msg-erreur-virement-compte">
 
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -146,8 +132,10 @@ include "../verifSession.php";
                 </div>
             </div>
 
+            <div id="msg-erreur-virement-compte"></div>
+
             <div class="btn-box">
-                <button class="btn-virer" id="btnVirer">Virer</button>
+                <button class="btn-virer" id="btnVirerCompte">Virer</button>
             </div>
         </div>
     </div>
@@ -162,74 +150,36 @@ include "../verifSession.php";
             <div class="main-content-part">
                 <div class="virement-entre-personne">
                     <table>
-                        <tr>
-                            <th>De</th>
-                            <th>Compte et descriptif</th>
-                            <th>Solde ($)</th>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="choix" id="choix"></td>
-                            <td>
-                                <span>Compte chèque</span>
-                                <span>ID: 11-105-4528</span>
-                            </td>
-                            <td>
-                                <span>4,567.89</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="choix" id="choix"></td>
-                            <td>
-                                <span>Compte chèque</span>
-                                <span>ID: 11-105-4528</span>
-                            </td>
-                            <td>
-                                <span>4,567.89</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="choix" id="choix"></td>
-                            <td>
-                                <span>Compte chèque</span>
-                                <span>ID: 11-105-4528</span>
-                            </td>
-                            <td>
-                                <span>4,567.89</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="choix" id="choix"></td>
-                            <td>
-                                <span>Compte chèque</span>
-                                <span>ID: 11-105-4528</span>
-                            </td>
-                            <td>
-                                <span>4,567.89</span>
-                            </td>
-                        </tr>
+                        <tbody id="tableVirementPersonnes">
+                            <tr>
+                                <th>De</th>
+                                <th>Compte et descriptif</th>
+                                <th>Solde ($)</th>
+                            </tr>
+                        </tbody>
                     </table>
                     <div class="virement-formulaire">
                         <form action="" method="post" class="formulaire">
                             <div class="input-box">
                                 <div class="input-field">
-                                    <input type="text" name="courriel_dest" placeholder="..." required>
+                                    <input type="text" name="courriel_dest" placeholder="..." id="courrielDest" required>
                                     <label for="courriel_dest">Courriel du destinataire</label>
                                 </div>
 
                                 <div class="input-field">
-                                    <input type="text" name="quest_rep" placeholder="..." required>
+                                    <input type="text" name="quest_rep" placeholder="..." id="reponse" required>
                                     <label for="quest_rep">Réponse</label>
                                 </div>
                             </div>
 
                             <div class="input-box">
                                 <div class="input-field">
-                                    <input type="text" name="quest_secu" placeholder="..." required>
+                                    <input type="text" name="quest_secu" placeholder="..." id="question" required>
                                     <label for="quest_secu">Question de sécurité</label>
                                 </div>
 
                                 <div class="input-field">
-                                    <input type="text" name="conf_quest_rep" placeholder="..." required>
+                                    <input type="text" name="conf_quest_rep" placeholder="..." id="confReponse" required>
                                     <label for="conf_quest_rep">Confirmer la réponse</label>
                                 </div>
                             </div>
@@ -241,16 +191,18 @@ include "../verifSession.php";
                             <p>Montant:</p>
 
                             <div class="input-label">
-                                <input type="text">
+                                <input type="text" id="montant-virement-personne">
                                 <i class='bx bx-dollar'></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div id="msg-erreur-virement-personne"></div>
             
             <div class="btn-box">
-                <button class="btn-virer">Virer</button>
+                <button class="btn-virer" id="btnVirerPersonne">Virer</button>
             </div>
         </div>
     </div>
