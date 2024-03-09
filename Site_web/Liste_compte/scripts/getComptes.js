@@ -246,6 +246,12 @@ function togglePopupentrePersonne() {
     document.getElementById('msg-erreur-virement-personne').innerText = ""; //Vider les messages d'erreurs
 }
 
+//--------------------------------------AFFICHER la popup "payer facture"--------------------------------------
+function togglePopupFacture() {
+    document.getElementById("popup-3").classList.toggle("active");
+    document.getElementById('msg-erreur-virement-personne').innerText = ""; //Vider les messages d'erreurs
+}
+
 //Fonction enlever la sélection quand le popup se ferme
 function removeSelect() {
     divSelect = document.getElementsByClassName("select-clicked");
