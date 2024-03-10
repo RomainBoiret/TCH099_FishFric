@@ -143,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     let montant = document.getElementById("montant-virement-personne").value;
                     let idCompteBancaireProvenant;
 
+                    //Chercher le compte que l'utilisateur a sélectionné 
                     ["choix"].forEach(option => {
                         const selectedOption = document.querySelector(`input[name=${option}]:checked`);
 
@@ -216,6 +217,97 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 })
             });
+
+
+            //--------------------------------------AFFICHER COMPTES PAYER FACTURE--------------------------------------
+            document.getElementById("btnPopupFacture").addEventListener('click', function() {
+                comptes = '<tr><th>De</th><th>Compte et descriptif</th><th>Solde ($)</th></tr>';
+                
+                responseData.comptes.forEach(function(compte) {
+                    //Afficher chaque compte dans le tableau, ajouter le HTML dynamiquement
+                    comptes += '<tr><td><input type="radio" name="choix" id="' + compte.id + '"></td>';
+                    comptes += '<td><span>' + compte.typeCompte + ' </span>';
+                    comptes += '<span>ID: ' + compte.id + ' </span>';
+                    comptes += '</td><td><span>' + compte.solde + '</span></td></tr>';               
+                });
+
+                //Ajouter le HTML dans la table
+                document.getElementById('tableFacture').innerHTML = comptes;
+
+                //--------------------------------------REQUÊTE PUT VIREMENT--------------------------------------
+                document.getElementById('btnPayerFacture').addEventListener('click', function() {
+                    //Chercher les données à envoyer à la requête
+                    let montant = document.getElementById("montant-payer-facture").value;
+                    let idCompteBancaireProvenant;
+
+                    //Chercher le compte que l'utilisateur a sélectionné 
+                    ["choix"].forEach(option => {
+                        const selectedOption = document.querySelector(`input[name=${option}]:checked`);
+
+                        if (selectedOption) {
+                            idCompteBancaireProvenant = selectedOption.id;
+                        }
+                    });
+
+                    //Chercher les données du virement
+                    let nomEtablissement = document.getElementById('nomEtablissement').value;
+                    let raison = document.getElementById('facture_raison').value;
+
+                    //On peut commencer notre requête
+                    requeteFacture = new XMLHttpRequest();
+                    requeteFacture.open('PUT', '/Transfert/API/gestionTransfert.php/facture', true);
+                    
+                    //Stocke les donnees a envoyer en format JSON
+                    requeteFacture.setRequestHeader('Content-Type', 'application/json');
+                    const donneesJsonFacture = JSON.stringify({"idCompteBancaireProvenant": idCompteBancaireProvenant,
+                                                                "montant": montant,
+                                                                "nomEtablissement": nomEtablissement,
+                                                                "raison": raison});
+
+                    console.log("Json: " + donneesJsonFacture)
+
+                    //Messages d'erreurs ou de succès du virement
+                    requeteFacture.onload = function() {
+                        //Vérifier si la requête a marché
+                        if (requeteFacture.readyState === 4 && requeteFacture.status === 200) {
+                            //Décoder la réponse (qui est au format JSON)
+                            let responseData = JSON.parse(requeteFacture.responseText);
+
+                            //Afficher les messages d'erreur ou de succès
+                            document.getElementById('msg-erreur-payer-facture').innerText = "";
+                            let msg = document.createElement('span');
+
+                            if ("msgSucces" in responseData) {
+                                msg.innerText = responseData.msgSucces;
+                                msg.style.color = "green";
+                                document.getElementById('msg-erreur-payer-facture').appendChild(msg);
+                            }
+
+                            else {
+                                responseData.erreur.forEach(function(message) {
+                                    msg.innerText = message;
+                                    msg.style.color = "red";
+                                    document.getElementById('msg-erreur-payer-facture').appendChild(msg);
+                                })
+                            }
+
+                        } 
+        
+                        else {
+                            //Afficher l'erreur s'il y a lieu
+                            console.error('Request failed with status code:', requeteFacture.status);
+                        }
+                    }
+
+                    //Message d'erreur de la requête
+                    requeteFacture.onerror = function() {
+                        console.error('La requête n\'a pas fonctionné!');
+                    };
+
+                    //Envoyer la requête
+                    requeteFacture.send(donneesJsonFacture);
+                })
+            });
         } 
         
 
@@ -249,13 +341,5 @@ function togglePopupentrePersonne() {
 //--------------------------------------AFFICHER la popup "payer facture"--------------------------------------
 function togglePopupFacture() {
     document.getElementById("popup-3").classList.toggle("active");
-    document.getElementById('msg-erreur-virement-personne').innerText = ""; //Vider les messages d'erreurs
-}
-
-//Fonction enlever la sélection quand le popup se ferme
-function removeSelect() {
-    divSelect = document.getElementsByClassName("select-clicked");
-
-    for (let i = 0; i < divSelect.length; i++)
-        divSelect[i].classList.remove("select-clicked");
+    document.getElementById('msg-erreur-payer-facture').innerText = ""; //Vider les messages d'erreurs
 }

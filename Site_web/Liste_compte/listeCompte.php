@@ -27,7 +27,7 @@ include "../verifSession.php";
 </header>
 <main>
 
-<!-- compte design -->
+<!-- ------------------------------------MENU COMPTES + MENU DROIT DE LA PAGE------------------------------------ -->
 <section>
     <div class="main-container">
         <div class="main-compte">
@@ -38,19 +38,7 @@ include "../verifSession.php";
 
             <div id="compte-content">
                 <div class="compte-box">
-                    <div class="box-header">
-                        <h2>Compte chèque</h2>
-
-                        <div class="montant-compte">
-                            <div class="montant">4,567.89</div>
-                        </div>
-                    </div>
-
-                    <p>Numéro de compte: 11-105-4528</p>
-
-                    <div class="btn-menu">
-                        <i class='bx bxs-right-arrow-circle'></i><a href="#">Détails du compte</a>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -65,7 +53,7 @@ include "../verifSession.php";
                 <nav class="navigation">
                     <div onclick="togglePopupentreCompte()" class="btn" id="btnPopupComptes"><i class='bx bx-transfer-alt'></i>Virer entre comptes</div>
                     <div onclick="togglePopupentrePersonne()" class="btn" id="btnPopupPersonnes"><i class='bx bx-group'></i>Virer entre personnes</div>
-                    <button class="btn"><i class='bx bx-money-withdraw'></i>Payer une facture</button>
+                    <div onclick="togglePopupFacture()" class="btn" id="btnPopupFacture"><i class='bx bx-money-withdraw'></i>Payer une facture</div>
                 </nav>
             </div>
 
@@ -94,6 +82,7 @@ include "../verifSession.php";
         </div>
     </div>
 
+    <!-- ------------------------------------POPUP TRANSFERT ENTRE COMPTES------------------------------------ -->
     <div class="popup" id="popup-1">
         <div class="overlay"></div>
 
@@ -113,11 +102,6 @@ include "../verifSession.php";
                             </tr>
                         </tbody>    
                     </table>
-
-                    <!-- <div id="msg-erreur-virement-compte">
-
-                    </div> -->
-
                 </div>
             </div>
 
@@ -140,6 +124,7 @@ include "../verifSession.php";
         </div>
     </div>
 
+    <!-- ------------------------------------POPUP VIREMENT ENTRE PERSONNES------------------------------------ -->
     <div class="popup" id="popup-2">
         <div class="overlay"></div>
 
@@ -203,6 +188,64 @@ include "../verifSession.php";
             
             <div class="btn-box">
                 <button class="btn-virer" id="btnVirerPersonne">Virer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ------------------------------------POPUP PAYER FACTURE------------------------------------ -->
+    <div class="popup" id="popup-3">
+        <div class="overlay"></div>
+
+        <div class="content-2">
+            <div class="close-btn" onclick="togglePopupFacture()"><i class='bx bx-x'></i></div>
+            <h1>Payer une facture</h1>
+
+            <div class="main-content-part">
+                <div class="payer-facture">
+                    <table>
+                        <tbody id="tableFacture">
+                            <tr>
+                                <th>De</th>
+                                <th>Compte et descriptif</th>
+                                <th>Solde ($)</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="virement-formulaire">
+                        <form action="" method="post" class="formulaire">
+                            <div class="input-box">
+                                <div class="input-field">
+                                    <input type="text" name="nomEtablissement" placeholder="..." id="nomEtablissement" required>
+                                    <label for="etablissement">Établissement</label>
+                                </div>
+                            </div>
+
+                            <div class="input-box">
+                                <div class="input-field">
+                                    <input type="text" name="facture_raison" placeholder="..." id="facture_raison" required>
+                                    <label for="facture_raison">Raison</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="transfert-montant">
+                        <div class="input-box">
+                            <p>Montant:</p>
+
+                            <div class="input-label">
+                                <input type="text" id="montant-payer-facture">
+                                <i class='bx bx-dollar'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="msg-erreur-payer-facture"></div>
+            
+            <div class="btn-box">
+                <button class="btn-virer" id="btnPayerFacture">Payer</button>
             </div>
         </div>
     </div>

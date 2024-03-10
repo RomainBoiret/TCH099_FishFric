@@ -308,6 +308,10 @@ section {
     border: none;
 }
 
+.transfert-content {
+    overflow: scroll;
+}
+
 .transfert-box .transfert-detail {
     display: flex;
     flex-direction: column;

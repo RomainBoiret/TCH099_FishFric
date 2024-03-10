@@ -51,47 +51,7 @@ include "../verifSession.php";
                 <h4>Historique des transactions</h4>
             </div>
 
-            <div class="transaction-mois">
-                <div class="mois">Mars 2024</div>
-                <div class="depenses-mois">+ 123.4<i class='bx bx-dollar'></i></div>
-            </div>
-
             <div class="transfert-content">
-                <div class="transfert-box">
-                    <div class="transfert-detail">
-                        <div class="detail-titre"><span>Transfert</span> / <span>Maman</span></div>
-                        <div class="detail-date">24 fév 2024</div>
-                    </div>
-
-                    <div class="transfert-montant-positif">+ 50.24<i class='bx bx-dollar'></i></div>
-                </div>
-
-                <div class="transfert-box">
-                    <div class="transfert-detail">
-                        <div class="detail-titre"><span>Paiement de facture</span> / <span>ÉTS</span></div>
-                        <div class="detail-date">3 fév 2024</div>
-                    </div>
-
-                    <div class="transfert-montant-negatif">-1934.26<i class='bx bx-dollar'></i></div>
-                </div>
-
-                <div class="transfert-box">
-                    <div class="transfert-detail">
-                        <div class="detail-titre"><span>Dépot de chèque</span> / <span>Retour d'impot</span></div>
-                        <div class="detail-date">25 déc 2023</div>
-                    </div>
-
-                    <div class="transfert-montant-positif">+ 100.00<i class='bx bx-dollar'></i></div>
-                </div>
-
-                <div class="transfert-box">
-                    <div class="transfert-detail">
-                        <div class="detail-titre"><span>Transfert envoyé</span> / <span>Maman</span></div>
-                        <div class="detail-date">4 nov 2023</div>
-                    </div>
-
-                    <div class="transfert-montant-negatif">- 200.00<i class='bx bx-dollar'></i></div>
-                </div>
             </div>
 
             <div class="footer-historique">

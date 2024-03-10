@@ -12,7 +12,8 @@
 
         $erreurs = [];
 
-        //VÉRIFICATIONS DES DONNÉES DU POST-----------------------------------------
+        //VÉRIFICATIONS DES DONNÉES DU POST s'appliquant à TOUS les types de transfert-----------------------------------------
+
         //Vérif. ID compte bancaire source du transfert
         if(isset($donnees["idCompteBancaireProvenant"]) 
         && is_numeric(trim($donnees["idCompteBancaireProvenant"]))) {
@@ -109,7 +110,6 @@
             
             //Sinon, le virement n'a pas marché. On renvoie les messages d'erreur
             else {
-                //Le compte de banque provenant ne peut pas être le même que le compte en banque recevant
                 echo json_encode(['erreur' => $erreurs]);
             }
         }
@@ -149,7 +149,6 @@
             
             //Sinon, on renvoie les messages d'erreur
             else {
-                //Le compte de banque provenant ne peut pas être le même que le compte en banque recevant
                 echo json_encode(['erreur' => $erreurs]);
             }
         }
@@ -196,11 +195,49 @@
             
             //Sinon, on renvoie les messages d'erreur
             else {
-                //Le compte de banque provenant ne peut pas être le même que le compte en banque recevant
                 echo json_encode(['erreur' => $erreurs]);
             }
         }
 
+        //PAIEMENT DE FACTURE-----------------------------------------
+        else if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
+            //Vérifier que le nom d'établissement est présent
+            if(isset($donnees['nomEtablissement']) && !is_numeric($donnees['nomEtablissement'])) {
+                $nomEtablissement = $donnees['nomEtablissement'];
+                $nomEtablissement = trim($nomEtablissement);
+            } else
+                $erreurs[] ="Nom d'établissement non-reçu ou non valide";
+
+            //Vérifier que la raison de la facture est présente
+            if(isset($donnees['raison']) && !is_numeric($donnees['raison'])) {
+                $raison = $donnees['raison'];
+                $raison = trim($raison);
+            } else
+                $erreurs[] ="Raison de la facture non-reçu ou non valide";
+         
+            //S'il n'y a pas d'erreurs, on effectue le paiement de la facture
+            if(empty($erreurs)) {
+                //Actualiser le montant du compte bancaire provenant
+                $sql = "UPDATE CompteBancaire SET solde = solde - $montant WHERE id = '$idCompteBancaireProvenant';";
+                $conn->query($sql);
+
+                //Ajouter la transaction
+                $sql = "INSERT INTO TransactionBancaire (idCompteBancaireProvenant, dateTransaction, montant, 
+                typeTransaction, nomEtablissement) VALUES ('$idCompteBancaireProvenant', 
+                NOW(), '$montant', 'Paiement de facture', '$nomEtablissement');";
+                $conn->query($sql);
+
+                //Message de succès
+                echo json_encode(['msgSucces' => "Le paiement de la facture a été effectué avec succès!"]);
+            } 
+            
+            //Sinon, le paiement n'a pas marché. On renvoie les messages d'erreur
+            else {
+                echo json_encode(['erreur' => $erreurs]);
+            }
+        }
+
+        //ERREUR DE ROUTE-----------------------------------------
         else { 
             echo json_encode(['erreur' => 'Mauvaise route.',
                               'code' => 404]);
