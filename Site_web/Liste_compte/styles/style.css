@@ -81,7 +81,239 @@ header {
     font-size: 2.5rem;
 }
 
-header .btn-deconnexion {
+header .btn-box {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.btn-box .messagerie {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--sable-dore);
+    font-size: 25px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn-box .messagerie:hover {
+    background: #056a96;
+}
+
+#elementToWorkOn {
+    position: absolute;
+    top: 60px;
+    right: 287px;
+    border-radius: 10px;
+    background: var(--bleu-ocean-surface);
+    margin: 4px;
+    padding: 5px 20px;
+    width: 40rem;
+    height: 60rem;
+    display: none;
+}
+
+#elementToWorkOn::after {
+    content: '';
+    position: absolute;
+    top: -25px;
+    right: 15px;
+    border: 15px solid transparent;
+    border-bottom-color: var(--bleu-ocean-surface);
+}
+
+#elementToWorkOn .messagerie-header {
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.messagerie-header h3 {
+    color: var(--text-color);
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.messagerie-header .clear-all {
+    width: 12rem;
+    height: 40px;
+    background: #e63946;
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.messagerie-header .clear-all:hover {
+    background: #ba313c;
+}
+
+#elementToWorkOn .notif-container {
+    width: 100%;
+    height: 50rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    overflow-y: scroll;
+}
+
+.notif-container .notif-box {
+    width: 98%;
+    height: auto;
+    max-height: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background: var(--white);
+    border-radius: 5px;
+    padding: 1% 2%;
+}
+
+.notif-container .notif-box:first-child {
+    margin-top: 20px;
+}
+
+.notif-box .notif-box-header {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--text-color);
+}
+
+.notif-box .notif-box-header h4 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.notif-box .notif-box-header .btn-supprimer {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background: transparent;
+    color: #e63946;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .1s;
+}
+
+.notif-box .notif-box-header .btn-supprimer:hover {
+    background: #f1cfd3;
+}
+
+.notif-box .notif-box-body {
+    width: 100%;
+    height: auto;
+    max-height: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1% 0;
+}
+
+.notif-box .notif-box-body p {
+    color: var(--text-color);
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.notif-box-body form {
+    width: 100%;
+    height: 7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-top: 1px dashed var(--text-color);
+    padding: 5% 0;
+}
+
+.notif-box-body form .label-field label{
+    color: var(--text-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.notif-box-body form .input-box {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.notif-box-body form .input-box label {
+    color: var(--text-color);
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.notif-box-body form .input-box input {
+    width: 20rem;
+    border: 2px solid var(--text-color);
+    border-radius: 5px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 2% 5%;
+}
+
+.notif-box .notif-box-body .btn-box {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 5px;
+}
+
+.btn-box .accepter {
+    width: 10rem;
+    height: 4rem;
+    background: #7cb518;
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-box .accepter:hover {
+    background: #50760f;
+}
+
+.btn-box .rejeter {
+    width: 10rem;
+    height: 4rem;
+    background: #ef233c;
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-box .rejeter:hover {
+    background: #a50e28;
+}
+
+.btn-box .btn-deconnexion {
     position: relative;
     display: inline-flex;
     justify-content: center;

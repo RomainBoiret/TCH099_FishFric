@@ -326,6 +326,20 @@ document.addEventListener("DOMContentLoaded", function() {
     requeteGetComptes.send();
 });
 
+//--------------------------------------AFFICHER la Messagerie--------------------------------------
+const divContainer = document.querySelector('#elementToWorkOn');
+let isClicked = true;
+
+let showOrHide = function() {
+    if(isClicked) {
+        divContainer.style.display = 'block';
+        isClicked = false;
+    } else {
+        divContainer.style.display = 'none';
+        isClicked = true;
+    }
+}
+
 //--------------------------------------AFFICHER la popup "transfert entre comptes"--------------------------------------
 function togglePopupentreCompte() {
     document.getElementById("popup-1").classList.toggle("active");
