@@ -18,7 +18,7 @@ include "../verifSession.php";
     
 <!-- header design -->
 <header>
-    <a href="#" class="logo">
+    <a href="../index.html" class="logo">
         <img src="/Images/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
@@ -29,6 +29,7 @@ include "../verifSession.php";
 
 <!-- ------------------------------------MENU COMPTES + MENU DROIT DE LA PAGE------------------------------------ -->
 <section>
+    <h1> Bonjour <?php echo $_SESSION["nomUtilisateur"]; ?></h1>
     <div class="main-container">
         <div class="main-compte">
             <div class="header-compte">

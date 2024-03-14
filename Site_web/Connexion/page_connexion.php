@@ -140,8 +140,15 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
                 $_SESSION['DUREE_SESSION'] = 300; 
             }
 
+            //Chercher le nom de l'utilisateur
+            $requete = "SELECT prenom FROM Compte WHERE courriel LIKE '$courriel'";
+            $resultat = $conn->query($requete);
+            $nomUtilisateur = $resultat->fetchColumn();
+
+
             //Mettre des variables de session pour la session de l'utilisateur et son temps d'activité
             $_SESSION["utilisateur"] = $id;
+            $_SESSION["nomUtilisateur"] = $nomUtilisateur;
             $_SESSION['LAST_ACTIVITY'] = time(); 
             header("Location: ../Liste_compte/listeCompte.php");
             exit(); 

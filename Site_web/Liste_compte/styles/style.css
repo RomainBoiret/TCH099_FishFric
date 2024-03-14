@@ -39,6 +39,7 @@
 html {
     font-size: 60%;
     overflow-x: hidden;
+    overflow: hidden;
 }
 
 body {
@@ -372,6 +373,12 @@ section {
     padding: 2rem 4%;
     background: #d5deef;
 }
+
+section h1 {
+    font-size: 2.5rem;
+    padding-left: 2%;
+}
+
 
 .main-container {
     width: 100%;
