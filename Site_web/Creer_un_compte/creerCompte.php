@@ -172,9 +172,39 @@
             VALUES ('$courriel', '$prenom', '$nom', '$mdp_encrypte', $telephone)");
             $requete->execute();
 
-            //CRÉER COMPTE CHÈQUE-------
+            //---------------------CRÉER COMPTE CHÈQUE---------------------
+            $interet = 1.00;
+
             $requete = $conn->prepare("INSERT INTO CompteBancaire (compteId, solde, typeCompte, interet, ouverture, suspendu) VALUES
-            ((SELECT id FROM Compte WHERE courriel LIKE '$courriel'), 0, 'Compte chèque', 0, NOW(), 0);");
+            ((SELECT id FROM Compte WHERE courriel LIKE '$courriel'), 0, 'Compte chèque', '$interet', NOW(), 0);");
+            $requete->execute();
+
+            //Chercher l'ID du compte et créer le nom de l'événement
+            $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE typeCompte='Compte chèque' 
+            AND compteId LIKE (SELECT id FROM Compte WHERE courriel LIKE '$courriel')");
+            $requete->execute();
+            $idCompteCheque = $requete->fetchColumn();
+            $eventName = "interet" . $idCompteCheque;
+
+            //Écrire le sql de la requête
+            //--À chaque mois, on met le montant gangé en intérêt dans les transactions
+            //--et on actualise le solde
+            $requete = $conn->prepare("CREATE DEFINER=`root`@`localhost` EVENT `$eventName` 
+            ON SCHEDULE EVERY 1 DAY STARTS NOW()
+            ON COMPLETION PRESERVE ENABLE 
+            DO 
+            BEGIN
+                INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
+                SELECT id, NOW(), solde * (1 + $interet/100) - solde, 'Intérêts' 
+                FROM comptebancaire 
+                WHERE id = $idCompteCheque;
+            
+                UPDATE comptebancaire 
+                SET solde = solde * (1 + $interet/100)
+                WHERE id = $idCompteCheque;
+            END;");
+
+            
             $requete->execute();
 
             //Mettre le message de succès 

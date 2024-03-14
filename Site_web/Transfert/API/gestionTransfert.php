@@ -130,6 +130,14 @@
             } else
                 $erreurs[] ="Id de transaction non-reçu ou non valide";
 
+            //Vérif. ID compte bancaire destinataire du transfert
+            if(isset($donnees["idCompteBancaireRecevant"]) 
+            && is_numeric(trim($donnees["idCompteBancaireRecevant"]))) {
+                $idCompteBancaireRecevant = $donnees["idCompteBancaireRecevant"];
+                $idCompteBancaireRecevant = intval(trim($idCompteBancaireRecevant));
+            } else 
+                $erreurs[] = "ID recevant non reçu ou non valide";
+
             //Prepare toutes les données pour éviter les injections SQL
             $validation = (trim($validation));
          

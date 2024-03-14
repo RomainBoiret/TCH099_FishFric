@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         //Vérifier si la requête a marché
         if (requeteGetCompte.readyState === 4 && requeteGetCompte.status === 200) {
 
-            //--------AFFICHER LE COMPTE----------
+            //------------------------AFFICHER LE COMPTE--------------------------
 
             //Décoder la réponse (qui est au format JSON)
             let responseData = JSON.parse(requeteGetCompte.responseText);
@@ -33,13 +33,13 @@ document.addEventListener("DOMContentLoaded", function() {
             compteHtml += '</div></div></div>';
             compteHtml += '<p>Numéro de compte: ' + compte.id + '</p>';
             compteHtml += '<div class="detail-compte-footer"><p>Date d\'ouverture: ' + compte.ouverture + '</p>';
-            compteHtml += '<p>Taux d\intérêt: ' + compte.interet + '</p></div>';                                                         
+            compteHtml += '<p>Taux d\intérêt quotidien: ' + compte.interet + '%</p></div>';                                                         
 
             //Afficher les comptes dans le div
             document.querySelector('.detail-compte').innerHTML = compteHtml;
             let transactionHtml = '';
 
-            //--------AFFICHER LES TRANSACTIONS----------
+            //------------------------AFFICHER LES TRANSACTIONS--------------------------
 
             //De base, on affiche seulement 4 transactions
             let nbTransactions = 4;
@@ -56,23 +56,28 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (transactions[i].nomEtablissement) 
                         transactionHtml += transactions[i].nomEtablissement.toLowerCase();
 
-                    //Sinon, il s'agit d'un transfert entre comptes. Afficher le compte recevant
-                    else 
+                    //Si c'est des intérets, on met rien
+                    if (transactions[i].typeTransaction == 'Intérêts');
+
+                    //Sinon, s'il s'agit d'un transfert entre comptes. Afficher le compte recevant
+                    else {
                         if (transactions[i].idCompteBancaireProvenant == compteId)
-                            transactionHtml += 'compte #' + transactions[i].idCompteBancaireRecevant
-                        else 
+                            transactionHtml += 'compte #' + transactions[i].idCompteBancaireRecevant;
+                        else;
                             transactionHtml += 'compte #' + transactions[i].idCompteBancaireProvenant
+                    }
+
     
                     //Afficher la date de la transaction
                     transactionHtml += '</span></div>';
                     transactionHtml += '<div class="detail-date">' + transactions[i].dateTransaction + '</div></div>';
-                    transactionHtml += '<div class="transfert-montant-'
+                    transactionHtml += '<div class="transfert-montant-';
     
                     //Déterminer si c'est un envoi ou une réception de fonds, pour mettre le style et signe respectif
                     if (compteId == transactions[i].idCompteBancaireProvenant)
-                        transactionHtml += 'negatif"> - '
+                        transactionHtml += 'negatif"> - ';
                     else 
-                        transactionHtml += 'positif"> + '
+                        transactionHtml += 'positif"> + ';
                     
                     //Afficher le montant de la transaction
                     transactionHtml += transactions[i].montant + '<i class="bx bx-dollar"></i></div></div>';
