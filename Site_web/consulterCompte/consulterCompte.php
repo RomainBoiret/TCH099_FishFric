@@ -56,7 +56,7 @@ include "../verifSession.php";
 
             <div class="footer-historique">
                 <div class="btn-voir-plus"><i class='bx bx-plus'></i></div>
-                <p>Voir transactions plus anciennes</p>
+                <p>Voir 5 transactions plus anciennes</p>
             </div>
         </div>
     </div>
