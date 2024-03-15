@@ -235,7 +235,7 @@ p {
 .accueil-embed .acceuil-illustration {
     width: 50%;
     height: 100%;
-    background: url('/Images/bateau_sur_eau.jpg') no-repeat;
+    background: url('/Images/bateau_sur_eau.png') no-repeat;
     background-size: cover;
     background-position: center;
 }
