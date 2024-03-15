@@ -23,7 +23,98 @@ include "../verifSession.php";
         <div>Fish<span>&</span>Fric</div>
     </a>
 
-    <button class="btn-deconnexion" onclick="window.location.href='../deconnexion.php'"><i class='bx bx-log-out-circle'></i><a>Se déconnecter</a></button>
+    <div class="btn-box">
+        <button class="messagerie" onclick="showOrHide()"><i class='bx bxs-bell-ring'></i></button>
+        <button class="btn-deconnexion" onclick="window.location.href='../deconnexion.php'"><i class='bx bx-log-out-circle'></i><a>Se déconnecter</a></button>
+    </div>
+
+    <div id="elementToWorkOn">
+        <div class="messagerie-header">
+            <h3>Notifications</h3>
+            <button class="clear-all">Effacer tout</button>
+        </div>
+        <div class="notif-container">
+            <div class="notif-box" id="virement-transfert">
+                <div class="notif-box-header">
+                    <h4>Transfert entre comptes</h4>
+                    <button class="btn-supprimer"><i class='bx bx-trash'></i></button>
+                </div>
+
+                <div class="notif-box-body">
+                    <p>
+                        Le transfert de <span>Compte chèque</span> vers 
+                        <span>Compte épargne</span> de <span>10$</span> 
+                        a bien été effectué.
+                    </p>
+                </div>
+                <div class="notif-box-footer">
+                    <p>
+                        22/03/2024
+                    </p>
+                </div>
+            </div>
+
+            <div class="notif-box" id="confirmer-virement">
+                <div class="notif-box-header">
+                    <h4>Virement entre personne</h4>
+                    <button class="btn-supprimer"><i class='bx bx-trash'></i></button>
+                </div>
+    
+                <div class="notif-box-body">
+                    <p>
+                        Le virement de <span>Compte chèque</span> vers
+                        <span>Nom Utilisateur</span> de <span>10$</span>
+                        a bien été effectué.
+                    </p>
+                </div>
+            </div>
+
+            <div class="notif-box" id="accepter-virement">
+                <div class="notif-box-header">
+                    <h4>Virement entre personne</h4>
+                    <button class="btn-supprimer"><i class='bx bx-trash'></i></button>
+                </div>
+    
+                <div class="notif-box-body">
+                    <p>
+                        Virement reçu de la part de <span>Nom utilisateur</span>.
+                        Montant: <span>10$</span>
+                    </p>
+
+                    <form action="" class="formulaire">
+                        <div class="label-field">
+                            <label for="quest_securite">Couleur du ciel ?</label>
+                        </div>
+                        <div class="input-box">
+                            <label for="reponse">Réponse:</label>
+                            <input type="text">
+                        </div>
+                    </form>
+
+                    <div class="btn-box">
+                        <button class="accepter">Accepter</button>
+                        <button class="rejeter">Rejeter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notif-box" id="confirmer-facture">
+                <div class="notif-box-header">
+                    <h4>Paiement de facture</h4>
+                    <button class="btn-supprimer"><i class='bx bx-trash'></i></button>
+                </div>
+    
+                <div class="notif-box-body">
+                    <p>
+                        Le virement de <span>Compte chèque</span> vers
+                        <span>Nom Institution</span> de <span>10$</span>
+                        a bien été effectué.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </header>
 <main>
 
@@ -259,4 +350,5 @@ include "../verifSession.php";
 </footer>
 </body>
 <script src="/Liste_compte/scripts/getComptes.js"></script>
+<script src="/Liste_compte/scripts/getNotifications.js"></script>
 </html>

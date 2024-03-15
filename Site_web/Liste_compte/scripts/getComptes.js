@@ -331,10 +331,20 @@ const divContainer = document.querySelector('#elementToWorkOn');
 let isClicked = true;
 
 let showOrHide = function() {
+    console.log(isClicked)
     if(isClicked) {
         divContainer.style.display = 'block';
         isClicked = false;
+        document.querySelector('section').addEventListener('click', fermerMessagerie);
+
     } else {
+        divContainer.style.display = 'none';
+        isClicked = true;
+    }
+}
+
+function fermerMessagerie() {
+    if (divContainer.style.display == 'block') {
         divContainer.style.display = 'none';
         isClicked = true;
     }

@@ -177,7 +177,7 @@ header .btn-box {
     max-height: 30rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     background: var(--white);
     border-radius: 5px;
     padding: 1% 2%;
@@ -235,6 +235,23 @@ header .btn-box {
 .notif-box .notif-box-body p {
     color: var(--text-color);
     font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.notif-box .notif-box-footer {
+    width: 100%;
+    height: auto;
+    max-height: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 2rem;
+    padding: 1% 0;
+}
+
+.notif-box .notif-box-footer p {
+    color: var(--text-color);
+    font-size: 1.2rem;
     font-weight: 500;
 }
 
@@ -376,7 +393,7 @@ section {
 
 section h1 {
     font-size: 2.5rem;
-    padding-left: 2%;
+    padding-left: 2.9%;
 }
 
 
