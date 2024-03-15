@@ -367,3 +367,9 @@ function togglePopupFacture() {
     document.getElementById("popup-3").classList.toggle("active");
     document.getElementById('msg-erreur-payer-facture').innerText = ""; //Vider les messages d'erreurs
 }
+
+//--------------------------------------AFFICHER la popup "Ajouter un compte"--------------------------------------
+function togglePopupNouveauCompte()  {
+    document.getElementById("popup-4").classList.toggle("active");
+    document.getElementById('msg-erreur-payer-facture').innerText = ""; //Vider les messages d'erreurs
+}
