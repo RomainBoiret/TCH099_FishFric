@@ -8,7 +8,7 @@
             die("Connexion échouée!: " .$e->getMessage());
         }
 
-        //Chercher le compte en question avec l'ID de la route
+        //Chercher le compte en question avec l'ID de la route de l'URL
         $compteId = $_GET['compteId'];
 
         //Requête SQL pour chercher le compte que l'on désire consulter
@@ -17,7 +17,7 @@
         $requete->execute();
         $compte = $requete->fetch();
 
-        //Chercher les transactions de ce compte
+        //Chercher les transactions qui impliquent ce compte (soit c'est le compte provenant OU recevant)
         $requete = $conn->prepare("SELECT montant, typeTransaction, dateTransaction, nomEtablissement, idCompteBancaireProvenant, idCompteBancaireRecevant FROM TransactionBancaire
         WHERE idCompteBancaireProvenant='$compteId' OR idCompteBancaireRecevant='$compteId';");
         $requete->execute();
@@ -30,6 +30,7 @@
         $compte['interet'] = htmlspecialchars($compte['interet'], ENT_QUOTES, 'UTF-8');
         $compte['ouverture'] = htmlspecialchars($compte['ouverture'], ENT_QUOTES, 'UTF-8');
 
+        //Échapper les caractères spéciaux pour chaque transaction
         foreach ($transactions as $transaction) {
             $transaction['montant'] = htmlspecialchars($transaction['montant'], ENT_QUOTES, 'UTF-8');
             $transaction['typeTransaction'] = htmlspecialchars($transaction['typeTransaction'], ENT_QUOTES, 'UTF-8');
@@ -39,6 +40,7 @@
             $transaction['idCompteBancaireRecevant'] = htmlspecialchars($transaction['idCompteBancaireRecevant'], ENT_QUOTES, 'UTF-8');
         }
 
+        //Mettre les données dans un tableau sous forme associative
         $json = [
             'compte' => $compte,
             'transactions' => $transactions 

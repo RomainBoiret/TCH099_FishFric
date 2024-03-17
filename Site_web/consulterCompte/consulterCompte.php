@@ -30,19 +30,7 @@ include "../verifSession.php";
 <section>
     <div class="consulter-compte">
         <div class="detail-compte">
-            <div class="detail-compte-header">
-                <h2>Compte chèque</h2>
 
-                <div class="montant-compte">
-                    <div class="montant">4,567.89</div>
-                </div>
-            </div>
-
-            <p>Numéro de compte: 11-105-4528</p>
-
-            <div class="detail-compte-footer">
-                <p>Date d'ouverture: 02/12/2023</p>
-            </div>
         </div>
 
         <div class="historique-compte">

@@ -171,8 +171,6 @@ document.addEventListener("DOMContentLoaded", function() {
                                                                 "reponse": reponse,
                                                                 "confReponse": confReponse});
 
-                    console.log("Json: " + donneesJsonVirement)
-
                     //Messages d'erreurs ou de succès du virement
                     requeteVirement.onload = function() {
                         //Vérifier si la requête a marché
@@ -264,8 +262,6 @@ document.addEventListener("DOMContentLoaded", function() {
                                                                 "nomEtablissement": nomEtablissement,
                                                                 "raison": raison});
 
-                    console.log("Json: " + donneesJsonFacture)
-
                     //Messages d'erreurs ou de succès du virement
                     requeteFacture.onload = function() {
                         //Vérifier si la requête a marché
@@ -331,7 +327,6 @@ const divContainer = document.querySelector('#elementToWorkOn');
 let isClicked = true;
 
 let showOrHide = function() {
-    console.log(isClicked)
     if(isClicked) {
         divContainer.style.display = 'block';
         isClicked = false;

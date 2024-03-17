@@ -34,42 +34,10 @@ include "../verifSession.php";
             <button class="clear-all">Effacer tout</button>
         </div>
         <div class="notif-container">
-            <div class="notif-box" id="virement-transfert">
-                <div class="notif-box-header">
-                    <h4>Transfert entre comptes</h4>
-                    <button class="btn-supprimer"><i class='bx bx-trash'></i></button>
-                </div>
 
-                <div class="notif-box-body">
-                    <p>
-                        Le transfert de <span>Compte chèque</span> vers 
-                        <span>Compte épargne</span> de <span>10$</span> 
-                        a bien été effectué.
-                    </p>
-                </div>
-                <div class="notif-box-footer">
-                    <p>
-                        22/03/2024
-                    </p>
-                </div>
-            </div>
 
-            <div class="notif-box" id="confirmer-virement">
-                <div class="notif-box-header">
-                    <h4>Virement entre personne</h4>
-                    <button class="btn-supprimer"><i class='bx bx-trash'></i></button>
-                </div>
-    
-                <div class="notif-box-body">
-                    <p>
-                        Le virement de <span>Compte chèque</span> vers
-                        <span>Nom Utilisateur</span> de <span>10$</span>
-                        a bien été effectué.
-                    </p>
-                </div>
-            </div>
 
-            <div class="notif-box" id="accepter-virement">
+            <!-- <div class="notif-box" id="accepter-virement">
                 <div class="notif-box-header">
                     <h4>Virement entre personne</h4>
                     <button class="btn-supprimer"><i class='bx bx-trash'></i></button>
@@ -96,22 +64,16 @@ include "../verifSession.php";
                         <button class="rejeter">Rejeter</button>
                     </div>
                 </div>
-            </div>
 
-            <div class="notif-box" id="confirmer-facture">
-                <div class="notif-box-header">
-                    <h4>Paiement de facture</h4>
-                    <button class="btn-supprimer"><i class='bx bx-trash'></i></button>
-                </div>
-    
-                <div class="notif-box-body">
+                <div class="notif-box-footer">
                     <p>
-                        Le virement de <span>Compte chèque</span> vers
-                        <span>Nom Institution</span> de <span>10$</span>
-                        a bien été effectué.
+                        2024/09/13
                     </p>
                 </div>
-            </div>
+            </div> -->
+
+
+
         </div>
     </div>
     </div>
@@ -157,7 +119,7 @@ include "../verifSession.php";
 
                 <nav class="navigation-footer">
                     <button class="btn"><i class='bx bx-chat'></i>Messages</button>
-                    <button class="btn"><i class='bx bx-add-to-queue' ></i>Ajouter un compte</button>
+                    <button onclick="togglePopupNouveauCompte()" class="btn"><i class='bx bx-add-to-queue' ></i>Ajouter un compte</button>
                     <button class="btn"><i class='bx bx-cog' ></i>Préférences de compte</button>
                 </nav>
 
@@ -167,7 +129,7 @@ include "../verifSession.php";
 
                         <p>Avez-vous des questions ?</p>
 
-                        <button class="btn"><a href="#">Nous contacter</a></button>
+                        <button class="btn"><a href="/demanderSupport/demanderSupport.php">Nous contacter</a></button>
                     </div>
                 </div>
             </div>
@@ -338,6 +300,66 @@ include "../verifSession.php";
             
             <div class="btn-box">
                 <button class="btn-virer" id="btnPayerFacture">Payer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ------------------------------------POPUP CREER UN NOUVEAU COMPTE------------------------------------ -->
+    <div class="popup" id="popup-4">
+        <div class="overlay"></div>
+
+        <div class="content-3">
+            <div class="close-btn" onclick="togglePopupNouveauCompte()"><i class='bx bx-x'></i></div>
+            <h1>Créer un nouveau compte</h1>
+
+            <div class="main-content-part">
+                <div class="compte-container">
+    
+                    <div class="compte-box">
+                        <h4>Compte épargne</h4>
+                        <p>
+                           Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                           Quo modi, ipsa ipsam hic id exercitationem natus rerum quisquam harum.
+                        </p>
+                        <form action="">
+                            <div class="input-box">
+                                <input type="checkbox" name="choix" id="choix">
+                            </div>
+                        </form>
+                    </div>
+    
+                    <div class="compte-box">
+                        <h4>Carte requin</h4>
+                        <p>
+                           Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                           Quo modi, ipsa ipsam hic id exercitationem natus rerum quisquam harum.
+                        </p>
+                        <form action="">
+                            <div class="input-box">
+                                <input type="checkbox" name="choix" id="choix">
+                            </div>
+                        </form>
+                    </div>
+    
+                    <div class="compte-box">
+                        <h4>Investissement</h4>
+                        <p>
+                           Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                           Quo modi, ipsa ipsam hic id exercitationem natus rerum quisquam harum.
+                        </p>
+                        <form action="">
+                            <div class="input-box">
+                                <input type="checkbox" name="choix" id="choix">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div id="msg-erreur-payer-facture"></div>
+            
+            <div class="btn-box">
+                <button class="btn-virer" id="btnPayerFacture">Confirmer</button>
             </div>
         </div>
     </div>

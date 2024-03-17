@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         transactionHtml += transactions[i].nomEtablissement.toLowerCase();
 
                     //Si c'est des intérets, on met rien
-                    if (transactions[i].typeTransaction == 'Intérêts');
+                    else if (transactions[i].typeTransaction == 'Intérêts');
 
                     //Sinon, s'il s'agit d'un transfert entre comptes. Afficher le compte recevant
                     else {
@@ -103,12 +103,17 @@ document.addEventListener("DOMContentLoaded", function() {
                         //S'il y a un nom d'établissement ou de contact pour le transfert
                         if (transactions[i].nomEtablissement) 
                             transactionHtml += transactions[i].nomEtablissement.toLowerCase();
+
+                        //Si c'est des intérets, on met rien
+                        else if (transactions[i].typeTransaction == 'Intérêts');
+
                         //Sinon, il s'agit d'un transfert entre comptes. Afficher le compte recevant
-                        else 
+                        else {
                             if (transactions[i].idCompteBancaireProvenant == compteId)
                                 transactionHtml += 'compte #' + transactions[i].idCompteBancaireRecevant
                             else 
                                 transactionHtml += 'compte #' + transactions[i].idCompteBancaireProvenant
+                        }
         
                         transactionHtml += '</span></div>';
                         transactionHtml += '<div class="detail-date">' + transactions[i].dateTransaction + '</div></div>';

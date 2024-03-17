@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+//Vérifier si l'utilisateur a une session active
+include "../verifSession.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +18,7 @@
 
 <!-- header design -->
 <header>
-    <a href="#" class="logo">
+    <a href="/Liste_compte/listeCompte.php"  class="logo">
         <img src="/Images/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
