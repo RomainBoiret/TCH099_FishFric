@@ -90,13 +90,18 @@ document.addEventListener("DOMContentLoaded", function() {
                             let msg = document.createElement('span');
 
                             if ("msgSucces" in responseData) {
+                                //Mettre le message de succès en vert
                                 msg.innerText = responseData.msgSucces;
                                 msg.style.color = "green";
                                 document.getElementById('msg-erreur-virement-compte').appendChild(msg);
+
+                                //Désactiver le bouton pour ne pas refaire un virement
+                                document.getElementById('btnVirerCompte').setAttribute('disabled', 'true');
                             }
 
                             else {
                                 responseData.erreur.forEach(function(message) {
+                                    //Afficher chaque message d'erreur
                                     msg.innerText = message;
                                     msg.style.color = "red";
                                     document.getElementById('msg-erreur-virement-compte').appendChild(msg);
@@ -186,6 +191,9 @@ document.addEventListener("DOMContentLoaded", function() {
                                 msg.innerText = responseData.msgSucces;
                                 msg.style.color = "green";
                                 document.getElementById('msg-erreur-virement-personne').appendChild(msg);
+
+                                //Désactiver le bouton pour ne pas refaire un virement
+                                document.getElementById('btnVirerPersonne').setAttribute('disabled', 'true');
                             }
 
                             else {
@@ -232,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 //Ajouter le HTML dans la table
                 document.getElementById('tableFacture').innerHTML = comptes;
 
-                //--------------------------------------REQUÊTE PUT VIREMENT--------------------------------------
+                //--------------------------------------REQUÊTE PUT PAYER FACTURE--------------------------------------
                 document.getElementById('btnPayerFacture').addEventListener('click', function() {
                     //Chercher les données à envoyer à la requête
                     let montant = document.getElementById("montant-payer-facture").value;
@@ -273,12 +281,17 @@ document.addEventListener("DOMContentLoaded", function() {
                             document.getElementById('msg-erreur-payer-facture').innerText = "";
                             let msg = document.createElement('span');
 
+                            //Afficher un message de succès si la reqûete renvoie "msgSucces"
                             if ("msgSucces" in responseData) {
                                 msg.innerText = responseData.msgSucces;
                                 msg.style.color = "green";
                                 document.getElementById('msg-erreur-payer-facture').appendChild(msg);
+
+                                //Désactiver le bouton pour ne pas refaire un virement
+                                document.getElementById('btnPayerFacture').setAttribute('disabled', 'true');
                             }
 
+                            //Sinon, afficher chaque erreur
                             else {
                                 responseData.erreur.forEach(function(message) {
                                     msg.innerText = message;
@@ -347,24 +360,56 @@ function fermerMessagerie() {
 
 //--------------------------------------AFFICHER la popup "transfert entre comptes"--------------------------------------
 function togglePopupentreCompte() {
-    document.getElementById("popup-1").classList.toggle("active");
+    let popup = document.getElementById("popup-1");
+    popup.classList.toggle("active");
     document.getElementById('msg-erreur-virement-compte').innerText = ""; //Vider les messages d'erreurs
+
+    //Rafraîchir la page au bout de 100ms lorsqu'on ferme la popup, pour actualiser les valeurs de comptes
+    if (!document.getElementById("popup-1").classList.contains("active")) {
+        setTimeout(function() {
+            location.reload();
+        }, 100);
+    }
 }
 
 //--------------------------------------AFFICHER la popup "transfert entre personnes"--------------------------------------
 function togglePopupentrePersonne() {
-    document.getElementById("popup-2").classList.toggle("active");
+    let popup = document.getElementById("popup-2");
+    popup.classList.toggle("active");
     document.getElementById('msg-erreur-virement-personne').innerText = ""; //Vider les messages d'erreurs
+
+    //Rafraîchir la page au bout de 100ms lorsqu'on ferme la popup, pour actualiser les valeurs de comptes
+    if (!document.getElementById("popup-2").classList.contains("active")) {
+        setTimeout(function() {
+            location.reload();
+        }, 100);
+    }
 }
 
 //--------------------------------------AFFICHER la popup "payer facture"--------------------------------------
 function togglePopupFacture() {
-    document.getElementById("popup-3").classList.toggle("active");
+    let popup = document.getElementById("popup-3");
+    popup.classList.toggle("active");
     document.getElementById('msg-erreur-payer-facture').innerText = ""; //Vider les messages d'erreurs
+
+    //Rafraîchir la page au bout de 100ms lorsqu'on ferme la popup, pour actualiser les valeurs de comptes
+    if (!document.getElementById("popup-3").classList.contains("active")) {
+        setTimeout(function() {
+            location.reload();
+        }, 100);
+    }
 }
 
 //--------------------------------------AFFICHER la popup "Ajouter un compte"--------------------------------------
 function togglePopupNouveauCompte()  {
-    document.getElementById("popup-4").classList.toggle("active");
+    let popup = document.getElementById("popup-4");
+    popup.classList.toggle("active");
     document.getElementById('msg-erreur-payer-facture').innerText = ""; //Vider les messages d'erreurs
+
+    //Rafraîchir la page au bout de 100ms lorsqu'on ferme la popup, pour actualiser les valeurs de comptes
+    if (!document.getElementById("popup-4").classList.contains("active")) {
+        setTimeout(function() {
+            location.reload();
+        }, 100);
+    }
 }

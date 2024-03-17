@@ -151,5 +151,4 @@ function recevoirVirement(idTransaction, decision) {
 //--------------------------REQUÊTE DELETE TOUTES LES NOTIFS----------------------------
 
 //À FAIRE
-//  -Delete TOUTES les notifs, SAUF celles qui sont un virement
-//  - Une notif contient un virement SI ELLE CONTIENT UN FORM (!delete if parent contains form)
+//  -Delete TOUTES les notifs, SAUF celles qui sont encore en attente (=1)

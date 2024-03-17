@@ -7,7 +7,7 @@
             die("Connexion échouée!: " .$e->getMessage());
         }
 
-        //Chercher ID de l'utilisateur
+        //Chercher ID de l'utilisateur 
         session_start();
         $compteIdProvenant = $_SESSION['utilisateur'];
 
