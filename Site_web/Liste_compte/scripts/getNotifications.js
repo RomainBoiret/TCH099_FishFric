@@ -67,7 +67,7 @@ document.querySelector('.messagerie').addEventListener('click', function() {
                         //Chercher l'ID de transaction (classe du bouton)
                         let idTransaction = boutonRejeter.id;
 
-                        recevoirVirement(idTransaction, 'accepter')
+                        recevoirVirement(idTransaction, 'rejeter')
                     });
                 });
             }

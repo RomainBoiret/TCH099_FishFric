@@ -190,7 +190,9 @@
                     else {
                         $erreurs[] = "Réponse non-reçue";
                     }
-                } 
+                } else {
+                    $idTransaction = $donnees['idTransaction'];
+                }
 
             } else
                 $erreurs[] ="Décision non-reçue ou non valide";
@@ -215,6 +217,11 @@
                 $resultat = $conn->query($sql);
                 $idCompteProvenant = $resultat->fetchColumn();
 
+                //Chercher le montant du virement
+                $sql = "SELECT montant FROM TransactionBancaire WHERE id='$idTransaction'";
+                $resultat = $conn->query($sql);
+                $montant = $resultat->fetchColumn();
+
                 //-------------------------ACCEPTER LE VIREMENT---------------------------
                 if ($decision == 'accepter') {
 
@@ -222,11 +229,6 @@
                     $sql = "SELECT cb.id FROM CompteBancaire cb INNER JOIN Compte c ON c.id = cb.compteId WHERE c.id='$compteIdProvenant' AND typeCompte LIKE 'Compte chèque'";
                     $resultat = $conn->query($sql);
                     $idCompteBancaireRecevant = $resultat->fetchColumn();
-
-                    //Chercher le montant du virement
-                    $sql = "SELECT montant FROM TransactionBancaire WHERE id='$idTransaction'";
-                    $resultat = $conn->query($sql);
-                    $montant = $resultat->fetchColumn();
 
                     //Actualiser le montant du compte bancaire recevant
                     $sql = "UPDATE CompteBancaire SET solde = solde + $montant WHERE id = '$idCompteBancaireRecevant';";
@@ -254,24 +256,40 @@
 
                 //---------------------------------------REJETER LE VIREMENT---------------------------------------
                 else {
-                    // //CHERCHER ID du compte chèque de l'envoyeur
-                    // $sql = "SELECT id FROM CompteBancaire WHERE id='$idCompteProvenant' AND typeCompte LIKE 'Compte chèque'";
-                    // $resultat = $conn->query($sql);
-                    // $idCompteBancaireProvenant = $resultat->fetchColumn();
+                    //Chercher le compte bancaire provenant
+                    $sql = "SELECT idCompteBancaireProvenant FROM TransactionBancaire WHERE id='$idTransaction'";
+                    $resultat = $conn->query($sql);
+                    $idCompteBancaireRecevant = $resultat->fetchColumn();
+
+                    //Actualiser le montant du compte bancaire recevant
+                    $sql = "UPDATE CompteBancaire SET solde = solde + $montant WHERE id = '$idCompteBancaireRecevant';";
+                    $conn->query($sql);
+
+                    //Actualiser la transaction, elle n'est plus en attente
+                    $sql = "UPDATE TransactionBancaire SET enAttente = 0, idCompteBancaireProvenant=NULL, idCompteBancaireRecevant = '$idCompteBancaireRecevant'  WHERE id = '$idTransaction';";
+                    $conn->query($sql);
+
+                    //Modification de la notification pour montrer qu'on a accepté le virement
+                    $msgSucces1 = "Vous avez refusé le virement de " . $montant . "$ de la part de " . $courrielCompteProvenant;
+
+                    $sql = "UPDATE NotificationClient SET titre='Virement refusé', contenu = '$msgSucces1'
+                    WHERE idTransaction='$idTransaction' AND CompteId='$compteIdProvenant'";
+                    $conn->query($sql);
+
+                    //Modification de la notification pour montrer À L'ENVOYEUR qu'on a accepté le virement
+                    $msgSucces2 = $courrielDest . " a refusé votre virement. Le montant de " . $montant . " a été déposé dans votre compte";
+                    $sql = "UPDATE NotificationClient SET titre='Virement refusé', contenu = '$msgSucces2' 
+                    WHERE idTransaction='$idTransaction' AND CompteId='$idCompteProvenant'";
+                    $conn->query($sql);
 
 
 
 
 
-                    // //Chercher le montant du virement
-                    // $sql = "SELECT montant FROM TransactionBancaire WHERE id='$idTransaction'";
-                    // $resultat = $conn->query($sql);
-                    // $montant = $resultat->fetchColumn();
 
-                    // //Actualiser le montant du compte bancaire recevant
-                    // $sql = "UPDATE CompteBancaire SET solde = solde + $montant WHERE id = '$idCompteBancaireRecevant';";
-                    // $conn->query($sql);
- 
+
+
+
 
 
 
@@ -352,7 +370,8 @@
             }
         }
 
-        //PAIEMENT DE FACTURE-----------------------------------------
+        //-----------------------------------------PAIEMENT DE FACTURE-----------------------------------------
+        //
         else if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
             //Vérifier que le nom d'établissement est présent
             if(isset($donnees['nomEtablissement']) && !is_numeric($donnees['nomEtablissement'])) {
@@ -380,12 +399,6 @@
                 NOW(), 0, '$montant', 'Paiement de facture', '$nomEtablissement');";
                 $conn->query($sql);
 
-
-
-                //À FAIRE
-                //AJOUTER NOTIFICATIONS
-
-
                 //AJOUTER NOTIFICATIONS
                 //Chercher ID de la transaction
                 $sql = "SELECT id FROM TransactionBancaire ORDER BY id DESC LIMIT 1;";
@@ -396,8 +409,6 @@
                 $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, lu, dateRecu, idTransaction)
                 VALUES ($compteIdProvenant, 'Transfert entre comptes', '$contenuNotif', 0, NOW(), $idTransaction);";
                 $conn->query($sql);
-
-
 
                 //Message de succès
                 echo json_encode(['msgSucces' => "Le paiement de la facture a été effectué avec succès!"]);
@@ -415,8 +426,6 @@
                               'code' => 404]);
         }
     }
-
-
 
 
 

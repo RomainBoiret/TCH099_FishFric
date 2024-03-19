@@ -22,9 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
             let compte = responseData.compte;
             let transactions = responseData.transactions;
 
-            console.log(compte)
-            console.log(transactions)
-
             //Afficher le compte dynamiquement
             let compteHtml = '<div class="detail-compte-header">';
             compteHtml += '<h2>' + compte.typeCompte + '</h2>';
