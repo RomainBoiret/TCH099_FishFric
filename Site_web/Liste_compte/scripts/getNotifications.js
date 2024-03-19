@@ -22,9 +22,9 @@ document.querySelector('.messagerie').addEventListener('click', function() {
                 //Boucler toutes les lignes de notifications/transaction
                 for (let i = notificationEtTransaction.length - 1; i >= 0; i--) {
                     //Mettre tout le code HTML de la structure d'une notification dans une string
-                    let notificationHtml = '<div class="notif-box" id="' + notificationEtTransaction[i].idTransaction + '"><div class="notif-box-header">'
+                    let notificationHtml = '<div class="notif-box" id="' + notificationEtTransaction[i].id_notif + '"><div class="notif-box-header">'
                     notificationHtml += '<h4>' + notificationEtTransaction[i].titre + '</h4>';
-                    notificationHtml += '<button class="btn-supprimer" onclick="supprimerNotif(' + notificationEtTransaction[i].idTransaction + ')"><i class="bx bx-trash"></i></button></div>'
+                    notificationHtml += '<button class="btn-supprimer" onclick="supprimerNotif(' + notificationEtTransaction[i].id_notif + ')"><i class="bx bx-trash"></i></button></div>'
                     notificationHtml += '<div class="notif-box-body"><p>' + notificationEtTransaction[i].contenu + '</p>';
 
                     //------------------------------AFFICHAGE RÉCEPTION DE VIREMENT DYNAMIQUEMENT------------------------------------
@@ -102,9 +102,6 @@ function recevoirVirement(idTransaction, decision) {
                                                 "idTransaction": idTransaction,
                                                 "inputReponse": inputReponse});
 
-
-    console.log("ID TRANSACTION: " + idTransaction)
-
     //Messages d'erreurs ou de succès du virement
     requeteVirement.onload = function() {
         //Vérifier si la requête a marché
@@ -118,11 +115,11 @@ function recevoirVirement(idTransaction, decision) {
 
             if ("msgSucces" in responseData) {
                 //Enlever le formulaire et les boutons
-                document.getElementById(idTransaction).children[1].children[1].remove();
-                document.getElementById(idTransaction).children[1].children[1].remove();
+                document.getElementById(responseData.id_notif).children[1].children[1].remove();
+                document.getElementById(responseData.id_notif).children[1].children[1].remove();
 
                 //Changer le texte pour dire que le virement a été accepté/refusé
-                document.getElementById(idTransaction).children[1].children[0].innerText = responseData.msgSucces;
+                document.getElementById(responseData.id_notif).children[1].children[0].innerText = responseData.msgSucces;
             }
 
             else {
@@ -155,11 +152,9 @@ function recevoirVirement(idTransaction, decision) {
 document.querySelector('.clear-all').addEventListener('click', supprimerNotifs);
 
 function supprimerNotifs() {
-    console.log("Dans la fonction supprimer notifs")
     //Requête DELETE
     deleteNotifs = new XMLHttpRequest();
     deleteNotifs.open('DELETE', '/Liste_compte/API/afficherNotifications.php', true);
-
     
     deleteNotifs.onload = function() {
         //Vérifier si la requête a marché
@@ -167,13 +162,13 @@ function supprimerNotifs() {
             //Décoder la réponse (qui est au format JSON)
             let responseData = JSON.parse(deleteNotifs.responseText);
 
-            responseData.idTransactionNotifsEffacees.forEach(function(notification) {
+            responseData.idNotifsEffacees.forEach(function(notification) {
                 //Chercher toutes les notifs
                 let notifs = document.querySelectorAll('.notif-box');
 
                 //Itérer à travers les notifs, et les effacer si elles ont notre ID
                 notifs.forEach(function(notif) {    
-                    if(notif.id == notification.idTransaction)
+                    if(notif.id == notification.id)
                         notif.remove();
                 })
             });
@@ -196,11 +191,11 @@ function supprimerNotifs() {
 
 //--------------------------REQUÊTE DELETE UNE NOTIF----------------------------
 
-function supprimerNotif(idTransaction) {
-    console.log("Supprimer notif seule: " + idTransaction)
+function supprimerNotif(idNotif) {
+    console.log("Supprimer notif seule: " + idNotif)
     //Requête DELETE
     deleteNotif = new XMLHttpRequest();
-    deleteNotif.open('DELETE', '/Liste_compte/API/afficherNotifications.php?idTransaction=' + idTransaction, true);
+    deleteNotif.open('DELETE', '/Liste_compte/API/afficherNotifications.php?idNotif=' + idNotif, true);
 
 
 
@@ -211,13 +206,13 @@ function supprimerNotif(idTransaction) {
             let responseData = JSON.parse(deleteNotif.responseText);
 
 
-            responseData.idTransactionNotifsEffacees.forEach(function(notification) {
+            responseData.idNotifsEffacees.forEach(function(notification) {
                 //Chercher toutes les notifs
                 let notifs = document.querySelectorAll('.notif-box');
 
                 //Itérer à travers les notifs, et les effacer si elles ont notre ID
                 notifs.forEach(function(notif) {    
-                    if(notif.id == notification.idTransaction)
+                    if(notif.id == notification.id)
                         notif.remove();
                 })
             });

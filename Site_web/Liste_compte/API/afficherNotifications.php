@@ -14,19 +14,21 @@
         }
 
         //Requête SQL pour chercher les notifications
-        $requete = $conn->prepare("SELECT *
+        $requete = $conn->prepare("SELECT nc.id AS id_notif, idTransaction, CompteId, titre, contenu, lu, dateRecu, idCompteBancaireProvenant,
+        dateTransaction, montant, typeTransaction, enAttente, question, reponse
         FROM NotificationClient nc JOIN TransactionBancaire tb ON tb.id = nc.idTransaction WHERE compteId = $idUtilisateur;");
         $requete->execute();
         $notificationsEtTransactions = $requete->fetchAll(PDO::FETCH_ASSOC);
 
         // Échapper les caractères spéciaux dans le contenu des notifications
         foreach ($notificationsEtTransactions as $notification) {
-            $notification['id'] = htmlspecialchars($notification['id'], ENT_QUOTES, 'UTF-8');
+            $notification['id_notif'] = htmlspecialchars($notification['id_notif'], ENT_QUOTES, 'UTF-8');
             $notification['CompteId'] = htmlspecialchars($notification['CompteId'], ENT_QUOTES, 'UTF-8');
             $notification['titre'] = htmlspecialchars($notification['titre'], ENT_QUOTES, 'UTF-8');
             $notification['contenu'] = htmlspecialchars($notification['contenu'], ENT_QUOTES, 'UTF-8');
             $notification['lu'] = htmlspecialchars($notification['lu'], ENT_QUOTES, 'UTF-8');
             $notification['dateRecu'] = htmlspecialchars($notification['dateRecu'], ENT_QUOTES, 'UTF-8');
+            $notification['idTransaction'] = htmlspecialchars($notification['idTransaction'], ENT_QUOTES, 'UTF-8');
 
             $notification['idCompteBancaireProvenant'] = htmlspecialchars($notification['idCompteBancaireProvenant'], ENT_QUOTES, 'UTF-8');
             $notification['dateTransaction'] = htmlspecialchars($notification['dateTransaction'], ENT_QUOTES, 'UTF-8');
@@ -55,14 +57,14 @@
         //Si l'URL ne contient pas d'ID, c'est une requête pour supprimer toutes les notifacitons
         if (preg_match('/\/Liste_compte\/API\/afficherNotifications\.php$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Chercher les notifications à supprimer (pour les renvoyer en données JSON et les enlever dynamiquement)
-            $sql = $conn->prepare("SELECT idTransaction FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
-            WHERE tb.enAttente=0 AND CompteId = '$idUtilisateur)';");
+            $sql = $conn->prepare("SELECT nc.id FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
+            WHERE tb.enAttente=0 AND nc.CompteId = '$idUtilisateur';");
             $sql->execute();
             $notifications = $sql->fetchAll(PDO::FETCH_ASSOC);
 
             //Faire SQL pour supprimer TOUTES les notifications de l'utilisateur (sauf ceux en attente)
-            $requete = $conn->prepare("DELETE FROM NotificationClient WHERE idTransaction IN 
-            (SELECT idTransaction FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
+            $requete = $conn->prepare("DELETE FROM NotificationClient WHERE id IN 
+            (SELECT nc.id FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
             WHERE tb.enAttente=0) AND CompteId = '$idUtilisateur';");
             $requete->execute();
 
@@ -71,21 +73,21 @@
         //Sinon, c'est une requête pour supprimer une notification précise
         else {
             //Get la transaction à supprimer
-            $idTransaction = $_GET['idTransaction'];
+            $idNotif = $_GET['idNotif'];
 
-            $sql = $conn->prepare("SELECT idTransaction FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
-            WHERE tb.enAttente=0 AND nc.CompteId = '$idUtilisateur' AND nc.idTransaction = '$idTransaction';");
+            $sql = $conn->prepare("SELECT nc.id FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
+            WHERE tb.enAttente=0 AND nc.id = '$idNotif';");
             $sql->execute();
             $notifications = $sql->fetchAll(PDO::FETCH_ASSOC);
 
             //Faire SQL pour supprimer TOUTES les notifications de l'utilisateur (sauf ceux en attente)
-            $requete = $conn->prepare("DELETE FROM NotificationClient WHERE idTransaction IN 
-            (SELECT idTransaction FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
-            WHERE tb.enAttente=0) AND CompteId = '$idUtilisateur' AND idTransaction = '$idTransaction';");
+            $requete = $conn->prepare("DELETE FROM NotificationClient WHERE id IN 
+            (SELECT nc.id FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
+            WHERE tb.enAttente=0) AND id = '$idNotif';");
             $requete->execute();
 
         }
 
-        echo json_encode(["idTransactionNotifsEffacees" => $notifications]);
+        echo json_encode(["idNotifsEffacees" => $notifications]);
     }
 ?>

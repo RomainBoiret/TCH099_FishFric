@@ -279,15 +279,13 @@
 
                 }
 
+                //Rechercher l'ID de la notification
+                $sql = "SELECT id FROM NotificationClient WHERE idTransaction='$idTransaction' AND CompteId='$compteIdProvenant'";
+                $resultat = $conn->query($sql);
+                $id_notif = $resultat->fetchColumn();
 
-                //À FAIRE
-                //  -Faire le rejet de virement
-
-
-
-
-                //Message de succès
-                echo json_encode(['msgSucces' => $msgSucces1]);
+                //Message de succès + ID de notification
+                echo json_encode(['msgSucces' => $msgSucces1, 'id_notif' => $id_notif]);
             } 
             
             //Sinon, on renvoie les messages d'erreur
