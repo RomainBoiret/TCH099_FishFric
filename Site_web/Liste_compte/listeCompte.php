@@ -16,7 +16,7 @@ include "../verifSession.php";
 </head>
 <body>
     
-<!-- header design -->
+<!-- ------------------------------------MENU HAUT DE PAGE (Logo, notifs, déconnexion)------------------------------------ -->
 <header>
     <a href="../index.html" class="logo">
         <img src="/Images/logo-website.jpg">

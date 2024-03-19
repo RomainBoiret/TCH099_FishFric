@@ -24,7 +24,7 @@ document.querySelector('.messagerie').addEventListener('click', function() {
                     //Mettre tout le code HTML de la structure d'une notification dans une string
                     let notificationHtml = '<div class="notif-box" id="' + notificationEtTransaction[i].idTransaction + '"><div class="notif-box-header">'
                     notificationHtml += '<h4>' + notificationEtTransaction[i].titre + '</h4>';
-                    notificationHtml += '<button class="btn-supprimer"><i class="bx bx-trash"></i></button></div>'
+                    notificationHtml += '<button class="btn-supprimer" onclick="supprimerNotif(' + notificationEtTransaction[i].idTransaction + ')"><i class="bx bx-trash"></i></button></div>'
                     notificationHtml += '<div class="notif-box-body"><p>' + notificationEtTransaction[i].contenu + '</p>';
 
                     //------------------------------AFFICHAGE RÉCEPTION DE VIREMENT DYNAMIQUEMENT------------------------------------
@@ -102,6 +102,9 @@ function recevoirVirement(idTransaction, decision) {
                                                 "idTransaction": idTransaction,
                                                 "inputReponse": inputReponse});
 
+
+    console.log("ID TRANSACTION: " + idTransaction)
+
     //Messages d'erreurs ou de succès du virement
     requeteVirement.onload = function() {
         //Vérifier si la requête a marché
@@ -149,6 +152,85 @@ function recevoirVirement(idTransaction, decision) {
 
 
 //--------------------------REQUÊTE DELETE TOUTES LES NOTIFS----------------------------
+document.querySelector('.clear-all').addEventListener('click', supprimerNotifs);
 
-//À FAIRE
-//  -Delete TOUTES les notifs, SAUF celles qui sont encore en attente (=1)
+function supprimerNotifs() {
+    console.log("Dans la fonction supprimer notifs")
+    //Requête DELETE
+    deleteNotifs = new XMLHttpRequest();
+    deleteNotifs.open('DELETE', '/Liste_compte/API/afficherNotifications.php', true);
+
+    
+    deleteNotifs.onload = function() {
+        //Vérifier si la requête a marché
+        if (deleteNotifs.readyState === 4 && deleteNotifs.status === 200) {
+            //Décoder la réponse (qui est au format JSON)
+            let responseData = JSON.parse(deleteNotifs.responseText);
+
+            responseData.idTransactionNotifsEffacees.forEach(function(notification) {
+                //Chercher toutes les notifs
+                let notifs = document.querySelectorAll('.notif-box');
+
+                //Itérer à travers les notifs, et les effacer si elles ont notre ID
+                notifs.forEach(function(notif) {    
+                    if(notif.id == notification.idTransaction)
+                        notif.remove();
+                })
+            });
+        }
+    }
+
+
+
+
+    //Message d'erreur de la requête
+    deleteNotifs.onerror = function() {
+        console.error('La requête n\'a pas fonctionné!');
+    };
+
+    //Envoyer la requête
+    deleteNotifs.send();
+}
+
+
+
+//--------------------------REQUÊTE DELETE UNE NOTIF----------------------------
+
+function supprimerNotif(idTransaction) {
+    console.log("Supprimer notif seule: " + idTransaction)
+    //Requête DELETE
+    deleteNotif = new XMLHttpRequest();
+    deleteNotif.open('DELETE', '/Liste_compte/API/afficherNotifications.php?idTransaction=' + idTransaction, true);
+
+
+
+    deleteNotif.onload = function() {
+        //Vérifier si la requête a marché
+        if (deleteNotif.readyState === 4 && deleteNotif.status === 200) {
+            //Décoder la réponse (qui est au format JSON)
+            let responseData = JSON.parse(deleteNotif.responseText);
+
+
+            responseData.idTransactionNotifsEffacees.forEach(function(notification) {
+                //Chercher toutes les notifs
+                let notifs = document.querySelectorAll('.notif-box');
+
+                //Itérer à travers les notifs, et les effacer si elles ont notre ID
+                notifs.forEach(function(notif) {    
+                    if(notif.id == notification.idTransaction)
+                        notif.remove();
+                })
+            });
+        }
+    }
+
+
+
+    //Message d'erreur de la requête
+    deleteNotif.onerror = function() {
+        console.error('La requête n\'a pas fonctionné!');
+    };
+
+    //Envoyer la requête
+    deleteNotif.send();
+}
