@@ -327,17 +327,20 @@
 
                 //Ajouter la transaction
                 $sql = "INSERT INTO TransactionBancaire (idCompteBancaireProvenant, idCompteBancaireRecevant, 
-                dateTransaction, montant, typeTransaction) VALUES ($idCompteBancaireProvenant, $idCompteBancaireRecevant, 
-                NOW(), '$montant', 'Transfert');";
+                dateTransaction, enAttente, montant, typeTransaction) VALUES ($idCompteBancaireProvenant, $idCompteBancaireRecevant, 
+                NOW(), 0, '$montant', 'Transfert');";
                 $conn->query($sql);
 
-
-
-                //À FAIRE
                 //AJOUTER NOTIFICATIONS
+                //Chercher ID de la transaction
+                $sql = "SELECT id FROM TransactionBancaire ORDER BY id DESC LIMIT 1;";
+                $resultat = $conn->query($sql);
+                $idTransaction = $resultat->fetchColumn();
 
-
-
+                $contenuNotif = 'Vous avez fait un virement de ' . $montant . '$ du compte #' . $idCompteBancaireProvenant . ' au compte #' . $idCompteBancaireRecevant; 
+                $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, lu, dateRecu, idTransaction)
+                VALUES ($compteIdProvenant, 'Transfert entre comptes', '$contenuNotif', 0, NOW(), $idTransaction);";
+                $conn->query($sql);
 
                 //Message de succès
                 echo json_encode(['msgSucces' => "Le transfert a été effectué avec succès!"]);
@@ -372,9 +375,9 @@
                 $conn->query($sql);
 
                 //Ajouter la transaction
-                $sql = "INSERT INTO TransactionBancaire (idCompteBancaireProvenant, dateTransaction, montant, 
+                $sql = "INSERT INTO TransactionBancaire (idCompteBancaireProvenant, dateTransaction, enAttente, montant, 
                 typeTransaction, nomEtablissement) VALUES ('$idCompteBancaireProvenant', 
-                NOW(), '$montant', 'Paiement de facture', '$nomEtablissement');";
+                NOW(), 0, '$montant', 'Paiement de facture', '$nomEtablissement');";
                 $conn->query($sql);
 
 
@@ -382,6 +385,17 @@
                 //À FAIRE
                 //AJOUTER NOTIFICATIONS
 
+
+                //AJOUTER NOTIFICATIONS
+                //Chercher ID de la transaction
+                $sql = "SELECT id FROM TransactionBancaire ORDER BY id DESC LIMIT 1;";
+                $resultat = $conn->query($sql);
+                $idTransaction = $resultat->fetchColumn();
+
+                $contenuNotif = 'Vous avez fait un paiement de facture de ' . $montant . '$ au destinataire: ' . $nomEtablissement . '<br>Raison: ' . $raison; 
+                $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, lu, dateRecu, idTransaction)
+                VALUES ($compteIdProvenant, 'Transfert entre comptes', '$contenuNotif', 0, NOW(), $idTransaction);";
+                $conn->query($sql);
 
 
 

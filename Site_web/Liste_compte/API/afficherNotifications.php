@@ -67,7 +67,6 @@
             (SELECT nc.id FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
             WHERE tb.enAttente=0) AND CompteId = '$idUtilisateur';");
             $requete->execute();
-
         }
 
         //Sinon, c'est une requête pour supprimer une notification précise

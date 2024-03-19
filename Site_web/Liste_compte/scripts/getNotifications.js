@@ -84,8 +84,8 @@ document.querySelector('.messagerie').addEventListener('click', function() {
 });
 
 
-
 //--------------------------FONCTION REQUÊTE PUT pour accepter/refuser un transfert----------------------------
+//
 function recevoirVirement(idTransaction, decision) {
     //On peut commencer notre requête
     requeteVirement = new XMLHttpRequest();
@@ -149,6 +149,7 @@ function recevoirVirement(idTransaction, decision) {
 
 
 //--------------------------REQUÊTE DELETE TOUTES LES NOTIFS----------------------------
+//
 document.querySelector('.clear-all').addEventListener('click', supprimerNotifs);
 
 function supprimerNotifs() {
@@ -175,9 +176,6 @@ function supprimerNotifs() {
         }
     }
 
-
-
-
     //Message d'erreur de la requête
     deleteNotifs.onerror = function() {
         console.error('La requête n\'a pas fonctionné!');
@@ -188,23 +186,19 @@ function supprimerNotifs() {
 }
 
 
-
 //--------------------------REQUÊTE DELETE UNE NOTIF----------------------------
-
+//
 function supprimerNotif(idNotif) {
     console.log("Supprimer notif seule: " + idNotif)
     //Requête DELETE
     deleteNotif = new XMLHttpRequest();
     deleteNotif.open('DELETE', '/Liste_compte/API/afficherNotifications.php?idNotif=' + idNotif, true);
 
-
-
     deleteNotif.onload = function() {
         //Vérifier si la requête a marché
         if (deleteNotif.readyState === 4 && deleteNotif.status === 200) {
             //Décoder la réponse (qui est au format JSON)
             let responseData = JSON.parse(deleteNotif.responseText);
-
 
             responseData.idNotifsEffacees.forEach(function(notification) {
                 //Chercher toutes les notifs
@@ -218,8 +212,6 @@ function supprimerNotif(idNotif) {
             });
         }
     }
-
-
 
     //Message d'erreur de la requête
     deleteNotif.onerror = function() {

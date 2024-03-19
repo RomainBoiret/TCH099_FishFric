@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-
     //--------------------------------------REQUÊTE GET AFFICHER LE COMPTE ET LES TRANSACTIONS--------------------------------------
     
     //Rechercher l'ID du compte dans l'URL
@@ -39,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector('.detail-compte').innerHTML = compteHtml;
             let transactionHtml = '';
 
-            //------------------------AFFICHER LES TRANSACTIONS--------------------------
+            //------------------------------------AFFICHER LES 4 PREMIÈRES TRANSACTIONS-----------------------------------------
 
             //De base, on affiche seulement 4 transactions
             let nbTransactions = 4;
@@ -51,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     //Afficher le type de la transaction
                     transactionHtml += '<div class="transfert-box"><div class="transfert-detail">';
                     transactionHtml += '<div class="detail-titre"><span>' + transactions[i].typeTransaction + ' / ';
-    
+
                     //S'il y a un nom d'établissement ou de contact pour le transfert
                     if (transactions[i].nomEtablissement) 
                         transactionHtml += transactions[i].nomEtablissement.toLowerCase();
@@ -59,11 +58,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     //Si c'est des intérets, on met rien
                     else if (transactions[i].typeTransaction == 'Intérêts');
 
-                    //Sinon, s'il s'agit d'un transfert entre comptes. Afficher le compte recevant
+                    //Sinon, il s'agit d'un transfert entre comptes. Afficher le compte recevant
                     else {
                         if (transactions[i].idCompteBancaireProvenant == compteId)
-                            transactionHtml += 'compte #' + transactions[i].idCompteBancaireRecevant;
-                        else;
+                            transactionHtml += 'compte #' + transactions[i].idCompteBancaireRecevant
+                        else 
                             transactionHtml += 'compte #' + transactions[i].idCompteBancaireProvenant
                     }
 
@@ -88,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector('.transfert-content').innerHTML = transactionHtml;
 
             //-----------------------------------AFFICHER TRANSACTIONS PLUS ANCIENNES-----------------------------------
+            //
             //Lorsque l'utilisateur clique sur le bouton "+", on affiche 5 transactions plus anciennes dans la div
             document.querySelector('.btn-voir-plus').addEventListener('click', function() {
                 //incrémenter le nombre de transactions que l'on désire voir
