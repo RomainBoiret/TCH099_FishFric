@@ -120,8 +120,8 @@
 
                 //Ajouter la transaction en attente
                 $sql = "INSERT INTO TransactionBancaire (idCompteBancaireProvenant, dateTransaction, montant, 
-                typeTransaction, enAttente, question, reponse, nomEtablissement) VALUES ('$idCompteBancaireProvenant', 
-                NOW(), '$montant', 'Virement', 1, '$question', '$reponse', '$courrielDest');";
+                typeTransaction, enAttente, question, reponse, nomEtablissement, courrielProvenant) VALUES ('$idCompteBancaireProvenant', 
+                NOW(), '$montant', 'Virement', 1, '$question', '$reponse', '$courrielDest', '$courrielCompteProvenant');";
                 $conn->query($sql);
 
                 //----------AJOUTER transaction------------

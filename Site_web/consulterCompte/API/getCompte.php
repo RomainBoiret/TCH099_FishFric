@@ -18,7 +18,7 @@
         $compte = $requete->fetch();
 
         //Chercher les transactions qui impliquent ce compte (soit c'est le compte provenant OU recevant)
-        $requete = $conn->prepare("SELECT montant, typeTransaction, dateTransaction, nomEtablissement, idCompteBancaireProvenant, idCompteBancaireRecevant FROM TransactionBancaire
+        $requete = $conn->prepare("SELECT montant, typeTransaction, dateTransaction, nomEtablissement, idCompteBancaireProvenant, idCompteBancaireRecevant, courrielProvenant FROM TransactionBancaire
         WHERE idCompteBancaireProvenant='$compteId' OR idCompteBancaireRecevant='$compteId';");
         $requete->execute();
         $transactions = $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -38,6 +38,7 @@
             $transaction['nomEtablissement'] = htmlspecialchars($transaction['nomEtablissement'], ENT_QUOTES, 'UTF-8');
             $transaction['idCompteBancaireProvenant'] = htmlspecialchars($transaction['idCompteBancaireProvenant'], ENT_QUOTES, 'UTF-8');
             $transaction['idCompteBancaireRecevant'] = htmlspecialchars($transaction['idCompteBancaireRecevant'], ENT_QUOTES, 'UTF-8');
+            $transaction['courrielProvenant'] = htmlspecialchars($transaction['courrielProvenant'], ENT_QUOTES, 'UTF-8');
         }
 
         //Mettre les données dans un tableau sous forme associative

@@ -348,13 +348,25 @@ let showOrHide = function() {
     } else {
         divContainer.style.display = 'none';
         isClicked = true;
+
+        //Recharger la page
+        setTimeout(function() {
+            location.reload();
+        }, 100);
     }
 }
 
+//Fonction pour fermer la messagerie lorsqu'on appuie sur la page et que la messagerie est ouverte
 function fermerMessagerie() {
+    //Si le div de la messagerie est apparant, on le fait disparaître
     if (divContainer.style.display == 'block') {
         divContainer.style.display = 'none';
         isClicked = true;
+
+        //Recharger la page
+        setTimeout(function() {
+            location.reload();
+        }, 100);
     }
 }
 

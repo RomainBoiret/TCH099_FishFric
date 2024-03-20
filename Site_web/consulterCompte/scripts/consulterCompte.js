@@ -49,8 +49,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     transactionHtml += '<div class="detail-titre"><span>' + transactions[i].typeTransaction + ' / ';
 
                     //S'il y a un nom d'établissement ou de contact pour le transfert
-                    if (transactions[i].nomEtablissement) 
-                        transactionHtml += transactions[i].nomEtablissement.toLowerCase();
+                    if (transactions[i].nomEtablissement) {
+                        //Si le compte présent est le nom d'établissement:
+                        if (transactions[i].idCompteBancaireRecevant == compteId)
+                            transactionHtml += transactions[i].courrielProvenant.toLowerCase();
+                        else
+                            transactionHtml += transactions[i].nomEtablissement.toLowerCase();
+                    }
 
                     //Si c'est des intérets, on met rien
                     else if (transactions[i].typeTransaction == 'Intérêts');
@@ -98,8 +103,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         transactionHtml += '<div class="detail-titre"><span>' + transactions[i].typeTransaction + ' / ';
         
                         //S'il y a un nom d'établissement ou de contact pour le transfert
-                        if (transactions[i].nomEtablissement) 
-                            transactionHtml += transactions[i].nomEtablissement.toLowerCase();
+                        if (transactions[i].nomEtablissement) {
+                            //Si le compte présent est le nom d'établissement:
+                            if (transactions[i].idCompteBancaireRecevant == compteId)
+                                transactionHtml += transactions[i].courrielProvenant.toLowerCase();
+                            else
+                                transactionHtml += transactions[i].nomEtablissement.toLowerCase();
+                        }
 
                         //Si c'est des intérets, on met rien
                         else if (transactions[i].typeTransaction == 'Intérêts');
