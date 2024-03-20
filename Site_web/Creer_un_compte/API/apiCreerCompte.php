@@ -115,19 +115,13 @@
             $requete->execute();
 
             //Mettre le message de succès 
-            echo json_encode(['msgSucces' => "<p>L'utilisateur a été créé avec succès! Bienvenue chez Fish&Fric.</p>"]);        
+            echo json_encode(['msgSucces' => "L'utilisateur a été créé avec succès! Bienvenue chez Fish&Fric."]);        
         }
 
         //Sinon, on affiche les erreurs
         else
         {
-            $msgErreurs = '';
-
-            foreach ($erreurs as $erreur) {
-                $msgErreurs .= $erreur . '<br>';
-            }
-
-            echo json_encode(['erreurs' => $msgErreurs, 'erreurMdp' => $erreurMdp]); 
+            echo json_encode(['erreurs' => $erreurs, 'erreurMdp' => $erreurMdp]); 
         }
     } 
 ?>

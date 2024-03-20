@@ -30,7 +30,7 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
             let responseData = JSON.parse(xhrCreerCompte.responseText);
             console.log(responseData);
 
-            //Afficher les messages d'erreur ou de succès
+            //Supprimer TOUS les messages avant d'en rajouter, dans le cas où on soumet plusieurs requêtes
             document.getElementById('messages').innerHTML = "";
 
             //Afficher le message de succès dans le DIV respectif
@@ -60,7 +60,10 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
                     let erreurDiv = document.createElement('div');
                     erreurDiv.id = 'erreurs-reste';
                     document.getElementById('messages').appendChild(erreurDiv);
-                    erreurDiv.innerHTML = responseData.erreurs;
+
+                    responseData.erreurs.forEach(function(erreur) {
+                        erreurDiv.innerHTML += erreur + '<br>';
+                    })
                 }
             }
         } 

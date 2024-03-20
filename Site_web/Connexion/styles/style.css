@@ -81,6 +81,10 @@ section {
 .connexion-container .connexion-formulaire {
     width: 100%;
     height: 70%;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .connexion-formulaire form {
@@ -175,18 +179,23 @@ label {
     height: 20px;
 }
 
-#erreur-message p {
+#erreur-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: red;
     font-size: 1.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .btn-box {
     position: relative;
     display: flex;
+    flex: none;
     justify-content: center;
-    width: 34.5rem;
+    width: 100%;
     height: 5rem;
+    margin-bottom: 2rem;
 }
 
 .btn-box .btn {
