@@ -55,11 +55,9 @@ section {
     background: var(--white);
     display: flex;
     flex-direction: column;
-    gap: 1.3rem;
 }
 
 .create-account-container .create-account-header {
-    padding: 3% 2%;
 }
 
 .create-account-container .create-account-header h1 {
@@ -74,8 +72,8 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
-    padding: 4% 2%;
+    gap: 0.5rem;
+    padding: 2% 2%;
 }
 
 .create-account-container .create-account-embed h2 {
@@ -92,6 +90,9 @@ section {
     padding: 2%;
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .account-formulaire form {
@@ -175,9 +176,10 @@ label {
 }
 
 .btn-box {
+    height: 100%;
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 34.5rem;
     height: 5rem;
     margin-bottom: 10px;
@@ -280,18 +282,24 @@ label {
 
 /*Style de div de message*/
 #messages {
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    padding-bottom: 3%;
 }
 
-#erreur-mdp p {
+#erreur-mdp {
     color: red;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: column;
 }
 
-#erreurs-reste p {
+#erreurs-reste {
     color: red;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
     display: flex;
     flex-direction: column;
 }

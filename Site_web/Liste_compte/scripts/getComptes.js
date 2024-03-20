@@ -335,7 +335,7 @@ document.addEventListener("DOMContentLoaded", function() {
     requeteGetComptes.send();
 });
 
-//--------------------------------------AFFICHER la Messagerie--------------------------------------
+//--------------------------------------AFFICHER/CACHER la Messagerie--------------------------------------
 const divContainer = document.querySelector('#elementToWorkOn');
 let isClicked = true;
 
