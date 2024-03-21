@@ -314,52 +314,49 @@ include "../verifSession.php";
 
             <div class="main-content-part">
                 <div class="compte-container">
-    
-                    <div class="compte-box">
-                        <h4>Compte épargne</h4>
-                        <p>
-                           Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                           Quo modi, ipsa ipsam hic id exercitationem natus rerum quisquam harum.
-                        </p>
-                        <form action="">
+                        <div class="compte-box">
+                            <h4>Compte épargne</h4>
+                            <p>
+                            - Taux d'intérêt quotidien de 3% <br>
+                            - Solde de 10$ offert dès l'ouverture <br>
+                            - Aucun frais mensuels <br>
+                            - Admissible à tous les types de virement <br>
+                            </p>
                             <div class="input-box">
-                                <input type="checkbox" name="choix" id="choix">
+                                <input type="radio" name="choix" id="choix" placeholder="Compte épargne">
                             </div>
-                        </form>
-                    </div>
-    
-                    <div class="compte-box">
-                        <h4>Carte requin</h4>
-                        <p>
-                           Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                           Quo modi, ipsa ipsam hic id exercitationem natus rerum quisquam harum.
-                        </p>
-                        <form action="">
+                        </div>
+        
+                        <div class="compte-box">
+                            <h4>Carte requin</h4>
+                            <p>
+                            - Aucun frais <br> 
+                            - Remises de 2% pour tous les achats <br>
+                            - Taux d'intérêt de 15%
+                            </p>
                             <div class="input-box">
-                                <input type="checkbox" name="choix" id="choix">
+                                <input type="radio" name="choix" id="choix" placeholder="Carte requin">
                             </div>
-                        </form>
-                    </div>
-    
-                    <div class="compte-box">
-                        <h4>Investissement</h4>
-                        <p>
-                           Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                           Quo modi, ipsa ipsam hic id exercitationem natus rerum quisquam harum.
-                        </p>
-                        <form action="">
+                        </div>
+        
+                        <div class="compte-box">
+                            <h4>Investissement</h4>
+                            <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Quo modi, ipsa ipsam hic id exercitationem natus rerum quisquam harum.
+                            </p>
                             <div class="input-box">
-                                <input type="checkbox" name="choix" id="choix">
+                                <input type="radio" name="choix" id="choix" placeholder="Compte investissement">
                             </div>
-                        </form>
-                    </div>
+                        </div>
+
                 </div>
             </div>
 
-            <div id="msg-erreur-payer-facture"></div>
+            <div id="messages">...</div>
             
             <div class="btn-box">
-                <button class="btn-virer" id="btnPayerFacture">Confirmer</button>
+                <button class="btn-virer" id="btnAjouterCompte">Confirmer</button>
             </div>
         </div>
     </div>
@@ -373,4 +370,5 @@ include "../verifSession.php";
 </body>
 <script src="/Liste_compte/scripts/getComptes.js"></script>
 <script src="/Liste_compte/scripts/getNotifications.js"></script>
+<script src="/Liste_compte/scripts/ajouterCompte.js"></script>
 </html>

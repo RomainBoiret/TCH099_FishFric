@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
             compteHtml += '</div></div></div>';
             compteHtml += '<p>Numéro de compte: ' + compte.id + '</p>';
             compteHtml += '<div class="detail-compte-footer"><p>Date d\'ouverture: ' + compte.ouverture + '</p>';
-            compteHtml += '<p>Taux d\intérêt quotidien: ' + compte.interet + '%</p></div>';                                                         
+            compteHtml += '<p>Taux d\'intérêt quotidien: ' + compte.interet + '%</p></div>';                                                         
 
             //Afficher les comptes dans le div
             document.querySelector('.detail-compte').innerHTML = compteHtml;

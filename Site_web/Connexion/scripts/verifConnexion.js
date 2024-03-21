@@ -13,10 +13,8 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
     xhrCreerCompte.setRequestHeader('Content-Type', 'application/json');
     const creerCompteJSON = JSON.stringify({"courriel": courriel,
                                             "password": password,
-                                            "checked": checked});
-
-    console.log(creerCompteJSON)
-
+                                            "checked": checked,
+                                            "mobile": null});
 
     //Chercher la réponse (messages succès/erreur)
     xhrCreerCompte.onload = function() {
@@ -24,7 +22,6 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
         if (xhrCreerCompte.readyState === 4 && xhrCreerCompte.status === 200) {
             //Décoder la réponse (qui est au format JSON)
             let responseData = JSON.parse(xhrCreerCompte.responseText);
-            console.log(responseData);
 
             //Supprimer TOUS les messages avant d'en rajouter, dans le cas où on soumet plusieurs requêtes
             document.getElementById('erreur-message').innerHTML = "";
@@ -37,11 +34,7 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
             }
 
             else {
-                //Rediriger utilisateur vers le site????
-                console.log(responseData.succes);
-
-
-
+                //Rediriger utilisateur vers le site
                 window.location = "../../Liste_compte/listeCompte.php";
             }
         } 

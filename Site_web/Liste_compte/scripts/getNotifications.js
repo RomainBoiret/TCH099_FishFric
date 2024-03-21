@@ -92,9 +92,7 @@ function recevoirVirement(idTransaction, decision) {
     requeteVirement.open('PUT', '/Transfert/API/gestionTransfert.php/utilisateurReception', true);
 
     //Get la réponse
-    console.log("idTransaction: " + idTransaction)
     let inputReponse = document.querySelector('#reponse-' + idTransaction).value;
-    console.log(inputReponse)
     
     //Stocke les donnees a envoyer en format JSON
     requeteVirement.setRequestHeader('Content-Type', 'application/json');

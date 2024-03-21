@@ -129,7 +129,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
                 else
                 {
                     //HTTP CODE 401 Unauthorized 
-                    echo json_encore(["reponse"=>"Le mot de passe est erroné", "code"=>"401"]);
+                    echo json_encode(["reponse"=>"Le mot de passe est erroné", "code"=>"401"]);
                 }
             }
         }
@@ -144,7 +144,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
         else
         {
             //ERREUR HTTP 401 Unauthorized
-            echo json_encore(["reponse"=>"Les donnees saisies sont incompletes", "code"=>"401"]);
+            echo json_encode(["reponse"=>"Les donnees saisies sont incompletes", "code"=>"401"]);
         }
     }
 }

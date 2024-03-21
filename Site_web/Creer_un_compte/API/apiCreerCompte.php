@@ -81,7 +81,7 @@
 
             //---------------------CRÉER COMPTE CHÈQUE---------------------
             $interet = 1.00;
-
+            
             $requete = $conn->prepare("INSERT INTO CompteBancaire (compteId, solde, typeCompte, interet, ouverture, suspendu) VALUES
             ((SELECT id FROM Compte WHERE courriel LIKE '$courriel'), 0, 'Compte chèque', '$interet', NOW(), 0);");
             $requete->execute();
@@ -94,7 +94,7 @@
             $eventName = "interet" . $idCompteCheque;
 
             //Écrire le sql de la requête
-            //--À chaque mois, on met le montant gangé en intérêt dans les transactions
+            //--À chaque jour, on met le montant gangé en intérêt dans les transactions
             //--et on actualise le solde
             $requete = $conn->prepare("CREATE DEFINER=`root`@`localhost` EVENT `$eventName` 
             ON SCHEDULE EVERY 1 DAY STARTS NOW()
