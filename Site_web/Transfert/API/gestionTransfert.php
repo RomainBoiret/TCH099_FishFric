@@ -33,12 +33,12 @@
                     $montant = floatval(trim($montant));
 
                     //VÉRIF SOLDE - Requête pour checker si solde <= 0
-                    $requete = $conn->prepare("SELECT solde FROM CompteBancaire WHERE id = '$idCompteBancaireProvenant'");
+                    $requete = $conn->prepare("SELECT solde, typeCompte FROM CompteBancaire WHERE id = '$idCompteBancaireProvenant'");
                     $requete->execute();
                     $result = $requete->fetch(PDO::FETCH_ASSOC);
             
                     //Si le solde est pas suffisant ou bien nul, on met une erreur
-                    if($result['solde'] < $montant)
+                    if($result['solde'] < $montant && $result['typeCompte'] != 'Carte requin')
                         $erreurs[] = "Le montant est supérieur au solde"; 
 
                     if($montant == 0)
@@ -50,7 +50,7 @@
             }    
 
             else
-                $erreurs[] = "ID provenant non reçu ou non valide";
+                $erreurs[] = "Compte provenant non reçu ou non valide";
         }
         
 
@@ -281,20 +281,6 @@
                     $sql = "UPDATE NotificationClient SET titre='Virement refusé', contenu = '$msgSucces2' 
                     WHERE idTransaction='$idTransaction' AND CompteId='$idCompteProvenant'";
                     $conn->query($sql);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 }
 
                 //Rechercher l'ID de la notification
@@ -321,8 +307,23 @@
             && is_numeric(trim($donnees["idCompteBancaireRecevant"]))) {
                 $idCompteBancaireRecevant = $donnees["idCompteBancaireRecevant"];
                 $idCompteBancaireRecevant = intval(trim($idCompteBancaireRecevant));
+
+                //VÉRIFIER SI LE COMPTE EST UNE CARTE DE CRÉDIT
+                //Les cartes de crédit peuvent avoir SEULEMENT un solde négatif
+                $requete = $conn->prepare("SELECT solde, typeCompte FROM CompteBancaire WHERE id = '$idCompteBancaireRecevant'");
+                $requete->execute();
+                $result = $requete->fetch(PDO::FETCH_ASSOC);
+
+
+                if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"]) && is_numeric($donnees["montant"])) {
+                    //Si le montant reçu fait que le solde de la carte de crédit sera positif,
+                    //on met une erreur
+                    if($result['solde'] + $montant > 0)
+                        $erreurs[] = "Le solde de carte de crédit ne peut pas être positif";
+                }
+
             } else 
-                $erreurs[] = "ID recevant non reçu ou non valide";
+                $erreurs[] = "Compte recevant non reçu ou non valide";
 
             //Vérifier que les 2 comptes ne soient pas les mêmes
             if(isset($donnees["idCompteBancaireProvenant"]) 
