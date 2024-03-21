@@ -18,7 +18,7 @@ include "../verifSession.php";
 
 <!-- header design -->
 <header>
-    <a href="/Liste_compte/listeCompte.php"  class="logo">
+    <a href="../Liste_compte/listeCompte.php"  class="logo">
         <img src="/Images/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
@@ -100,6 +100,6 @@ include "../verifSession.php";
     </div>
 </section>
 <main>
-    <script src="/demanderSupport/scripts/script.js"></script>
+    <script src="./scripts/demanderSupport/scripts/script.js"></script>
 </body>
 </html>

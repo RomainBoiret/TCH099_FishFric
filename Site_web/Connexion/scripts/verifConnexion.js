@@ -2,7 +2,7 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
     //Créer requête POST nouveau compte
 
     let xhrCreerCompte = new XMLHttpRequest();
-    xhrCreerCompte.open('POST', '/Connexion/API/apiConnexion.php', true);
+    xhrCreerCompte.open('POST', '/TCH099_Projet_Int/Site_web/Connexion/API/apiConnexion.php', true);
 
     //Chercher les données
     let courriel = document.getElementById('courriel').value;
@@ -35,7 +35,7 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
 
             else {
                 //Rediriger utilisateur vers le site
-                window.location = "../../Liste_compte/listeCompte.php";
+                window.location = "../Liste_compte/listeCompte.php";
             }
         } 
 

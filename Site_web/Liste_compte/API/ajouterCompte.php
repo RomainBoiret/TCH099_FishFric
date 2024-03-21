@@ -82,11 +82,6 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             //Renvoyer message de succès
             echo json_encode(['succes' => "Votre nouveau compte a été crée!"]);
         }
-
     }
-
-
 }
-
-
 ?>

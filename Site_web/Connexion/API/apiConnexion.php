@@ -117,7 +117,6 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
                     echo json_encode(["reponse"=>"Succes..", "code"=>"200"]);
                 }
                 
-                // header("Location: ../../Liste_compte/listeCompte.php");
                 exit(); 
             } 
             else {

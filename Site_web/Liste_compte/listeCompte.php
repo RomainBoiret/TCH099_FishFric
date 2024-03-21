@@ -11,7 +11,7 @@ include "../verifSession.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste Compte</title>
-    <link rel="stylesheet" href="/Liste_compte/styles/style.css">
+    <link rel="stylesheet" href="../Liste_compte/styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -19,7 +19,7 @@ include "../verifSession.php";
 <!-- ------------------------------------MENU HAUT DE PAGE (Logo, notifs, déconnexion)------------------------------------ -->
 <header>
     <a href="../index.html" class="logo">
-        <img src="/Images/logo-website.jpg">
+        <img src="../Images/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
 
@@ -34,45 +34,6 @@ include "../verifSession.php";
             <button class="clear-all">Effacer tout</button>
         </div>
         <div class="notif-container">
-
-
-
-            <!-- <div class="notif-box" id="accepter-virement">
-                <div class="notif-box-header">
-                    <h4>Virement entre personne</h4>
-                    <button class="btn-supprimer"><i class='bx bx-trash'></i></button>
-                </div>
-    
-                <div class="notif-box-body">
-                    <p>
-                        Virement reçu de la part de <span>Nom utilisateur</span>.
-                        Montant: <span>10$</span>
-                    </p>
-
-                    <form action="" class="formulaire">
-                        <div class="label-field">
-                            <label for="quest_securite">Couleur du ciel ?</label>
-                        </div>
-                        <div class="input-box">
-                            <label for="reponse">Réponse:</label>
-                            <input type="text">
-                        </div>
-                    </form>
-
-                    <div class="btn-box">
-                        <button class="accepter">Accepter</button>
-                        <button class="rejeter">Rejeter</button>
-                    </div>
-                </div>
-
-                <div class="notif-box-footer">
-                    <p>
-                        2024/09/13
-                    </p>
-                </div>
-            </div> -->
-
-
 
         </div>
     </div>
@@ -129,7 +90,7 @@ include "../verifSession.php";
 
                         <p>Avez-vous des questions ?</p>
 
-                        <button class="btn"><a href="/demanderSupport/demanderSupport.php">Nous contacter</a></button>
+                        <button class="btn"><a href="../demanderSupport/demanderSupport.php">Nous contacter</a></button>
                     </div>
                 </div>
             </div>
@@ -368,7 +329,7 @@ include "../verifSession.php";
 
 </footer>
 </body>
-<script src="/Liste_compte/scripts/getComptes.js"></script>
-<script src="/Liste_compte/scripts/getNotifications.js"></script>
-<script src="/Liste_compte/scripts/ajouterCompte.js"></script>
+<script src="./scripts/getComptes.js"></script>
+<script src="./scripts/getNotifications.js"></script>
+<script src="./scripts/ajouterCompte.js"></script>
 </html>

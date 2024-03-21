@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let requeteGetComptes = new XMLHttpRequest();
 
     //Configurer la requête, pour aller chercher les comptes
-    requeteGetComptes.open('GET', '/Liste_compte/API/afficherComptes.php', true);
+    requeteGetComptes.open('GET', '/TCH099_Projet_Int/Site_web/Liste_compte/API/afficherComptes.php', true);
 
     requeteGetComptes.onload = function() {
         //Vérifier si la requête a marché
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 compteHtml += '<div class="montant">' + compte.solde + '</div></div></div>';
                 compteHtml += '<p>Numéro de compte: ' + compte.id + '</p>';
                 compteHtml += '<div class="btn-menu"><i class="bx bxs-right-arrow-circle">';
-                compteHtml += '</i><a href="/consulterCompte/consulterCompte.php?id=' + compte.id + '">Détails du compte</a></div></div>';                                                              
+                compteHtml += '</i><a href="/TCH099_Projet_Int/Site_web/consulterCompte/consulterCompte.php?id=' + compte.id + '">Détails du compte</a></div></div>';                                                              
 
                 comptes += compteHtml;
             });
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //On peut commencer notre requête
                     requeteVirement = new XMLHttpRequest();
-                    requeteVirement.open('PUT', '/Transfert/API/gestionTransfert.php/compte', true);
+                    requeteVirement.open('PUT', '/TCH099_Projet_Int/Site_web/Transfert/API/gestionTransfert.php/compte', true);
                     
                     //Stocke les donnees a envoyer en format JSON
                     requeteVirement.setRequestHeader('Content-Type', 'application/json');
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //On peut commencer notre requête
                     requeteVirement = new XMLHttpRequest();
-                    requeteVirement.open('PUT', '/Transfert/API/gestionTransfert.php/utilisateurEnvoi', true);
+                    requeteVirement.open('PUT', '/TCH099_Projet_Int/Site_web/Transfert/API/gestionTransfert.php/utilisateurEnvoi', true);
                     
                     //Stocke les donnees a envoyer en format JSON
                     requeteVirement.setRequestHeader('Content-Type', 'application/json');
@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //On peut commencer notre requête
                     requeteFacture = new XMLHttpRequest();
-                    requeteFacture.open('PUT', '/Transfert/API/gestionTransfert.php/facture', true);
+                    requeteFacture.open('PUT', '/TCH099_Projet_Int/Site_web/Transfert/API/gestionTransfert.php/facture', true);
                     
                     //Stocke les donnees a envoyer en format JSON
                     requeteFacture.setRequestHeader('Content-Type', 'application/json');

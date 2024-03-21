@@ -140,7 +140,7 @@ section {
     padding: 2rem 4%;
     display: flex;
     justify-content: center;
-    background: url('/Images/background-compte.jpg') no-repeat;
+    background: url('../Images/background-compte.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 }

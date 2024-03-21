@@ -11,14 +11,14 @@ include "../verifSession.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulter Compte</title>
-    <link rel="stylesheet" href="/consulterCompte/styles/style.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <!-- header design -->
 <header>
-    <a href="/Liste_Compte/listeCompte.php" class="logo">
-        <img src="/Images/logo-website.jpg">
+    <a href="../Liste_Compte/listeCompte.php" class="logo">
+        <img src="../Images/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
 
@@ -54,6 +54,6 @@ include "../verifSession.php";
 <footer>
 
 </footer>
-<script src="/consulterCompte/scripts/consulterCompte.js"></script>
+<script src="./scripts/consulterCompte.js"></script>
 </body>
 </html>

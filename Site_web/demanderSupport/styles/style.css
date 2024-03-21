@@ -226,7 +226,7 @@ section {
 .assistance-left-part .assistance-illustration {
     width: 100%;
     height: 60%;
-    background: url('/Images/assistance-nautico.jpg') no-repeat;
+    background: url('../Images/assistance-nautico.jpg') no-repeat;
     background-position: center;
     background-size: 500px;
     display: flex;
