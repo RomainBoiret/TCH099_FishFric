@@ -2,7 +2,7 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
     //Créer requête POST nouveau compte
 
     let xhrCreerCompte = new XMLHttpRequest();
-    xhrCreerCompte.open('POST', '/TCH099_Projet_Int/Site_web/Connexion/API/apiConnexion.php', true);
+    xhrCreerCompte.open('POST', '/TCH099_FishFric/Site_web/Connexion/API/apiConnexion.php', true);
 
     //Chercher les données
     let courriel = document.getElementById('courriel').value;

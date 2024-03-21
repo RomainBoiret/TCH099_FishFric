@@ -3,7 +3,7 @@ document.getElementById('btnAjouterCompte').addEventListener('click', function()
 
     //Créer la requête
     let requeteAjouterCompte = new XMLHttpRequest();
-    requeteAjouterCompte.open('POST', '/TCH099_Projet_Int/Site_web/Liste_compte/API/ajouterCompte.php', true);
+    requeteAjouterCompte.open('POST', '/TCH099_FishFric/Site_web/Liste_compte/API/ajouterCompte.php', true);
 
     //Chercher le compte à créer
     let typeCompte = '';

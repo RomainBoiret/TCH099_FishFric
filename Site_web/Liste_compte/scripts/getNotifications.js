@@ -5,7 +5,7 @@ document.querySelector('.messagerie').addEventListener('click', function() {
         let requeteGetNotifications = new XMLHttpRequest();
 
         //Configurer la requête, pour aller chercher les notifications ET les informations des transactions
-        requeteGetNotifications.open('GET', '/TCH099_Projet_Int/Site_web/Liste_compte/API/afficherNotifications.php', true);
+        requeteGetNotifications.open('GET', '/TCH099_FishFric/Site_web/Liste_compte/API/afficherNotifications.php', true);
 
         requeteGetNotifications.onload = function() {
             //Vérifier si la requête a marché
@@ -89,7 +89,7 @@ document.querySelector('.messagerie').addEventListener('click', function() {
 function recevoirVirement(idTransaction, decision) {
     //On peut commencer notre requête
     requeteVirement = new XMLHttpRequest();
-    requeteVirement.open('PUT', '/TCH099_Projet_Int/Site_web/Transfert/API/gestionTransfert.php/utilisateurReception', true);
+    requeteVirement.open('PUT', '/TCH099_FishFric/Site_web/Transfert/API/gestionTransfert.php/utilisateurReception', true);
 
     //Get la réponse
     let inputReponse = document.querySelector('#reponse-' + idTransaction).value;
@@ -153,7 +153,7 @@ document.querySelector('.clear-all').addEventListener('click', supprimerNotifs);
 function supprimerNotifs() {
     //Requête DELETE
     deleteNotifs = new XMLHttpRequest();
-    deleteNotifs.open('DELETE', '/TCH099_Projet_Int/Site_web/Liste_compte/API/afficherNotifications.php', true);
+    deleteNotifs.open('DELETE', '/TCH099_FishFric/Site_web/Liste_compte/API/afficherNotifications.php', true);
     
     deleteNotifs.onload = function() {
         //Vérifier si la requête a marché
@@ -190,7 +190,7 @@ function supprimerNotif(idNotif) {
     console.log("Supprimer notif seule: " + idNotif)
     //Requête DELETE
     deleteNotif = new XMLHttpRequest();
-    deleteNotif.open('DELETE', '/TCH099_Projet_Int/Site_web/Liste_compte/API/afficherNotifications.php?idNotif=' + idNotif, true);
+    deleteNotif.open('DELETE', '/TCH099_FishFric/Site_web/Liste_compte/API/afficherNotifications.php?idNotif=' + idNotif, true);
 
     deleteNotif.onload = function() {
         //Vérifier si la requête a marché

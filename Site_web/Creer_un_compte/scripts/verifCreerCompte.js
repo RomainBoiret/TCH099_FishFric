@@ -2,7 +2,7 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
     //Créer requête POST nouveau compte
 
     let xhrCreerCompte = new XMLHttpRequest();
-    xhrCreerCompte.open('POST', '/TCH099_Projet_Int/Site_web/Creer_un_compte/API/apiCreerCompte.php', true);
+    xhrCreerCompte.open('POST', '/TCH099_FishFric/Site_web/Creer_un_compte/API/apiCreerCompte.php', true);
 
     //Chercher les données
     let nom = document.getElementById('nom').value;
