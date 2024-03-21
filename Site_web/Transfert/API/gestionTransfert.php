@@ -266,21 +266,34 @@
                     $conn->query($sql);
 
                     //Actualiser la transaction, elle n'est plus en attente
-                    $sql = "UPDATE TransactionBancaire SET enAttente = 0, idCompteBancaireProvenant=NULL, idCompteBancaireRecevant = '$idCompteBancaireRecevant'  WHERE id = '$idTransaction';";
+                    $sql = "UPDATE TransactionBancaire SET enAttente = 0 WHERE id = '$idTransaction';";
                     $conn->query($sql);
 
-                    //Modification de la notification pour montrer qu'on a accepté le virement
+                    //NOUVELLE transaction retour du virement(pour l'envoyeur)
+                    $sql = "INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, 
+                    typeTransaction, enAttente, nomEtablissement, courrielProvenant) VALUES ('$idCompteBancaireRecevant', 
+                    NOW(), '$montant', 'Virement refusé', 0, '$courrielDest', '$courrielDest');";
+                    $conn->query($sql);
+
+                    //Chercher l'ID de la transaction
+                    $sql = "SELECT id FROM TransactionBancaire ORDER BY id DESC LIMIT 1;";
+                    $resultat = $conn->query($sql);
+                    $idTransactionRefus = $resultat->fetchColumn();
+
+                    //Modification de la notification pour montrer qu'on a refusé le virement
                     $msgSucces1 = "Vous avez refusé le virement de " . $montant . "$ de la part de " . $courrielCompteProvenant;
 
                     $sql = "UPDATE NotificationClient SET titre='Virement refusé', contenu = '$msgSucces1'
                     WHERE idTransaction='$idTransaction' AND CompteId='$compteIdProvenant'";
                     $conn->query($sql);
 
-                    //Modification de la notification pour montrer À L'ENVOYEUR qu'on a accepté le virement
+                    //NOUVELLE notification pour montrer À L'ENVOYEUR qu'on a refusé le virement
                     $msgSucces2 = $courrielDest . " a refusé votre virement. Le montant de " . $montant . " a été déposé dans votre compte";
-                    $sql = "UPDATE NotificationClient SET titre='Virement refusé', contenu = '$msgSucces2' 
-                    WHERE idTransaction='$idTransaction' AND CompteId='$idCompteProvenant'";
+
+                    $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, lu, dateRecu, idTransaction) 
+                    VALUES ($idCompteProvenant, 'Virement refusé', '$msgSucces2', 0, NOW(), $idTransactionRefus);";
                     $conn->query($sql);
+                    
                 }
 
                 //Rechercher l'ID de la notification

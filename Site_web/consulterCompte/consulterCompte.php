@@ -22,7 +22,7 @@ include "../verifSession.php";
         <div>Fish<span>&</span>Fric</div>
     </a>
 
-    <button class="btn-deconnexion" onclick="window.location.href='../../deconnexion.php'"><i class='bx bx-log-out-circle'></i><a>Se déconnecter</a></button>
+    <button class="btn-deconnexion" onclick="window.location.href='../deconnexion.php'"><i class='bx bx-log-out-circle'></i><a>Se déconnecter</a></button>
 </header>
 <main>
 

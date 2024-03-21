@@ -1,7 +1,7 @@
 <?php
 //TRAITEMENT REQUÊTE POST CONNEXION
 if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
-{
+{ 
     //Connection a la base de donnee
     try {
         require("../../connexion.php");
@@ -29,7 +29,6 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
         $checked = trim(implode($donneesJSON['checked']));
         $mobile = $donneesJSON['mobile'];
     }
-
 
     //Gestion d'erreurs
     $erreurs = array();
