@@ -16,13 +16,29 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
 
     //Get les données JSON du POST
     $donneesJSON = json_decode(file_get_contents("php://input"), true);
-    $courriel = trim($donneesJSON['courriel']);
-    $password = trim($donneesJSON['password']);
-    $checked = trim($donneesJSON['checked']);
+    if(empty($donneesJSON['mobile'])){
+        $courriel = trim($donneesJSON['courriel']);
+        $password = trim($donneesJSON['password']);
+        $checked = trim($donneesJSON['checked']);
+        $mobile = 0;
+    }
+    else
+    {
+        $courriel = trim(implode($donneesJSON['courriel']));
+        $password = trim(implode($donneesJSON['password']));
+        $checked = trim(implode($donneesJSON['checked']));
+        $mobile = $donneesJSON['mobile'];
+    }
+
 
     //Gestion d'erreurs
     $erreurs = array();
 
+    //Verifier si demande provient d'un mobile
+    if($donneesJSON['mobile'] == 1)
+    {
+        $mobile = $donneesJSON['mobile'];
+    }
     //Vérifier le courriel
     if(empty($courriel))
         $erreurs[] = "Le courriel saisi est invalide";
@@ -44,9 +60,17 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
 
         //Si aucun utilisateur avec le courriel fourni existe 
         if (!$resultat) {
-            //On affiche l'erreur que l'utilisateur est inexistant
-            $erreurs[] = "L'utilisateur saisi n'existe pas!";
-            echo json_encode(['erreurs' => $erreurs]); 
+            if($mobile == 0)
+            {
+                //On affiche l'erreur que l'utilisateur est inexistant
+                $erreurs[] = "L'utilisateur saisi n'existe pas!";
+                echo json_encode(['erreurs' => $erreurs]); 
+            }
+            else
+            {
+                //HTTP CODE 401 Unauthorized 
+                echo json_encode(["reponse"=>"Le courriel saisi existe pas", "code"=>"401"]);
+            }
         }
 
         else {
@@ -84,19 +108,44 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
                 $_SESSION["nomUtilisateur"] = $nomUtilisateur;
                 $_SESSION['LAST_ACTIVITY'] = time(); 
 
-                echo json_encode(['succes' =>  $id]);
+                if($mobile == 0)
+                {
+                    echo json_encode(['succes' =>  $id]);
+                }
+                else
+                {
+                    echo json_encode(["reponse"=>"Succes..", "code"=>"200"]);
+                }
+                
                 // header("Location: ../../Liste_compte/listeCompte.php");
-                // exit(); 
+                exit(); 
             } 
-
             else {
-                $erreurs[] = "Le mot de passe est erroné!";
-                echo json_encode(['erreurs' => $erreurs]);      
+                if($mobile == 0)
+                {
+                    $erreurs[] = "Le mot de passe est erroné!";
+                    echo json_encode(['erreurs' => $erreurs]); 
+                }
+                else
+                {
+                    //HTTP CODE 401 Unauthorized 
+                    echo json_encore(["reponse"=>"Le mot de passe est erroné", "code"=>"401"]);
+                }
             }
         }
-    } else {
+    } 
+    else 
+    {
+        if($mobile == 0)
+        {
         //On envoie les erreurs en JSON
-        echo json_encode(['erreurs' => $erreurs]); 
+        echo json_encode(['erreurs' => $erreurs]);
+        }
+        else
+        {
+            //ERREUR HTTP 401 Unauthorized
+            echo json_encore(["reponse"=>"Les donnees saisies sont incompletes", "code"=>"401"]);
+        }
     }
 }
 ?>
