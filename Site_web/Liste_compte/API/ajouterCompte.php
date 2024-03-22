@@ -49,7 +49,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
             //Les cartes de crédit ont 0 solde et un intérêt de -9.99
             else if ($typeCompte == 'Carte requin') {
-                $interet = -9.99;
+                $interet = 9.99;
                 $soldeDeBase = 0;
             }
 
@@ -64,33 +64,28 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
             //Chercher l'ID du compte et créer le nom de l'événement
 
-            // $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE typeCompte='$typeCompte' 
-            // AND compteId LIKE '$idUtilisateur'");
-            // $requete->execute();
-            // $idCompte = $requete->fetchColumn();
-            // $eventName = "interet" . $idCompte;
+            $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE typeCompte='$typeCompte' 
+            AND compteId LIKE '$idUtilisateur'");
+            $requete->execute();
+            $idCompte = $requete->fetchColumn();
+            $eventName = "interet" . $idCompte;
 
             //Écrire le sql de la requête
             //--À chaque jour, on met le montant gangé en intérêt dans les transactions
             //--et on actualise le solde
 
-
-            // $requete = $conn->prepare("CREATE DEFINER=`root`@`localhost` EVENT `$eventName` 
-            // ON SCHEDULE EVERY 1 DAY STARTS NOW()
-            // ON COMPLETION PRESERVE ENABLE 
-            // DO 
-            // BEGIN
-            //     INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
-            //     SELECT id, NOW(), solde * (1 + $interet/100) - solde, 'Intérêts' 
-            //     FROM comptebancaire 
-            //     WHERE id = $idCompte;
+            $requete = $conn->prepare("CREATE EVENT `projet_integrateur`.`$eventname`
+            ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
+                INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
+                SELECT id, NOW(), solde*(1 + $interet/100) - solde, 'Intérêts' 
+                FROM CompteBancaire 
+                WHERE CompteBancaire.id = 4;
             
-            //     UPDATE comptebancaire 
-            //     SET solde = solde * (1 + $interet/100)
-            //     WHERE id = $idCompte;
-            // END;");
+                UPDATE CompteBancaire 
+                SET solde = solde*(1 + $interet/100)
+                WHERE id = $idCompte;");
 
-            // $requete->execute();
+            $requete->execute();
 
 
             //Renvoyer message de succès
