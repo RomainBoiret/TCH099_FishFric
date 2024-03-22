@@ -75,6 +75,10 @@
             //Get la transaction à supprimer
             $idNotif = $_GET['idNotif'];
 
+            $sql = $conn->prepare("SELECT id FROM NotificationClient WHERE id = '$idNotif';");
+            $sql->execute();
+            $notifications = $sql->fetchColumn();
+
             //Faire SQL pour supprimer la notification
             $requete = $conn->prepare("DELETE FROM NotificationClient WHERE id=$idNotif;");
             $requete->execute();
