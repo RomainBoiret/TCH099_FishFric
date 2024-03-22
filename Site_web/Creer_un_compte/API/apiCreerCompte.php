@@ -87,11 +87,12 @@
             $requete->execute();
 
             //Chercher l'ID du compte et créer le nom de l'événement
-            $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE typeCompte='Compte chèque' 
-            AND compteId LIKE (SELECT id FROM Compte WHERE courriel LIKE '$courriel')");
-            $requete->execute();
-            $idCompteCheque = $requete->fetchColumn();
-            $eventName = "interet" . $idCompteCheque;
+
+            // $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE typeCompte='Compte chèque' 
+            // AND compteId LIKE (SELECT id FROM Compte WHERE courriel LIKE '$courriel')");
+            // $requete->execute();
+            // $idCompteCheque = $requete->fetchColumn();
+            // $eventName = "interet" . $idCompteCheque;
 
             //Écrire le sql de la requête
             //--À chaque jour, on met le montant gangé en intérêt dans les transactions
@@ -99,7 +100,7 @@
 
 
 
-            // $requete = $conn->prepare("CREATE DEFINER=`root`@`localhost` EVENT `$eventName` 
+            // $requete = $conn->prepare("CREATE DEFINER=`root`@`35.234.241.60` EVENT `$eventName` 
             // ON SCHEDULE EVERY 1 DAY STARTS NOW()
             // ON COMPLETION PRESERVE ENABLE 
             // DO 
@@ -115,7 +116,7 @@
             // END;");
 
             
-            $requete->execute();
+            // $requete->execute();
 
             //Mettre le message de succès 
             echo json_encode(['msgSucces' => "L'utilisateur a été créé avec succès! Bienvenue chez Fish&Fric."]);        

@@ -17,7 +17,7 @@ include "../verifSession.php";
 <body>
     <!-- header design -->
 <header>
-    <a href="../Liste_Compte/listeCompte.php" class="logo">
+    <a href="/TCH099_FishFric/Site_web/Liste_compte/listeCompte.php" class="logo">
         <img src="../Images/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
