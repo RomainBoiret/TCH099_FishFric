@@ -209,8 +209,7 @@
             if(empty($erreurs)) {
 
                 //Chercher le courriel de la personne qui a envoyé le virement
-                $sql = "SELECT courriel FROM compte c INNER JOIN CompteBancaire cb ON cb.compteId=c.id 
-                INNER JOIN TransactionBancaire tb ON tb.idCompteBancaireProvenant = cb.id WHERE tb.id = '$idTransaction'";
+                $sql = "SELECT courrielProvenant FROM TransactionBancaire WHERE id='$idTransaction'";
                 $resultat = $conn->query($sql);
                 $courrielCompteProvenant = $resultat->fetchColumn();
 
