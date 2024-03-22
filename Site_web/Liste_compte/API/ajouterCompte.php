@@ -45,7 +45,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             if ($typeCompte == 'Compte épargne')
                 $interet = 3.00;
             else if ($typeCompte == 'Carte requin')
-                $interet = -15;
+                $interet = -9.99;
             
             $requete = $conn->prepare("INSERT INTO CompteBancaire (compteId, solde, typeCompte, interet, ouverture, suspendu) 
             VALUES ('$idUtilisateur', 10, '$typeCompte', '$interet', NOW(), 0);");
