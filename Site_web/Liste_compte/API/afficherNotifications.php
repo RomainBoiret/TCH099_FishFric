@@ -80,7 +80,10 @@
             $notifications = $sql->fetchAll(PDO::FETCH_ASSOC);
 
             //Faire SQL pour supprimer la notification
-            $requete = $conn->prepare("DELETE FROM NotificationClient WHERE id=$idNotif;");
+            $requete = $conn->prepare("DELETE nc FROM NotificationClient nc
+            INNER JOIN TransactionBancaire tb ON tb.id = nc.idTransaction
+            WHERE tb.enAttente = 0
+            AND nc.id = $idNotif;");
             $requete->execute();
         }
 
