@@ -19,12 +19,27 @@
         $erreurs = array();
         $erreurMdp = array();
 
-        //Get toutes les données JSON
-        $nom = trim($donneesJSON['nom']);
-        $prenom = trim($donneesJSON['prenom']);
-        $courriel = trim($donneesJSON['courriel']);
-        $password = trim($donneesJSON['password']);
-        $confirmation_mdp = trim($donneesJSON['conf_password']);
+        if(empty($donneesJSON['mobile']))
+        {
+            //Get toutes les données JSON
+            $nom = trim($donneesJSON['nom']);
+            $prenom = trim($donneesJSON['prenom']);
+            $courriel = trim($donneesJSON['courriel']);
+            $password = trim($donneesJSON['password']);
+            $confirmation_mdp = trim($donneesJSON['conf_password']);
+            $mobile = false;
+        }
+        else
+        {
+            //Get donnees JSON mobile
+            $nom = trim(implode($donneesJSON['nom']));
+            $prenom = trim(implode($donneesJSON['prenom']));
+            $courriel = trim(implode($donneesJSON['courriel']));
+            $password = trim(implode($donneesJSON['password']));
+            $confirmation_mdp = trim(implode($donneesJSON['conf_password']));
+            $mobile = true;
+        }
+
 
         //Vérifier le prénom
         if(empty($prenom) || is_numeric($prenom))
@@ -118,14 +133,30 @@
             
             // $requete->execute();
 
+            if($mobile)
+            {
+                echo json_encode(['reponse'=>"Bienvenue chez Fish&Fric :) ", 'code'=>'201']);
+            }
+            else
+            {
             //Mettre le message de succès 
-            echo json_encode(['msgSucces' => "L'utilisateur a été créé avec succès! Bienvenue chez Fish&Fric."]);        
+            echo json_encode(['msgSucces' => "L'utilisateur a été créé avec succès! Bienvenue chez Fish&Fric."]); 
+            }
+        
         }
 
         //Sinon, on affiche les erreurs
         else
         {
-            echo json_encode(['erreurs' => $erreurs, 'erreurMdp' => $erreurMdp]); 
+            if($mobile)
+            {
+                //HTTP CODE 401 Donnee eronnees
+                echo json_encode(['reponse'=>"Les information saisies sont invalides", 'code'=>'401']);
+            }
+            else
+            {
+                echo json_encode(['erreurs' => $erreurs, 'erreurMdp' => $erreurMdp]); 
+            }
         }
     } 
 ?>
