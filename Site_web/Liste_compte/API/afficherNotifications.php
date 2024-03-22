@@ -77,7 +77,7 @@
 
             $sql = $conn->prepare("SELECT id FROM NotificationClient WHERE id = '$idNotif';");
             $sql->execute();
-            $notifications = $sql->fetchColumn();
+            $notifications = $sql->fetchAll(PDO::FETCH_ASSOC);
 
             //Faire SQL pour supprimer la notification
             $requete = $conn->prepare("DELETE FROM NotificationClient WHERE id=$idNotif;");

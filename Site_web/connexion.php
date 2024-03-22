@@ -38,5 +38,4 @@
     // {
     //     die("Connexion echouee avec PDO : " . $conn->connect_error);
     // }
-
 ?>

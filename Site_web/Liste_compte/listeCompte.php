@@ -293,7 +293,7 @@ include "../verifSession.php";
                             <p>
                             - Aucun frais <br> 
                             - Remises de 2% pour tous les achats <br>
-                            - Taux d'intérêt de 15%
+                            - Taux d'intérêt de 9.99%
                             </p>
                             <div class="input-box">
                                 <input type="radio" name="choix" id="choix" placeholder="Carte requin">
