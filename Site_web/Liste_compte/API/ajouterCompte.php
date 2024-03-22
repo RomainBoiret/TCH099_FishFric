@@ -42,13 +42,24 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         //Sinon, on peut créer le compte
         else {
             //Mettre l'intérêt selon le compte
-            if ($typeCompte == 'Compte épargne')
+            if ($typeCompte == 'Compte épargne') {
                 $interet = 3.00;
-            else if ($typeCompte == 'Carte requin')
+                $soldeDeBase = 10;
+            }
+
+            //Les cartes de crédit ont 0 solde et un intérêt de -9.99
+            else if ($typeCompte == 'Carte requin') {
                 $interet = -9.99;
+                $soldeDeBase = 0;
+            }
+
+            else {
+                $interet = 0;
+                $soldeDeBase = 0;
+            }
             
             $requete = $conn->prepare("INSERT INTO CompteBancaire (compteId, solde, typeCompte, interet, ouverture, suspendu) 
-            VALUES ('$idUtilisateur', 10, '$typeCompte', '$interet', NOW(), 0);");
+            VALUES ('$idUtilisateur', $soldeDeBase, '$typeCompte', '$interet', NOW(), 0);");
             $requete->execute();
 
             //Chercher l'ID du compte et créer le nom de l'événement

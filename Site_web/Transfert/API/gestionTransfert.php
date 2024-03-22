@@ -41,6 +41,13 @@
                     if($result['solde'] < $montant && $result['typeCompte'] != 'Carte requin')
                         $erreurs[] = "Le montant est supérieur au solde"; 
 
+                    //Une carte de crédit a une limite de crédit de 5000$
+                    if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"]) && is_numeric($donnees["montant"])) {
+                        //Si le solde fait 
+                        if($result['solde'] - $montant < -5000)
+                            $erreurs[] = "La carte de crédit a une limite de 5000$";
+                    }
+
                     if($montant == 0)
                         $erreurs[] = "Le montant du virement ne peut pas être nul"; 
                 }
