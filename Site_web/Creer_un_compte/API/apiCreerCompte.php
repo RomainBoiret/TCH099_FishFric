@@ -1,5 +1,5 @@
 <?php
-    if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == 'POST') {
+    if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === 'POST') {
         //Connection a la base de donnee
         try{
             require("../../connexion.php");
@@ -96,20 +96,23 @@
             //Écrire le sql de la requête
             //--À chaque jour, on met le montant gangé en intérêt dans les transactions
             //--et on actualise le solde
-            $requete = $conn->prepare("CREATE DEFINER=`root`@`localhost` EVENT `$eventName` 
-            ON SCHEDULE EVERY 1 DAY STARTS NOW()
-            ON COMPLETION PRESERVE ENABLE 
-            DO 
-            BEGIN
-                INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
-                SELECT id, NOW(), solde * (1 + $interet/100) - solde, 'Intérêts' 
-                FROM comptebancaire 
-                WHERE id = $idCompteCheque;
+
+
+
+            // $requete = $conn->prepare("CREATE DEFINER=`root`@`localhost` EVENT `$eventName` 
+            // ON SCHEDULE EVERY 1 DAY STARTS NOW()
+            // ON COMPLETION PRESERVE ENABLE 
+            // DO 
+            // BEGIN
+            //     INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
+            //     SELECT id, NOW(), solde * (1 + $interet/100) - solde, 'Intérêts' 
+            //     FROM comptebancaire 
+            //     WHERE id = $idCompteCheque;
             
-                UPDATE comptebancaire 
-                SET solde = solde * (1 + $interet/100)
-                WHERE id = $idCompteCheque;
-            END;");
+            //     UPDATE comptebancaire 
+            //     SET solde = solde * (1 + $interet/100)
+            //     WHERE id = $idCompteCheque;
+            // END;");
 
             
             $requete->execute();
