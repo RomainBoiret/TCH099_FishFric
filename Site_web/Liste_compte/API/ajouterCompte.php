@@ -74,7 +74,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             //--À chaque jour, on met le montant gangé en intérêt dans les transactions
             //--et on actualise le solde
 
-            $requete = $conn->prepare("CREATE EVENT `projet_integrateur`.`" . $eventName . "`
+            $requete = $conn->prepare("CREATE EVENT `projet_integrateur`.`Interet`
             ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
                 INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
                 SELECT id, NOW(), solde*(1 + $interet/100) - solde, 'Intérêts' 

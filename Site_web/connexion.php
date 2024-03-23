@@ -23,19 +23,4 @@
     {
         die("Connexion echouee avec PDO : " . $conn->connect_error);
     }
-
-
-    // try{
-    //     $conn = new PDO("mysql:host=35.234.241.60;dbname=projet_integrateur","felix","admin", array(
-    //         PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
-    //         PDO::MYSQL_ATTR_SSL_KEY => '../ssl/client-key.pem',
-    //         PDO::MYSQL_ATTR_SSL_CERT => '../ssl/client-cert.pem', 
-    //         PDO::MYSQL_ATTR_SSL_CA => '../ssl/server-ca.pem'
-    //     ));
-
-    //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // }catch(PDOException $e)
-    // {
-    //     die("Connexion echouee avec PDO : " . $conn->connect_error);
-    // }
 ?>
