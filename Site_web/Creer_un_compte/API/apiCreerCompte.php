@@ -112,19 +112,18 @@
             //Écrire le sql de la requête
             //--À chaque jour, on met le montant gangé en intérêt dans les transactions
             //--et on actualise le solde
-            $requete = $conn->prepare("CREATE EVENT `projet_integrateur`.`Interet`
+            $requete = "CREATE EVENT `projet_integrateur`.`$eventName`
             ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
                 INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
                 SELECT id, NOW(), solde*(1 + $interet/100) - solde, 'Intérêts' 
-                FROM CompteBancaire  
+                FROM CompteBancaire 
                 WHERE CompteBancaire.id = $idCompteCheque;
             
                 UPDATE CompteBancaire 
                 SET solde = solde*(1 + $interet/100)
-                WHERE id = $idCompteCheque;");
+                WHERE id = $idCompteCheque;";
 
-            $requete->execute();
-
+            $conn->query($requete);
 
 
             if($mobile)

@@ -44,18 +44,18 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             //Mettre l'intérêt selon le compte
             if ($typeCompte == 'Compte épargne') {
                 $interet = 3.00;
-                $soldeDeBase = 10;
+                $soldeDeBase = 10.00;
             }
 
             //Les cartes de crédit ont 0 solde et un intérêt de -9.99
             else if ($typeCompte == 'Carte requin') {
                 $interet = 9.99;
-                $soldeDeBase = 0;
+                $soldeDeBase = 0.00;
             }
 
             else {
                 $interet = 0;
-                $soldeDeBase = 0;
+                $soldeDeBase = 0.00;
             }
             
             $requete = $conn->prepare("INSERT INTO CompteBancaire (compteId, solde, typeCompte, interet, ouverture, suspendu) 
