@@ -279,9 +279,8 @@ include "../verifSession.php";
                             <h4>Compte épargne</h4>
                             <p>
                             - Taux d'intérêt quotidien de 3% <br>
-                            - Solde de 10$ offert dès l'ouverture <br>
+                            - Solde de 15$ offert dès l'ouverture <br>
                             - Aucun frais mensuels <br>
-                            - Admissible à tous les types de virement <br>
                             </p>
                             <div class="input-box">
                                 <input type="radio" name="choix" id="choix" placeholder="Compte épargne">

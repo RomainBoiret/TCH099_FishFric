@@ -144,7 +144,10 @@
             if($mobile)
             {
                 //HTTP CODE 401 Donnee eronnees
-                echo json_encode(['reponse'=>"Les information saisies sont invalides", 'code'=>'401']);
+                $str = implode(',', $erreurs);
+
+
+                echo json_encode(['reponse'=>"$str", 'code'=>'401']);
             }
             else
             {

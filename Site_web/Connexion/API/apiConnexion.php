@@ -113,7 +113,8 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
                 }
                 else
                 {
-                    echo json_encode(["reponse"=>"Succes..", "code"=>"200"]);
+                    $reponse = "Bienvenue " . $nomUtilisateur;
+                    echo json_encode(["reponse"=>$reponse, "code"=>"200"]);
                 }
                 
                 exit(); 
@@ -142,7 +143,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
         else
         {
             //ERREUR HTTP 401 Unauthorized
-            echo json_encode(["reponse"=>"Les donnees saisies sont incompletes", "code"=>"401"]);
+            echo json_encode(["reponse"=>"Les données saisies sont incomplètes", "code"=>"401"]);
         }
     }
 }
