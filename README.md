@@ -18,20 +18,20 @@ Ce dépôt GitHub est dédié au développement d'un projet intégrateur en équ
 
 Fish&Fric est une application de banque en ligne, fusionnant le monde financier avec l'univers aquatique des poissons. Conçue pour offrir une expérience bancaire immersive et ludique, Caisse Bleue propose une gamme complète de services bancaires dans un environnement thématique inspiré des océans.
 
-> **Fonctionnalités**
+### Fonctionnalités
 
 - Gestion de comptes : Création de plusieurs types de comptes, gestion des transferts, informations détaillées des comptes.
 - Gestion de dépôts : Dépôt de chèques sur appareil mobile par photo.
 - Demande de support : Envoi de formulaires vers le support pour toute question ou demande de conseil financier.
 
-> **Contraintes**
+### Contraintes
 
 - Temps : Le projet doit être complété en 6 semaines en parallèle avec les autres cours suivis par les membres de l’équipe.
 - Matériel : Utilisation de la base de données (BD) de l’ÉTS avec accès sur le campus.
 - Sécurité : Encryption des données sensibles selon les règles de l’art.
 - Budget : Projet de nature académique, pas de budget en argent.
 
-> **Caractéristiques du Système**
+### Caractéristiques du Système
 
 - RF-001 : Page de connexion 
 - RF-002 : Validation du mot de passe & courriel 
@@ -49,7 +49,7 @@ Fish&Fric est une application de banque en ligne, fusionnant le monde financier 
 - RF-014 :  Notification 
 - RF-015 :  Demande de dépôt 
 
-> **Sécurité**
+### Sécurité
 
 - Protection des données : Utilisation de l'encryption AES256 pour les mots de passe stockés.
 - Sécurité : Prévention des injections SQL ou HTML.
