@@ -67,7 +67,7 @@
         if(!empty($donneesJSON))
         {
             //Chercher les comptes de l'utilisateur avec la variable de session
-            $idUtilisateur = $trim(implode($donneesJSON['utilisateur']));
+            $idUtilisateur = trim(implode($donneesJSON['utilisateur']));
 
             //Requête SQL pour chercher les comptes
             $requete = $conn->prepare("SELECT id, solde, typeCompte 
@@ -82,6 +82,8 @@
                 $compte['typeCompte'] = htmlspecialchars($compte['typeCompte'], ENT_QUOTES, 'UTF-8');
             }
 
+
+            
             //Encoder les informations des comptes en json
             echo json_encode(["comptes" => $comptes]);
 
