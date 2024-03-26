@@ -75,7 +75,8 @@
             //Get la transaction à supprimer
             $idNotif = $_GET['idNotif'];
 
-            $sql = $conn->prepare("SELECT id FROM NotificationClient WHERE id = '$idNotif';");
+            $sql = $conn->prepare("SELECT nc.id FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
+            WHERE tb.enAttente=0 AND nc.id = '$idNotif';");
             $sql->execute();
             $notifications = $sql->fetchAll(PDO::FETCH_ASSOC);
 

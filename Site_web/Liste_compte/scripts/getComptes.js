@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     comptes += '<td><input type="radio" name="option-2" id="' + compte.id + '"></td>';
                     comptes += '<td><span>' + compte.typeCompte + ' </span>';
                     comptes += '<span>ID: ' + compte.id + ' </span>';
-                    comptes += '</td><td><span>' + compte.solde + '</span></td></tr>';               
+                    comptes += '</td><td><span class="solde-transfert-' + compte.id + '">' + compte.solde + '</span></td></tr>';                  
                 });
 
                 //Ajouter le HTML dans la table
@@ -90,6 +90,16 @@ document.addEventListener("DOMContentLoaded", function() {
                             let msg = document.createElement('span');
 
                             if ("msgSucces" in responseData) {
+                                //Actualiser le solde du compte provenant
+                                let spanSoldeProvenant = document.querySelector('.solde-transfert-' + idCompteBancaireProvenant);
+                                let nouveauSoldeProvenant = (spanSoldeProvenant.textContent - parseFloat(montant)).toFixed(2);
+                                spanSoldeProvenant.textContent = nouveauSoldeProvenant;
+
+                                //Actualiser le solde du compte provenant
+                                let spanSoldeRecevant = document.querySelector('.solde-transfert-' + idCompteBancaireRecevant);
+                                let nouveauSoldeRecevant = (parseFloat(spanSoldeRecevant.textContent) + parseFloat(montant)).toFixed(2);
+                                spanSoldeRecevant.textContent = nouveauSoldeRecevant;
+
                                 //Mettre le message de succès en vert
                                 msg.innerText = responseData.msgSucces;
                                 msg.style.color = "green";
@@ -107,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function() {
                                     document.getElementById('msg-erreur-virement-compte').appendChild(msg);
                                 })
                             }
-
                         } 
         
                         else {
@@ -124,7 +133,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     //Envoyer la requête
                     requeteVirement.send(donneesJsonVirement);
                 })
-
             })
 
             //--------------------------------------AFFICHER COMPTES virement entre personnes--------------------------------------
@@ -136,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     comptes += '<tr><td><input type="radio" name="choix" id="' + compte.id + '"></td>';
                     comptes += '<td><span>' + compte.typeCompte + ' </span>';
                     comptes += '<span>ID: ' + compte.id + ' </span>';
-                    comptes += '</td><td><span>' + compte.solde + '</span></td></tr>';               
+                    comptes += '</td><td><span class="solde-virement-' + compte.id + '">' + compte.solde + '</span></td></tr>';                 
                 });
 
                 //Ajouter le HTML dans la table
@@ -188,6 +196,12 @@ document.addEventListener("DOMContentLoaded", function() {
                             let msg = document.createElement('span');
 
                             if ("msgSucces" in responseData) {
+                                //Actualiser le solde du compte provenant
+                                let spanSoldeProvenant = document.querySelector('.solde-virement-' + idCompteBancaireProvenant);
+                                let nouveauSoldeProvenant = (spanSoldeProvenant.textContent - parseFloat(montant)).toFixed(2);
+                                spanSoldeProvenant.textContent = nouveauSoldeProvenant;
+
+                                //Afficher le message de succès
                                 msg.innerText = responseData.msgSucces;
                                 msg.style.color = "green";
                                 document.getElementById('msg-erreur-virement-personne').appendChild(msg);
@@ -219,8 +233,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //Envoyer la requête
                     requeteVirement.send(donneesJsonVirement);
-
-
                 })
             });
 
@@ -234,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     comptes += '<tr><td><input type="radio" name="choix" id="' + compte.id + '"></td>';
                     comptes += '<td><span>' + compte.typeCompte + ' </span>';
                     comptes += '<span>ID: ' + compte.id + ' </span>';
-                    comptes += '</td><td><span>' + compte.solde + '</span></td></tr>';               
+                    comptes += '</td><td><span class="solde-facture-' + compte.id + '">' + compte.solde + '</span></td></tr>';               
                 });
 
                 //Ajouter le HTML dans la table
@@ -283,6 +295,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
                             //Afficher un message de succès si la reqûete renvoie "msgSucces"
                             if ("msgSucces" in responseData) {
+                                //Actualiser le solde
+                                let spanSolde = document.querySelector('.solde-facture-' + idCompteBancaireProvenant);
+                                let nouveauSolde = (spanSolde.textContent - parseFloat(montant)).toFixed(2);
+                                spanSolde.textContent = nouveauSolde;
+
+                                //Mettre le message de succès
                                 msg.innerText = responseData.msgSucces;
                                 msg.style.color = "green";
                                 document.getElementById('msg-erreur-payer-facture').appendChild(msg);
@@ -299,7 +317,6 @@ document.addEventListener("DOMContentLoaded", function() {
                                     document.getElementById('msg-erreur-payer-facture').appendChild(msg);
                                 })
                             }
-
                         } 
         
                         else {
@@ -318,7 +335,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
             });
         } 
-        
 
         else {
             //Afficher l'erreur de la requête GET s'il y a lieu
