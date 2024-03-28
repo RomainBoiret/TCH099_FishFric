@@ -13,15 +13,15 @@
         $erreurs = [];
 
         //Vérifier qu'il y a un montant
-        if (isset($donnees['montant']) &&is_numeric($donnees['montant'])) {
-            $montant = intval(htmlspecialchars(trim($donnees['montant'])));
+        if (isset($donnees['montant'])) {
+            $montant = intval(trim($donnees['montant']));
         } else {
             $erreurs[] = "Veuillez inscrire un montant";
         }
 
         //Vérifier qu'il y a l'ID de l'utilisateur
         if (isset($donnees['idUtilisateur'])) {
-            $idUtilisateur = trim(implode($donneesJSON['utilisateur']));
+            $idUtilisateur = trim(implode($donnees['utilisateur']));
         } else {
             $erreurs[] = "ID utilisateur non reçu";
         }
