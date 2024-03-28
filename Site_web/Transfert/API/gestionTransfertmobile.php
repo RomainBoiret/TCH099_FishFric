@@ -436,7 +436,7 @@
             
             //Sinon, le paiement n'a pas marché. On renvoie les messages d'erreur
             else {
-                echo json_encode(['reponse' => $erreurs, 'code' => '404']);
+                echo json_encode(['reponse' => 'erreurs', 'code' => '404']);
             }
         }
 
