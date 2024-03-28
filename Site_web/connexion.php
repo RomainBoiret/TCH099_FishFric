@@ -11,7 +11,7 @@
 
         
     try{
-        $conn = new PDO("mysql:host=35.234.241.60;dbname=projet_integrateur","felix","admin", array(
+        $conn = new PDO("mysql:host=35.233.243.199;dbname=projet_integrateur","felix","admin", array(
             PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
             PDO::MYSQL_ATTR_SSL_KEY =>'/home/felix_caron04/client-key.pem',
             PDO::MYSQL_ATTR_SSL_CERT=>'/home/felix_caron04/client-cert.pem',
