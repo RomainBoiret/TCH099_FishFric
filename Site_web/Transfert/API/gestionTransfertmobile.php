@@ -431,19 +431,19 @@
                 $conn->query($sql);
 
                 //Message de succès
-                echo json_encode(['msgSucces' => "Le paiement de la facture a été effectué avec succès!"]);
+                echo json_encode(['reponse' => "Le paiement de la facture a été effectué avec succès!", 'code' => '201']);
             } 
             
             //Sinon, le paiement n'a pas marché. On renvoie les messages d'erreur
             else {
-                echo json_encode(['erreur' => $erreurs]);
+                echo json_encode(['reponse' => $erreurs, 'code' => '404']);
             }
         }
 
         //ERREUR DE ROUTE-----------------------------------------
         else { 
-            echo json_encode(['erreur' => 'Mauvaise route.',
-                              'code' => 404]);
+            echo json_encode(['reponse' => 'Mauvaise route.',
+                              'code' => '404']);
         }
     }
 
