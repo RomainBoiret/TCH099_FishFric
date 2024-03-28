@@ -20,14 +20,37 @@
         }
 
         //Vérifier qu'il y a l'ID de l'utilisateur
-        if (isset($donnees['utilisateur'])) {
+        if (isset($donnees['idUtilisateur'])) {
             $idUtilisateur = trim(implode($donneesJSON['utilisateur']));
+        } else {
+            $erreurs[] = "ID utilisateur non reçu";
         }
 
         if(empty($erreurs)) {
-            //Vérifier que le courriel est un utilisateur de la banque
-            $requete = $conn->prepare("SELECT * FROM Compte WHERE courriel = '$courrielDest'");
+            //Chercher le compte chèque de l'utilisateur
+            $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE id = '$idUtilisateur' AND typeCompte = 'Compte chèque';");
             $requete->execute();
-        }
+            $idCompteCheque = $requete->fetchColumn();
 
+            //Effectuer le dépot
+            $requete = $conn->prepare("UPDATE CompteBancaire SET solde = solde + $montant WHERE id = '$idCompteCheque';");
+            $requete->execute();
+
+            //Ajouter la transaction 
+            $requete = $conn->prepare("INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, 
+            typeTransaction) VALUES ('$idCompteCheque', NOW(), '$montant', 'Dépôt mobile');");
+            $requete->execute();
+
+            //Message de succès
+            echo json_encode(['reponse'=> "Succès! Le montant a été déposé dans votre compte chèque.", 'code'=>'201']);
+        } 
+        
+        //Sinon, le virement n'a pas marché. On renvoie les messages d'erreur
+        else {
+            //HTTP CODE 401 Donnee eronnees
+            $str = implode(',', $erreurs);
+
+
+            echo json_encode(['reponse'=>"$str", 'code'=>'401']);
+        }
     }
