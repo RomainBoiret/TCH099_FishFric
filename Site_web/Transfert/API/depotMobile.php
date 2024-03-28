@@ -10,47 +10,55 @@
         // Obtenir les données POST et les décoder
         $donnees = json_decode(file_get_contents("php://input"), true);
 
-        $erreurs = [];
+        if(!empty($donnees)) {
+            $erreurs = [];
 
-        //Vérifier qu'il y a un montant
-        if (isset($donnees['montant'])) {
-            $montant = intval(trim($donnees['montant']));
-        } else {
-            $erreurs[] = "Veuillez inscrire un montant";
+            //Vérifier qu'il y a un montant
+            if (isset($donnees['montant'])) {
+                $montant = trim(implode($donnees['montant']));
+            } else {
+                $erreurs[] = "Veuillez inscrire un montant";
+            }
+    
+            //Vérifier qu'il y a l'ID de l'utilisateur
+            if (isset($donnees['idUtilisateur'])) {
+                $idUtilisateur = trim(implode($donnees['utilisateur']));
+            } else {
+                $erreurs[] = "ID utilisateur non reçu";
+            }
+    
+            if(empty($erreurs)) {
+                //Chercher le compte chèque de l'utilisateur
+                $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE compteId = '$idUtilisateur' AND typeCompte = 'Compte chèque';");
+                $requete->execute();
+                $idCompteCheque = $requete->fetchColumn();
+    
+                //Effectuer le dépot
+                $requete = $conn->prepare("UPDATE CompteBancaire SET solde = solde + $montant WHERE id = '$idCompteCheque';");
+                $requete->execute();
+    
+                //Ajouter la transaction 
+                $requete = $conn->prepare("INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, 
+                typeTransaction) VALUES ('$idCompteCheque', NOW(), '$montant', 'Dépôt mobile');");
+                $requete->execute();
+    
+                //Message de succès
+                echo json_encode(['reponse'=> "Succès! Le montant a été déposé dans votre compte chèque.", 'code'=>'201']);
+            } 
+            
+            //Sinon, le virement n'a pas marché. On renvoie les messages d'erreur
+            else {
+                //HTTP CODE 401 Donnee eronnees
+                $str = implode(',', $erreurs);
+    
+    
+                echo json_encode(['reponse'=>"$str", 'code'=>'401']);
+            }
         }
 
-        //Vérifier qu'il y a l'ID de l'utilisateur
-        if (isset($donnees['idUtilisateur'])) {
-            $idUtilisateur = trim(implode($donnees['utilisateur']));
-        } else {
-            $erreurs[] = "ID utilisateur non reçu";
+        else
+        {
+            echo json_encode(['reponse'=>"Mauvaise requete", 'code'=>'405']);
         }
 
-        if(empty($erreurs)) {
-            //Chercher le compte chèque de l'utilisateur
-            $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE compteId = '$idUtilisateur' AND typeCompte = 'Compte chèque';");
-            $requete->execute();
-            $idCompteCheque = $requete->fetchColumn();
-
-            //Effectuer le dépot
-            $requete = $conn->prepare("UPDATE CompteBancaire SET solde = solde + $montant WHERE id = '$idCompteCheque';");
-            $requete->execute();
-
-            //Ajouter la transaction 
-            $requete = $conn->prepare("INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, 
-            typeTransaction) VALUES ('$idCompteCheque', NOW(), '$montant', 'Dépôt mobile');");
-            $requete->execute();
-
-            //Message de succès
-            echo json_encode(['reponse'=> "Succès! Le montant a été déposé dans votre compte chèque.", 'code'=>'201']);
-        } 
-        
-        //Sinon, le virement n'a pas marché. On renvoie les messages d'erreur
-        else {
-            //HTTP CODE 401 Donnee eronnees
-            $str = implode(',', $erreurs);
-
-
-            echo json_encode(['reponse'=>"$str", 'code'=>'401']);
-        }
     }

@@ -52,6 +52,7 @@
         }
 
     }
+
     //Requete get comptes pour mobile
     else if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST")
     {
