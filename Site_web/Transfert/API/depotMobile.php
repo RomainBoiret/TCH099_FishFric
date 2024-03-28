@@ -1,5 +1,5 @@
 <?php
-    if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == 'PUT') {
+    if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == 'POST') {
         //Gérer la connexion à la base de données
         try {
             require("../../connexion.php");
@@ -28,7 +28,7 @@
 
         if(empty($erreurs)) {
             //Chercher le compte chèque de l'utilisateur
-            $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE id = '$idUtilisateur' AND typeCompte = 'Compte chèque';");
+            $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE compteId = '$idUtilisateur' AND typeCompte = 'Compte chèque';");
             $requete->execute();
             $idCompteCheque = $requete->fetchColumn();
 
