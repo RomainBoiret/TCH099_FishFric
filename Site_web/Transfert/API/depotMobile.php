@@ -1,5 +1,4 @@
 <?php
-    echo "erreur montant";
     if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == 'PUT') {
         //Gérer la connexion à la base de données
         try {
@@ -7,8 +6,6 @@
         } catch(Exception $e) {
             die("Connexion échouée!: " .$e->getMessage());
         }
-
-        echo "erreur montant";
 
         // Obtenir les données POST et les décoder
         $donnees = json_decode(file_get_contents("php://input"), true);
@@ -25,15 +22,15 @@
     
             //Vérifier qu'il y a l'ID de l'utilisateur
             if (isset($donnees['idUtilisateur'])) {
-                $idUtilisateur = trim(implode($donnees['utilisateur']));
+                $idUtilisateur = trim(implode($donnees['idUtilisateur']));
             } else {
                 $erreurs[] = "ID utilisateur non reçu";
             }
     
             if(empty($erreurs)) {
                 //Chercher le compte chèque de l'utilisateur
-                $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE compteId = $idUtilisateur AND typeCompte = 'Compte chèque';");
-                $requete->execute();
+                $sql = "SELECT id FROM CompteBancaire WHERE compteId=$idUtilisateur AND typeCompte = 'Compte chèque';";
+                $requete = $conn->query($sql);
                 $idCompteCheque = $requete->fetchColumn();
     
                 //Effectuer le dépot
