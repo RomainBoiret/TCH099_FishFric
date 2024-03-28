@@ -51,7 +51,7 @@
         echo json_encode($json);
     }
     //Requete mobile
-    else if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['compteId']))
+    else if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST")
     {
         //Gérer la connexion à la base de données
         try {
