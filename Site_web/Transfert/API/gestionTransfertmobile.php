@@ -6,11 +6,7 @@
         } catch(Exception $e) {
             die("Connexion échouée!: " .$e->getMessage());
         }
-
-        //Chercher ID de l'utilisateur 
-        session_start();
-        $compteIdProvenant = $_SESSION['utilisateur'];
-
+        
         // Obtenir les données POST et les décoder
         $donnees = json_decode(file_get_contents("php://input"), true);
 
