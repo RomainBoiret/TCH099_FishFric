@@ -6,11 +6,13 @@
         } catch(Exception $e) {
             die("Connexion échouée!: " .$e->getMessage());
         }
-        
+
         // Obtenir les données POST et les décoder
         $donnees = json_decode(file_get_contents("php://input"), true);
 
         $erreurs = [];
+
+        echo "salut";
 
         //----------------------------VÉRIFICATIONS DES DONNÉES DU POST s'appliquant à TOUS les types de transfert SAUF réception de virement-------------------------
         //
