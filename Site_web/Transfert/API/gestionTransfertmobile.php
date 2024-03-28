@@ -400,12 +400,16 @@
             {
                 $idCompteBancaireProvenant = trim(implode($donneesJSON['idCompteBancaireProvenant']));
                 $idCompteBancaireProvenant = trim($idCompteBancaireProvenant);
+
+                echo "id_compte marche";
             }
 
             //Vérifier que le nom d'établissement est présent
             if(isset($donneesJSON['nomEtablissement']) && !is_numeric(trim(implode($donneesJSON['nomEtablissement'])))) {
                 $nomEtablissement = trim(implode($donneesJSON['nomEtablissement']));
                 $nomEtablissement = trim($nomEtablissement);
+
+                echo "nomEtablissement marche";
             } else
                 $erreurs[] ="Nom d'établissement non-reçu ou non valide";
 
@@ -413,6 +417,8 @@
             if(isset($donneesJSON['raison']) && !is_numeric(trim(implode($donneesJSON['raison'])))) {
                 $raison = trim(implode($donneesJSON['raison']));
                 $raison = trim($raison);
+
+                echo "raison marche";
             } else
                 $erreurs[] ="Raison de la facture non-reçu ou non valide";
 
@@ -420,8 +426,10 @@
             {
                 $montant = trim(implode($donneesJSON['montant']));
                 $montant = trim($montant);
+
+                echo "montant marche";
             }
-         
+
             //S'il n'y a pas d'erreurs, on effectue le paiement de la facture
             if(empty($erreurs)) {
                 //Actualiser le montant du compte bancaire provenant
