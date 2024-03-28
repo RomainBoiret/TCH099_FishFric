@@ -65,7 +65,7 @@
         if(isset($donneesJSON['compteId']))
         {
             //Chercher le compte en question avec l'ID de la route de l'URL
-            $compteId = $donneesJSON['compteId'];
+            $compteId = implode($donneesJSON['compteId']);
         }
         else
         {
