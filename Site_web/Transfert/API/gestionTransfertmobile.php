@@ -391,6 +391,9 @@
         //-----------------------------------------PAIEMENT DE FACTURE-----------------------------------------
         //
         else if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
+
+            echo "hello world";
+
             //Prendre donnees JSON 
             $donneesJSON = json_decode(file_get_contents("php://input"), true);
 
