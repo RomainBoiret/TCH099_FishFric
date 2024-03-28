@@ -1,5 +1,5 @@
 <?php
-    //CONNEXION BD LOCALE
+    // CONNEXION BD LOCALE
 
     // $conn = new PDO("mysql:host=localhost;dbname=local", "admin", "admin");
 
@@ -7,7 +7,7 @@
     //     die("Connexion échouée avec PDO : " . $conn->connect_error);
     // } 
 
-    //CONNEXION BD Google cloud
+    // CONNEXION BD Google cloud
 
         
     try{

@@ -12,15 +12,13 @@
 
         $erreurs = [];
 
-        echo "salut";
-
         //----------------------------VÉRIFICATIONS DES DONNÉES DU POST s'appliquant à TOUS les types de transfert SAUF réception de virement-------------------------
         //
         //On ne vérifie PAS le compte provenant et le montant si c'est pour une réception de virement
-        if (!preg_match('/\/Transfert\/API\/gestionTransfert\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches))  {
+        if (!preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches))  {
             //Vérif. ID compte bancaire source du transfert
             if(isset($donnees["idCompteBancaireProvenant"]) 
-            && is_numeric(trim($donnees["idCompteBancaireProvenant"]))) {
+            && is_numeric(trim(implode($donnees["idCompteBancaireProvenant"])))) {
                 //Mettre la valeur dans une variable
                 $idCompteBancaireProvenant = trim(implode($donnees["idCompteBancaireProvenant"]));
                 $idCompteBancaireProvenant = intval(trim($idCompteBancaireProvenant));
@@ -40,7 +38,7 @@
                         $erreurs[] = "Le montant est supérieur au solde"; 
 
                     //Une carte de crédit a une limite de crédit de 5000$
-                    if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"]) && is_numeric($donnees["montant"])) {
+                    if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"]) && is_numeric(implode($donnees["montant"]))) {
                         //Si le solde fait 
                         if($result['solde'] - $montant < -5000)
                             $erreurs[] = "La carte de crédit a une limite de 5000$";
@@ -61,7 +59,7 @@
 
         //-----------------------------------------TRANSFERT ENTRE UTILISATEURS, ENVOI-----------------------------------------
         //
-        if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/utilisateurEnvoi$/', $_SERVER['REQUEST_URI'], $matches)) {
+        if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/utilisateurEnvoi$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Vérifier qu'il y a un courriel de contact
             if(isset($donnees['courrielDest']) && !is_numeric($donnees['courrielDest'])) {
                 $courrielDest = $donnees['courrielDest'];
@@ -166,7 +164,7 @@
 
         //-----------------------------------------TRANSFERT ENTRE UTILISATEURS, RECEPTION-----------------------------------------
         //
-        else if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches)) {
+        else if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Vérifier qu'il y a une acceptation ou bien un refus du transfert
             if(isset($donnees['decision'])) {
                 $decision = $donnees['decision'];
@@ -318,7 +316,7 @@
 
         //-----------------------------------------TRANSFERT ENTRE comptes-----------------------------------------
         //
-        else if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/compte$/', $_SERVER['REQUEST_URI'], $matches)) {
+        else if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/compte$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Vérif. ID compte bancaire destinataire du transfert
             if(isset($donnees["idCompteBancaireRecevant"]) 
             && is_numeric(trim($donnees["idCompteBancaireRecevant"]))) {
@@ -390,46 +388,27 @@
 
         //-----------------------------------------PAIEMENT DE FACTURE-----------------------------------------
         //
-        else if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
-
-            echo "hello world";
+        else if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
 
             //Prendre donnees JSON 
             $donneesJSON = json_decode(file_get_contents("php://input"), true);
 
-            if (isset($donneesJSON["idCompteBancaireProvenant"]) && !is_numeric(trim(implode($donneesJSON['idCompteBancaireProvenant'])))) 
+            if (isset($donneesJSON["idUtilisateur"]))
             {
-                $idCompteBancaireProvenant = trim(implode($donneesJSON['idCompteBancaireProvenant']));
-                $idCompteBancaireProvenant = trim($idCompteBancaireProvenant);
-
-                echo "id_compte marche";
+                $idUtilisateur = trim(implode($donneesJSON['idUtilisateur']));
             }
 
             //Vérifier que le nom d'établissement est présent
             if(isset($donneesJSON['nomEtablissement']) && !is_numeric(trim(implode($donneesJSON['nomEtablissement'])))) {
                 $nomEtablissement = trim(implode($donneesJSON['nomEtablissement']));
-                $nomEtablissement = trim($nomEtablissement);
-
-                echo "nomEtablissement marche";
             } else
                 $erreurs[] ="Nom d'établissement non-reçu ou non valide";
 
             //Vérifier que la raison de la facture est présente
-            if(isset($donneesJSON['raison']) && !is_numeric(trim(implode($donneesJSON['raison'])))) {
+            if(isset($donneesJSON['raison']) && is_numeric(trim(implode($donneesJSON['raison'])))) {
                 $raison = trim(implode($donneesJSON['raison']));
-                $raison = trim($raison);
-
-                echo "raison marche";
             } else
                 $erreurs[] ="Raison de la facture non-reçu ou non valide";
-
-            if (isset($donneesJSON['montant']) && !is_numeric(trim(implode($donneesJSON['montant']))))
-            {
-                $montant = trim(implode($donneesJSON['montant']));
-                $montant = trim($montant);
-
-                echo "montant marche";
-            }
 
             //S'il n'y a pas d'erreurs, on effectue le paiement de la facture
             if(empty($erreurs)) {
