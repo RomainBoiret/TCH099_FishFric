@@ -1,11 +1,14 @@
 <?php
-    if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == 'POST') {
+    echo "erreur montant";
+    if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == 'PUT') {
         //Gérer la connexion à la base de données
         try {
             require("../../connexion.php");
         } catch(Exception $e) {
             die("Connexion échouée!: " .$e->getMessage());
         }
+
+        echo "erreur montant";
 
         // Obtenir les données POST et les décoder
         $donnees = json_decode(file_get_contents("php://input"), true);
@@ -29,17 +32,17 @@
     
             if(empty($erreurs)) {
                 //Chercher le compte chèque de l'utilisateur
-                $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE compteId = '$idUtilisateur' AND typeCompte = 'Compte chèque';");
+                $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE compteId = $idUtilisateur AND typeCompte = 'Compte chèque';");
                 $requete->execute();
                 $idCompteCheque = $requete->fetchColumn();
     
                 //Effectuer le dépot
-                $requete = $conn->prepare("UPDATE CompteBancaire SET solde = solde + $montant WHERE id = '$idCompteCheque';");
+                $requete = $conn->prepare("UPDATE CompteBancaire SET solde = solde + $montant WHERE id = $idCompteCheque;");
                 $requete->execute();
     
                 //Ajouter la transaction 
                 $requete = $conn->prepare("INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, 
-                typeTransaction) VALUES ('$idCompteCheque', NOW(), '$montant', 'Dépôt mobile');");
+                typeTransaction) VALUES ($idCompteCheque, NOW(), $montant, 'Dépôt mobile');");
                 $requete->execute();
     
                 //Message de succès
