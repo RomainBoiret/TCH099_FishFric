@@ -393,19 +393,34 @@
         //-----------------------------------------PAIEMENT DE FACTURE-----------------------------------------
         //
         else if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
+            //Prendre donnees JSON 
+            $donneesJSON = json_decode(file_get_contents("php://input"), true);
+
+            if (isset($donneesJSON["idCompteBancaireProvenant"]) && !is_numeric(trim(implode($donneesJSON['idCompteBancaireProvenant'])))) 
+            {
+                $idCompteBancaireProvenant = trim(implode($donneesJSON['idCompteBancaireProvenant']));
+                $idCompteBancaireProvenant = trim($idCompteBancaireProvenant);
+            }
+
             //Vérifier que le nom d'établissement est présent
-            if(isset($donnees['nomEtablissement']) && !is_numeric(trim(implode($donnees['nomEtablissement'])))) {
-                $nomEtablissement = trim(implode($donnees['nomEtablissement']));
+            if(isset($donneesJSON['nomEtablissement']) && !is_numeric(trim(implode($donneesJSON['nomEtablissement'])))) {
+                $nomEtablissement = trim(implode($donneesJSON['nomEtablissement']));
                 $nomEtablissement = trim($nomEtablissement);
             } else
                 $erreurs[] ="Nom d'établissement non-reçu ou non valide";
 
             //Vérifier que la raison de la facture est présente
-            if(isset($donnees['raison']) && !is_numeric(trim(implode($donnees['raison'])))) {
-                $raison = trim(implode($donnees['raison']));
+            if(isset($donneesJSON['raison']) && !is_numeric(trim(implode($donneesJSON['raison'])))) {
+                $raison = trim(implode($donneesJSON['raison']));
                 $raison = trim($raison);
             } else
                 $erreurs[] ="Raison de la facture non-reçu ou non valide";
+
+            if (isset($donneesJSON['montant']) && !is_numeric(trim(implode($donneesJSON['montant']))))
+            {
+                $montant = trim(implode($donneesJSON['montant']));
+                $montant = trim($montant);
+            }
          
             //S'il n'y a pas d'erreurs, on effectue le paiement de la facture
             if(empty($erreurs)) {
