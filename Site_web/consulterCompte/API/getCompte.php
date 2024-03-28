@@ -52,7 +52,7 @@
     }
     
     //Requete mobile
-    else if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['compteId']))
+    else if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST")
     {
         //Gérer la connexion à la base de données
         try {
@@ -66,7 +66,7 @@
         if(isset($donneesJSON['compteId']))
         {
             //Chercher le compte en question avec l'ID de la route de l'URL
-            $compteId = $donneesJSON['compteId'];
+            $compteId = implode($donneesJSON['compteId']);
         }
         else
         {
