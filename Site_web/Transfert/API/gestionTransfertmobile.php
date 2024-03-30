@@ -24,6 +24,7 @@
                 //Vérifier qu'il y a un montant
                 if(isset($donnees["montant"])) {
                     $montant = trim(implode($donnees["montant"]));
+                    $montant = floatval(trim($montant));
 
                     //VÉRIF SOLDE - Requête pour checker si solde <= 0
                     $requete = $conn->prepare("SELECT solde, typeCompte FROM CompteBancaire WHERE id = $idCompteBancaireProvenant");
@@ -406,7 +407,7 @@
             //S'il n'y a pas d'erreurs, on effectue le paiement de la facture
             if(empty($erreurs)) {
                 //Actualiser le montant du compte bancaire provenant
-                $sql = "UPDATE CompteBancaire SET solde = solde - $montant WHERE id = $idCompteBancaireProvenant;";
+                $sql = "UPDATE CompteBancaire SET solde = solde - $montant WHERE id = '$idCompteBancaireProvenant';";
                 $conn->query($sql);
 
                 //Ajouter la transaction
