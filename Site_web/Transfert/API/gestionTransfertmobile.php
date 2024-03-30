@@ -17,16 +17,13 @@
         //On ne vérifie PAS le compte provenant et le montant si c'est pour une réception de virement
         if (!preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches))  {
             //Vérif. ID compte bancaire source du transfert
-            if(isset($donnees["idCompteBancaireProvenant"]) 
-            && is_numeric(trim(implode($donnees["idCompteBancaireProvenant"])))) {
+            if(isset($donnees["idCompteBancaireProvenant"])) {
                 //Mettre la valeur dans une variable
                 $idCompteBancaireProvenant = trim(implode($donnees["idCompteBancaireProvenant"]));
-                $idCompteBancaireProvenant = intval(trim($idCompteBancaireProvenant));
 
                 //Vérifier qu'il y a un montant
-                if(isset($donnees["montant"]) && is_numeric(trim(implode($donnees["montant"])))) {
+                if(isset($donnees["montant"])) {
                     $montant = trim(implode($donnees["montant"]));
-                    $montant = floatval(trim($montant));
 
                     //VÉRIF SOLDE - Requête pour checker si solde <= 0
                     $requete = $conn->prepare("SELECT solde, typeCompte FROM CompteBancaire WHERE id = $idCompteBancaireProvenant");
@@ -38,7 +35,7 @@
                         $erreurs[] = "Le montant est supérieur au solde"; 
 
                     //Une carte de crédit a une limite de crédit de 5000$
-                    if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"]) && is_numeric(trim(implode($donnees["montant"])))) {
+                    if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"])) {
                         //Si le solde fait 
                         if($result['solde'] - $montant < -5000)
                             $erreurs[] = "La carte de crédit a une limite de 5000$";
@@ -389,33 +386,33 @@
         //-----------------------------------------PAIEMENT DE FACTURE-----------------------------------------
         //
         else if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
-            if (isset($donneesJSON["idUtilisateur"]))
+            if (isset($donnees["idUtilisateur"]))
             {
-                $idUtilisateur = trim(implode($donneesJSON['idUtilisateur']));
+                $idUtilisateur = trim(implode($donnees['idUtilisateur']));
             }
 
             //Vérifier que le nom d'établissement est présent
-            if(isset($donneesJSON['nomEtablissement'])) {
-                $nomEtablissement = trim(implode($donneesJSON['nomEtablissement']));
+            if(isset($donnees['nomEtablissement'])) {
+                $nomEtablissement = trim(implode($donnees['nomEtablissement']));
             } else
                 $erreurs[] ="Nom d'établissement non-reçu ou non valide";
 
             //Vérifier que la raison de la facture est présente
-            if(isset($donneesJSON['raison'])) {
-                $raison = trim(implode($donneesJSON['raison']));
+            if(isset($donnees['raison'])) {
+                $raison = trim(implode($donnees['raison']));
             } else
                 $erreurs[] ="Raison de la facture non-reçu ou non valide";
 
             //S'il n'y a pas d'erreurs, on effectue le paiement de la facture
             if(empty($erreurs)) {
                 //Actualiser le montant du compte bancaire provenant
-                $sql = "UPDATE CompteBancaire SET solde = solde - $montant WHERE id = '$idCompteBancaireProvenant';";
+                $sql = "UPDATE CompteBancaire SET solde = solde - $montant WHERE id = $idCompteBancaireProvenant;";
                 $conn->query($sql);
 
                 //Ajouter la transaction
                 $sql = "INSERT INTO TransactionBancaire (idCompteBancaireProvenant, dateTransaction, enAttente, montant, 
-                typeTransaction, nomEtablissement) VALUES ('$idCompteBancaireProvenant', 
-                NOW(), 0, '$montant', 'Paiement de facture', '$nomEtablissement');";
+                typeTransaction, nomEtablissement) VALUES ($idCompteBancaireProvenant, 
+                NOW(), 0, $montant, 'Paiement de facture', '$nomEtablissement');";
                 $conn->query($sql);
 
                 //AJOUTER NOTIFICATIONS
@@ -426,7 +423,7 @@
 
                 $contenuNotif = 'Vous avez fait un paiement de facture de ' . $montant . '$ au destinataire: ' . $nomEtablissement . '. Raison: ' . $raison; 
                 $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, lu, dateRecu, idTransaction)
-                VALUES ($compteIdProvenant, 'Transfert entre comptes', $contenuNotif, 0, NOW(), $idTransaction);";
+                VALUES ($idUtilisateur, 'Transfert entre comptes', '$contenuNotif', 0, NOW(), $idTransaction);";
                 $conn->query($sql);
 
                 //Message de succès
