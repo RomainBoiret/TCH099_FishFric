@@ -1,5 +1,6 @@
 <?php
     if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == 'PUT') {
+
         //Gérer la connexion à la base de données
         try {
             require("../../connexion.php");
@@ -13,17 +14,17 @@
         $erreurs = [];
 
         //----------------------------VÉRIFICATIONS DES DONNÉES DU POST s'appliquant à TOUS les types de transfert SAUF réception de virement-------------------------
-        //
-        //On ne vérifie PAS le compte provenant et le montant si c'est pour une réception de virement
+        
+        // On ne vérifie PAS le compte provenant et le montant si c'est pour une réception de virement
         if (!preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches))  {
             //Vérif. ID compte bancaire source du transfert
             if(isset($donnees["idCompteBancaireProvenant"])) {
                 //Mettre la valeur dans une variable
-                $idCompteBancaireProvenant = trim(implode($donnees["idCompteBancaireProvenant"]));
+                $idCompteBancaireProvenant = trim($donnees["idCompteBancaireProvenant"]);
 
                 //Vérifier qu'il y a un montant
                 if(isset($donnees["montant"])) {
-                    $montant = trim(implode($donnees["montant"]));
+                    $montant = trim($donnees["montant"]);
                     $montant = floatval(trim($montant));
 
                     //VÉRIF SOLDE - Requête pour checker si solde <= 0
@@ -48,7 +49,7 @@
 
                 else
                     $erreurs[] = "Montant non reçu ou non valide";
-            }    
+            }  
 
             else
                 $erreurs[] = "Compte provenant non reçu ou non valide";
@@ -315,11 +316,11 @@
         //-----------------------------------------TRANSFERT ENTRE comptes-----------------------------------------
         //
         else if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/compte$/', $_SERVER['REQUEST_URI'], $matches)) {
+
             //Vérif. ID compte bancaire destinataire du transfert
             if(isset($donnees["idCompteBancaireRecevant"]) 
-            && is_numeric(trim($donnees["idCompteBancaireRecevant"]))) {
-                $idCompteBancaireRecevant = $donnees["idCompteBancaireRecevant"];
-                $idCompteBancaireRecevant = intval(trim($idCompteBancaireRecevant));
+            && is_numeric(trim(implode($donnees["idCompteBancaireRecevant"])))) {
+                $idCompteBancaireRecevant = implode($donnees["idCompteBancaireRecevant"]);
 
                 //VÉRIFIER SI LE COMPTE EST UNE CARTE DE CRÉDIT
                 //Les cartes de crédit peuvent avoir SEULEMENT un solde négatif
@@ -340,9 +341,9 @@
 
             //Vérifier que les 2 comptes ne soient pas les mêmes
             if(isset($donnees["idCompteBancaireProvenant"]) 
-            && is_numeric(trim($donnees["idCompteBancaireProvenant"]))
+            && is_numeric(trim(implode($donnees["idCompteBancaireProvenant"])))
             && isset($donnees["idCompteBancaireRecevant"]) 
-            && is_numeric(trim($donnees["idCompteBancaireRecevant"]))) {
+            && is_numeric(trim(implode($donnees["idCompteBancaireRecevant"])))) {
                 if ($idCompteBancaireProvenant == $idCompteBancaireRecevant)
                     $erreurs[] = "Les 2 comptes ne peuvent pas être le même";
             }
@@ -375,12 +376,14 @@
                 $conn->query($sql);
 
                 //Message de succès
-                echo json_encode(['msgSucces' => "Le transfert a été effectué avec succès!"]);
+                echo json_encode(['reponse' => "Le transfert a été effectué avec succès!", 'code' => '201']);
             } 
             
             //Sinon, on renvoie les messages d'erreur
             else {
-                echo json_encode(['erreur' => $erreurs]);
+                $str = implode(',', $erreurs);
+
+                echo json_encode(['reponse' => $str, 'code' => '404']);
             }
         }
 
