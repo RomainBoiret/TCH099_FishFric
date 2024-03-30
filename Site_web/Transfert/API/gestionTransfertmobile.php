@@ -316,7 +316,11 @@
         //-----------------------------------------TRANSFERT ENTRE comptes-----------------------------------------
         //
         else if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/compte$/', $_SERVER['REQUEST_URI'], $matches)) {
-
+            if (isset($donnees["idUtilisateur"]))
+            {
+                $idUtilisateur = trim(implode($donnees['idUtilisateur']));
+            }
+            
             //Vérif. ID compte bancaire destinataire du transfert
             if(isset($donnees["idCompteBancaireRecevant"]) 
             && is_numeric(trim(implode($donnees["idCompteBancaireRecevant"])))) {
