@@ -20,11 +20,11 @@
             //Vérif. ID compte bancaire source du transfert
             if(isset($donnees["idCompteBancaireProvenant"])) {
                 //Mettre la valeur dans une variable
-                $idCompteBancaireProvenant = trim($donnees["idCompteBancaireProvenant"]);
+                $idCompteBancaireProvenant = trim(implode($donnees["idCompteBancaireProvenant"]));
 
                 //Vérifier qu'il y a un montant
                 if(isset($donnees["montant"])) {
-                    $montant = trim($donnees["montant"]);
+                    $montant = trim(implode($donnees["montant"]));
                     $montant = floatval(trim($montant));
 
                     //VÉRIF SOLDE - Requête pour checker si solde <= 0
@@ -320,7 +320,7 @@
             {
                 $idUtilisateur = trim(implode($donnees['idUtilisateur']));
             }
-            
+
             //Vérif. ID compte bancaire destinataire du transfert
             if(isset($donnees["idCompteBancaireRecevant"]) 
             && is_numeric(trim(implode($donnees["idCompteBancaireRecevant"])))) {
