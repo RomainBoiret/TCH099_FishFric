@@ -29,7 +29,7 @@
                     $montant = floatval(trim($montant));
 
                     //VÉRIF SOLDE - Requête pour checker si solde <= 0
-                    $requete = $conn->prepare("SELECT solde, typeCompte FROM CompteBancaire WHERE id = '$idCompteBancaireProvenant'");
+                    $requete = $conn->prepare("SELECT solde, typeCompte FROM CompteBancaire WHERE id = $idCompteBancaireProvenant");
                     $requete->execute();
                     $result = $requete->fetch(PDO::FETCH_ASSOC);
             
@@ -38,7 +38,7 @@
                         $erreurs[] = "Le montant est supérieur au solde"; 
 
                     //Une carte de crédit a une limite de crédit de 5000$
-                    if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"]) && is_numeric(implode($donnees["montant"]))) {
+                    if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"]) && is_numeric(trim(implode($donnees["montant"])))) {
                         //Si le solde fait 
                         if($result['solde'] - $montant < -5000)
                             $erreurs[] = "La carte de crédit a une limite de 5000$";
@@ -389,23 +389,19 @@
         //-----------------------------------------PAIEMENT DE FACTURE-----------------------------------------
         //
         else if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
-
-            //Prendre donnees JSON 
-            $donneesJSON = json_decode(file_get_contents("php://input"), true);
-
             if (isset($donneesJSON["idUtilisateur"]))
             {
                 $idUtilisateur = trim(implode($donneesJSON['idUtilisateur']));
             }
 
             //Vérifier que le nom d'établissement est présent
-            if(isset($donneesJSON['nomEtablissement']) && !is_numeric(trim(implode($donneesJSON['nomEtablissement'])))) {
+            if(isset($donneesJSON['nomEtablissement'])) {
                 $nomEtablissement = trim(implode($donneesJSON['nomEtablissement']));
             } else
                 $erreurs[] ="Nom d'établissement non-reçu ou non valide";
 
             //Vérifier que la raison de la facture est présente
-            if(isset($donneesJSON['raison']) && is_numeric(trim(implode($donneesJSON['raison'])))) {
+            if(isset($donneesJSON['raison'])) {
                 $raison = trim(implode($donneesJSON['raison']));
             } else
                 $erreurs[] ="Raison de la facture non-reçu ou non valide";
@@ -428,9 +424,9 @@
                 $resultat = $conn->query($sql);
                 $idTransaction = $resultat->fetchColumn();
 
-                $contenuNotif = 'Vous avez fait un paiement de facture de ' . $montant . '$ au destinataire: ' . $nomEtablissement . '<br>Raison: ' . $raison; 
+                $contenuNotif = 'Vous avez fait un paiement de facture de ' . $montant . '$ au destinataire: ' . $nomEtablissement . '. Raison: ' . $raison; 
                 $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, lu, dateRecu, idTransaction)
-                VALUES ($compteIdProvenant, 'Transfert entre comptes', '$contenuNotif', 0, NOW(), $idTransaction);";
+                VALUES ($compteIdProvenant, 'Transfert entre comptes', $contenuNotif, 0, NOW(), $idTransaction);";
                 $conn->query($sql);
 
                 //Message de succès
@@ -439,7 +435,9 @@
             
             //Sinon, le paiement n'a pas marché. On renvoie les messages d'erreur
             else {
-                echo json_encode(['reponse' => 'erreurs', 'code' => '404']);
+                $str = implode(',', $erreurs);
+
+                echo json_encode(['reponse' => $str, 'code' => '404']);
             }
         }
 
@@ -450,44 +448,4 @@
         }
     }
 
-
-
-    //---------------------------REQUÊTE GET INFOS TRANSFERT-----------------------------
-    // else if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET") {
-    //     //Gérer la connexion à la base de données
-    //     try {
-    //         require "../../connexion.php";
-    //     } catch(Exception $e) {
-    //         die("Connexion échouée!: " .$e->getMessage());
-    //     }
-
-    //     session_start();
-
-    //     //Chercher la transaction en question et l'ID de l'utilisateur
-    //     $idTransaction = $_GET['idTransaction'];
-    //     $idUtilisateur = $_SESSION['utilisateur'];
-
-    //     //Requête SQL pour chercher les transaction
-    //     $requete = $conn->prepare("SELECT dateTransaction, montant, typeTransaction, enAttente, question, reponse
-    //     FROM TransactionBancaire WHERE id='$idTransaction';");
-    //     $requete->execute();
-    //     $transaction = $requete->fetch();
-
-    //     // Échapper les caractères spéciaux dans le contenu de la transaction
-    //     $transaction['dateTransaction'] = htmlspecialchars($transaction['dateTransaction'], ENT_QUOTES, 'UTF-8');
-    //     $transaction['montant'] = htmlspecialchars($transaction['montant'], ENT_QUOTES, 'UTF-8');
-    //     $transaction['typeTransaction'] = htmlspecialchars($transaction['typeTransaction'], ENT_QUOTES, 'UTF-8');
-    //     $transaction['enAttente'] = htmlspecialchars($transaction['enAttente'], ENT_QUOTES, 'UTF-8');
-    //     $transaction['question'] = htmlspecialchars($transaction['question'], ENT_QUOTES, 'UTF-8');
-    //     $transaction['reponse'] = htmlspecialchars($transaction['reponse'], ENT_QUOTES, 'UTF-8');
-
-    //     //Encoder les informations des transaction en json
-    //     echo json_encode(["transaction" => $transaction]);
-    // }
-
-    // else {
-    //     // Code HTTP 405 - Method Not Allowed
-    //     echo json_encode(['erreur' => 'Méthode non autorisée.',
-    //                     'code' => 405]);
-    // }
     

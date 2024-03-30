@@ -61,4 +61,6 @@
             echo json_encode(['reponse'=>"Mauvaise requete", 'code'=>'405']);
         }
 
+    } else {
+        echo json_encode(["reponse" => "Methode non autorisee"]);
     }
