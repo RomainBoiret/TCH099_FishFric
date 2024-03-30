@@ -376,7 +376,7 @@
 
                 $contenuNotif = 'Vous avez fait un virement de ' . $montant . '$ du compte #' . $idCompteBancaireProvenant . ' au compte #' . $idCompteBancaireRecevant; 
                 $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, lu, dateRecu, idTransaction)
-                VALUES ($compteIdProvenant, 'Transfert entre comptes', '$contenuNotif', 0, NOW(), $idTransaction);";
+                VALUES ($idUtilisateur, 'Transfert entre comptes', '$contenuNotif', 0, NOW(), $idTransaction);";
                 $conn->query($sql);
 
                 //Message de succès
