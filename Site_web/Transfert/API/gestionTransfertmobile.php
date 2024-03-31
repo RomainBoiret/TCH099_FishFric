@@ -152,12 +152,14 @@
                 $conn->query($sql);
 
                 //Message de succès
-                echo json_encode(['msgSucces' => "Le virement a été effectué avec succès!"]);
-            } 
-            
-            //Sinon, le virement n'a pas marché. On renvoie les messages d'erreur
+                echo json_encode(['reponse' => "Le transfert a été effectué avec succès!", 'code' => '201']);
+                } 
+
+            //Sinon, on renvoie les messages d'erreur
             else {
-                echo json_encode(['erreur' => $erreurs]);
+                $str = implode(',', $erreurs);
+
+                echo json_encode(['reponse' => $str, 'code' => '404']);
             }
         }
 
