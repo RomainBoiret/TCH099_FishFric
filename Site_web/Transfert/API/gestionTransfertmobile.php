@@ -59,10 +59,15 @@
         //-----------------------------------------TRANSFERT ENTRE UTILISATEURS, ENVOI-----------------------------------------
         //
         if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/utilisateurEnvoi$/', $_SERVER['REQUEST_URI'], $matches)) {
+            //Vérifier qu'il y a un ID utilisateur
+            if (isset($donnees["idUtilisateur"]))
+            {
+                $idUtilisateur = trim(implode($donnees['idUtilisateur']));
+            }
+
             //Vérifier qu'il y a un courriel de contact
-            if(isset($donnees['courrielDest']) && !is_numeric($donnees['courrielDest'])) {
-                $courrielDest = $donnees['courrielDest'];
-                $courrielDest = trim($courrielDest);
+            if(isset($donnees['courrielDest'])) {
+                $courrielDest = trim(implode($donnees['courrielDest']));
 
                 //Vérifier que le courriel est un utilisateur de la banque
                 $requete = $conn->prepare("SELECT * FROM Compte WHERE courriel = '$courrielDest'");
@@ -75,41 +80,37 @@
                 $erreurs[] = "Courriel de contact non reçu ou non valide";
             
             //Vérifier qu'il y a une question de sécurité
-            if(isset($donnees['question']) && !is_numeric($donnees['question'])) {
-                $question = $donnees['question'];
-                $question = (trim($question));
+            if(isset($donnees['question'])) {
+                $question = trim(implode($donnees['question']));
             } else
                 $erreurs[] = "Question non reçue ou non valide";
 
             //Vérifier qu'il y a une réponse
-            if(isset($donnees['reponse']) && !is_numeric($donnees['reponse'])) {
-                $reponse = $donnees['reponse'];
-                $reponse = (trim($reponse));
+            if(isset($donnees['reponse'])) {
+                $reponse = trim(implode($donnees['reponse']));
             } else
                 $erreurs[] = "Réponse non reçue ou non valide";
 
             //Vérifier qu'il y a une confirmation de la réponse
-            if(isset($donnees['confReponse']) && !is_numeric($donnees['confReponse'])) {
-                $confReponse = $donnees['confReponse'];
-                $confReponse = (trim($confReponse));
+            if(isset($donnees['confReponse'])) {
+                $confReponse = trim(implode($donnees['confReponse']));
             } else
                 $erreurs[] = "Confirmation de réponse non reçue ou non valide";
 
             //Vérifier que la réponse et la confirmation sont identiques
-            if(isset($donnees['reponse']) && !is_numeric($donnees['reponse'])
-            && isset($donnees['confReponse']) && !is_numeric($donnees['confReponse'])) {
+            if(isset($donnees['reponse']) && isset($donnees['confReponse'])) {
                 if (!($reponse == $confReponse))
                     $erreurs[] = "La réponse doit être identique à la confirmation de réponse";  
             }
 
             //---------Vérifier que le destinataire n'est pas la personne envoyant le virement
             //Chercher courriel de l'utilisateur envoyant le virement
-            $sql = "SELECT courriel FROM Compte WHERE id='$compteIdProvenant';";
+            $sql = "SELECT courriel FROM Compte WHERE id='$idUtilisateur';";
             $resultat = $conn->query($sql);
             $courrielCompteProvenant = $resultat->fetchColumn();
 
             //Si le courriel destinataire est le même, on met une erreur
-            if(isset($donnees['courrielDest']) && !is_numeric($donnees['courrielDest'])) {
+            if(isset($donnees['courrielDest'])) {
                 if (strtolower($courrielDest) == strtolower($courrielCompteProvenant))
                     $erreurs[] = "Vous ne pouvez pas envoyer un virement à vous-même!";
             }
@@ -147,7 +148,7 @@
                 //Ajouter notification de réception de virement au destinataire
                 $contenuNotif = 'Vous avez reçu un virement de ' . $montant . '$ de la part de ' . $courrielCompteProvenant;
                 $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, lu, dateRecu, idTransaction)
-                VALUES ($compteIdDestinataire, 'Virement reçu', '$contenuNotif', 0, NOW(), $idTransaction);";
+                VALUES ($idUtilisateur, 'Virement reçu', '$contenuNotif', 0, NOW(), $idTransaction);";
                 $conn->query($sql);
 
                 //Message de succès
