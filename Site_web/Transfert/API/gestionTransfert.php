@@ -65,7 +65,7 @@
         //
         if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/utilisateurEnvoi$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Vérifier qu'il y a un courriel de contact
-            if(isset($donnees['courrielDest']) && !is_numeric($donnees['courrielDest'])) {
+            if(isset($donnees['courrielDest'])) {
                 $courrielDest = $donnees['courrielDest'];
                 $courrielDest = trim($courrielDest);
 
@@ -80,29 +80,28 @@
                 $erreurs[] = "Courriel de contact non reçu ou non valide";
             
             //Vérifier qu'il y a une question de sécurité
-            if(isset($donnees['question']) && !is_numeric($donnees['question'])) {
+            if(isset($donnees['question']) && !empty($donnees['question'])) {
                 $question = $donnees['question'];
                 $question = (trim($question));
             } else
                 $erreurs[] = "Question non reçue ou non valide";
 
             //Vérifier qu'il y a une réponse
-            if(isset($donnees['reponse']) && !is_numeric($donnees['reponse'])) {
+            if(isset($donnees['reponse']) && !empty($donnees['reponse'])) {
                 $reponse = $donnees['reponse'];
                 $reponse = (trim($reponse));
             } else
                 $erreurs[] = "Réponse non reçue ou non valide";
 
             //Vérifier qu'il y a une confirmation de la réponse
-            if(isset($donnees['confReponse']) && !is_numeric($donnees['confReponse'])) {
+            if(isset($donnees['confReponse']) && !empty($donnees['confReponse'])) {
                 $confReponse = $donnees['confReponse'];
                 $confReponse = (trim($confReponse));
             } else
                 $erreurs[] = "Confirmation de réponse non reçue ou non valide";
 
             //Vérifier que la réponse et la confirmation sont identiques
-            if(isset($donnees['reponse']) && !is_numeric($donnees['reponse'])
-            && isset($donnees['confReponse']) && !is_numeric($donnees['confReponse'])) {
+            if(isset($donnees['reponse']) && isset($donnees['confReponse'])) {
                 if (!($reponse == $confReponse))
                     $erreurs[] = "La réponse doit être identique à la confirmation de réponse";  
             }

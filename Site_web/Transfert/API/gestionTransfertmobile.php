@@ -80,19 +80,19 @@
                 $erreurs[] = "Courriel de contact non reçu ou non valide";
             
             //Vérifier qu'il y a une question de sécurité
-            if(isset($donnees['question'])) {
+            if(isset($donnees['question']) && !empty($donnees['question'])) {
                 $question = trim(implode($donnees['question']));
             } else
                 $erreurs[] = "Question non reçue ou non valide";
 
             //Vérifier qu'il y a une réponse
-            if(isset($donnees['reponse'])) {
+            if(isset($donnees['reponse']) && !empty($donnees['question'])) {
                 $reponse = trim(implode($donnees['reponse']));
             } else
                 $erreurs[] = "Réponse non reçue ou non valide";
 
             //Vérifier qu'il y a une confirmation de la réponse
-            if(isset($donnees['confReponse'])) {
+            if(isset($donnees['confReponse']) && !empty($donnees['confReponse'])) {
                 $confReponse = trim(implode($donnees['confReponse']));
             } else
                 $erreurs[] = "Confirmation de réponse non reçue ou non valide";
