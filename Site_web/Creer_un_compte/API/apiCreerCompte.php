@@ -103,27 +103,27 @@
 
             //Chercher l'ID du compte et créer le nom de l'événement
 
-            $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE typeCompte='Compte chèque' 
-            AND compteId LIKE (SELECT id FROM Compte WHERE courriel LIKE '$courriel')");
-            $requete->execute();
-            $idCompteCheque = $requete->fetchColumn();
-            $eventName = "interet" . $idCompteCheque;
+            // $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE typeCompte='Compte chèque' 
+            // AND compteId LIKE (SELECT id FROM Compte WHERE courriel LIKE '$courriel')");
+            // $requete->execute();
+            // $idCompteCheque = $requete->fetchColumn();
+            // $eventName = "interet" . $idCompteCheque;
 
-            //Écrire le sql de la requête
-            //--À chaque jour, on met le montant gangé en intérêt dans les transactions
-            //--et on actualise le solde
-            $requete = "CREATE EVENT `projet_integrateur`.`$eventName`
-            ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
-                INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
-                SELECT id, NOW(), solde*(1 + $interet/100) - solde, 'Intérêts' 
-                FROM CompteBancaire 
-                WHERE CompteBancaire.id = $idCompteCheque;
+            // //Écrire le sql de la requête
+            // //--À chaque jour, on met le montant gangé en intérêt dans les transactions
+            // //--et on actualise le solde
+            // $requete = "CREATE EVENT `projet_integrateur`.`$eventName`
+            // ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
+            //     INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
+            //     SELECT id, NOW(), solde*(1 + $interet/100) - solde, 'Intérêts' 
+            //     FROM CompteBancaire 
+            //     WHERE CompteBancaire.id = $idCompteCheque;
             
-                UPDATE CompteBancaire 
-                SET solde = solde*(1 + $interet/100)
-                WHERE id = $idCompteCheque;";
+            //     UPDATE CompteBancaire 
+            //     SET solde = solde*(1 + $interet/100)
+            //     WHERE id = $idCompteCheque;";
 
-            $conn->query($requete);
+            // $conn->query($requete);
 
 
             if($mobile)
