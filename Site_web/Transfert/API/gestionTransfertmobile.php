@@ -142,7 +142,7 @@
                 //Ajout notification d'envoi de virement à la personne envoyant le virement
                 $contenuNotif = 'Vous avez envoyé un virement de ' . $montant . '$ à ' . $courrielDest;
                 $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, lu, dateRecu, idTransaction)
-                VALUES ('$compteIdProvenant', 'Virement envoyé', '$contenuNotif', 0, NOW(), $idTransaction);";
+                VALUES ('$idUtilisateur', 'Virement envoyé', '$contenuNotif', 0, NOW(), $idTransaction);";
                 $conn->query($sql);
 
                 //Ajouter notification de réception de virement au destinataire

@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
 
                         //Si c'est des intérets, on met rien
-                        else if (transactions[i].typeTransaction == 'Intérêts');
+                        else if (transactions[i].typeTransaction == 'Intérêts' || transactions[i].typeTransaction == 'Dépôt mobile');
 
                         //Sinon, il s'agit d'un transfert entre comptes. Afficher le compte recevant
                         else {
