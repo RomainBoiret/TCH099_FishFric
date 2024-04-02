@@ -15,7 +15,7 @@
 
         if(isset($donneesJSON['idUtilisateur']))
         {
-            $idUtilisateur = trim($donneesJSON['idUtilisateur']);
+            $idUtilisateur = trim(implode($donneesJSON['idUtilisateur']));
         }
 
         //Requête SQL pour chercher les notifications
