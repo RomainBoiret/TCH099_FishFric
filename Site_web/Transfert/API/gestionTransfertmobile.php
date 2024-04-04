@@ -169,17 +169,17 @@
         else if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Vérifier qu'il y a une acceptation ou bien un refus du transfert
             if(isset($donnees['decision'])) {
-                $decision = $donnees['decision'];
+                $decision = implode($donnees['decision']);
                 $decision = trim($decision);
 
                 //Si la décision est d'accepter, on vérifie la réponse
                 if ($decision == 'accepter') {
                     if(isset($donnees['inputReponse'])) {
-                        $inputReponse = $donnees['inputReponse'];
+                        $inputReponse = implode($donnees['inputReponse']);
                         $inputReponse = trim($inputReponse);
     
                         //Vérifier que la réponse est bonne ou pas
-                        $idTransaction = $donnees['idTransaction'];
+                        $idTransaction = trim(implode($donnees['idTransaction']));
                         $sql = "SELECT reponse FROM TransactionBancaire WHERE id = $idTransaction";
                         $resultat = $conn->query($sql);
                         $reponse = $resultat->fetchColumn();
@@ -300,18 +300,13 @@
                     
                 }
 
-                //Rechercher l'ID de la notification
-                $sql = "SELECT id FROM NotificationClient WHERE idTransaction='$idTransaction' AND CompteId='$compteIdProvenant'";
-                $resultat = $conn->query($sql);
-                $id_notif = $resultat->fetchColumn();
-
-                //Message de succès + ID de notification
-                echo json_encode(['msgSucces' => $msgSucces1, 'id_notif' => $id_notif]);
+                //Message de succès
+                echo json_encode(['msgSucces' => $msgSucces1, 'code'=>201]);
             } 
             
             //Sinon, on renvoie les messages d'erreur
             else {
-                echo json_encode(['erreur' => $erreurs]);
+                echo json_encode(['erreur' => $erreurs, 'code'=>400]);
             }
         }
 
