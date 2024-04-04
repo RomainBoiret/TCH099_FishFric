@@ -46,10 +46,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (i >= 0) {
                     //Afficher le type de la transaction
                     transactionHtml += '<div class="transfert-box"><div class="transfert-detail">';
-                    transactionHtml += '<div class="detail-titre"><span>' + transactions[i].typeTransaction + ' / ';
+                    transactionHtml += '<div class="detail-titre"><span>' + transactions[i].typeTransaction;
 
                     //S'il y a un nom d'établissement ou de contact pour le transfert
                     if (transactions[i].nomEtablissement) {
+                        transactionHtml += ' / ';
+
                         //Si le compte présent est le nom d'établissement:
                         if (transactions[i].idCompteBancaireRecevant == compteId)
                             transactionHtml += transactions[i].courrielProvenant.toLowerCase();
@@ -58,10 +60,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
 
                     //Si c'est des intérets, on met rien
-                    else if (transactions[i].typeTransaction == 'Intérêts');
+                    else if (transactions[i].typeTransaction == 'Intérêts' || transactions[i].typeTransaction == 'Dépôt mobile');
 
                     //Sinon, il s'agit d'un transfert entre comptes. Afficher le compte recevant
                     else {
+                        transactionHtml += ' / ';
+                        
                         if (transactions[i].idCompteBancaireProvenant == compteId)
                             transactionHtml += 'compte #' + transactions[i].idCompteBancaireRecevant
                         else 

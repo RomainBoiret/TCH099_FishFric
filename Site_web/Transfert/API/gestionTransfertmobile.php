@@ -336,7 +336,7 @@
                 $result = $requete->fetch(PDO::FETCH_ASSOC);
 
 
-                if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"]) && is_numeric($donnees["montant"])) {
+                if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"])) {
                     //Si le montant reçu fait que le solde de la carte de crédit sera positif,
                     //on met une erreur
                     if($result['solde'] + $montant > 0)
