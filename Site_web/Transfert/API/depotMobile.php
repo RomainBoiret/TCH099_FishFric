@@ -39,7 +39,7 @@
     
                 //Ajouter la transaction 
                 $requete = $conn->prepare("INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, 
-                typeTransaction) VALUES ($idCompteCheque, NOW(), $montant, 'Dépôt mobile');");
+                typeTransaction, enAttente, lu) VALUES ($idCompteCheque, NOW(), $montant, 'Dépôt mobile', 0, 0);");
                 $requete->execute();
 
 
@@ -48,9 +48,9 @@
                 $resultat = $conn->query($sql);
                 $idTransaction = $resultat->fetchColumn();
 
-                $contenuNotif = 'Vous avez fait un dépôt mobile de ' . $montant . 'dans votre compte chèque'; 
-                $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, lu, dateRecu, idTransaction)
-                VALUES ($idUtilisateur, 'Dépôt mobile', '$contenuNotif', 0, NOW(), $idTransaction);";
+                $contenuNotif = 'Vous avez fait un dépôt mobile de ' . $montant . '$ dans votre compte chèque'; 
+                $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, dateRecu, idTransaction)
+                VALUES ($idUtilisateur, 'Dépôt mobile', '$contenuNotif', NOW(), $idTransaction);";
                 $conn->query($sql);
     
                 //Message de succès
