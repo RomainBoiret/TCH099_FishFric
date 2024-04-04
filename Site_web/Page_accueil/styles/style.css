@@ -47,6 +47,7 @@ body {
 }
 
 header {
+    position: relative;
     width: 100%;
     height: 70px;
     padding: 0 4.2%;
@@ -54,6 +55,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 100;
+    transition: 0.6s;
 }
 
 .logo {
@@ -81,35 +84,27 @@ header {
     font-size: 2.5rem;
 }
 
-.navigation {
-    width: 550px;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
 .navigation a {
-    width: auto;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: var(--white);
+    position: relative;
     text-decoration: none;
+    color: var(--white);
+    font-size: 1.6rem;
     font-weight: 600;
-    padding: 2rem;
-    border-right: 1px solid var(--bleu-turquoise);
+    border-radius: 2px;
+    padding: 2rem 2rem;
+    transition: .1s;
 }
 
-.navigation a:first-child {
-    border-left: 1px solid var(--bleu-turquoise);
-}
 .navigation a:hover {
     background: var(--bleu-turquoise);
     border-bottom: 5px solid var(--white);
+}
+
+#menu-icon {
+    font-size: 3.6rem;
+    color: var(--white);
+    cursor: pointer;
+    display: none;
 }
 
 .accueil {
@@ -171,6 +166,7 @@ header {
 }
 
 .btn-box .btn:nth-child(2):hover {
+    background: transparent;
     color: var(--sable-dore);
 }
 
@@ -232,6 +228,10 @@ p {
     background: var(--bleu-ocean-abysses);
 }
 
+.create-account-part img {
+    width: 0;
+}
+
 .accueil-embed .acceuil-illustration {
     width: 50%;
     height: 100%;
@@ -241,53 +241,52 @@ p {
 }
 
 .services {
-    height: 75vh;
+    height: 70vh;
     background: var(--white);
-    padding: 2.3% 3.6%;
+    padding: 2.3% 5%;
 }
 
 .services .grid-template {
-    border-spacing: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4rem;
 }
 
-.grid-template th h2 {
+.grid-template h2 {
     text-align: left;
 }
 
-.grid-template tr td {
-    width: 700px;
-    height: 180px;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+.grid-template .options-template {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+}
+
+.options-template .option {
+    width: 430px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e9effb;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 700;
+    border-radius: 15px;
+    box-shadow: 6px 6px var(--bleu-ocean-surface);
     cursor: pointer;
+    transition: .3s;
 }
 
-.grid-template tr td:hover {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
-
-.option-1 {
-    background: var(--white);
-    background-size: cover;
-    background-position: center;
-}
-
-.option-2 {
-    background: var(--white);
-    background-size: cover;
-    background-position: center;
-}
-
-.option-3 {
-    background: var(--white);
-    background-size: cover;
-    background-position: center;
-}
-
-.option-4 {
-    background: var(--white);
-    background-size: cover;
-    background-position: center;
+.grid-template .option:hover {
+    background: #ffffff;
+    box-shadow: 8px 8px var(--bleu-ocean-profond);
 }
 
 .aquarium {
@@ -317,7 +316,7 @@ p {
     width: 100%;
     height: 20%;
     background: var(--white);
-    padding: 2% 4%;
+    padding: 1% 4%;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -326,6 +325,49 @@ p {
 .aquarium-footer-content h3 {
     font-size: 3rem;
     font-weight: 500;
+}
+
+.aquarium-footer-content .mobile-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.aquarium-footer-content p {
+    color: var(--text-color);
+    font-size: 1.6rem;
+}
+
+.aquarium-footer-content .mobile-link a {
+    padding: 0.2px 5px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    background: transparent;
+    border-radius: 10px;
+    color: var(--text-color);
+    text-decoration: underline;
+    transition: .3s;
+}
+
+.aquarium-footer-content .mobile-link a:hover {
+    background: #e8e8e8;
+}
+
+.aquarium-footer-content .mobile-link span {
+    color: var(--white);
+    font-size: 1.6rem;
+    font-weight: 500;
+    transition: .3s;
+}
+
+.aquarium-footer-content .mobile-link span:hover {
+    color: var(--text-color);
+}
+
+.aquarium-footer-content .mobile-link i {
+    font-size: 2.3rem;
+    color: var(--bleu-ocean-profond);
 }
 
 .mobile {
@@ -347,7 +389,7 @@ p {
     justify-content: center;
     flex-direction: column;
     gap: 2.3rem;
-    padding: 0 5%;
+    padding: 0 4%;
 }
 
 .mobile-content ul {
@@ -368,13 +410,11 @@ p {
 }
 
 .mobile-illustration img {
-    width: 600px;
+    width: 100%;
     border-radius: 20px;
 }
 
 .mobile-content .mobile-link {
-    width: 40rem;
-    height: 45px;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -507,4 +547,293 @@ p {
 
 .footer-iconTop a:hover i {
     color: var(--sable-dore);
+}
+
+/*Screen Design*/
+
+@media (max-width: 1400px) {
+    .grid-template .options-template {
+        gap: 2rem;
+        justify-content: center;
+    }
+    
+    .options-template .option {
+        width: 32%;
+        height: 150px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .grid-template .options-template {
+        gap: 4rem;
+        justify-content: center;
+    }
+    
+    .options-template .option {
+        width: 47%;
+        height: 100px;
+    }
+
+    .mobile {
+        height: 80vh;
+    }
+
+    .mobile .mobile-embed {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer {
+        padding: 2rem 4%;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;
+    }
+
+    .navigation {
+        position: absolute;
+        top: 100%;
+        left: -100%;
+        width: 100%;
+        padding: 1rem 4%;
+        background: var(--bleu-ocean-abysses);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        z-index: 1;
+        transition: .25s ease;
+        transition-delay: .25s;
+    }
+
+    .navigation.active {
+        left: 0;
+        transition-delay: 0s;
+    }
+
+    .navigation .active-nav {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--bleu-ocean-profond);
+        border-top: .1rem solid rgba(0, 0, 0, .2);
+        z-index: -1;
+        transition: .25s ease;
+        transition-delay: 0s;
+    }
+
+    .navigation.active .active-nav {
+        left: 0;
+        transition-delay: .25s;
+    }
+
+    .navigation a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+        transform: translateX(-20rem);
+        transition: .25s ease;
+        transition-delay: 0s;
+        padding: 1rem 1.4rem;
+    }
+
+    .navigation a:hover {
+        border: none;
+        background: transparent;
+        color: #e1c16e;
+    }
+
+    .navigation.active a {
+        transform: translateX(0);
+        transition-delay: .25s;        
+    }
+
+    .accueil {
+        max-height: 100vh;
+    }
+
+    .accueil .accueil-connect {
+        height: 15%;
+    }
+    
+    .accueil-connect h1 {
+        margin-top: 0;
+        font-size: 3.6rem;
+    }
+
+    .accueil .accueil-embed {
+        height: 85%;
+    }
+
+    .accueil-embed .create-account-part {
+        width: 80%;
+        height: 90%;
+    }
+
+    .accueil-embed .acceuil-illustration {
+        width: 20%;
+        height: 100%;
+    }
+
+    .grid-template .options-template {
+        gap: 4rem;
+        justify-content: center;
+    }
+    
+    .options-template .option {
+        width: 46%;
+        height: 80px;
+        font-size: 1.8rem;
+    }
+
+    .mobile {
+        height: auto;
+        padding: 8% 4%;
+    }
+
+    .mobile .mobile-embed {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .mobile-embed .mobile-content {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2.3rem;
+        padding: 0 4%;
+    }
+
+    .mobile-embed .mobile-illustration {
+        width: 100%;
+        height: auto;
+        padding: 8% 1.6%;
+    }
+
+    .assistance {
+        height: auto;
+        padding: 8% 5%;
+    }
+    
+    .assistance .assistance-embed {
+        flex-direction: column;
+    }
+    
+    .assistance-embed .assistance-content {
+        width: 100%;
+    }
+    
+    .assistance-embed .assistance-illustration {
+        width: 0%;
+        height: 0%;
+    }
+
+    .assistance-content .btn-box {
+        width: 22rem;
+    }
+    
+    .assistance-content .btn {
+        width: 100%;
+        height: 50px;
+    }
+}
+
+@media (max-width: 550px) {
+    .accueil .accueil-connect {
+        height: 10%;
+        justify-content: center;
+    }
+    
+    .accueil-connect h1 {
+        font-size: 2rem;
+    }
+
+    .accueil .accueil-embed {
+        height: 90%;
+    }
+
+    .accueil-embed .create-account-part {
+        width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+
+    .accueil-embed .acceuil-illustration {
+        width: 0%;
+    }
+
+    .create-account-part .btn-box {
+        position: relative;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        width: 35rem;
+    }
+
+    .create-account-part .btn {
+        width: 25rem;
+        height: 50px;
+    }
+
+    .services {
+        height: auto;
+        padding: 8% 5%;
+    }
+
+    .grid-template {
+        text-align: center;
+    }
+
+    .grid-template h2 {
+        margin-top: 0;
+        font-size: 2rem;
+    }
+
+    .grid-template .options-template {
+        gap: 2rem;
+        justify-content: center;
+    }
+    
+    .options-template .option {
+        width: 47%;
+        height: 70px;
+        font-size: 1.3rem;
+    }
+
+    .aquarium {
+        height: 60vh;
+        padding: 6% 5%;
+    }
+
+    .aquarium-content .aquarium-illustration {
+        width: 100%;
+        height: 55%;
+    }
+    
+    .aquarium-content .aquarium-footer-content {
+        width: 100%;
+        height: 45%;
+        background: var(--white);
+        padding: 3% 6%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer {
+        flex-direction: column-reverse;
+    }
+
+    .footer p {
+        margin-top: 2rem;
+        text-align: center;
+    }
 }
