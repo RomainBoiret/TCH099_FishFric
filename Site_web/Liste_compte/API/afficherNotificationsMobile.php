@@ -69,7 +69,7 @@
         }
 
         //Requete pour effacer toutes les notifcations
-        if (preg_match('/\/Liste_compte\/API\/afficherNotifications\.php\/deleteAll$/')) {
+        if (preg_match('/\/Liste_compte\/API\/afficherNotificationsMobile\.php\/deleteAll$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Chercher les notifications à supprimer (pour les renvoyer en données JSON et les enlever dynamiquement)
             $sql = $conn->prepare("SELECT nc.id FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
             WHERE tb.enAttente=0 AND nc.CompteId = '$idUtilisateur';");
@@ -87,7 +87,7 @@
         else
         {
             $sql = $conn->prepare("SELECT nc.id FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
-            WHERE tb.enAttente=0 AND nc.id = '$idNotif';");
+            WHERE tb.enAttente=0 AND nc.id = $idNotif;");
             $sql->execute();
             $notifications = $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -98,6 +98,7 @@
             AND nc.id = $idNotif;");
             $requete->execute();
         }
-        echo json_encode(["idNotifsEffacees" => $notifications]);
+
+        echo json_encode(["resultat" => $notifications]);
     }
 ?>

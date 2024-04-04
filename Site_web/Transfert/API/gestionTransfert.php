@@ -424,7 +424,7 @@
                 $resultat = $conn->query($sql);
                 $idTransaction = $resultat->fetchColumn();
 
-                $contenuNotif = 'Vous avez fait un paiement de facture de ' . $montant . '$ au destinataire: ' . $nomEtablissement . '<br>Raison: ' . $raison; 
+                $contenuNotif = 'Vous avez fait un paiement de facture de ' . $montant . '$ au destinataire: ' . $nomEtablissement . '. Raison: ' . $raison; 
                 $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, lu, dateRecu, idTransaction)
                 VALUES ($compteIdProvenant, 'Transfert entre comptes', '$contenuNotif', 0, NOW(), $idTransaction);";
                 $conn->query($sql);
