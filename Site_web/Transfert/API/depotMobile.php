@@ -41,6 +41,17 @@
                 $requete = $conn->prepare("INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, 
                 typeTransaction) VALUES ($idCompteCheque, NOW(), $montant, 'Dépôt mobile');");
                 $requete->execute();
+
+
+                //Faire une nouvelle notification
+                $sql = "SELECT id FROM TransactionBancaire ORDER BY id DESC LIMIT 1;";
+                $resultat = $conn->query($sql);
+                $idTransaction = $resultat->fetchColumn();
+
+                $contenuNotif = 'Vous avez fait un dépôt mobile de ' . $montant . 'dans votre compte chèque'; 
+                $sql = "INSERT INTO NotificationClient(compteId, titre, contenu, lu, dateRecu, idTransaction)
+                VALUES ($idUtilisateur, 'Dépôt mobile', '$contenuNotif', 0, NOW(), $idTransaction);";
+                $conn->query($sql);
     
                 //Message de succès
                 echo json_encode(['reponse'=> "Succès! Le montant a été déposé dans votre compte chèque.", 'code'=>'201']);
