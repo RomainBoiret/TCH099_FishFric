@@ -230,7 +230,7 @@
                 if ($decision == 'accepter') {
 
                     //CHERCHER ID du compte chèque recevant
-                    $sql = "SELECT cb.id FROM CompteBancaire cb INNER JOIN Compte c ON c.id = cb.compteId WHERE c.id='$compteIdProvenant' AND typeCompte LIKE 'Compte chèque'";
+                    $sql = "SELECT cb.id FROM CompteBancaire cb INNER JOIN Compte c ON c.id = cb.compteId WHERE c.id='$idCompteProvenant' AND typeCompte LIKE 'Compte chèque'";
                     $resultat = $conn->query($sql);
                     $idCompteBancaireRecevant = $resultat->fetchColumn();
 
@@ -247,7 +247,7 @@
                     . " a été déposé dans votre compte chèque!";
 
                     $sql = "UPDATE NotificationClient SET titre='Virement accepté', contenu = '$msgSucces1'
-                    WHERE idTransaction='$idTransaction' AND CompteId='$compteIdProvenant'";
+                    WHERE idTransaction='$idTransaction' AND CompteId='$idCompteProvenant'";
                     $conn->query($sql);
 
                     //Modification de la notification pour montrer À L'ENVOYEUR qu'on a accepté le virement
@@ -288,7 +288,7 @@
                     $msgSucces1 = "Vous avez refusé le virement de " . $montant . "$ de la part de " . $courrielCompteProvenant;
 
                     $sql = "UPDATE NotificationClient SET titre='Virement refusé', contenu = '$msgSucces1'
-                    WHERE idTransaction='$idTransaction' AND CompteId='$compteIdProvenant'";
+                    WHERE idTransaction='$idTransaction' AND CompteId='$idCompteProvenant'";
                     $conn->query($sql);
 
                     //NOUVELLE notification pour montrer À L'ENVOYEUR qu'on a refusé le virement
