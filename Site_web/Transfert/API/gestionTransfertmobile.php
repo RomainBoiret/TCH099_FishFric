@@ -270,10 +270,10 @@
                     //Chercher le compte bancaire provenant
                     $sql = "SELECT idCompteBancaireProvenant FROM TransactionBancaire WHERE id='$idTransaction'";
                     $resultat = $conn->query($sql);
-                    $idCompteBancaireRecevant = $resultat->fetchColumn();
+                    $idCompteBancaireProvenant = $resultat->fetchColumn();
 
-                    //Actualiser le montant du compte bancaire recevant
-                    $sql = "UPDATE CompteBancaire SET solde = solde + $montant WHERE id = '$idCompteBancaireRecevant';";
+                    //Actualiser le montant du compte bancaire provenant
+                    $sql = "UPDATE CompteBancaire SET solde = solde + $montant WHERE id = '$idCompteBancaireProvenant';";
                     $conn->query($sql);
 
                     //Actualiser la transaction, elle n'est plus en attente
@@ -282,7 +282,7 @@
 
                     //NOUVELLE transaction retour du virement(pour l'envoyeur)
                     $sql = "INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, 
-                    typeTransaction, enAttente, nomEtablissement, courrielProvenant) VALUES ('$idCompteBancaireRecevant', 
+                    typeTransaction, enAttente, nomEtablissement, courrielProvenant) VALUES ('$idCompteBancaireProvenant', 
                     NOW(), '$montant', 'Virement refusé', 0, '$courrielDest', '$courrielDest');";
                     $conn->query($sql);
 
