@@ -28,9 +28,7 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
 
             //Afficher le message de succès dans le DIV respectif
             if ("erreurs" in responseData) {
-                responseData.erreurs.forEach(function(erreur) {
-                    // document.getElementById('erreur-message').innerHTML += '<p>' + erreur + '</p><br>';
-                    
+                responseData.erreurs.forEach(function(erreur) {                    
                     let toast = document.createElement('div');
                     toast.classList.add('toast');
                     toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + erreur;

@@ -62,8 +62,6 @@ if (isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (tim
                                 <label for="remember_account"><input type="checkbox" name="checkbox" id="remember_account" class="remember">
                                     Garder la session active pendant 8 heures</label>
                             </div>
-
-                            <div id="erreur-message"></div>
                         </div>
                     </form>
 

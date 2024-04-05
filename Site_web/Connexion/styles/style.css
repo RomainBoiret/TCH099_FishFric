@@ -181,22 +181,23 @@ label {
 
 #toastBox {
     position: absolute;
-    bottom: 30px;
+    bottom: 80px;
     right: 30px;
     display: flex;
     align-items: flex-end;
     flex-direction: column;
     overflow: hidden;
-    padding: 20px;
+    padding: 10px;
 }
 
 .toast {
     width: 400px;
     height: 80px;
     background: var(--white);
-    font-weight: 500;
+    font-size: 1.8rem;
+    font-weight: 600;
     margin: 15px 0;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
@@ -232,15 +233,6 @@ label {
     100% {
         width: 0;
     }
-}
-
-#erreur-message {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: red;
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
 }
 
 .btn-box {
