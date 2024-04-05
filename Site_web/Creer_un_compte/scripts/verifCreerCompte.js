@@ -30,20 +30,10 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
             let responseData = JSON.parse(xhrCreerCompte.responseText);
             console.log(responseData);
 
-            //Supprimer TOUS les messages avant d'en rajouter, dans le cas où on soumet plusieurs requêtes
-            // document.getElementById('messages').innerHTML = "";
-
             //Afficher le message de succès dans le DIV respectif
             if ("msgSucces" in responseData) {
                 //Désactiver le bouton pour ne pas créer de nouveau compte
                 document.getElementById('btnCreerCompte').setAttribute('disabled', 'true');
-
-                //Ajouter un div pour y afficher le message de succès
-                // let msgDiv = document.createElement('div');
-                // msgDiv.id = 'msg-succes';
-                // document.getElementById('messages').appendChild(msgDiv);
-                // msgDiv.innerHTML = responseData.msgSucces;
-
                                  
                 let toast = document.createElement('div');
                 toast.classList.add('toast');
@@ -58,15 +48,11 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
 
             else {
                 //Afficher grande erreur de MDP 
-                if (responseData.erreurMdp) {
-                    //Ajouter un div pour y afficher l'erreur de mot de passe
-                    // let erreurMdpDiv = document.createElement('div');
-                    // erreurMdpDiv.id = 'erreur-mdp';
-                    // document.getElementById('messages').appendChild(erreurMdpDiv);
-                    // erreurMdpDiv.innerHTML = responseData.erreurMdp;
-
+                if (responseData.erreurMdp != '') {
                     let toast = document.createElement('div');
                     toast.classList.add('toast');
+                    toast.style.height = '100px';
+
                     toast.classList.add('error');
                     toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + responseData.erreurMdp;
                     toastBox.appendChild(toast);
@@ -77,13 +63,7 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
                 }
 
                 if (responseData.erreurs) {
-                    //Afficher le reste des erreurs
-                    // let erreurDiv = document.createElement('div');
-                    // erreurDiv.id = 'erreurs-reste';
-                    // document.getElementById('messages').appendChild(erreurDiv);
-
                     responseData.erreurs.forEach(function(erreur) {
-                        // erreurDiv.innerHTML += erreur + '<br>';
 
                         let toast = document.createElement('div');
                         toast.classList.add('toast');
