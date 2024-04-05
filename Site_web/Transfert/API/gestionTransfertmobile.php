@@ -252,7 +252,7 @@
                     . " a été déposé dans votre compte chèque!";
 
                     $sql = "UPDATE NotificationClient SET titre='Virement accepté', contenu = '$msgSucces1'
-                    WHERE idTransaction='$idTransaction' AND CompteId='$idCompteProvenant'";
+                    WHERE idTransaction='$idTransaction' AND CompteId='$idUser'";
                     $conn->query($sql);
 
                     //Modification de la notification pour montrer À L'ENVOYEUR qu'on a accepté le virement
