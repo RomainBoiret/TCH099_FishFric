@@ -253,13 +253,13 @@
                     $msgSucces1 = "Le virement de " . $montant . "$ de la part de " . $idUser 
                     . " a été déposé dans votre compte chèque!";
 
-                    $sql = "UPDATE NotificationClient SET titre='Virement accepté', contenu = '$msgSucces1'
+                    $sql = "UPDATE NotificationClient SET titre='Virement accepté', contenu = '$msgSucces1', question = NULL
                     WHERE idTransaction='$idTransaction' AND CompteId='$idUser'";
                     $conn->query($sql);
 
                     //Modification de la notification pour montrer À L'ENVOYEUR qu'on a accepté le virement
                     $msgSucces2 = $courrielDest . " a accepté votre virement.";
-                    $sql = "UPDATE NotificationClient SET titre='Virement accepté', contenu = '$msgSucces2' 
+                    $sql = "UPDATE NotificationClient SET titre='Virement accepté', contenu = '$msgSucces2', question = NULL 
                     WHERE idTransaction='$idTransaction' AND CompteId='$idCompteProvenant'";
                     $conn->query($sql);
                 }
