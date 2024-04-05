@@ -246,7 +246,7 @@
                     $conn->query($sql);
 
                     //Actualiser la transaction, elle n'est plus en attente
-                    $sql = "UPDATE TransactionBancaire SET enAttente = 0, idCompteBancaireRecevant = '$idCompteBancaireRecevant', question = NULL
+                    $sql = "UPDATE TransactionBancaire SET enAttente = 0, idCompteBancaireRecevant = '$idCompteBancaireRecevant', question = NULL, typeTransaction = 'Virement Accepté'
                     WHERE id = '$idTransaction';";
                     $conn->query($sql);
 
