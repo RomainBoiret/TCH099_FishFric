@@ -203,7 +203,7 @@
                         $erreurs[] = "Réponse non-reçue";
                     }
                 } else {
-                    $idTransaction = $donnees['idTransaction'];
+                    $idTransaction = trim(implode($donnees['idTransaction']));
                 }
 
             } else
