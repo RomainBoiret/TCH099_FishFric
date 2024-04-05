@@ -24,7 +24,7 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
             let responseData = JSON.parse(xhrCreerCompte.responseText);
 
             //Supprimer TOUS les messages avant d'en rajouter, dans le cas où on soumet plusieurs requêtes
-            document.getElementById('erreur-message').innerHTML = "";
+            // document.getElementById('erreur-message').innerHTML = "";
 
             //Afficher le message de succès dans le DIV respectif
             if ("erreurs" in responseData) {
@@ -63,10 +63,3 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
     //Notif Toast
     let toastbox = document.getElementById('toastBox');
 })
-
-// function showToast() {
-//     let toast = document.createElement('div');
-//     toast.classList.add('toast');
-//     toast.innerHTML = 'success';
-//     toastBox.appendChild(toast);
-// }
