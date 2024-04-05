@@ -181,7 +181,7 @@ label {
 
 #toastBox {
     position: absolute;
-    bottom: 150px;
+    bottom: 200px;
     right: 30px;
     display: flex;
     align-items: flex-end;
@@ -379,14 +379,15 @@ label {
     }
 
     #toastBox {
-        bottom: 30px;
+        bottom: 100px;
         right: 30px;
         padding: 10px;
     }
     
     .toast {
-        width: 200px;
-        font-size: 1rem;
+        width: 300px;
+        height: 50;
+        font-size: 1.3rem;
         font-weight: 600;
     }
 
