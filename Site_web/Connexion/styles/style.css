@@ -382,17 +382,6 @@ label {
         bottom: 100px;
         right: 5px;
     }
-    
-    .toast {
-        width: 250px;
-        height: 50;
-        font-size: 1.3rem;
-        font-weight: 600;
-    }
-
-    .toast i {
-        font-size: 25px;
-    }
 }
 
 @media (max-width: 550px) {
@@ -414,5 +403,16 @@ label {
     
     .illustration-container p {
         font-size: 1.3rem;
+    }
+
+    .toast {
+        width: 250px;
+        height: 50;
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    .toast i {
+        font-size: 25px;
     }
 }
