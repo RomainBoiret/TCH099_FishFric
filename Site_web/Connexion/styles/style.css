@@ -181,7 +181,7 @@ label {
 
 #toastBox {
     position: absolute;
-    bottom: 80px;
+    bottom: 150px;
     right: 30px;
     display: flex;
     align-items: flex-end;
@@ -194,7 +194,7 @@ label {
     width: 400px;
     height: 80px;
     background: var(--white);
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 600;
     margin: 15px 0;
     border-radius: 5px;
@@ -202,6 +202,7 @@ label {
     display: flex;
     align-items: center;
     position: relative;
+    overflow: hidden;
     transform: translateX(100%);
     animation: moveleft .2s linear forwards;
 }
