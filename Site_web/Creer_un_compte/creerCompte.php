@@ -63,7 +63,7 @@
                             <div class="input-field">
                                 <i class='bx bxs-lock'></i>
                                 <input type="password" id="conf_password" placeholder="..." required>
-                                <label for="conf_password">Confirmation du mot de passe</label>
+                                <label for="conf_password">Confirmer mot de passe</label>
                             </div>
                         </div>
                     </div>
