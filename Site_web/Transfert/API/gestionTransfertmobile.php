@@ -246,20 +246,21 @@
                     $conn->query($sql);
 
                     //Actualiser la transaction, elle n'est plus en attente
-                    $sql = "UPDATE TransactionBancaire SET enAttente = 0, idCompteBancaireRecevant = '$idCompteBancaireRecevant'  WHERE id = '$idTransaction';";
+                    $sql = "UPDATE TransactionBancaire SET enAttente = 0, idCompteBancaireRecevant = '$idCompteBancaireRecevant', question = NULL
+                    WHERE id = '$idTransaction';";
                     $conn->query($sql);
 
                     //Modification de la notification pour montrer qu'on a accepté le virement
                     $msgSucces1 = "Le virement de " . $montant . "$ de la part de " . $idUser 
                     . " a été déposé dans votre compte chèque!";
 
-                    $sql = "UPDATE NotificationClient SET titre='Virement accepté', contenu = '$msgSucces1', question = NULL
+                    $sql = "UPDATE NotificationClient SET titre='Virement accepté', contenu = '$msgSucces1'
                     WHERE idTransaction='$idTransaction' AND CompteId='$idUser'";
                     $conn->query($sql);
 
                     //Modification de la notification pour montrer À L'ENVOYEUR qu'on a accepté le virement
                     $msgSucces2 = $courrielDest . " a accepté votre virement.";
-                    $sql = "UPDATE NotificationClient SET titre='Virement accepté', contenu = '$msgSucces2', question = NULL 
+                    $sql = "UPDATE NotificationClient SET titre='Virement accepté', contenu = '$msgSucces2'
                     WHERE idTransaction='$idTransaction' AND CompteId='$idCompteProvenant'";
                     $conn->query($sql);
                 }
