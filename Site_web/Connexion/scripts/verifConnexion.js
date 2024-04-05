@@ -29,7 +29,16 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
             //Afficher le message de succès dans le DIV respectif
             if ("erreurs" in responseData) {
                 responseData.erreurs.forEach(function(erreur) {
-                    document.getElementById('erreur-message').innerHTML += '<p>' + erreur + '</p><br>';
+                    // document.getElementById('erreur-message').innerHTML += '<p>' + erreur + '</p><br>';
+                    
+                    let toast = document.createElement('div');
+                    toast.classList.add('toast');
+                    toast.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>' + erreur;
+                    toastBox.appendChild(toast);
+
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 6000);
                 })
             }
 
@@ -52,4 +61,14 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
 
     //Envoyer la requête
     xhrCreerCompte.send(creerCompteJSON);
+
+    //Notif Toast
+    let toastbox = document.getElementById('toastBox');
 })
+
+// function showToast() {
+//     let toast = document.createElement('div');
+//     toast.classList.add('toast');
+//     toast.innerHTML = 'success';
+//     toastBox.appendChild(toast);
+// }
