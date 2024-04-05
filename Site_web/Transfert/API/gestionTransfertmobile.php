@@ -248,7 +248,7 @@
                     $conn->query($sql);
 
                     //Modification de la notification pour montrer qu'on a accepté le virement
-                    $msgSucces1 = "Le virement de " . $montant . "$ de la part de " . $courrielCompteProvenant 
+                    $msgSucces1 = "Le virement de " . $montant . "$ de la part de " . $idUser 
                     . " a été déposé dans votre compte chèque!";
 
                     $sql = "UPDATE NotificationClient SET titre='Virement accepté', contenu = '$msgSucces1'
