@@ -33,7 +33,7 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
                     
                     let toast = document.createElement('div');
                     toast.classList.add('toast');
-                    toast.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>' + erreur;
+                    toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + erreur;
                     toastBox.appendChild(toast);
 
                     setTimeout(() => {
