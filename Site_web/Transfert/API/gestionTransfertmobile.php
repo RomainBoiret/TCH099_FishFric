@@ -172,6 +172,12 @@
                 $decision = implode($donnees['decision']);
                 $decision = trim($decision);
 
+                if(isset($donnees['idUser']))
+                    {
+                        $idUser = implode($donnees['idUser']);
+                        $idUser = trim($idUser);
+                    }
+
                 //Si la décision est d'accepter, on vérifie la réponse
                 if ($decision == 'accepter') {
                     if(isset($donnees['inputReponse'])) {
@@ -188,11 +194,7 @@
                         if ($reponse != $inputReponse) {
                             $erreurs[] = "Réponse incorrecte! Veuillez réessayer";
                         }
-                    if(isset($donnees['idUser']))
-                    {
-                        $idUser = implode($donnees['idUser']);
-                        $idUser = trim($idUser);
-                    }
+                    
 
                     } 
                     
@@ -293,7 +295,7 @@
                     $msgSucces1 = "Vous avez refusé le virement de " . $montant . "$ de la part de " . $courrielCompteProvenant;
 
                     $sql = "UPDATE NotificationClient SET titre='Virement refusé', contenu = '$msgSucces1'
-                    WHERE idTransaction='$idTransaction' AND CompteId='$idCompteProvenant'";
+                    WHERE idTransaction='$idTransaction' AND CompteId='$idUser'";
                     $conn->query($sql);
 
                     //NOUVELLE notification pour montrer À L'ENVOYEUR qu'on a refusé le virement
