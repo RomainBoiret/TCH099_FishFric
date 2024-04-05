@@ -188,6 +188,11 @@
                         if ($reponse != $inputReponse) {
                             $erreurs[] = "Réponse incorrecte! Veuillez réessayer";
                         }
+                    if(isset($donnees['idUser']))
+                    {
+                        $idUser = implode($donnees['idUser']);
+                        $idUser = trim($idUser);
+                    }
 
                     } 
                     
@@ -230,7 +235,7 @@
                 if ($decision == 'accepter') {
 
                     //CHERCHER ID du compte chèque recevant
-                    $sql = "SELECT cb.id FROM CompteBancaire cb INNER JOIN Compte c ON c.id = cb.compteId WHERE c.id='$idCompteProvenant' AND typeCompte LIKE 'Compte chèque'";
+                    $sql = "SELECT cb.id FROM CompteBancaire cb INNER JOIN Compte c ON c.id = cb.compteId WHERE c.id='$idUser' AND typeCompte LIKE 'Compte chèque'";
                     $resultat = $conn->query($sql);
                     $idCompteBancaireRecevant = $resultat->fetchColumn();
 
