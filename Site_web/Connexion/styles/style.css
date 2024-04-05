@@ -84,7 +84,7 @@ section {
     display: flex;
     flex: none;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 8rem;
 }
 
 .connexion-formulaire form {
@@ -365,12 +365,33 @@ label {
         gap: 2rem;
     }
 
+    .connexion-container .connexion-formulaire {
+        justify-content: space-between;
+        gap: 0;
+    }
+
     .connexion-formulaire form {
         height: 0;
     }
     
     .connexion-formulaire form .input-box {
         gap: 2rem;
+    }
+
+    #toastBox {
+        bottom: 30px;
+        right: 30px;
+        padding: 10px;
+    }
+    
+    .toast {
+        width: 200px;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .toast i {
+        font-size: 25px;
     }
 }
 
