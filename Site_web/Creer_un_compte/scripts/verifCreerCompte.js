@@ -31,7 +31,7 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
             console.log(responseData);
 
             //Supprimer TOUS les messages avant d'en rajouter, dans le cas où on soumet plusieurs requêtes
-            document.getElementById('messages').innerHTML = "";
+            // document.getElementById('messages').innerHTML = "";
 
             //Afficher le message de succès dans le DIV respectif
             if ("msgSucces" in responseData) {
@@ -39,30 +39,61 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
                 document.getElementById('btnCreerCompte').setAttribute('disabled', 'true');
 
                 //Ajouter un div pour y afficher le message de succès
-                let msgDiv = document.createElement('div');
-                msgDiv.id = 'msg-succes';
-                document.getElementById('messages').appendChild(msgDiv);
-                msgDiv.innerHTML = responseData.msgSucces;
+                // let msgDiv = document.createElement('div');
+                // msgDiv.id = 'msg-succes';
+                // document.getElementById('messages').appendChild(msgDiv);
+                // msgDiv.innerHTML = responseData.msgSucces;
+
+                                 
+                let toast = document.createElement('div');
+                toast.classList.add('toast');
+                toast.classList.add('success');
+                toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
+                toastBox.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.remove();
+                }, 6000);
             }
 
             else {
                 //Afficher grande erreur de MDP 
                 if (responseData.erreurMdp) {
                     //Ajouter un div pour y afficher l'erreur de mot de passe
-                    let erreurMdpDiv = document.createElement('div');
-                    erreurMdpDiv.id = 'erreur-mdp';
-                    document.getElementById('messages').appendChild(erreurMdpDiv);
-                    erreurMdpDiv.innerHTML = responseData.erreurMdp;
+                    // let erreurMdpDiv = document.createElement('div');
+                    // erreurMdpDiv.id = 'erreur-mdp';
+                    // document.getElementById('messages').appendChild(erreurMdpDiv);
+                    // erreurMdpDiv.innerHTML = responseData.erreurMdp;
+
+                    let toast = document.createElement('div');
+                    toast.classList.add('toast');
+                    toast.classList.add('error');
+                    toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + responseData.erreurMdp;
+                    toastBox.appendChild(toast);
+    
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 6000);
                 }
 
                 if (responseData.erreurs) {
                     //Afficher le reste des erreurs
-                    let erreurDiv = document.createElement('div');
-                    erreurDiv.id = 'erreurs-reste';
-                    document.getElementById('messages').appendChild(erreurDiv);
+                    // let erreurDiv = document.createElement('div');
+                    // erreurDiv.id = 'erreurs-reste';
+                    // document.getElementById('messages').appendChild(erreurDiv);
 
                     responseData.erreurs.forEach(function(erreur) {
-                        erreurDiv.innerHTML += erreur + '<br>';
+                        // erreurDiv.innerHTML += erreur + '<br>';
+
+                        let toast = document.createElement('div');
+                        toast.classList.add('toast');
+                        toast.classList.add('error');
+                        toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + erreur;
+                        toastBox.appendChild(toast);
+    
+                        setTimeout(() => {
+                            toast.remove();
+                        }, 6000);
                     })
                 }
             }

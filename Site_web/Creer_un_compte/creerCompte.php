@@ -68,11 +68,14 @@
                         </div>
                     </div>
 
-                    <div id="messages">
-                        <!-- <div id="erreur-mdp"></div>
-                        <div id="erreurs-reste"></div> -->
+                    <!-- <div id="messages">
+                        <div id="erreur-mdp"></div>
+                        <div id="erreurs-reste"></div>
                     </div>
-                    <div id="msg-succes"></div>
+                    
+                    <div id="msg-succes"></div> -->
+
+                    <div id="toastBox"></div>
                 </form>
 
                 <div class="btn-box">
