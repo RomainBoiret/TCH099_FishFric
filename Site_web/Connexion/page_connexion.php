@@ -19,8 +19,6 @@ if (isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (tim
     <title>Authentification</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://kit.fontawesome.com/c4254e24a8.js"
-    crossorigin="anonymous"></script>
 </head>
 <body>
 <main>
@@ -64,8 +62,6 @@ if (isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (tim
                                 <label for="remember_account"><input type="checkbox" name="checkbox" id="remember_account" class="remember">
                                     Garder la session active pendant 8 heures</label>
                             </div>
-
-                            <div id="erreur-message"></div>
                         </div>
                     </form>
 
