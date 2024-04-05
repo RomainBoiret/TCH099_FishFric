@@ -19,6 +19,8 @@ if (isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (tim
     <title>Authentification</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/c4254e24a8.js"
+    crossorigin="anonymous"></script>
 </head>
 <body>
 <main>
@@ -68,9 +70,10 @@ if (isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (tim
                     </form>
 
                     <div class="btn-box" >
-                        <button id="btnConnexion" class="btn" >Connexion</button>
+                        <button id="btnConnexion" class="btn">Connexion</button>
                     </div>
 
+                    <div id="toastBox"></div>
                 </div>
             </div>
         </div>
