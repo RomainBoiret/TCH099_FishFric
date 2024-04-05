@@ -262,13 +262,14 @@ p {
 .grid-template .options-template {
     width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 4rem;
 }
 
 .options-template .option {
-    width: 430px;
+    width: 31%;
     height: 150px;
     display: flex;
     align-items: center;
