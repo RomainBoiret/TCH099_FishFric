@@ -380,12 +380,11 @@ label {
 
     #toastBox {
         bottom: 100px;
-        right: 30px;
-        padding: 10px;
+        right: 5px;
     }
     
     .toast {
-        width: 300px;
+        width: 250px;
         height: 50;
         font-size: 1.3rem;
         font-weight: 600;
