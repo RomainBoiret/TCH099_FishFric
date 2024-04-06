@@ -100,6 +100,6 @@ include "../verifSession.php";
     </div>
 </section>
 <main>
-    <script src="./scripts/demanderSupport/scripts/script.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>

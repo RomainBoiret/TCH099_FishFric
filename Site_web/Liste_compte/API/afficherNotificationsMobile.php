@@ -39,6 +39,7 @@
             $notification['dateTransaction'] = htmlspecialchars($notification['dateTransaction'], ENT_QUOTES, 'UTF-8');
             $notification['montant'] = htmlspecialchars($notification['montant'], ENT_QUOTES, 'UTF-8');
             $notification['typeTransaction'] = htmlspecialchars($notification['typeTransaction'], ENT_QUOTES, 'UTF-8');
+            $notification['courrielProvenant'] = htmlspecialchars($notification['courrielProvenant'], ENT_QUOTES, 'UTF-8');
             $notification['enAttente'] = htmlspecialchars($notification['enAttente'], ENT_QUOTES, 'UTF-8');
             $notification['question'] = htmlspecialchars($notification['question'], ENT_QUOTES, 'UTF-8');
             $notification['reponse'] = htmlspecialchars($notification['reponse'], ENT_QUOTES, 'UTF-8');

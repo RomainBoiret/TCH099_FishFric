@@ -114,7 +114,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
                 else
                 {
                     $reponse = "Bienvenue " . $nomUtilisateur;
-                    echo json_encode(["reponse"=>$reponse, "nom"=>$nomUtilisateur, "id"=>$id ,"code"=>"200"]);
+                    echo json_encode(["reponse"=>$reponse, "nom"=>$nomUtilisateur, "id"=>$id, "courriel"=>$courriel ,"code"=>"200"]);
                 }
                 
                 exit(); 
