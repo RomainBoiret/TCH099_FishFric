@@ -20,7 +20,7 @@
 
         //Requête SQL pour chercher les notifications
         $requete = $conn->prepare("SELECT nc.id AS id_notif, idTransaction, CompteId, titre, contenu, lu, dateRecu, idCompteBancaireProvenant,
-        dateTransaction, montant, typeTransaction, enAttente, question, reponse
+        dateTransaction, montant, typeTransaction, enAttente, question, reponse, courrielProvenant
         FROM NotificationClient nc JOIN TransactionBancaire tb ON tb.id = nc.idTransaction WHERE compteId = $idUtilisateur;");
         $requete->execute();
         $notificationsEtTransactions = $requete->fetchAll(PDO::FETCH_ASSOC);
