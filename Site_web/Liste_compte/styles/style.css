@@ -1509,5 +1509,22 @@ label {
         padding: 5px 20px;
         width: 30rem;
         height: 45rem;
+        border: 1px solid black;
+    }
+
+    #elementToWorkOn .notif-container {
+        height: 35rem;
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: var(--white);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: var(--bleu-ocean-abysses);
     }
 }
