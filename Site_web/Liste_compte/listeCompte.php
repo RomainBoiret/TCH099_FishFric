@@ -79,7 +79,6 @@ include "../verifSession.php";
                 </div>
 
                 <nav class="navigation-footer">
-                    <button class="btn"><i class='bx bx-chat'></i>Messages</button>
                     <button onclick="togglePopupNouveauCompte()" class="btn"><i class='bx bx-add-to-queue' ></i>Ajouter un compte</button>
                     <button class="btn"><i class='bx bx-cog' ></i>Préférences de compte</button>
                 </nav>

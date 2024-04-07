@@ -45,6 +45,7 @@ html {
 body {
     background: var(--white);
     color: var(--text-color);
+    overflow: hidden;
 }
 
 header {
@@ -407,10 +408,9 @@ section h1 {
 
 .main-container .main-compte {
     width: 80%;
-    height: 100%;
     background: var(--white);
     border-radius: 5px;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .main-container .main-side-bar {
@@ -528,7 +528,6 @@ section h1 {
 }
 
 .compte-box .montant-compte {
-    width: 50%;
     height: 10rem;
     display: flex;
     align-items: center;
@@ -1240,4 +1239,193 @@ label {
 #messages {
     font-size: 1.5rem;
     color: white;
+}
+
+@media (max-width: 1200px) {
+    .main-side-bar .header-nav {
+        height: 50%;
+    }
+
+    .main-side-bar .footer-nav {
+        height: 50%;
+    }
+
+    .footer-nav .title-footer-nav {
+        height: 10%;
+    }
+
+    .footer-nav .navigation-footer {
+        height: 45%;
+    }
+
+    .footer-nav .assistance-part {
+        height: 45%;
+    }
+
+    .navigation .btn {
+        padding: 0;
+    }
+} 
+
+@media (max-width: 870px) {
+
+    /* Grandes sections de la page (main container, menu en bas, etc..) */
+    html {
+        height: 120vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    main {
+        height: 120vh;
+    }
+
+    section {
+        padding: 1rem 3%;
+        height: 100%;
+    }
+
+    section h1 {
+        font-size: 2rem
+    }
+
+    .main-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1% 1%;
+    }
+
+    .main-container .main-compte {
+        width: 100%;
+        min-height: 20vh;
+    }
+
+    .main-container .main-side-bar {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 40vh;
+    }
+
+    .main-side-bar .header-nav {
+        width: 100%;
+        height: 90%;
+        background: var(--white);
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .main-side-bar .footer-nav {
+        width: 100%;
+        height: 90%;
+        background: var(--white);
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .navigation .btn, .navigation-footer .btn {
+        padding: 0%;
+    }
+
+    .navigation-footer .btn {
+        gap: 1.3rem;
+    }
+
+    .assistance-nav h5 {
+        display: none;
+    }
+
+    .footer-nav .title-footer-nav {
+        width: 100%;
+        height: 20%;
+        background: var(--bleu-ocean-surface);
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        padding: 0 5%;
+    }
+
+    .footer-nav .navigation-footer {
+        height: 50%;
+    }
+
+    .footer-nav .assistance-part {
+        height: 30%;
+    }
+
+    /* Affichage des comptes */
+
+    #compte-content .compte-box {
+        width: 100%;
+        height: 12rem;
+        background: var(--white);
+        color: var(--text-color);
+        border-bottom: 1px dashed var(--text-color);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 2% 2.3%;
+    }
+
+    .compte-box .box-header h2 {
+        font-size: 2rem;
+    }
+
+    .compte-box p {
+        font-size: 1.3rem;
+    }
+
+    .compte-box .btn-menu a {
+        font-size: 1.3rem;
+    }
+}
+
+
+
+@media (max-width: 500px) {
+    /* Barre menu haut */
+    header {
+        height: 8vh;
+        padding: 0 1%;
+    }
+
+    .logo {
+        font-size: 1.7rem;
+    }
+
+    .logo img {
+        width: 35px;
+        border-radius: 15px;
+    }
+    
+    .logo span {
+        color: #ffbc42;
+        font-size: 1.7rem;
+    }
+    
+    header .btn-box {
+        gap: 1.5rem;
+    }
+    
+    .btn-box .messagerie {
+        width: 25px;
+        height: 25px;
+    }
+
+    .btn-box .btn-deconnexion {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.5rem;
+    }
+    
+    .btn-deconnexion i {
+        font-size: 2rem;
+    }
+    
+    .btn-deconnexion a {
+        display: none;
+    }
 }
