@@ -1442,6 +1442,12 @@ label {
         font-size: 1.5rem;
     }
 
+    /* NOTIFS */
+    #elementToWorkOn {
+        top: 60px;
+        right: 10px;
+    }
+
 }
 
 
@@ -1496,5 +1502,12 @@ label {
         width: 350px;
         height: 500px;
         gap: 1.5rem;
+    }
+
+    /* NOTIFS */
+    #elementToWorkOn {
+        padding: 5px 20px;
+        width: 30rem;
+        height: 45rem;
     }
 }
