@@ -13,6 +13,7 @@ include "../verifSession.php";
     <title>Consulter Compte</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="/TCH099_FishFric/Site_web/favicon.ico">
 </head>
 <body>
     <!-- header design -->
