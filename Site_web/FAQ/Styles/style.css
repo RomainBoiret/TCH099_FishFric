@@ -358,7 +358,7 @@ header {
     color: var(--sable-dore);
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
     .questions-container .question-field {
         height: auto;
         flex-direction: column;
