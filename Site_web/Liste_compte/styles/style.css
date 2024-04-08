@@ -1250,6 +1250,7 @@ label {
     flex-direction: column;
     overflow: hidden;
     padding: 10px;
+    z-index: 200;
 }
 
 .toast {
