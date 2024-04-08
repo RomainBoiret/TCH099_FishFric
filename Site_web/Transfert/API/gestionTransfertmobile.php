@@ -406,13 +406,13 @@
             }
 
             //Vérifier que le nom d'établissement est présent
-            if(isset($donnees['nomEtablissement'])) {
+            if(isset($donnees['nomEtablissement']) && !empty($donnees['nomEtablissement'])) {
                 $nomEtablissement = trim(implode($donnees['nomEtablissement']));
             } else
                 $erreurs[] ="Nom d'établissement non-reçu ou non valide";
 
             //Vérifier que la raison de la facture est présente
-            if(isset($donnees['raison'])) {
+            if(isset($donnees['raison']) && !empty($donnees['raison'])) {
                 $raison = trim(implode($donnees['raison']));
             } else
                 $erreurs[] ="Raison de la facture non-reçu ou non valide";
