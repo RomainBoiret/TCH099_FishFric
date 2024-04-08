@@ -131,8 +131,6 @@ include "../verifSession.php";
                 </div>
             </div>
 
-            <div id="toastBox"></div>
-
             <div class="btn-box">
                 <button class="btn-virer" id="btnVirerCompte">Virer</button>
             </div>
@@ -198,8 +196,6 @@ include "../verifSession.php";
                     </div>
                 </div>
             </div>
-
-            <div id="toastBox"></div>
             
             <div class="btn-box">
                 <button class="btn-virer" id="btnVirerPersonne">Virer</button>
@@ -256,8 +252,6 @@ include "../verifSession.php";
                     </div>
                 </div>
             </div>
-
-            <div id="toastBox"></div>
             
             <div class="btn-box">
                 <button class="btn-virer" id="btnPayerFacture">Payer</button>
@@ -275,51 +269,50 @@ include "../verifSession.php";
 
             <div class="main-content-part">
                 <div class="compte-container">
-                        <div class="compte-box">
-                            <h4>Compte épargne</h4>
-                            <p>
-                            - Taux d'intérêt quotidien de 3% <br>
-                            - Solde de 15$ offert dès l'ouverture <br>
-                            - Aucun frais mensuels <br>
-                            </p>
-                            <div class="input-box">
-                                <input type="radio" name="choix" id="choix" placeholder="Compte épargne">
-                            </div>
+                    <div class="compte-box">
+                        <h4>Compte épargne</h4>
+                        <p>
+                        - Taux d'intérêt quotidien de 3% <br>
+                        - Solde de 15$ offert dès l'ouverture <br>
+                        - Aucun frais mensuels <br>
+                        </p>
+                        <div class="input-box">
+                            <input type="radio" name="choix" id="choix" placeholder="Compte épargne">
                         </div>
-        
-                        <div class="compte-box">
-                            <h4>Carte requin</h4>
-                            <p>
-                            - Aucun frais <br> 
-                            - Remises de 2% pour tous les achats <br>
-                            - Taux d'intérêt de 9.99%
-                            </p>
-                            <div class="input-box">
-                                <input type="radio" name="choix" id="choix" placeholder="Carte requin">
-                            </div>
+                    </div>
+    
+                    <div class="compte-box">
+                        <h4>Carte requin</h4>
+                        <p>
+                        - Aucun frais <br> 
+                        - Remises de 2% pour tous les achats <br>
+                        - Taux d'intérêt de 9.99%
+                        </p>
+                        <div class="input-box">
+                            <input type="radio" name="choix" id="choix" placeholder="Carte requin">
                         </div>
-        
-                        <div class="compte-box">
-                            <h4>Investissement</h4>
-                            <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Quo modi, ipsa ipsam hic id exercitationem natus rerum quisquam harum.
-                            </p>
-                            <div class="input-box">
-                                <input type="radio" name="choix" id="choix" placeholder="Compte investissement">
-                            </div>
+                    </div>
+    
+                    <div class="compte-box">
+                        <h4>Investissement</h4>
+                        <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Quo modi, ipsa ipsam hic id exercitationem natus rerum quisquam harum.
+                        </p>
+                        <div class="input-box">
+                            <input type="radio" name="choix" id="choix" placeholder="Compte investissement">
                         </div>
-
+                    </div>
                 </div>
             </div>
-
-            <div id="toastBox"></div>
             
             <div class="btn-box">
                 <button class="btn-virer" id="btnAjouterCompte">Confirmer</button>
             </div>
         </div>
     </div>
+    
+    <div id="toastBox"></div>
 </section>
 </main>
 
