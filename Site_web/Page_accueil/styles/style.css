@@ -235,9 +235,44 @@ p {
 .accueil-embed .acceuil-illustration {
     width: 50%;
     height: 100%;
-    background: url('../Images/bateau_sur_eau.png') no-repeat;
+    position: relative;
+    background-image: url('../Images/fond-marin.jpg');
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    color: var(--white);
+    display: flex;
+    align-items: end;
+    padding: 1%;
+    animation: change 30s infinite ease-in-out;
+}
+
+.accueil-embed .acceuil-illustration p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.accueil-embed .acceuil-illustration a {
+    text-decoration: underline;
+    color: var(--sable-dore);
+}
+
+@keyframes change {
+    0% {
+        background-image: url('../Images/fond-marin.jpg');
+    }
+    25% {
+        background-image: url('../Images/fond-baleine.jpg');
+    }
+    50% {
+        background-image: url('../Images/fond-plongeur.jpg');
+    }
+    75% {
+        background-image: url('../Images/fond-baleine-aquarium.jpg');
+    }
+    100% {
+        background-image: url('../Images/fond-marin.jpg');
+    }
 }
 
 .services {
@@ -311,6 +346,20 @@ p {
     background: url('../Images/aquarium-illustration.png') no-repeat;
     background-size: cover;
     background-position: center;
+    color: var(--white);
+    display: flex;
+    align-items: end;
+    padding: 1%;
+}
+
+.aquarium-content .aquarium-illustration p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.aquarium-content .aquarium-illustration a {
+    text-decoration: underline;
+    color: var(--sable-dore);
 }
 
 .aquarium-content .aquarium-footer-content {
@@ -690,6 +739,10 @@ p {
         font-size: 1.8rem;
     }
 
+    .aquarium-content .aquarium-illustration {
+        padding: 4%;
+    }
+
     .mobile {
         height: auto;
         padding: 8% 4%;
@@ -766,7 +819,7 @@ p {
     }
 
     .accueil-embed .acceuil-illustration {
-        width: 0%;
+        display: none;
     }
 
     .create-account-part .btn-box {
