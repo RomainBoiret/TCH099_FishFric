@@ -36,7 +36,7 @@ document.getElementById("btnConnexion").addEventListener('click', function() {
 
                     setTimeout(() => {
                         toast.remove();
-                    }, 6000);
+                    }, 3000);
                 })
             }
 

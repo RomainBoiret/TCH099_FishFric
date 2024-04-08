@@ -131,7 +131,7 @@ include "../verifSession.php";
                 </div>
             </div>
 
-            <div id="msg-erreur-virement-compte"></div>
+            <div id="toastBox"></div>
 
             <div class="btn-box">
                 <button class="btn-virer" id="btnVirerCompte">Virer</button>
@@ -199,7 +199,7 @@ include "../verifSession.php";
                 </div>
             </div>
 
-            <div id="msg-erreur-virement-personne"></div>
+            <div id="toastBox"></div>
             
             <div class="btn-box">
                 <button class="btn-virer" id="btnVirerPersonne">Virer</button>
@@ -257,7 +257,7 @@ include "../verifSession.php";
                 </div>
             </div>
 
-            <div id="msg-erreur-payer-facture"></div>
+            <div id="toastBox"></div>
             
             <div class="btn-box">
                 <button class="btn-virer" id="btnPayerFacture">Payer</button>
