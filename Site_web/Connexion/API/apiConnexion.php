@@ -92,7 +92,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
                     //Laisser la session active pour 8 heures;
                     $_SESSION['DUREE_SESSION'] = 60*60*8; 
                 } else {
-                    //la durée d'une session est de 300 secondes
+                    //la durée d'une session de base est de 300 secondes
                     $_SESSION['DUREE_SESSION'] = 300; 
                 }
 

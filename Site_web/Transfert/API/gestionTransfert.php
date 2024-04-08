@@ -101,7 +101,8 @@
                 $erreurs[] = "Confirmation de réponse non reçue ou non valide";
 
             //Vérifier que la réponse et la confirmation sont identiques
-            if(isset($donnees['reponse']) && isset($donnees['confReponse'])) {
+            if(isset($donnees['reponse']) && !empty($donnees['reponse'])
+            && isset($donnees['confReponse']) && !empty($donnees['confReponse'])) {
                 if (!($reponse == $confReponse))
                     $erreurs[] = "La réponse doit être identique à la confirmation de réponse";  
             }

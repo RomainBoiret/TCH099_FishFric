@@ -19,6 +19,7 @@ if (isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (tim
     <title>Authentification</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="/TCH099_FishFric/Site_web/favicon.ico">
 </head>
 <body>
 <main>
@@ -83,7 +84,14 @@ if (isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (tim
 //Si la session de la personne a expiré, l'afficher
 if (isset($_SESSION["SESSION_EXPIRED"])) {
     echo "<script>";
-    echo "document.getElementById('erreur-message').innerHTML = '<p style=\"color:red;\">Votre session a expiré!</p>';";
+    echo "                    let toast = document.createElement('div');
+    toast.classList.add('toast');
+    toast.innerHTML = '<i class=\"bx bxs-error-circle\"></i>' + 'Votre session a expiré!';
+    toastBox.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);";
     echo '</script>';    
 
     $_SESSION = [];

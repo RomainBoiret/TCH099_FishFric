@@ -386,3 +386,98 @@ section {
     font-size: 1.6rem;
     font-weight: 600;
 }
+
+
+@media (max-width: 600px) {
+    /* Barre menu haut */
+    header {
+        height: 8vh;
+        padding: 0 1%;
+    }
+
+    .logo {
+        font-size: 1.7rem;
+    }
+
+    .logo img {
+        width: 35px;
+        border-radius: 15px;
+    }
+    
+    .logo span {
+        color: #ffbc42;
+        font-size: 1.7rem;
+    }
+    
+    header .btn-box {
+        gap: 1.5rem;
+    }
+    
+    .btn-box .messagerie {
+        width: 25px;
+        height: 25px;
+    }
+
+    header .btn-deconnexion {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.5rem;
+    }
+    
+    .btn-deconnexion i {
+        font-size: 2rem;
+    }
+    
+    .btn-deconnexion a {
+        display: none;
+    }
+
+    .transfert-box .transfert-detail {
+        width: 60%;
+        gap: 0.2rem;
+    }
+
+    /* DÉTAILS COMPTE */
+    .detail-compte .detail-compte-header h2 {
+        font-size: 2rem;
+    }
+
+    .detail-compte p {
+        font-size: 1.3rem;
+    }
+
+    /* TRANSACTIONS */
+    .transfert-box .transfert-montant-positif, .transfert-box .transfert-montant-negatif {
+        display: flex;
+        justify-content: end;
+        font-size: 1.3rem;
+        min-width: 8rem;
+    }
+
+
+    .transfert-detail .detail-titre {
+        font-size: 1rem;
+    }
+
+    .transfert-detail .detail-date {
+        font-size: 1rem;
+    }
+
+    /*Afficher + transactions*/
+    .historique-compte .footer-historique {
+        height: 3.5rem;
+    } 
+
+    .historique-compte .footer-historique p {
+        font-size: 1.1rem;
+    }
+
+    .footer-historique .btn-voir-plus {
+        width: 20px;
+        height: 20px;
+    }
+
+    .detail-compte .detail-compte-footer  :nth-child(2) {
+        text-align: end;
+    }
+}

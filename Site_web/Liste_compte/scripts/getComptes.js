@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             //Afficher les comptes dans le div
             document.getElementById('compte-content').innerHTML = comptes;
+            let toastBox = document.querySelectorAll('#toastBox')
 
             //--------------------------------------AFFICHER COMPTES virement entre comptes--------------------------------------
             document.getElementById("btnPopupComptes").addEventListener('click', function() {
@@ -86,8 +87,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             let responseData = JSON.parse(requeteVirement.responseText);
 
                             //Afficher les messages d'erreur ou de succès
-                            document.getElementById('msg-erreur-virement-compte').innerText = "";
-                            let msg = document.createElement('span');
+                            // document.getElementById('msg-erreur-virement-compte').innerText = "";
+                            // let msg = document.createElement('span');
 
                             if ("msgSucces" in responseData) {
                                 //Actualiser le solde du compte provenant
@@ -101,9 +102,15 @@ document.addEventListener("DOMContentLoaded", function() {
                                 spanSoldeRecevant.textContent = nouveauSoldeRecevant;
 
                                 //Mettre le message de succès en vert
-                                msg.innerText = responseData.msgSucces;
-                                msg.style.color = "green";
-                                document.getElementById('msg-erreur-virement-compte').appendChild(msg);
+                                let toast = document.createElement('div');
+                                toast.classList.add('toast');
+                                toast.classList.add('success');
+                                toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
+                                toastBox[0].appendChild(toast);
+
+                                setTimeout(() => {
+                                    toast.remove();
+                                }, 3000);
 
                                 //Désactiver le bouton pour ne pas refaire un virement
                                 document.getElementById('btnVirerCompte').setAttribute('disabled', 'true');
@@ -112,9 +119,15 @@ document.addEventListener("DOMContentLoaded", function() {
                             else {
                                 responseData.erreur.forEach(function(message) {
                                     //Afficher chaque message d'erreur
-                                    msg.innerText = message;
-                                    msg.style.color = "red";
-                                    document.getElementById('msg-erreur-virement-compte').appendChild(msg);
+                                    let toast = document.createElement('div');
+                                    toast.classList.add('toast');
+                                    toast.classList.add('error');
+                                    toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
+                                    toastBox[0].appendChild(toast);
+                
+                                    setTimeout(() => {
+                                        toast.remove();
+                                    }, 3000);
                                 })
                             }
                         } 
@@ -192,9 +205,6 @@ document.addEventListener("DOMContentLoaded", function() {
                             let responseData = JSON.parse(requeteVirement.responseText);
 
                             //Afficher les messages d'erreur ou de succès
-                            document.getElementById('msg-erreur-virement-personne').innerText = "";
-                            let msg = document.createElement('span');
-
                             if ("msgSucces" in responseData) {
                                 //Actualiser le solde du compte provenant
                                 let spanSoldeProvenant = document.querySelector('.solde-virement-' + idCompteBancaireProvenant);
@@ -202,9 +212,15 @@ document.addEventListener("DOMContentLoaded", function() {
                                 spanSoldeProvenant.textContent = nouveauSoldeProvenant;
 
                                 //Afficher le message de succès
-                                msg.innerText = responseData.msgSucces;
-                                msg.style.color = "green";
-                                document.getElementById('msg-erreur-virement-personne').appendChild(msg);
+                                let toast = document.createElement('div');
+                                toast.classList.add('toast');
+                                toast.classList.add('success');
+                                toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
+                                toastBox[1].appendChild(toast);
+
+                                setTimeout(() => {
+                                    toast.remove();
+                                }, 3000);
 
                                 //Désactiver le bouton pour ne pas refaire un virement
                                 document.getElementById('btnVirerPersonne').setAttribute('disabled', 'true');
@@ -212,9 +228,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
                             else {
                                 responseData.erreur.forEach(function(message) {
-                                    msg.innerText = message;
-                                    msg.style.color = "red";
-                                    document.getElementById('msg-erreur-virement-personne').appendChild(msg);
+                                    //Afficher chaque message d'erreur
+                                    let toast = document.createElement('div');
+                                    toast.classList.add('toast');
+                                    toast.classList.add('error');
+                                    toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
+                                    toastBox[1].appendChild(toast);
+                
+                                    setTimeout(() => {
+                                        toast.remove();
+                                    }, 3000);
                                 })
                             }
 
@@ -289,10 +312,6 @@ document.addEventListener("DOMContentLoaded", function() {
                             //Décoder la réponse (qui est au format JSON)
                             let responseData = JSON.parse(requeteFacture.responseText);
 
-                            //Afficher les messages d'erreur ou de succès
-                            document.getElementById('msg-erreur-payer-facture').innerText = "";
-                            let msg = document.createElement('span');
-
                             //Afficher un message de succès si la reqûete renvoie "msgSucces"
                             if ("msgSucces" in responseData) {
                                 //Actualiser le solde
@@ -301,9 +320,15 @@ document.addEventListener("DOMContentLoaded", function() {
                                 spanSolde.textContent = nouveauSolde;
 
                                 //Mettre le message de succès
-                                msg.innerText = responseData.msgSucces;
-                                msg.style.color = "green";
-                                document.getElementById('msg-erreur-payer-facture').appendChild(msg);
+                                let toast = document.createElement('div');
+                                toast.classList.add('toast');
+                                toast.classList.add('success');
+                                toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
+                                toastBox[2].appendChild(toast);
+
+                                setTimeout(() => {
+                                    toast.remove();
+                                }, 3000);
 
                                 //Désactiver le bouton pour ne pas refaire un virement
                                 document.getElementById('btnPayerFacture').setAttribute('disabled', 'true');
@@ -312,9 +337,16 @@ document.addEventListener("DOMContentLoaded", function() {
                             //Sinon, afficher chaque erreur
                             else {
                                 responseData.erreur.forEach(function(message) {
-                                    msg.innerText = message;
-                                    msg.style.color = "red";
-                                    document.getElementById('msg-erreur-payer-facture').appendChild(msg);
+                                    //Afficher chaque message d'erreur
+                                    let toast = document.createElement('div');
+                                    toast.classList.add('toast');
+                                    toast.classList.add('error');
+                                    toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
+                                    toastBox[2].appendChild(toast);
+                
+                                    setTimeout(() => {
+                                        toast.remove();
+                                    }, 3000);
                                 })
                             }
                         } 
@@ -390,7 +422,7 @@ function fermerMessagerie() {
 function togglePopupentreCompte() {
     let popup = document.getElementById("popup-1");
     popup.classList.toggle("active");
-    document.getElementById('msg-erreur-virement-compte').innerText = ""; //Vider les messages d'erreurs
+    //document.getElementById('msg-erreur-virement-compte').innerText = ""; //Vider les messages d'erreurs
 
     //Rafraîchir la page au bout de 100ms lorsqu'on ferme la popup, pour actualiser les valeurs de comptes
     if (!document.getElementById("popup-1").classList.contains("active")) {
@@ -404,7 +436,7 @@ function togglePopupentreCompte() {
 function togglePopupentrePersonne() {
     let popup = document.getElementById("popup-2");
     popup.classList.toggle("active");
-    document.getElementById('msg-erreur-virement-personne').innerText = ""; //Vider les messages d'erreurs
+    //document.getElementById('msg-erreur-virement-personne').innerText = ""; //Vider les messages d'erreurs
 
     //Rafraîchir la page au bout de 100ms lorsqu'on ferme la popup, pour actualiser les valeurs de comptes
     if (!document.getElementById("popup-2").classList.contains("active")) {
@@ -418,7 +450,7 @@ function togglePopupentrePersonne() {
 function togglePopupFacture() {
     let popup = document.getElementById("popup-3");
     popup.classList.toggle("active");
-    document.getElementById('msg-erreur-payer-facture').innerText = ""; //Vider les messages d'erreurs
+    //document.getElementById('msg-erreur-payer-facture').innerText = ""; //Vider les messages d'erreurs
 
     //Rafraîchir la page au bout de 100ms lorsqu'on ferme la popup, pour actualiser les valeurs de comptes
     if (!document.getElementById("popup-3").classList.contains("active")) {
@@ -432,7 +464,7 @@ function togglePopupFacture() {
 function togglePopupNouveauCompte()  {
     let popup = document.getElementById("popup-4");
     popup.classList.toggle("active");
-    document.getElementById('msg-erreur-payer-facture').innerText = ""; //Vider les messages d'erreurs
+    //document.getElementById('msg-erreur-payer-facture').innerText = ""; //Vider les messages d'erreurs
 
     //Rafraîchir la page au bout de 100ms lorsqu'on ferme la popup, pour actualiser les valeurs de comptes
     if (!document.getElementById("popup-4").classList.contains("active")) {

@@ -13,6 +13,7 @@ include "../verifSession.php";
     <title>Liste Compte</title>
     <link rel="stylesheet" href="../Liste_compte/styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="/TCH099_FishFric/Site_web/favicon.ico">
 </head>
 <body>
     
@@ -130,7 +131,7 @@ include "../verifSession.php";
                 </div>
             </div>
 
-            <div id="msg-erreur-virement-compte"></div>
+            <div id="toastBox"></div>
 
             <div class="btn-box">
                 <button class="btn-virer" id="btnVirerCompte">Virer</button>
@@ -198,7 +199,7 @@ include "../verifSession.php";
                 </div>
             </div>
 
-            <div id="msg-erreur-virement-personne"></div>
+            <div id="toastBox"></div>
             
             <div class="btn-box">
                 <button class="btn-virer" id="btnVirerPersonne">Virer</button>
@@ -256,7 +257,7 @@ include "../verifSession.php";
                 </div>
             </div>
 
-            <div id="msg-erreur-payer-facture"></div>
+            <div id="toastBox"></div>
             
             <div class="btn-box">
                 <button class="btn-virer" id="btnPayerFacture">Payer</button>
