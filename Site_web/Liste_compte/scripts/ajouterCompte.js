@@ -35,7 +35,7 @@ document.getElementById('btnAjouterCompte').addEventListener('click', function()
                 toast.classList.add('toast');
                 toast.classList.add('success');
                 toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.succes;
-                toastBox[3].appendChild(toast);
+                toastBox.appendChild(toast);
 
                 setTimeout(() => {
                     toast.remove();
@@ -49,7 +49,7 @@ document.getElementById('btnAjouterCompte').addEventListener('click', function()
                 toast.classList.add('toast');
                 toast.classList.add('error');
                 toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + responseData.erreurs;
-                toastBox[3].appendChild(toast);
+                toastBox.appendChild(toast);
 
                 setTimeout(() => {
                     toast.remove();

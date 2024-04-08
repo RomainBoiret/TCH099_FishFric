@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             //Afficher les comptes dans le div
             document.getElementById('compte-content').innerHTML = comptes;
-            let toastBox = document.querySelectorAll('#toastBox')
+            let toastBox = document.getElementById('toastBox')
 
             //--------------------------------------AFFICHER COMPTES virement entre comptes--------------------------------------
             document.getElementById("btnPopupComptes").addEventListener('click', function() {
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 toast.classList.add('toast');
                                 toast.classList.add('success');
                                 toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
-                                toastBox[0].appendChild(toast);
+                                toastBox.appendChild(toast);
 
                                 setTimeout(() => {
                                     toast.remove();
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                     toast.classList.add('toast');
                                     toast.classList.add('error');
                                     toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
-                                    toastBox[0].appendChild(toast);
+                                    toastBox.appendChild(toast);
                 
                                     setTimeout(() => {
                                         toast.remove();
@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 toast.classList.add('toast');
                                 toast.classList.add('success');
                                 toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
-                                toastBox[1].appendChild(toast);
+                                toastBox.appendChild(toast);
 
                                 setTimeout(() => {
                                     toast.remove();
@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                     toast.classList.add('toast');
                                     toast.classList.add('error');
                                     toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
-                                    toastBox[1].appendChild(toast);
+                                    toastBox.appendChild(toast);
                 
                                     setTimeout(() => {
                                         toast.remove();
@@ -324,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 toast.classList.add('toast');
                                 toast.classList.add('success');
                                 toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
-                                toastBox[2].appendChild(toast);
+                                toastBox.appendChild(toast);
 
                                 setTimeout(() => {
                                     toast.remove();
@@ -342,7 +342,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                     toast.classList.add('toast');
                                     toast.classList.add('error');
                                     toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
-                                    toastBox[2].appendChild(toast);
+                                    toastBox.appendChild(toast);
                 
                                     setTimeout(() => {
                                         toast.remove();
