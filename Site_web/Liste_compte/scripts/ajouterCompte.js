@@ -28,27 +28,32 @@ document.getElementById('btnAjouterCompte').addEventListener('click', function()
 
             //Décoder la réponse (qui est au format JSON)
             let responseData = JSON.parse(requeteAjouterCompte.responseText);
-            
-            let divMessages = document.getElementById('messages');
-            divMessages.innerText = '';
 
             if (responseData.succes) {
                 //Changer le texte pour dire que le compte a bien été crée
-                divMessages.innerHTML = responseData.succes;
+                let toast = document.createElement('div');
+                toast.classList.add('toast');
+                toast.classList.add('success');
+                toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.succes;
+                toastBox[3].appendChild(toast);
 
-                console.log(responseData.succes)
-                divMessages.style.color = 'green';
-
-                console.log(divMessages)
+                setTimeout(() => {
+                    toast.remove();
+                }, 3000);
 
             }
 
             else {
                 //Changer le texte pour dire que le compte a bien été crée
-                divMessages.innerHTML = responseData.erreurs;
-                divMessages.style.color = 'red';
+                let toast = document.createElement('div');
+                toast.classList.add('toast');
+                toast.classList.add('error');
+                toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + responseData.erreurs;
+                toastBox[3].appendChild(toast);
 
-                console.log(divMessages)
+                setTimeout(() => {
+                    toast.remove();
+                }, 3000);
             }
         }
     }

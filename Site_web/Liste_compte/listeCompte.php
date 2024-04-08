@@ -313,7 +313,7 @@ include "../verifSession.php";
                 </div>
             </div>
 
-            <div id="messages">...</div>
+            <div id="toastBox"></div>
             
             <div class="btn-box">
                 <button class="btn-virer" id="btnAjouterCompte">Confirmer</button>
