@@ -1,5 +1,14 @@
-//--------------------------------------AFFICHER la popup "Contacter technicien support"--------------------------------------
-function togglePopupContacterSupport() {
-    document.getElementById("popup").classList.toggle("active");
-    document.getElementById('msg-erreur-virement-compte').innerText = ""; //Vider les messages d'erreurs
-}
+var btnSoumettre = document.getElementById("soumettre");
+
+btnSoumettre.addEventListener("click", function() {
+    
+    Swal.fire({
+        imageUrl: "",
+        imageHeight: 80,
+        title: "Message envoyé !",
+        text: "Votre demande de support a été soumise avec succès !",
+        customClass: {
+            container: 'my-swal-container'
+        }
+    });
+});

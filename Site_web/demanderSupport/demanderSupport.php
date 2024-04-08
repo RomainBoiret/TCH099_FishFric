@@ -10,97 +10,68 @@ include "../verifSession.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assistance Nautico</title>
-    <link rel="stylesheet" href="./styles/style.css">
+    <title>Fish&Fric - FAQ</title>
+    <link rel="stylesheet" href="./Styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="icon" href="/TCH099_FishFric/Site_web/favicon.ico">
 </head>
 <body>
 
 <!-- header design -->
 <header>
-    <a href="../Liste_compte/listeCompte.php"  class="logo">
+    <a href="../index.html" class="logo">
         <img src="../Images/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
 
-    <button class="btn-deconnexion" onclick="window.location.href='../deconnexion.php'"><i class='bx bx-log-out-circle'></i><a>Se déconnecter</a></button>
+    <div class="btn-box">
+        <button class="btn-deconnexion" onclick="window.location.href='../deconnexion.php'"><i class='bx bx-log-out-circle'></i><a>Se déconnecter</a></button>
+    </div>
 </header>
+<main>
 
 <!-- assistance design -->
 <section>
     <div class="main-container">
-        <div class="recherche-container">
-            <form action="" class="search-bar">
-                <input type="text" placeholder="effectuer une recherche" name="q">
-                <button type="submit"><i class='bx bx-search'></i></button>
-            </form>
-        </div>
+        <div class="assitance-container">
+            <div class="text-container">
+                <h1>Besoin d'aide ?</h1>
 
-        <div class="assistance-container">
-            <div class="assistance-left-part">
-                <div class="assistance-illustration">
-                    <h1>Assistance Nautico</h1>
-                </div>
+                <p>Vous rencontrez un problème ou vous avez des intérogations ?</p>
+    
+                <p>Contactez un technicien !</p>
 
-                <div class="assistance-title">
-                    <h2>Besoin d'aide ?</h2>
-                    <p>Vous rencontrez un problème ou vous avez des intérogations ?</p>
-                    <p>Posez vos questions à notre ChatBot ou contactez un technicien !</p>
-                </div>
+                <p>Notre équipe d'assistance traitera votre demande dans les plus brefs délais et vous fournira une réponse ou une solution à votre problème. Nous sommes là pour vous aider à résoudre tout problème ou répondre à toute question que vous pourriez avoir concernant nos services.</p>
+    
+                <p>Consultez notre FAQ pour vérifié que nous n'ayons pas déjà répondu à votre question !</p>
 
                 <div class="btn-box">
-                    <button class="btn-faq">FAQ</button>
-                    <button onclick="togglePopupContacterSupport()" class="btn-contacter">Contacter</button>
-                </div>
-            </div>
-
-            <div class="assistance-right-part">
-                <div class="template-message">
-                    
-                </div>
-
-                <div class="template-message-footer">
-                    <form action="" class="message-bar">
-                        <input type="text" placeholder="Poser une question..." name="p">
-                        <button onclick="" type="submit"><i class='bx bx-paper-plane'></i></button>
-                    </form>
+                    <a href="../FAQ/page_faq.html" class="btn">Consulter FAQ</a>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- ------------------------------------POPUP Contacter technicien support------------------------------------ -->
-    <div class="popup" id="popup">
-        <div class="overlay"></div>
-
-        <div class="content">
-            <div class="close-btn" onclick="togglePopupContacterSupport()"><i class='bx bx-x'></i></div>
-            <h1>Contacter un support</h1>
-
-            <div class="main-content-part">
-                <form action="#">
-                    <div class="input-box">
-                        <div class="input-field">
-                            <input type="text" placeholder="Sujet du problème" required>
-                            <span class="focus"></span>
-                        </div>
-                    </div>
-            
-                    <div class="textarea-field">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="Décrivez votre problème" required></textarea>
-                        <span class="focus"></span>
-                    </div>
-                </form>
-            </div>
-            
-            <div class="btn-box">
-                <button class="btn-envoyer" id="btnContacterSupport">Envoyer</button>
-            </div>
+        <div class="message-container">
+            <form action="#">
+                <h2>Contacter un support</h2>
+                <div class="input-field">
+                    <input type="text" placeholder="Intitulé du prolème..." required>
+                </div>
+        
+                <div class="textarea-field">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Décrivez votre problème..." required></textarea>
+                </div>
+        
+                <div class="btn-box">
+                    <button type="submit" class="btn" id="soumettre">Soumettre</button>
+                    <button type="reset" class="btn">Effacer</button>
+                </div>
+            </form>
         </div>
     </div>
 </section>
-<main>
-    <script src="./scripts/script.js"></script>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="./Scripts/script.js"></script>
 </body>
 </html>
