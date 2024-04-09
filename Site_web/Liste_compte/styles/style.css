@@ -445,6 +445,7 @@ section h1 {
 .main-compte #compte-content {
     width: 100%;
     height: 90%;
+    background: var(--white);
     padding: 2% 1% 0;
     overflow-y: scroll;
 }
@@ -464,7 +465,8 @@ section h1 {
 #compte-content .compte-box {
     width: 100%;
     height: 18rem;
-    background: var(--white);
+    background-size: 75px;
+    background-position: right 45% bottom 50%;
     color: var(--text-color);
     border-bottom: 1px dashed var(--text-color);
     display: flex;
