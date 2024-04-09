@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let comptes = '';
             responseData.comptes.forEach(function(compte) {
                 //Mettre tout le code HTML de la structure d'un compte dans une string
-                let compteHtml = '<div class="compte-box"><div class="box-header">';
+                let compteHtml = '<div class="compte-box" id="compte-box"><div class="box-header">';
                 compteHtml += '<h2>' + compte.typeCompte + '</h2>';
                 compteHtml += '<div class="montant-compte">';
                 compteHtml += '<div class="montant">' + compte.solde + '</div></div></div>';
@@ -28,6 +28,28 @@ document.addEventListener("DOMContentLoaded", function() {
                 compteHtml += '</i><a href="/TCH099_FishFric/Site_web/consulterCompte/consulterCompte.php?id=' + compte.id + '">Détails du compte</a></div></div>';                                                              
 
                 comptes += compteHtml;
+
+                let elements = document.querySelectorAll('#compte-box');
+
+                elements.forEach(element => {
+
+                    if (compte.typeCompte == "Compte chèque")
+                    {
+                        element.style.background = "url('../images/poisson-globe.png') no-repeat";
+                    }
+                    else if (compte.typeCompte == "Compte épargne")
+                    {
+                        element.style.background = "url('../images/poisson-koi.png') no-repeat";
+                    }
+                    else if (compte.typeCompte == "Carte requin")
+                    {
+                        element.style.background = "url('../images/requin.png') no-repeat";
+                    }
+                    else
+                    {
+                        element.style.background = "url('../images/algue.png') no-repeat";
+                    } 
+                });
             });
 
             //Afficher les comptes dans le div
