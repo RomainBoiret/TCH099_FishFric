@@ -108,12 +108,15 @@ document.addEventListener("DOMContentLoaded", function() {
                                 toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
                                 toastBox.appendChild(toast);
 
+                                //Fermer la fenêtre
                                 setTimeout(() => {
-                                    toast.remove();
-                                }, 3000);
+                                    togglePopupentreCompte()
+                                }, 1500);
 
                                 //Désactiver le bouton pour ne pas refaire un virement
                                 document.getElementById('btnVirerCompte').setAttribute('disabled', 'true');
+
+                                
                             }
 
                             else {
@@ -218,9 +221,10 @@ document.addEventListener("DOMContentLoaded", function() {
                                 toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
                                 toastBox.appendChild(toast);
 
+                                //Fermer la fenêtre
                                 setTimeout(() => {
-                                    toast.remove();
-                                }, 3000);
+                                    togglePopupentrePersonne()
+                                }, 1500);
 
                                 //Désactiver le bouton pour ne pas refaire un virement
                                 document.getElementById('btnVirerPersonne').setAttribute('disabled', 'true');
@@ -326,9 +330,10 @@ document.addEventListener("DOMContentLoaded", function() {
                                 toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
                                 toastBox.appendChild(toast);
 
+                                //Fermer la fenêtre
                                 setTimeout(() => {
-                                    toast.remove();
-                                }, 3000);
+                                    togglePopupFacture()
+                                }, 1500);
 
                                 //Désactiver le bouton pour ne pas refaire un virement
                                 document.getElementById('btnPayerFacture').setAttribute('disabled', 'true');
@@ -344,9 +349,10 @@ document.addEventListener("DOMContentLoaded", function() {
                                     toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
                                     toastBox.appendChild(toast);
                 
-                                    setTimeout(() => {
-                                        toast.remove();
-                                    }, 3000);
+                                //Fermer la fenêtre
+                                setTimeout(() => {
+                                    togglePopupNouveauCompte()
+                                }, 1500);
                                 })
                             }
                         } 
