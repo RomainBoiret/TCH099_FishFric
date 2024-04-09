@@ -268,8 +268,8 @@ include "../verifSession.php";
             <h1>Créer un nouveau compte</h1>
 
             <div class="main-content-part">
-                <div class="compte-container">
-                    <div class="compte-box">
+                <div class="compte-choix-container">
+                    <div class="compte-choix">
                         <h4>Compte épargne</h4>
                         <p>
                         - Taux d'intérêt quotidien de 3% <br>
@@ -281,7 +281,7 @@ include "../verifSession.php";
                         </div>
                     </div>
     
-                    <div class="compte-box">
+                    <div class="compte-choix">
                         <h4>Carte requin</h4>
                         <p>
                         - Aucun frais <br> 
@@ -293,7 +293,7 @@ include "../verifSession.php";
                         </div>
                     </div>
     
-                    <div class="compte-box">
+                    <div class="compte-choix">
                         <h4>Investissement</h4>
                         <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 

@@ -1174,7 +1174,7 @@ label {
     height: 6rem;
 }
 
-.main-content-part .compte-container {
+.main-content-part .compte-choix-container {
     width: 100%;
     height: 100%;
     display: flex;
@@ -1184,7 +1184,7 @@ label {
     padding: 5% 0;
 }
 
-.compte-container .compte-box {
+.compte-choix-container .compte-choix {
     width: 30rem;
     height: 100%;
     background: #d5deef;
@@ -1196,21 +1196,21 @@ label {
     padding: 2%;
 }
 
-.compte-box h4 {
+.compte-choix h4 {
     color: var(--text-color);
     font-size: 1.8rem;
     font-weight: 600;
     text-align: center;
 }
 
-.compte-box p {
+.compte-choix p {
     color: var(--text-color);
     font-size: 1.5rem;
     font-weight: 400;
     text-align: start;
 }
 
-.compte-box form {
+.compte-choix form {
     width: 100%;
     height: 10rem;
     display: flex;
@@ -1218,7 +1218,7 @@ label {
     align-items: center;
 }
 
-.compte-box form .input-box {
+.compte-choix form .input-box {
     width: 100%;
     height: 100%;
     display: flex;
@@ -1226,7 +1226,7 @@ label {
     align-items: center;
 }
 
-.compte-box form .input-box input {
+.compte-choix form .input-box input {
     width: 40px;
     height: 40px;
     cursor: pointer;
