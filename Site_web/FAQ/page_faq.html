@@ -12,7 +12,7 @@
 
 <!-- header design -->
 <header>
-    <a href="#" class="logo">
+    <a href="../index.html" class="logo">
         <img src="../Images/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>

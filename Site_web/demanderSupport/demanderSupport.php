@@ -51,27 +51,31 @@ include "../verifSession.php";
         </div>
 
         <div class="message-container">
-            <form action="#">
+            <form>
                 <h2>Contacter un support</h2>
                 <div class="input-field">
                     <input type="text" placeholder="Intitulé du prolème..." required>
                 </div>
         
                 <div class="textarea-field">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Décrivez votre problème..." required></textarea>
+                    <textarea id="messageRecu" cols="30" rows="10" placeholder="Décrivez votre problème..." required></textarea>
                 </div>
         
-                <div class="btn-box">
-                    <button type="submit" class="btn" id="soumettre">Soumettre</button>
-                    <button type="reset" class="btn">Effacer</button>
-                </div>
             </form>
+
+            <div class="btn-box">
+                <button type="submit" class="btn" id="soumettre">Soumettre</button>
+                <button type="reset" class="btn">Effacer</button>
+            </div>
+
         </div>
+
+        <div id="toastBox"></div>
     </div>
 </section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="./scripts/script.js"></script>
+<script src="./scripts/demandeAssistance.js"></script>
 </body>
 </html>
