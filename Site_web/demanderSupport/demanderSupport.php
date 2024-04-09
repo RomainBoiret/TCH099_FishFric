@@ -72,6 +72,6 @@ include "../verifSession.php";
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="./Scripts/script.js"></script>
+<script src="./scripts/script.js"></script>
 </body>
 </html>
