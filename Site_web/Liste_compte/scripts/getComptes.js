@@ -44,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 compteHtml += '><div class="box-header">';
                 compteHtml += '<h2>' + compte.typeCompte + '</h2>';
                 compteHtml += '<div class="montant-compte">';
-                compteHtml += '<div class="montant">' + compte.solde + '</div></div></div>';
+                compteHtml += '<div class="montant">' + compte.solde + '</div>';
+                compteHtml += '<img src="Images/fishcoin.png"></div></div>';
                 compteHtml += '<p>Numéro de compte: ' + compte.id + '</p>';
                 compteHtml += '<div class="btn-menu"><i class="bx bxs-right-arrow-circle">';
                 compteHtml += '</i><a href="/TCH099_FishFric/Site_web/consulterCompte/consulterCompte.php?id=' + compte.id + '">Détails du compte</a></div></div>';                                                              

@@ -538,6 +538,10 @@ section h1 {
     gap: 0.6rem;
 }
 
+.compte-box .montant-compte img {
+    width: 30px;
+}
+
 .compte-box .montant-compte .montant {
     font-size: 2rem;
     font-weight: 600;
@@ -602,14 +606,18 @@ section h1 {
     gap: 1rem;
     border-radius: 10px;
     padding: 3% 2%;
-    background: var(--white);
+    background-color: var(--white);
     color: var(--text-color);
     font-size: 1.5rem;
     font-weight: 550;
 }
 
 .navigation .btn:hover {
-    background: #e8ebee;
+    background-color: #e8ebee;
+    background-image: url('../images/poisson.png');
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: right 5% bottom 50%;
 }
 
 .navigation .btn i {
@@ -658,14 +666,18 @@ section h1 {
     gap: 1rem;
     border-radius: 10px;
     padding: 3% 2%;
-    background: var(--white);
+    background-color: var(--white);
     color: var(--text-color);
     font-size: 1.5rem;
     font-weight: 550;
 }
 
 .navigation-footer .btn:hover {
-    background: #e8ebee;
+    background-color: #e8ebee;
+    background-image: url('../images/poisson.png');
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: right 5% bottom 50%;
 }
 
 .navigation-footer .btn i {
@@ -1446,7 +1458,7 @@ label {
     #compte-content .compte-box {
         width: 100%;
         height: 12rem;
-        background: var(--white);
+        background-size: 0px;
         color: var(--text-color);
         border-bottom: 1px dashed var(--text-color);
         display: flex;
@@ -1465,6 +1477,10 @@ label {
 
     .compte-box .btn-menu a {
         font-size: 1.3rem;
+    }
+
+    .assistance-nav .btn {
+        width: 15rem;
     }
 
     /* POPUPS */
