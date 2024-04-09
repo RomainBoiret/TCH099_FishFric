@@ -317,8 +317,15 @@ include "../verifSession.php";
 </main>
 
 <!-- footer design -->
-<footer>
-
+<footer class="footer">
+    <div class="footer-text">
+        <p>Icones céées par <a href="https://www.flaticon.com/authors/Freepik" title="Freepik">Freepik</a> depuis <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+        <p>Copyright &copy; 2024 Fish&Fric | All Rights Reserved.</p>
+    </div>
+    
+    <div class="footer-iconTop">
+        <a href="#"><i class='bx bx-up-arrow-alt'></i></box-icon></a>
+    </div>
 </footer>
 </body>
 <script src="./scripts/getComptes.js"></script>
