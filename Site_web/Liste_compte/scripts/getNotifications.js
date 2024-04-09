@@ -118,13 +118,31 @@ function recevoirVirement(idTransaction, decision) {
 
                 //Changer le texte pour dire que le virement a été accepté/refusé
                 document.getElementById(responseData.id_notif).children[1].children[0].innerText = responseData.msgSucces;
+
+                let toast = document.createElement('div');
+                toast.classList.add('toast');
+                toast.classList.add('success');
+                toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
+                toastBox.appendChild(toast);
+
+                //Fermer la fenêtre
+                setTimeout(() => {
+                    toast.remove()
+                }, 3000);
             }
 
             else {
                 responseData.erreur.forEach(function(message) {
-                    msg.innerText = message;
-                    msg.style.color = "red";
-                    document.getElementById('msg-erreur-' + idTransaction).appendChild(msg);
+                    //Afficher chaque message d'erreur
+                    let toast = document.createElement('div');
+                    toast.classList.add('toast');
+                    toast.classList.add('error');
+                    toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
+                    toastBox.appendChild(toast);
+
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 3000);
                 })
             }
 

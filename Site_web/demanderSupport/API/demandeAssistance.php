@@ -15,7 +15,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === 'POST') {
     //Gestion d'erreurs
     $erreurs = array();
 
-    if(empty($donneesJSON['mobile']))
+    if(!isset($donneesJSON['mobile']))
     {
         //Get toutes les données JSON
         $messageRecu = trim($donneesJSON['messageRecu']);
