@@ -22,61 +22,80 @@ if (isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (tim
     <link rel="icon" href="/TCH099_FishFric/Site_web/favicon.ico">
 </head>
 <body>
+<!-- header design -->
+<header>
+    <a href="#" class="logo">
+        <img src="../Images/logo-website.jpg">
+        <div>Fish<span>&</span>Fric</div>
+    </a>
+
+    <div class="bx bx-menu" id="menu-icon"></div>
+
+    <nav class="navigation">
+        <a href="../index.html">Accueil</a>
+        <a href="../FAQ/page_faq.html">Voir la FAQ</a>
+        <a href="#">Notre équipe</a>
+
+        <span class="active-nav"></span>
+    </nav>
+</header>
+
 <main>
-    <section>
-        <div class="main-container">
-            <div class="illustration-container">
-                <div class="illustration-header">
-                    <h1>Vous êtes nouveau ?</h1>
+<section>
+    <div class="main-container">
+        <div class="illustration-container">
+            <div class="illustration-header">
+                <h1>Vous êtes nouveau ?</h1>
 
-                    <p>Rejoignez notre communauté de clients satisfaits, 
-                        et plongez dans l'aventure bancaire unique de Fish&Fric
-                        dès aujourd'hui.</p>
-                </div>
-
-                <button class="btn-connecter" onclick="window.location.href='../Creer_un_compte/creerCompte.php'"><a>Créer un compte</a></button>
+                <p>Rejoignez notre communauté de clients satisfaits, 
+                    et plongez dans l'aventure bancaire unique de Fish&Fric
+                    dès aujourd'hui.</p>
             </div>
 
-            <div class="connexion-container">
-                <div class="connexion-header">
-                    <h1>Page de connexion</h1>
+            <button class="btn-connecter" onclick="window.location.href='../Creer_un_compte/creerCompte.php'"><a>Créer un compte</a></button>
+        </div>
 
-                    <p>Heureux de vous revoir chère Fisheur ! 🐳</p>
-                </div>
+        <div class="connexion-container">
+            <div class="connexion-header">
+                <h1>Page de connexion</h1>
 
-                <div class="connexion-formulaire">
-                    <form action="page_connexion.php" method="post" class="formulaire">
-                        <div class="input-box">
-                            <div class="input-field">
-                                <i class='bx bxs-user'></i>
-                                <input type="text" id="courriel" placeholder="..." required>
-                                <label for="courriel">Adresse courriel</label>
-                            </div>
-    
-                            <div class="input-field">
-                                <i class='bx bxs-lock'></i>
-                                <input type="password" id="password" placeholder="..." required>
-                                <label for="password">Mot de passe</label>
-                            </div>
+                <p>Heureux de vous revoir chère Fisheur ! 🐳</p>
+            </div>
 
-                            <div class="remember-box">
-                                <label for="remember_account"><input type="checkbox" name="checkbox" id="remember_account" class="remember">
-                                    Garder la session active pendant 8 heures</label>
-                            </div>
+            <div class="connexion-formulaire">
+                <form action="page_connexion.php" method="post" class="formulaire">
+                    <div class="input-box">
+                        <div class="input-field">
+                            <i class='bx bxs-user'></i>
+                            <input type="text" id="courriel" placeholder="..." required>
+                            <label for="courriel">Adresse courriel</label>
                         </div>
-                    </form>
 
-                    <div class="btn-box" >
-                        <button id="btnConnexion" class="btn">Connexion</button>
+                        <div class="input-field">
+                            <i class='bx bxs-lock'></i>
+                            <input type="password" id="password" placeholder="..." required>
+                            <label for="password">Mot de passe</label>
+                        </div>
+
+                        <div class="remember-box">
+                            <label for="remember_account"><input type="checkbox" name="checkbox" id="remember_account" class="remember">
+                                Garder la session active pendant 8 heures</label>
+                        </div>
                     </div>
+                </form>
 
-                    <div id="toastBox"></div>
+                <div class="btn-box" >
+                    <button id="btnConnexion" class="btn">Connexion</button>
                 </div>
+
+                <div id="toastBox"></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 </main>
 </body>
+<script src="../Page_accueil/scripts/script.js"></script>
 <script src="./scripts/verifConnexion.js"></script>
 </html>
 

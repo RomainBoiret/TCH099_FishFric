@@ -9,6 +9,24 @@
     <link rel="icon" href="/TCH099_FishFric/Site_web/favicon.ico">
 </head>
 <body>
+
+<!-- header design -->
+<header>
+    <a href="#" class="logo">
+        <img src="../Images/logo-website.jpg">
+        <div>Fish<span>&</span>Fric</div>
+    </a>
+
+    <div class="bx bx-menu" id="menu-icon"></div>
+
+    <nav class="navigation">
+        <a href="../index.html">Accueil</a>
+        <a href="../FAQ/page_faq.html">Voir la FAQ</a>
+        <a href="#">Notre équipe</a>
+
+        <span class="active-nav"></span>
+    </nav>
+</header>
 <main>
 
 <section>
@@ -87,5 +105,6 @@
 </section>
 </main>
 </body>
+<script src="../Page_accueil/scripts/script.js"></script>
 <script src="./scripts/verifCreerCompte.js"></script>
 </html>

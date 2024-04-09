@@ -35,9 +35,71 @@ html {
     overflow-x: hidden;
 }
 
+header {
+    position: relative;
+    width: 100%;
+    height: 65px;
+    padding: 0 4.2%;
+    background: var(--bleu-ocean-abysses);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    transition: 0.6s;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2.5rem;
+    color: var(--white);
+    font-weight: 600;
+    padding: 0.5rem 10px;
+    border-radius: 10px;
+    transition: .1s;
+}
+
+.logo:hover {
+    background: var(--bleu-ocean-profond);
+}
+
+.logo img {
+    width: 45px;
+    border-radius: 15px;
+}
+
+.logo span {
+    color: #ffbc42;
+    font-size: 2.5rem;
+}
+
+.navigation a {
+    position: relative;
+    text-decoration: none;
+    color: var(--white);
+    font-size: 1.6rem;
+    font-weight: 600;
+    border-radius: 2px;
+    padding: 1.5rem 2rem;
+    transition: .1s;
+}
+
+.navigation a:hover {
+    background: var(--bleu-turquoise);
+    border-bottom: 5px solid var(--white);
+}
+
+#menu-icon {
+    font-size: 3.6rem;
+    color: var(--white);
+    cursor: pointer;
+    display: none;
+}
+
 section {
-    height: 100vh;
-    padding: 8rem 8%;
+    height: 90vh;
+    padding: 5rem 8%;
 }
 
 .main-container {
@@ -381,6 +443,69 @@ label {
     #toastBox {
         bottom: 100px;
         right: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;
+    }
+
+    .navigation {
+        position: absolute;
+        top: 100%;
+        left: -100%;
+        width: 100%;
+        padding: 1rem 4%;
+        background: var(--bleu-ocean-abysses);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        z-index: 1;
+        transition: .25s ease;
+        transition-delay: .25s;
+    }
+
+    .navigation.active {
+        left: 0;
+        transition-delay: 0s;
+    }
+
+    .navigation .active-nav {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--bleu-ocean-profond);
+        border-top: .1rem solid rgba(0, 0, 0, .2);
+        z-index: -1;
+        transition: .25s ease;
+        transition-delay: 0s;
+    }
+
+    .navigation.active .active-nav {
+        left: 0;
+        transition-delay: .25s;
+    }
+
+    .navigation a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+        transform: translateX(-20rem);
+        transition: .25s ease;
+        transition-delay: 0s;
+        padding: 1rem 1.4rem;
+    }
+
+    .navigation a:hover {
+        border: none;
+        background: transparent;
+        color: #e1c16e;
+    }
+
+    .navigation.active a {
+        transform: translateX(0);
+        transition-delay: .25s;        
     }
 }
 
