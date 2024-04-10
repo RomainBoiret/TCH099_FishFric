@@ -410,6 +410,79 @@ document.addEventListener("DOMContentLoaded", function() {
                 //Ajouter le HTML dans la table
                 document.getElementById('tableSupprimerCompte').innerHTML = comptes;
 
+                document.getElementById('btnSupprimerCompteBancaire').addEventListener('click', function() {
+                    //Chercher le compte que l'utilisateur a sélectionné 
+                    let idCompteBancaire;
+
+                    ["choix"].forEach(option => {
+                        const selectedOption = document.querySelector(`input[name=${option}]:checked`);
+
+                        if (selectedOption) {
+                            idCompteBancaire = selectedOption.id;
+                        }
+                    });
+
+                    //On peut commencer notre requête
+                    requeteSupprimerCptBancaire = new XMLHttpRequest();
+                    requeteSupprimerCptBancaire.open('PUT', '/TCH099_FishFric/Site_web/Liste_compte/API/preferences.php/compteBancaire', true);
+                    
+                    //Stocke les donnees a envoyer en format JSON
+                    requeteSupprimerCptBancaire.setRequestHeader('Content-Type', 'application/json');
+                    const donneesJsonSupprimerCptBancaire = JSON.stringify({"idCompteBancaire": idCompteBancaire});
+
+                    console.log("ID:" + idCompteBancaire)
+
+                    //Messages d'erreurs ou de succès du virement
+                    requeteSupprimerCptBancaire.onload = function() {
+                        //Vérifier si la requête a marché
+                        if (requeteSupprimerCptBancaire.readyState === 4 && requeteSupprimerCptBancaire.status === 200) {
+                            //Décoder la réponse (qui est au format JSON)
+                            let responseData = JSON.parse(requeteSupprimerCptBancaire.responseText);
+
+                            //Afficher un message de succès si la reqûete renvoie "msgSucces"
+                            if ("msgSucces" in responseData) {
+                                //Mettre le message de succès
+                                let toast = document.createElement('div');
+                                toast.classList.add('toast');
+                                toast.classList.add('success');
+                                toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
+                                toastBox.appendChild(toast);
+
+                                //Fermer la fenêtre
+                                setTimeout(() => {
+                                    toast.remove();
+                                    togglePopupPreferences();
+                                }, 1500);
+                            }
+
+                            else if ("erreurs" in responseData) {
+                                responseData.erreurs.forEach(function(message) {
+                                    //Afficher chaque message d'erreur
+                                    let toast = document.createElement('div');
+                                    toast.classList.add('toast');
+                                    toast.classList.add('error');
+                                    toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
+                                    toastBox.appendChild(toast);
+                
+                                    //Fermer la fenêtre
+                                    setTimeout(() => {
+                                        toast.remove();
+                                    }, 4500);
+                                })
+                            }
+                        }
+                    }
+
+                    //Message d'erreur de la requête
+                    requeteSupprimerCptBancaire.onerror = function() {
+                        console.error('La requête n\'a pas fonctionné!');
+                    };
+
+                    //Envoyer la requête
+                    requeteSupprimerCptBancaire.send(donneesJsonSupprimerCptBancaire);
+
+                });
+
             });
         } 
 
