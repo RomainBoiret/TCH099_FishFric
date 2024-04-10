@@ -23,19 +23,35 @@ logo.addEventListener('click', function()
     {
         if (logoImg.src.match('./Images/subnautica.png'))
         {
-            logoImg.src = './Images/logo-website.jpg';
+            logoImg.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                logoImg.src = './Images/logo-website.jpg';
+                logoImg.style.transform = 'rotate(0deg)';
+            }, 500);
         }
         else if (logoImg.src.match('./Images/logo-website.jpg')) 
         {
-            logoImg.src = './Images/requin.png';
+            logoImg.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                logoImg.src = './Images/requin.png';
+                logoImg.style.transform = 'scale(1)';
+            }, 500);
         } 
         else 
         {
-            logoImg.src = './Images/logo-website.jpg';
+            logoImg.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                logoImg.src = './Images/logo-website.jpg';
+                logoImg.style.transform = 'scale(1)';
+            }, 500);
         }
     } 
     else 
     {
-        logoImg.src = './Images/subnautica.png'; // 10% de chance
+        logoImg.style.transform = 'rotate(360deg)';
+        setTimeout(() => {
+            logoImg.src = './Images/subnautica.png'; // 10% de chance
+            logoImg.style.transform = 'rotate(0deg)';
+        }, 500);
     }
 });

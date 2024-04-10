@@ -290,6 +290,28 @@ header {
     background-position: center; 
 }
 
+.trembler {
+    animation: tremble 2s linear infinite alternate;
+}
+
+@keyframes tremble {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-50px); } /* Tremblement vers la gauche */
+    40%, 80% { transform: translateX(50px); } /* Tremblement vers la droite */
+}
+
+.nager {
+    animation: nager 2s linear infinite; /* Animation de nage infinie sur 2 secondes */
+}
+
+@keyframes nager {
+    0% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(50px) translateY(-20px); } /* Déplacement vers la droite et vers le haut */
+    50% { transform: translateX(100px) translateY(0); } /* Déplacement vers la droite */
+    75% { transform: translateX(50px) translateY(20px); } /* Déplacement vers la droite et vers le bas */
+    100% { transform: translateX(0) translateY(0); } /* Retour à la position initiale */
+}
+
 .question-field .text-container .title h2 {
     font-size: 4rem;
     font-weight: 750;
