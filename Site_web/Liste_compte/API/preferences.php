@@ -8,6 +8,8 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
         die("Connexion échouée!: " .$e->getMessage());
     }
 
+    include "../../Encryption/encryption.php";
+
     //Chercher l'ID de l'utilisateur conencté
     session_start();
     $idUtilisateur = $_SESSION["utilisateur"];
@@ -58,8 +60,40 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
 
     //-----------------------MODIFIER MDP-----------------------
     else if (preg_match('/\/Liste_compte\/API\/preferences\.php\/mdp$/', $_SERVER['REQUEST_URI'], $matches)) {
+        if (isset($donneesJSON['nouveauMdp']) && !empty($donneesJSON['nouveauMdp'])) {
+            $nouveauMdp = htmlspecialchars($donneesJSON['nouveauMdp']);
+
+            //Vérifier que le mot de passe n'est pas le même
+            $requete = "SELECT motDePasse FROM Compte WHERE id = $idUtilisateur;";
+            $resultat = $conn->query($requete);
+            $mdp = $resultat->fetchColumn();
+
+            if(AES256CBC_decrypter($mdp, CLE_ENCRYPTION) == $nouveauMdp) {
+                $erreurs[] = "Le mot de passe doit être différent de votre mot de passe actuel.";
+            }
+
+        } else {
+            $erreurs[] = "Veuillez saisir un nouveau mot de passe.";
+        }
+
+        //S'il n'y a pas d'erreurs, on peut effectuer le changement de courriel
+        if(empty($erreurs)) {
+            //Altérer le courriel de l'utilisateur
+            $mdp_encrypte = AES256CBC_encrypter($nouveauMdp, CLE_ENCRYPTION);
+
+
+            $requete = $conn->prepare("UPDATE Compte SET motDePasse = '$mdp_encrypte' WHERE id = $idUtilisateur;");
+            $requete->execute();
+
+            echo json_encode(['msgSucces' => "Le mot de passe a bien été modifié."]);
+        } 
         
+        //Sinon, on renvoie les erreurs
+        else {
+            echo json_encode(['erreurs' => $erreurs]);
+        }
     }
+    
 
     //-----------------------SUPPRIMER COMPTE BANCAIRE-----------------------
     else if (preg_match('/\/Liste_compte\/API\/preferences\.php\/compteBancaire$/', $_SERVER['REQUEST_URI'], $matches)) {
