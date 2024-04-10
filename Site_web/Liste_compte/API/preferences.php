@@ -20,7 +20,40 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
 
     //-----------------------MODIFIER COURRIEL-----------------------
     if (preg_match('/\/Liste_compte\/API\/preferences\.php\/courriel$/', $_SERVER['REQUEST_URI'], $matches)) {
+        if (isset($donneesJSON['nouveauCourriel']) && !empty($donneesJSON['nouveauCourriel'])) {
+            $nouveauCourriel = $donneesJSON['nouveauCourriel'];
 
+            //Verifie si courriel suit le bon format
+            if(!filter_var($nouveauCourriel, FILTER_VALIDATE_EMAIL))
+                $erreurs[] = "Le courriel saisi n'est pas valide!";
+            else {
+                $nouveauCourriel = htmlspecialchars($nouveauCourriel);
+
+                //Verifier si courriel existe deja 
+                $requete = $conn->prepare("SELECT * FROM Compte WHERE courriel = '$nouveauCourriel'");
+                $requete->execute();
+
+                if($requete->rowCount() != 0)
+                    $erreurs[] = "Le courriel est déjà utilisé";
+            }
+
+        } else {
+            $erreurs[] = "Veuillez saisir une adresse courriel.";
+        }
+
+        //S'il n'y a pas d'erreurs, on peut effectuer le changement de courriel
+        if(empty($erreurs)) {
+            //Altérer le courriel de l'utilisateur
+            $requete = $conn->prepare("UPDATE Compte SET courriel = '$nouveauCourriel' WHERE id = $idUtilisateur;");
+            $requete->execute();
+
+            echo json_encode(['msgSucces' => "Le courriel a bien été modifié."]);
+        } 
+        
+        //Sinon, on renvoie les erreurs
+        else {
+            echo json_encode(['erreurs' => $erreurs]);
+        }
     }
 
     //-----------------------MODIFIER MDP-----------------------

@@ -404,4 +404,5 @@ include "../verifSession.php";
 <script src="./scripts/getComptes.js"></script>
 <script src="./scripts/getNotifications.js"></script>
 <script src="./scripts/ajouterCompte.js"></script>
+<script src="./scripts/preferences.js"></script>
 </html>
