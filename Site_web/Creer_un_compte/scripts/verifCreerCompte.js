@@ -43,7 +43,7 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
 
                 setTimeout(() => {
                     toast.remove();
-                }, 3000);
+                }, 4500);
             }
 
             else {
@@ -59,7 +59,7 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
     
                     setTimeout(() => {
                         toast.remove();
-                    }, 3000);
+                    }, 4500);
                 }
 
                 if (responseData.erreurs) {
@@ -73,7 +73,7 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
     
                         setTimeout(() => {
                             toast.remove();
-                        }, 3000);
+                        }, 4500);
                     })
                 }
             }

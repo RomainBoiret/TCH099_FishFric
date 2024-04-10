@@ -39,7 +39,7 @@ document.getElementById('btnAjouterCompte').addEventListener('click', function()
 
                 setTimeout(() => {
                     toast.remove();
-                }, 3000);
+                }, 4500);
 
             }
 
@@ -53,7 +53,7 @@ document.getElementById('btnAjouterCompte').addEventListener('click', function()
 
                 setTimeout(() => {
                     toast.remove();
-                }, 3000);
+                }, 4500);
             }
         }
     }

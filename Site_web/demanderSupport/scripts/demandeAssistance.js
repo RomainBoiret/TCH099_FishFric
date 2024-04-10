@@ -48,7 +48,7 @@ document.getElementById("soumettre").addEventListener('click', function() {
     
                         setTimeout(() => {
                             toast.remove();
-                        }, 3000);
+                        }, 4500);
                     })
                 }
             }
