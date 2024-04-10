@@ -48,7 +48,7 @@ document.getElementById("soumettre").addEventListener('click', function() {
     
                         setTimeout(() => {
                             toast.remove();
-                        }, 3000);
+                        }, 4500);
                     })
                 }
             }
@@ -67,4 +67,11 @@ document.getElementById("soumettre").addEventListener('click', function() {
 
     //Envoyer la requête
     xhrDemanderAssistance.send(creerCompteJSON);
-})
+});
+
+// Effacer message
+document.getElementById("effacer").addEventListener('click', function() {
+
+    document.getElementById('titreRecu').value = "";
+    document.getElementById('messageRecu').value = "";
+});

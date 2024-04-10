@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                                     setTimeout(() => {
                                         toast.remove();
-                                    }, 3000);
+                                    }, 4500);
                                 })
                             }
                         } 
@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                                     setTimeout(() => {
                                         toast.remove();
-                                    }, 3000);
+                                    }, 4500);
                                 })
                             }
 
@@ -373,10 +373,10 @@ document.addEventListener("DOMContentLoaded", function() {
                                     toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
                                     toastBox.appendChild(toast);
                 
-                                //Fermer la fenêtre
-                                setTimeout(() => {
-                                    togglePopupNouveauCompte()
-                                }, 1500);
+                                    //Fermer la fenêtre
+                                    setTimeout(() => {
+                                        toast.remove();
+                                    }, 4500);
                                 })
                             }
                         } 

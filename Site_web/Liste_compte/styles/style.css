@@ -1103,11 +1103,11 @@ label {
     font-size: 1.4rem;
 }
 
-#msg-erreur-virement-compte, #msg-erreur-virement-personne, #msg-erreur-payer-facture {
+/* #msg-erreur-virement-compte, #msg-erreur-virement-personne, #msg-erreur-payer-facture {
     display: flex;
     flex-direction: column;
     font-size: 1.4rem;
-}
+} */
 
 .main-content-part .payer-facture {
     width: 100%;
@@ -1259,10 +1259,10 @@ label {
 
 /* Div messages erreur */
 
-#messages {
+/* #messages {
     font-size: 1.5rem;
     color: white;
-}
+} */
 
 #toastBox {
     position: absolute;
@@ -1321,7 +1321,7 @@ label {
     width: 100%;
     height: 5px;
     background: #e63946;
-    animation: anim 3s linear forwards;
+    animation: anim 4.5s linear forwards;
 }
 
 .toast.error::after {
