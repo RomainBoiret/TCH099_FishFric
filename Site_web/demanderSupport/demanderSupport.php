@@ -54,7 +54,7 @@ include "../verifSession.php";
             <form>
                 <h2>Contacter un support</h2>
                 <div class="input-field">
-                    <input type="text" placeholder="Intitulé du prolème..." required>
+                    <input id="titreRecu" type="text" placeholder="Intitulé du prolème..." required>
                 </div>
         
                 <div class="textarea-field">
@@ -65,7 +65,7 @@ include "../verifSession.php";
 
             <div class="btn-box">
                 <button type="submit" class="btn" id="soumettre">Soumettre</button>
-                <button type="reset" class="btn">Effacer</button>
+                <button type="reset" class="btn" id="effacer">Effacer</button>
             </div>
 
         </div>
