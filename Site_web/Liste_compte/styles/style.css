@@ -388,7 +388,7 @@ section {
     background: #d5deef;
 }
 
-section h1 {
+section #txtBonjour {
     font-size: 2.5rem;
     padding-left: 2.9%;
 }
@@ -1404,6 +1404,193 @@ label {
     color: var(--sable-dore);
 }
 
+
+
+
+
+
+/* MENU DE PRÉFÉRENCES */
+
+.main-content-part {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.divPreferences {
+    display: flex;
+    justify-content: center;
+}
+
+.divPreferences span {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    text-align: start;
+}
+
+.divPreferences .input-box {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.divPreferences .input-box input {
+    border: 2px solid var(--sable-dore);
+    padding-left: 0.5rem;
+    width: 25rem;
+    height: 3.5rem;
+    border-radius: 0.5em;
+}
+
+.divPreferences .input-box button, .divPreferences .radio-box button {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    width: 15rem;
+    height: 3rem;
+    cursor: pointer;
+    background: var(--sable-dore);
+    border: .2rem solid var(--sable-dore);
+    border-radius: 50px;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: .1rem;
+    color: var(--white);
+    z-index: 1;
+    overflow: hidden;
+    transition: .5s;
+}
+
+#divSupprimerCompte .input-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#btnSupprimerCompte {
+    background: #a50e28;
+    margin-bottom: 0;
+}
+
+.divPreferences .input-box button:hover, .divPreferences .radio-box button:hover  {
+    color: var(--sable-dore);
+}
+
+.divPreferences .input-box button::before, .divPreferences .radio-box button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--white);
+    z-index: -1;
+    transition: .5s;
+}
+
+.divPreferences .input-box button:hover::before, .divPreferences .radio-box button:hover::before {
+    width: 100%;
+}
+
+
+/* Table supprimer compte */
+.radio-box {
+    width: 70%;
+}
+
+.radio-box table {
+    table-layout: fixed;
+    width: 100%;
+    height: 80%;
+    border-collapse: collapse;
+    border: 3px solid transparent;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.radio-box table tr th {
+    width: 15px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+    border: 2px solid var(--bleu-ocean-surface);
+    background: #ecd9a8;
+}
+
+.radio-box table tr td {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-color);
+    background: #e0e7f2;
+    border: 2px solid var(--bleu-ocean-surface);
+}
+
+.radio-box table tr td span {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+
+details{
+    background-color: #303030;
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  summary {
+    padding: .5rem 1.3rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;  
+    transition: height 1s ease;
+  }
+  
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  summary:after{
+    content: "\002B";
+  }
+  
+  details[open] summary {
+      border-bottom: 1px solid #aaa;
+      margin-bottom: 5px;
+  }
+
+  details summary {
+    cursor: pointer;
+    transition: margin 200ms ease-out;
+  }
+
+  
+  details[open] summary:after{
+    content: "\00D7";
+    
+  }
+  
+  details[open] div{
+    padding: .5rem 1.3rem;
+  }
+
+
+
 @media (max-width: 1200px) {
     .main-side-bar .header-nav {
         height: 50%;
@@ -1448,7 +1635,7 @@ label {
         height: 100%;
     }
 
-    section h1 {
+    section #txtBonjour {
         font-size: 2rem;
         margin: 10px 0;
     }
@@ -1559,7 +1746,7 @@ label {
     .popup .content, .popup .content-2, .popup .content-3 {
         width: 500px;
         height: 500px;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     .main-content-part .virement-entre-compte {
@@ -1613,6 +1800,11 @@ label {
         width: 20rem;
         height: 4rem;
         font-size: 1.5rem;
+    }
+
+    /* Popup préférences*/
+    .main-content-part h2 {
+        margin: 0rem;
     }
 
     /* NOTIFS */
@@ -1677,7 +1869,7 @@ label {
     .popup .content, .popup .content-2, .popup .content-3 {
         width: 350px;
         height: 500px;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     /* NOTIFS */
@@ -1730,3 +1922,11 @@ label {
         text-align: center;
     }
 }
+
+
+
+
+
+
+
+

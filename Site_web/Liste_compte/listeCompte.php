@@ -44,7 +44,7 @@ include "../verifSession.php";
 
 <!-- ------------------------------------MENU COMPTES + MENU DROIT DE LA PAGE------------------------------------ -->
 <section>
-    <h1> Bonjour <?php echo $_SESSION["nomUtilisateur"]; ?></h1>
+    <h1 id="txtBonjour"> Bonjour <?php echo $_SESSION["nomUtilisateur"]; ?></h1>
     <div class="main-container">
         <div class="main-compte">
             <div class="header-compte">
@@ -81,7 +81,7 @@ include "../verifSession.php";
 
                 <nav class="navigation-footer">
                     <button onclick="togglePopupNouveauCompte()" class="btn"><i class='bx bx-add-to-queue' ></i>Ajouter un compte</button>
-                    <button class="btn"><i class='bx bx-cog' ></i>Préférences de compte</button>
+                    <button onclick="togglePopupPreferences()"class="btn" id="btnPopupPreferences"><i class='bx bx-cog' ></i>Préférences de compte</button>
                 </nav>
 
                 <div class="assistance-part">
@@ -296,8 +296,9 @@ include "../verifSession.php";
                     <div class="compte-choix">
                         <h4>Investissement</h4>
                         <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Quo modi, ipsa ipsam hic id exercitationem natus rerum quisquam harum.
+                        - Gains libre d'impôt <br>
+                        - Fonds garantis <br>
+                        - Taux d'intérêt variable
                         </p>
                         <div class="input-box">
                             <input type="radio" name="choix" id="choix" placeholder="Compte investissement">
@@ -308,6 +309,78 @@ include "../verifSession.php";
             
             <div class="btn-box">
                 <button class="btn-virer" id="btnAjouterCompte">Confirmer</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ------------------------------------POPUP PRÉFÉRENCES COMPTE------------------------------------ -->
+    <div class="popup" id="popup-5">
+        <div class="overlay"></div>
+
+        <div class="content-3">
+            <div class="close-btn" onclick="togglePopupPreferences()"><i class='bx bx-x'></i></div>
+            <h1>Préférences du compte</h1>
+
+            <div class="main-content-part">
+                <h2>Que désirez-vous modifier?</h2>
+
+                <!-- Modifier son courriel -->
+                <details>
+                    <summary><span>Modifier mon courriel</span></summary>
+                        <div class="divPreferences" id="divChangerCourriel">
+                            <span>Veuillez inscrire votre nouveau courriel</span>
+                            <div class="input-box">
+                                <input id="inputNouveauCourriel" placeholder="Nouveau courriel" type="text">
+                                <button id="btnNouveauCourriel">Confirmer</button>
+                            </div>  
+                        </div>
+                </details>
+
+                <!-- Modifier son mdp -->
+                <details>
+                    <summary><span>Modifier mon mot de passe</span></summary>
+                        <div class="divPreferences" id="divChangerMdp">
+                            <span>Veuillez inscrire votre nouveau mot de passe</span>
+                            <div class="input-box">
+                                <input id="inputNouveauMdp" placeholder="Nouveau mont de passe" type="password">
+                                <button id="btnNouveauMdp">Confirmer</button>
+                            </div>  
+                        </div>
+                </details>
+
+                <!-- Supprimer un compte -->
+                <details>
+                    <summary><span>Supprimer un compte bancaire</span></summary>
+                        <div class="divPreferences" id="divSupprimerCompteBancaire">
+                            <span>Sélectionnez un compte à supprimer</span>
+                            <div class="radio-box">
+                                <table>
+                                    <tbody id="tableSupprimerCompte">
+                                        <tr>
+                                            <th>Choix</th>
+                                            <th>Nom du compte</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <button id="btnSupprimerCompteBancaire">Confirmer</button>
+                            </div>  
+                        </div>
+                </details>
+
+                <!-- Supprimer son compte Fish&Fric -->
+                <details>
+                    <summary><span>Supprimer son compte Fish&Fric :(</span></summary>
+                        <div class="divPreferences" id="divSupprimerCompte">
+                            <span>Voulez vous VRAIMENT fermer votre compte Fish&Fric?</span>
+                            <span>Assurez-vous de déplacer vos soldes ailleurs auparavant.</span>
+                            <div class="input-box">
+                                <button id="btnSupprimerCompte">Confirmer</button>
+                            </div>  
+                        </div>
+                </details>
+
             </div>
         </div>
     </div>

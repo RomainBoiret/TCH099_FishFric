@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             //Décoder la réponse (qui est au format JSON)
             let responseData = JSON.parse(requeteGetComptes.responseText);
 
-            //Afficher la liste des comptes de l'utilisateur en HTML
+            //--------------------------------------AFFICHER LA LISTE DES COMPTES--------------------------------------
             let comptes = '';
             responseData.comptes.forEach(function(compte) {
                 //Mettre tout le code HTML de la structure d'un compte dans une string
@@ -396,6 +396,21 @@ document.addEventListener("DOMContentLoaded", function() {
                     requeteFacture.send(donneesJsonFacture);
                 })
             });
+
+            //--------------------------------AFFICHER COMPTES SUPPRIMER COMPTE BANCAIRE--------------------------------
+            document.getElementById("btnPopupPreferences").addEventListener('click', function() {
+                comptes = '<tr><th>Choix</th><th>Compte</th></tr>';
+                
+                responseData.comptes.forEach(function(compte) {
+                    //Afficher chaque compte dans le tableau, ajouter le HTML dynamiquement
+                    comptes += '<tr><td><input type="radio" name="choix" id="' + compte.id + '"></td>';
+                    comptes += '<td><span>' + compte.typeCompte + ' </span></td></tr>';            
+                });
+
+                //Ajouter le HTML dans la table
+                document.getElementById('tableSupprimerCompte').innerHTML = comptes;
+
+            });
         } 
 
         else {
@@ -502,4 +517,36 @@ function togglePopupNouveauCompte()  {
             location.reload();
         }, 100);
     }
+}
+
+//--------------------------------------AFFICHER la popup "Préférences de compte"--------------------------------------
+function togglePopupPreferences()  {
+    let popup = document.getElementById("popup-5");
+    popup.classList.toggle("active");
+
+    //Rafraîchir la page au bout de 100ms lorsqu'on ferme la popup
+    if (!document.getElementById("popup-5").classList.contains("active")) {
+        setTimeout(function() {
+            location.reload();
+        }, 100);
+    }
+}
+
+//--------------------------Fonction pour fermer les divs de détails dans la popup préférences-------------------------
+const details = document.querySelectorAll("details");
+
+// Add the onclick listeners.
+details.forEach((detail) => {
+  detail.addEventListener("toggle", () => {
+    if (detail.open) setTargetDetail(detail);
+  });
+});
+
+// Close all the details that are not targetDetail.
+function setTargetDetail(targetDetail) {
+  details.forEach((detail) => {
+    if (detail !== targetDetail) {
+      detail.open = false;
+    }
+  });
 }
