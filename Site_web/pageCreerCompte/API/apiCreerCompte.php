@@ -138,13 +138,14 @@
             //Set le nom de l'événement
             $eventNameSolde = "solde" . $idUtilisateur;
             
-            //Faire l'évémeemt
+            //Faire l'événement
             $requete = "CREATE EVENT `projet_integrateur`.`$eventNameSolde`
             ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
 
             INSERT INTO SommeTotale (compteId, solde, dateSolde) 
-            VALUES ($idUtilisateur, (SELECT SUM(solde) AS total_solde FROM CompteBancaire WHERE compteId = $idUtilisateur), NOW();";
-            $conn->query($requete);
+            VALUES ($idUtilisateur, (SELECT SUM(solde) AS total_solde FROM CompteBancaire WHERE compteId = $idUtilisateur), NOW());";
+
+            $conn->prepare($requete)->execute();
 
             if($mobile)
             {
