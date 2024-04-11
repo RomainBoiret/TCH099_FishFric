@@ -12,7 +12,7 @@ menuIcon.classList.remove('bx-x');
 navigation.classList.remove('active');
 
 // changer logo au click de souris
-let logo = document.getElementById('logo');
+let logo = document.getElementsByClassName('logo');
 let logoImg = document.getElementById('logo-img');
 
 logo.addEventListener('click', function() 
