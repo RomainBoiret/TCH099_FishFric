@@ -4,7 +4,7 @@ document.getElementById('btnNouveauCourriel').addEventListener('click', function
     let nouveauCourriel = document.getElementById('inputNouveauCourriel').value;
 
     requeteNouvelEmail = new XMLHttpRequest();
-    requeteNouvelEmail.open('PUT', '/TCH099_FishFric/Site_web/Liste_compte/API/preferences.php/courriel', true);
+    requeteNouvelEmail.open('PUT', '/TCH099_FishFric/Site_web/pageListeCompte/API/preferences.php/courriel', true);
     
     //Stocke les donnees a envoyer en format JSON
     requeteNouvelEmail.setRequestHeader('Content-Type', 'application/json');
@@ -69,7 +69,7 @@ document.getElementById('btnNouveauMdp').addEventListener('click', function() {
     let nouveauMdp = document.getElementById('inputNouveauMdp').value;
 
     requeteNouveauMdp = new XMLHttpRequest();
-    requeteNouveauMdp.open('PUT', '/TCH099_FishFric/Site_web/Liste_compte/API/preferences.php/mdp', true);
+    requeteNouveauMdp.open('PUT', '/TCH099_FishFric/Site_web/pageListeCompte/API/preferences.php/mdp', true);
     
     //Stocke les donnees a envoyer en format JSON
     requeteNouveauMdp.setRequestHeader('Content-Type', 'application/json');
@@ -131,7 +131,7 @@ document.getElementById('btnNouveauMdp').addEventListener('click', function() {
 //-----------------------------Supprimer compte fish&fric---------------------------
 document.getElementById('btnSupprimerCompte').addEventListener('click', function() {
     requeteDelete = new XMLHttpRequest();
-    requeteDelete.open('DELETE', '/TCH099_FishFric/Site_web/Liste_compte/API/preferences.php', true);
+    requeteDelete.open('DELETE', '/TCH099_FishFric/Site_web/pageListeCompte/API/preferences.php', true);
 
     //Messages d'erreurs ou de succès du virement
     requeteDelete.onload = function() {
@@ -143,7 +143,7 @@ document.getElementById('btnSupprimerCompte').addEventListener('click', function
             //Afficher un message de succès si la reqûete renvoie "msgSucces"
             if ("msgSucces" in responseData) {
                 //Rediriger la personne vers la page de connexion
-                window.location.href = '/TCH099_FishFric/Site_web/Connexion/page_connexion.php';
+                window.location.href = '/TCH099_FishFric/Site_web/pageConnexion/pageConnexion.php';
             }
 
             else if ("erreurs" in responseData) {

@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let requeteGetComptes = new XMLHttpRequest();
 
     //Configurer la requête, pour aller chercher les comptes
-    requeteGetComptes.open('GET', '/TCH099_FishFric/Site_web/Liste_compte/API/afficherComptes.php', true);
+    requeteGetComptes.open('GET', '/TCH099_FishFric/Site_web/pageListeCompte/API/afficherComptes.php', true);
 
     requeteGetComptes.onload = function() {
         //Vérifier si la requête a marché
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //On peut commencer notre requête
                     requeteVirement = new XMLHttpRequest();
-                    requeteVirement.open('PUT', '/TCH099_FishFric/Site_web/Transfert/API/gestionTransfert.php/compte', true);
+                    requeteVirement.open('PUT', '/TCH099_FishFric/Site_web/transfert/API/gestionTransfert.php/compte', true);
                     
                     //Stocke les donnees a envoyer en format JSON
                     requeteVirement.setRequestHeader('Content-Type', 'application/json');
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //On peut commencer notre requête
                     requeteVirement = new XMLHttpRequest();
-                    requeteVirement.open('PUT', '/TCH099_FishFric/Site_web/Transfert/API/gestionTransfert.php/utilisateurEnvoi', true);
+                    requeteVirement.open('PUT', '/TCH099_FishFric/Site_web/transfert/API/gestionTransfert.php/utilisateurEnvoi', true);
                     
                     //Stocke les donnees a envoyer en format JSON
                     requeteVirement.setRequestHeader('Content-Type', 'application/json');
@@ -324,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //On peut commencer notre requête
                     requeteFacture = new XMLHttpRequest();
-                    requeteFacture.open('PUT', '/TCH099_FishFric/Site_web/Transfert/API/gestionTransfert.php/facture', true);
+                    requeteFacture.open('PUT', '/TCH099_FishFric/Site_web/transfert/API/gestionTransfert.php/facture', true);
                     
                     //Stocke les donnees a envoyer en format JSON
                     requeteFacture.setRequestHeader('Content-Type', 'application/json');
@@ -424,7 +424,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //On peut commencer notre requête
                     requeteSupprimerCptBancaire = new XMLHttpRequest();
-                    requeteSupprimerCptBancaire.open('PUT', '/TCH099_FishFric/Site_web/Liste_compte/API/preferences.php/compteBancaire', true);
+                    requeteSupprimerCptBancaire.open('PUT', '/TCH099_FishFric/Site_web/pageListeCompte/API/preferences.php/compteBancaire', true);
                     
                     //Stocke les donnees a envoyer en format JSON
                     requeteSupprimerCptBancaire.setRequestHeader('Content-Type', 'application/json');

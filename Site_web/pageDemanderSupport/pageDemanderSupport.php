@@ -19,7 +19,7 @@ include "../verifSession.php";
 <!-- header design -->
 <header>
     <a href="../index.html" class="logo">
-        <img src="../Images/logo-website.jpg">
+        <img src="../imagesCommunes/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
 
@@ -45,7 +45,7 @@ include "../verifSession.php";
                 <p>Consultez notre FAQ pour vérifier que nous n'ayons pas déjà répondu à votre question !</p>
 
                 <div class="btn-box">
-                    <a href="../FAQ/page_faq.html" class="btn">Consulter FAQ</a>
+                    <a href="../pageFaq/pageFaq.html" class="btn">Consulter FAQ</a>
                 </div>
             </div>
         </div>

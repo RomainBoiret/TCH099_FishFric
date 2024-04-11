@@ -16,7 +16,7 @@
         //----------------------------VÉRIFICATIONS DES DONNÉES DU POST s'appliquant à TOUS les types de transfert SAUF réception de virement-------------------------
         
         // On ne vérifie PAS le compte provenant et le montant si c'est pour une réception de virement
-        if (!preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches))  {
+        if (!preg_match('/\/transfert\/API\/gestionTransfertmobile\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches))  {
             //Vérif. ID compte bancaire source du transfert
             if(isset($donnees["idCompteBancaireProvenant"])) {
                 //Mettre la valeur dans une variable
@@ -58,7 +58,7 @@
 
         //-----------------------------------------TRANSFERT ENTRE UTILISATEURS, ENVOI-----------------------------------------
         //
-        if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/utilisateurEnvoi$/', $_SERVER['REQUEST_URI'], $matches)) {
+        if (preg_match('/\/transfert\/API\/gestionTransfertmobile\.php\/utilisateurEnvoi$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Vérifier qu'il y a un ID utilisateur
             if (isset($donnees["idUtilisateur"]))
             {
@@ -166,7 +166,7 @@
 
         //-----------------------------------------TRANSFERT ENTRE UTILISATEURS, RECEPTION-----------------------------------------
         //
-        else if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches)) {
+        else if (preg_match('/\/transfert\/API\/gestionTransfertmobile\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Vérifier qu'il y a une acceptation ou bien un refus du transfert
             if(isset($donnees['decision'])) {
                 $decision = implode($donnees['decision']);
@@ -321,7 +321,7 @@
 
         //-----------------------------------------TRANSFERT ENTRE comptes-----------------------------------------
         //
-        else if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/compte$/', $_SERVER['REQUEST_URI'], $matches)) {
+        else if (preg_match('/\/transfert\/API\/gestionTransfertmobile\.php\/compte$/', $_SERVER['REQUEST_URI'], $matches)) {
             if (isset($donnees["idUtilisateur"]))
             {
                 $idUtilisateur = trim(implode($donnees['idUtilisateur']));
@@ -399,7 +399,7 @@
 
         //-----------------------------------------PAIEMENT DE FACTURE-----------------------------------------
         //
-        else if (preg_match('/\/Transfert\/API\/gestionTransfertmobile\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
+        else if (preg_match('/\/transfert\/API\/gestionTransfertmobile\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
             if (isset($donnees["idUtilisateur"]))
             {
                 $idUtilisateur = trim(implode($donnees['idUtilisateur']));

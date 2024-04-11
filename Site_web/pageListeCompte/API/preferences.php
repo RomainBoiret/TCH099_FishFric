@@ -12,7 +12,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
         die("Connexion échouée!: " .$e->getMessage());
     }
 
-    include "../../Encryption/encryption.php";
+    include "../../encryption/encryption.php";
 
     //Chercher les données
     $donneesJSON = json_decode(file_get_contents("php://input"), true);
@@ -21,7 +21,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
     $erreurs = array();
 
     //-----------------------MODIFIER COURRIEL-----------------------
-    if (preg_match('/\/Liste_compte\/API\/preferences\.php\/courriel$/', $_SERVER['REQUEST_URI'], $matches)) {
+    if (preg_match('/\/pageListeCompte\/API\/preferences\.php\/courriel$/', $_SERVER['REQUEST_URI'], $matches)) {
         if (isset($donneesJSON['nouveauCourriel']) && !empty($donneesJSON['nouveauCourriel'])) {
             $nouveauCourriel = $donneesJSON['nouveauCourriel'];
 
@@ -59,7 +59,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
     }
 
     //-----------------------MODIFIER MDP-----------------------
-    else if (preg_match('/\/Liste_compte\/API\/preferences\.php\/mdp$/', $_SERVER['REQUEST_URI'], $matches)) {
+    else if (preg_match('/\/pageListeCompte\/API\/preferences\.php\/mdp$/', $_SERVER['REQUEST_URI'], $matches)) {
         if (isset($donneesJSON['nouveauMdp']) && !empty($donneesJSON['nouveauMdp'])) {
             $nouveauMdp = htmlspecialchars($donneesJSON['nouveauMdp']);
 
@@ -96,7 +96,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
     
 
     //-----------------------SUPPRIMER COMPTE BANCAIRE-----------------------
-    else if (preg_match('/\/Liste_compte\/API\/preferences\.php\/compteBancaire$/', $_SERVER['REQUEST_URI'], $matches)) {
+    else if (preg_match('/\/pageListeCompte\/API\/preferences\.php\/compteBancaire$/', $_SERVER['REQUEST_URI'], $matches)) {
         //Vérifier qu'un compte a été sélectionné
         if (isset($donneesJSON['idCompteBancaire']) && !empty($donneesJSON['idCompteBancaire'])) {
             $idCompteBancaire = $donneesJSON['idCompteBancaire'];

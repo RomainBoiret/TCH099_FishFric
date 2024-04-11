@@ -55,7 +55,7 @@
         }
 
         //Si l'URL ne contient pas d'ID, c'est une requête pour supprimer toutes les notifacitons
-        if (preg_match('/\/Liste_compte\/API\/afficherNotifications\.php$/', $_SERVER['REQUEST_URI'], $matches)) {
+        if (preg_match('/\/pageListeCompte\/API\/afficherNotifications\.php$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Chercher les notifications à supprimer (pour les renvoyer en données JSON et les enlever dynamiquement)
             $sql = $conn->prepare("SELECT nc.id FROM NotificationClient nc INNER JOIN TransactionBancaire tb ON tb.id=nc.idTransaction 
             WHERE tb.enAttente=0 AND nc.CompteId = '$idUtilisateur';");
