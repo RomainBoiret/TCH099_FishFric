@@ -17,41 +17,35 @@ let logoImg = document.getElementById('logo-img');
 
 logo.addEventListener('click', function() 
 {
+    let myAudio = document.createElement("audio");
+    myAudio.src = "./Images/bubbles.mp3";
+    myAudio.play();
+
     let aleatoire = Math.floor(Math.random() * 100);
 
-    if (aleatoire < 90) // 90% de chance
-    {
-        if (logoImg.src.match('./Images/subnautica.png'))
+    logoImg.style.transform = 'rotate(360deg)';
+    setTimeout(() => {
+
+        if (aleatoire < 90) // 90% de chance
         {
-            logoImg.style.transform = 'rotate(360deg)';
-            setTimeout(() => {
+            if (logoImg.src.match('./Images/subnautica.png'))
+            {
                 logoImg.src = './Images/logo-website.jpg';
-                logoImg.style.transform = 'rotate(0deg)';
-            }, 500);
-        }
-        else if (logoImg.src.match('./Images/logo-website.jpg')) 
-        {
-            logoImg.style.transform = 'scale(1.2)';
-            setTimeout(() => {
+            }
+            else if (logoImg.src.match('./Images/logo-website.jpg'))
+            {
                 logoImg.src = './Images/requin.png';
-                logoImg.style.transform = 'scale(1)';
-            }, 500);
-        } 
-        else 
-        {
-            logoImg.style.transform = 'scale(1.2)';
-            setTimeout(() => {
+            }
+            else
+            {
                 logoImg.src = './Images/logo-website.jpg';
-                logoImg.style.transform = 'scale(1)';
-            }, 500);
+            }
+        } 
+        else // 10% de chance
+        {
+            logoImg.src = './Images/subnautica.png';
         }
-    } 
-    else 
-    {
-        logoImg.style.transform = 'rotate(360deg)';
-        setTimeout(() => {
-            logoImg.src = './Images/subnautica.png'; // 10% de chance
-            logoImg.style.transform = 'rotate(0deg)';
-        }, 500);
-    }
+
+        logoImg.style.transform = 'rotate(0deg)';
+    }, 500);
 });
