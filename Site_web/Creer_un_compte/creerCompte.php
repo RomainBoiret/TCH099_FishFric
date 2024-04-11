@@ -37,9 +37,9 @@
             </div>
 
             <div class="create-account-embed">
-                <h2>Compte courant (compte chèques)</h2>
+                <h2>Compte chèques</h2>
 
-                <p>Notre compte courant est parfait pour faire vos opérations de tous les jours.
+                <p>Notre compte chèque est parfait pour faire vos opérations de tous les jours.
                     Vous pourrez ajouter d'autres types de compte ultérieurement.</p>
             </div>
 
