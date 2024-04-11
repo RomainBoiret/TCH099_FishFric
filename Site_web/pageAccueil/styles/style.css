@@ -238,7 +238,7 @@ p {
     width: 50%;
     height: 100%;
     position: relative;
-    background-image: url('../Images/fond-marin.jpg');
+    background-image: url('../images/fond-marin.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -261,19 +261,19 @@ p {
 
 @keyframes change {
     0% {
-        background-image: url('../Images/fond-marin.jpg');
+        background-image: url('../images/fond-marin.jpg');
     }
     25% {
-        background-image: url('../Images/fond-baleine.jpg');
+        background-image: url('../images/fond-baleine.jpg');
     }
     50% {
-        background-image: url('../Images/fond-plongeur.jpg');
+        background-image: url('../images/fond-plongeur.jpg');
     }
     75% {
-        background-image: url('../Images/fond-baleine-aquarium.jpg');
+        background-image: url('../images/fond-baleine-aquarium.jpg');
     }
     100% {
-        background-image: url('../Images/fond-marin.jpg');
+        background-image: url('../images/fond-marin.jpg');
     }
 }
 
@@ -329,7 +329,7 @@ p {
 
 .aquarium {
     height: 120vh;
-    background: url('../Images/background-aquarium.png') no-repeat;
+    background: url('../images/background-aquarium.png') no-repeat;
     background-size: cover;
     background-position: center;
     padding: 3% 5%;
@@ -345,7 +345,7 @@ p {
 .aquarium-content .aquarium-illustration {
     width: 100%;
     height: 80%;
-    background: url('../Images/aquarium-illustration.png') no-repeat;
+    background: url('../images/aquarium-illustration.png') no-repeat;
     background-size: cover;
     background-position: center;
     color: var(--white);
@@ -520,7 +520,7 @@ p {
 .assistance-embed .assistance-illustration {
     width: 50%;
     height: 100%;
-    background: url('../Images/assistance-illustration.jpg') no-repeat;
+    background: url('../images/assistance-illustration.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 }

@@ -10,7 +10,7 @@
         }
 
         //Inclure fichier qui contient la fonction d'encryption
-        include "../../Encryption/encryption.php";
+        include "../../encryption/encryption.php";
 
         //Get les données du POST
         $donneesJSON = json_decode(file_get_contents("php://input"), true);
@@ -83,6 +83,7 @@
                 $erreurs[] = "Le courriel est déjà utilisé";
         }
 
+        
         //Si tout est valide, ajouter utilisateur a la base de données
         if(count($erreurs) == 0 && count($erreurMdp) == 0)
         {
@@ -125,7 +126,6 @@
 
             // $conn->query($requete);
 
-
             if($mobile)
             {
                 echo json_encode(['reponse'=>"Bienvenue chez Fish&Fric :) ", 'code'=>'201']);
@@ -135,7 +135,6 @@
             //Mettre le message de succès 
             echo json_encode(['msgSucces' => "L'utilisateur a été créé avec succès! Bienvenue chez Fish&Fric."]); 
             }
-        
         }
 
         //Sinon, on affiche les erreurs
@@ -145,7 +144,6 @@
             {
                 //HTTP CODE 401 Donnee eronnees
                 $str = implode(',', $erreurs);
-
 
                 echo json_encode(['reponse'=>"$str", 'code'=>'401']);
             }

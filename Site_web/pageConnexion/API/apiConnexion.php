@@ -12,7 +12,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
     session_start();
 
     //Inclure fichier qui contient la fonction de décryption
-    include "../../Encryption/encryption.php";
+    include "../../encryption/encryption.php";
 
     //Get les données JSON du POST
     $donneesJSON = json_decode(file_get_contents("php://input"), true);

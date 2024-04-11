@@ -117,7 +117,7 @@ header {
     width: 100%;
     height: 50rem;
     border-radius: 0px 0px 180px 180px / 0px 0px 90px 90px;
-    background: url('../Images/faq-illustration.jpg') no-repeat;
+    background: url('../images/faq-illustration.jpg') no-repeat;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -227,35 +227,35 @@ header {
 }
 
 .i1 {
-    background: url('../Images/i1.jpg') no-repeat;
+    background: url('../images/i1.jpg') no-repeat;
 }
 
 .i2 {
-    background: url('../Images/i2.jpg') no-repeat;
+    background: url('../images/i2.jpg') no-repeat;
 }
 
 .i3 {
-    background: url('../Images/i3.jpg') no-repeat;
+    background: url('../images/i3.jpg') no-repeat;
 }
 
 .i4 {
-    background: url('../Images/i4.jpg') no-repeat;
+    background: url('../images/i4.jpg') no-repeat;
 }
 
 .i5 {
-    background: url('../Images/i5.jpg') no-repeat;
+    background: url('../images/i5.jpg') no-repeat;
 }
 
 .i6 {
-    background: url('../Images/i6.jpg') no-repeat;
+    background: url('../images/i6.jpg') no-repeat;
 }
 
 .i7 {
-    background: url('../Images/i7.jpg') no-repeat;
+    background: url('../images/i7.jpg') no-repeat;
 }
 
 .i8 {
-    background: url('../Images/i8.png') no-repeat;
+    background: url('../images/i8.png') no-repeat;
 }
 
 .question-field .text-container {
@@ -279,14 +279,14 @@ header {
 .text-container .title .poisson {
     width: 40px;
     height: 40px;
-    background: url('../Images/poisson-menu.png') no-repeat;
+    background: url('../images/poisson-menu.png') no-repeat;
     background-size: cover;
     background-position: center;
     transition: .1s;
 }
 
 .text-container .title .poisson:hover {
-    background: url('../Images/poisson-menu-hover.png') no-repeat;
+    background: url('../images/poisson-menu-hover.png') no-repeat;
     background-size: cover;
     background-position: center; 
 }
@@ -297,20 +297,20 @@ header {
 
 @keyframes tremble {
     0%, 100% { transform: translateX(0); }
-    20%, 60% { transform: translateX(-50px); } /* Tremblement vers la gauche */
-    40%, 80% { transform: translateX(50px); } /* Tremblement vers la droite */
+    20%, 60% { transform: translateX(-50px); }
+    40%, 80% { transform: translateX(50px); }
 }
 
 .nager {
-    animation: nager 2s linear infinite; /* Animation de nage infinie sur 2 secondes */
+    animation: nager 2s linear infinite;
 }
 
 @keyframes nager {
     0% { transform: translateX(0) translateY(0); }
-    25% { transform: translateX(50px) translateY(-20px); } /* Déplacement vers la droite et vers le haut */
-    50% { transform: translateX(100px) translateY(0); } /* Déplacement vers la droite */
-    75% { transform: translateX(50px) translateY(20px); } /* Déplacement vers la droite et vers le bas */
-    100% { transform: translateX(0) translateY(0); } /* Retour à la position initiale */
+    25% { transform: translateX(50px) translateY(-20px); }
+    50% { transform: translateX(100px) translateY(0); }
+    75% { transform: translateX(50px) translateY(20px); }
+    100% { transform: translateX(0) translateY(0); }
 }
 
 .question-field .text-container .title h2 {

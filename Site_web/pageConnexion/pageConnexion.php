@@ -4,7 +4,7 @@ session_start();
 if (!isset($_SESSION["compteSupprime"]) && isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY']) < $_SESSION['DUREE_SESSION']) {
     //Si c'est le cas, le rediriger directement sur sa liste de comptes, et mettre à jour le moment de dernière activité
     $_SESSION['LAST_ACTIVITY'] = time();
-    header("Location: ../Liste_compte/listeCompte.php");
+    header("Location: ../pageListeCompte/pageListeCompte.php");
     exit(); 
 }
 
@@ -24,7 +24,7 @@ if (!isset($_SESSION["compteSupprime"]) && isset($_SESSION['utilisateur']) && is
 <!-- header design -->
 <header>
     <a href="../index.html" class="logo">
-        <img src="../Images/logo-website.jpg">
+        <img src="../imagesCommunes/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
 
@@ -32,7 +32,7 @@ if (!isset($_SESSION["compteSupprime"]) && isset($_SESSION['utilisateur']) && is
 
     <nav class="navigation">
         <a href="../index.html">Accueil</a>
-        <a href="../FAQ/page_faq.html">Voir la FAQ</a>
+        <a href="../pageFaq/pageFaq.html">Voir la FAQ</a>
         <a href="#">Notre équipe</a>
 
         <span class="active-nav"></span>

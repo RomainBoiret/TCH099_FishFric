@@ -13,7 +13,7 @@
 <!-- header design -->
 <header>
     <a href="../index.html" class="logo">
-        <img src="../Images/logo-website.jpg">
+        <img src="../imagesCommunes/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
 
@@ -21,7 +21,7 @@
 
     <nav class="navigation">
         <a href="../index.html">Accueil</a>
-        <a href="../FAQ/page_faq.html">Voir la FAQ</a>
+        <a href="../pageFaq/pageFaq.html">Voir la FAQ</a>
         <a href="#">Notre équipe</a>
 
         <span class="active-nav"></span>

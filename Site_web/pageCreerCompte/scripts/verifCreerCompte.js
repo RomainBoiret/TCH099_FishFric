@@ -2,7 +2,7 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
     //Créer requête POST nouveau compte
 
     let xhrCreerCompte = new XMLHttpRequest();
-    xhrCreerCompte.open('POST', '/TCH099_FishFric/Site_web/Creer_un_compte/API/apiCreerCompte.php', true);
+    xhrCreerCompte.open('POST', '/TCH099_FishFric/Site_web/pageCreerCompte/API/apiCreerCompte.php', true);
 
     //Chercher les données
     let nom = document.getElementById('nom').value;
@@ -74,7 +74,7 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
                         setTimeout(() => {
                             toast.remove();
                         }, 4500);
-                    })
+                    });
                 }
             }
         } 
@@ -92,4 +92,4 @@ document.getElementById("btnCreerCompte").addEventListener('click', function() {
 
     //Envoyer la requête
     xhrCreerCompte.send(creerCompteJSON);
-})
+});
