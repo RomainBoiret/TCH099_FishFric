@@ -1,0 +1,464 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --bleu-ocean-abysses: #004462;
+    --bleu-ocean-profond: #005a80;
+    --bleu-turquoise: #00b8d4;
+    --bleu-ocean-surface: #b1c9ef;
+    --vert-eau: #aee1cd;
+    --sable-dore: #e1c16e;
+    --corail-fonce: #ff4747;
+    --corail: #ff6b6b;
+    --text-color: #2b2d42;
+    --white: #f0f3fa; 
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bleu-ocean-abysses);
+}
+
+html {
+    font-size: 60%;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--white);
+    color: var(--text-color);
+}
+
+header {
+    width: 100%;
+    height: 10vh;
+    padding: 0 4.2%;
+    background: var(--bleu-ocean-profond);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2.5rem;
+    color: var(--white);
+    font-weight: 600;
+    padding: 0.5rem 10px;
+    border-radius: 10px;
+    transition: .1s;
+}
+
+.logo:hover {
+    background: var(--bleu-ocean-abysses);
+}
+
+.logo img {
+    width: 45px;
+    border-radius: 15px;
+}
+
+.logo span {
+    color: #ffbc42;
+    font-size: 2.5rem;
+}
+
+header .btn-box {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.btn-box .btn-deconnexion {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    width: 20rem;
+    height: 5rem;
+    margin-right: 10px;
+    cursor: pointer;
+    background: var(--sable-dore);
+    border: .2rem solid var(--sable-dore);
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: .1rem;
+    color: var(--bleu-ocean-profond);
+    z-index: 1;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.btn-deconnexion:hover {
+    color: var(--sable-dore);
+}
+
+.btn-deconnexion::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--bleu-ocean-profond);
+    z-index: -1;
+    transition: .5s;
+}
+
+.btn-deconnexion:hover::before {
+    width: 100%;
+}
+
+.btn-deconnexion i {
+    font-size: 2.3rem;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.btn-deconnexion a {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--white);
+}
+
+section {
+    height: 90vh;
+    padding: 2rem 5%;
+    background: #d5deef;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 750;
+}
+
+h2 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.main-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 8rem;
+    padding: 2rem 0;
+}
+
+.main-container .assitance-container {
+    width: 45%;
+    height: 90%;
+    background: url('../images/whale.png') no-repeat;
+    background-size: 180px;
+    background-position: 100% 100%;;
+}
+
+.assitance-container .text-container {
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+}
+
+.text-container .btn-box {
+    width: 15rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+}
+
+.text-container .btn-box .btn {
+    width: 100%;
+    height: 100%;
+    background: var(--corail);
+    color: var(--white);
+    font-size: 1.6rem;
+    font-weight: 600;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.text-container .btn-box .btn:hover {
+    background: var(--corail-fonce);
+}
+
+.main-container .message-container {
+    width: 55%;
+    height: 100%;
+    background: var(--white);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+}
+
+.message-container form {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    gap: 5px;
+} 
+
+.message-container form .input-box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.message-container form .input-field {
+    width: 100%;
+    margin: .8rem 0;
+}
+
+.message-container form .input-field input,
+.message-container form .textarea-field textarea {
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: #e2e5ef;
+    border-radius: .6rem;
+    border: .2rem solid transparent;
+    transition: .1s;
+}
+
+.message-container form .input-field input:focus,
+.message-container form .textarea-field textarea:focus {
+    border: .2rem solid var(--bleu-ocean-profond);
+} 
+
+.message-container form .input-field input::placeholder,
+.message-container form .textarea-field textarea::placeholder {
+    color: var(--text-color);
+}
+
+.message-container form .textarea-field {
+    position: relative;
+    margin: .8rem 0 2.7rem;
+    display: flex;
+}
+
+.message-container form .textarea-field textarea {
+    resize: none;
+}
+
+.message-container .btn-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.message-container .btn-box .btn {
+    width: 20rem;
+    height: 5rem;
+    background: var(--bleu-ocean-profond);
+    color: var(--white);
+    font-size: 1.6rem;
+    font-weight: 500;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: .1s;
+}
+
+.message-container .btn-box .btn:nth-child(2) {
+    background: #90bdee;
+}
+
+.message-container .btn-box .btn:hover {
+    background: var(--bleu-ocean-abysses);
+}
+
+.message-container .btn-box .btn:nth-child(2):hover {
+    background: #769ddb;
+}
+
+.my-swal-container {
+    zoom: 1.6;
+}
+
+#toastBox {
+    position: absolute;
+    bottom: 200px;
+    right: 30px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.toast {
+    width: 400px;
+    height: 80px;
+    background: var(--white);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 15px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transform: translateX(100%);
+    animation: moveleft .2s linear forwards;
+}
+
+@keyframes moveleft {
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.toast i {
+    margin: 0 20px;
+    font-size: 35px;
+    color: #e63946;
+}
+
+.toast::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background: #e63946;
+    animation: anim 4.5s linear forwards;
+}
+
+@keyframes anim {
+    100% {
+        width: 0;
+    }
+}
+
+@media (max-width: 1000px) {
+    section {
+        height: auto;
+        padding: 2rem 6%;
+    }
+
+    .main-container {
+        flex-direction: column;
+    }
+
+    .main-container .assitance-container {
+        width: 100%;
+        height: auto;
+        background-size: 150px;
+        background-position: 100% 100%;
+    }
+
+    .main-container .message-container {
+        width: 100%;
+        height: 58rem;
+        border-radius: 20px;
+    }
+
+    #toastBox {
+        bottom: 30px;
+    }
+}
+
+@media (max-width: 476px) {
+    header {
+        height: 8vh;
+    }
+
+    .logo {
+        font-size: 1.7rem;
+    }
+
+    .logo img {
+        width: 35px;
+        border-radius: 15px;
+    }
+    
+    .logo span {
+        font-size: 1.7rem;
+    }
+
+    header .btn-box {
+        gap: 1.5rem;
+    }
+
+    .btn-box .btn-deconnexion {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.5rem;
+    }
+    
+    .btn-box .btn-deconnexion i {
+        font-size: 2rem;
+    }
+    
+    .btn-box .btn-deconnexion a {
+        display: none;
+    }
+    
+    .main-container {
+        gap: 4rem;
+    }
+
+    .main-container .assitance-container {
+        background-size: 100px;
+        background-position: 100% 0%;
+    }
+
+    .main-container .message-container {
+        width: 100%;
+        height: 58rem;
+        padding: 2rem;
+    }
+
+    .toast {
+        width: 250px;
+        height: 50;
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    .toast i {
+        font-size: 25px;
+    }
+}

@@ -101,7 +101,8 @@
                 $erreurs[] = "Confirmation de réponse non reçue ou non valide";
 
             //Vérifier que la réponse et la confirmation sont identiques
-            if(isset($donnees['reponse']) && isset($donnees['confReponse'])) {
+            if(isset($donnees['reponse']) && !empty($donnees['reponse'])
+            && isset($donnees['confReponse']) && !empty($donnees['confReponse'])) {
                 if (!($reponse == $confReponse))
                     $erreurs[] = "La réponse doit être identique à la confirmation de réponse";  
             }
@@ -393,14 +394,14 @@
         //
         else if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
             //Vérifier que le nom d'établissement est présent
-            if(isset($donnees['nomEtablissement']) && !is_numeric($donnees['nomEtablissement'])) {
+            if(isset($donnees['nomEtablissement']) && !empty($donnees['nomEtablissement'])) {
                 $nomEtablissement = $donnees['nomEtablissement'];
                 $nomEtablissement = trim($nomEtablissement);
             } else
                 $erreurs[] ="Nom d'établissement non-reçu ou non valide";
 
             //Vérifier que la raison de la facture est présente
-            if(isset($donnees['raison']) && !is_numeric($donnees['raison'])) {
+            if(isset($donnees['raison']) && !empty($donnees['raison'])) {
                 $raison = $donnees['raison'];
                 $raison = trim($raison);
             } else

@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
-    <link rel="stylesheet" href="./Page_accueil/styles/style.css">
+    <link rel="stylesheet" href="./pageAccueil/styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="/TCH099_FishFric/Site_web/favicon.ico">
 </head>
 <body>
 
 <!-- header design -->
 <header>
-    <a href="#" class="logo">
-        <img src="./Images/logo-website.jpg">
+    <a href="#" class="logo" id="logo">
+        <img id="logo-img" src="./imagesCommunes/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
 
@@ -46,12 +47,14 @@
             </p>
 
             <div class="btn-box">
-                <a href="./Creer_un_compte/creerCompte.php" class="btn">Ouvrir un compte</a>
-                <a href="./Connexion/page_connexion.php" class="btn">Se connecter</a>
+                <a href="./pageCreerCompte/pageCreerCompte.php" class="btn">Ouvrir un compte</a>
+                <a href="./pageConnexion/pageConnexion.php" class="btn">Se connecter</a>
             </div>
         </div>
 
-        <div class="acceuil-illustration"></div>
+        <div class="acceuil-illustration">
+            <p>Images par <a href="https://www.behance.net/baoluu" title="Bao Luu">Bao Luu</a></p>
+        </div>
     </div>
 </section>
 
@@ -61,12 +64,12 @@
         <h2>Quel butin voulez-vous pêcher aujourd'hui cher Fisher ?</h2>
        
         <div class="options-template">
-            <a class="option" href="#">Différents type de comptes</a>
-            <a class="option" href="#">Ajouter un compte</a>
-            <a class="option" href="#">Contacter l'assistance</a>
-            <a class="option" href="#">Virement entre compte</a>
-            <a class="option" href="#">Virement entre personnes</a>
-            <a class="option" href="#">Payer une facture</a>
+            <a class="option" href="./pageFaq/pageFaq.html#types-compte">Différents types de comptes</a>
+            <a class="option" href="./pageFaq/pageFaq.html#ajouter-compte">Ajouter un compte</a>
+            <a class="option" href="./pageFaq/pageFaq.html#contacter-assistance">Contacter l'assistance</a>
+            <a class="option" href="./pageFaq/pageFaq.html#virement-compte">Virement entre comptes</a>
+            <a class="option" href="./pageFaq/pageFaq.html#virement-personne">Virement entre personnes</a>
+            <a class="option" href="./pageFaq/pageFaq.html#payer-facture">Payer une facture</a>
         </div>
     </div>
 </section>
@@ -74,15 +77,17 @@
 <!-- aquarium design -->
 <section class="aquarium" id="aquarium">
     <div class="aquarium-content">
-        <div class="aquarium-illustration"></div>
+        <div class="aquarium-illustration">
+            <p>Image par <a href="https://www.deviantart.com/k0ii/gallery" title="K0ii">K0ii</a> - Visitez <a href="https://www.deviantart.com/k0ii/art/aquarium-512650836" title="deviantart.com">deviantart.com</a> pour plus d'informations</p>
+        </div>
 
         <div class="aquarium-footer-content">
             <h3>Vivez zen.....</h3>
 
-            <p>Des conseils pour éviter de naviger en eaux troubles, et devenir un sushi 🍣</p>
+            <p>Des conseils pour éviter de naviguer en eaux troubles, et devenir un sushi 🍣</p>
 
             <div class="mobile-link">
-                <i class='bx bxs-right-arrow-circle'></i><a href="#">En savoir plus</a>
+                <i class='bx bxs-right-arrow-circle'></i><a href="./pageFaq/pageFaq.html#conseils-financiers">En savoir plus</a>
             </div>
         </div>
     </div>
@@ -92,7 +97,7 @@
 <section class="mobile" id="mobile">
     <div class="mobile-embed">
         <div class="mobile-illustration">
-            <img src="./Images/mobile-illustration.jpg">
+            <img src="./pageAccueil/images/mobile-illustration.jpg">
         </div>
 
         <div class="mobile-content">
@@ -113,7 +118,7 @@
             </ul>
 
             <div class="mobile-link">
-                <i class='bx bxs-right-arrow-circle'></i><a href="#">Découvrir nos services mobiles</a>
+                <i class='bx bxs-right-arrow-circle'></i><a href="./pageFaq/pageFaq.html#services-mobiles">Découvrir nos services mobiles</a>
             </div>
         </div>
     </div>
@@ -134,7 +139,7 @@
             <h3>Avez-vous besoin d'aide ?</h3>
 
             <div class="btn-box">
-                <a href="#" class="btn">Consulter la FAQ</a>
+                <a href="./pageFaq/pageFaq.html" class="btn">Consulter la FAQ</a>
             </div>
         </div>
     </div>
@@ -152,6 +157,6 @@
     </div>
 </footer>
 
-<script src="./Page_accueil/scripts/script.js"></script>
+<script src="./pageAccueil/scripts/script.js"></script>
 </body>
 </html>
