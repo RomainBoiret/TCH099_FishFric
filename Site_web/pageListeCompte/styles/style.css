@@ -1484,7 +1484,7 @@ label {
 .radio-box table {
     table-layout: fixed;
     width: 100%;
-    height: 80%;
+    height: 60%;
     border-collapse: collapse;
     border: 3px solid transparent;
     border-radius: 20px;
