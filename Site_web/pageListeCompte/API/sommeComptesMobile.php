@@ -33,7 +33,7 @@
         }
         else
         {
-            echo json_encode(['erreur'=>"Erreur de route", 'code'=>"502"]);
+            echo json_encode(['erreur'=>"Erreur lors de l'envoi de donnees", 'code'=>"400"]);
         }
 
     }
