@@ -46,7 +46,9 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
         //S'il n'y a pas d'erreurs, on peut effectuer le changement de courriel
         if(empty($erreurs)) {
             //Altérer le courriel de l'utilisateur
-            $requete = $conn->prepare("UPDATE Compte SET courriel = $nouveauCourriel WHERE id = $idUtilisateur;");
+            $requete = $conn->prepare("UPDATE Compte SET courriel = :nouveauCourriel WHERE id = :idUtilisateur");
+            $requete->bindParam(':nouveauCourriel', $nouveauCourriel);
+            $requete->bindParam(':idUtilisateur', $idUtilisateur, PDO::PARAM_INT);
             $requete->execute();
 
             echo json_encode(['msgSucces' => "Le courriel a bien été modifié."]);
