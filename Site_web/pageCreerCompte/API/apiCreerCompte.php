@@ -131,7 +131,7 @@
             //Créer événement qui prend le solde total tous les jours
 
             //D'abord chercher l'ID de l'utilisateur
-            $sql = "SELECT id FROM Compte WHERE courriel LIKE '$courriel';";
+            $requete = $conn->prepare("SELECT id FROM Compte WHERE courriel LIKE '$courriel';");
             $requete->execute();
             $idUtilisateur = $requete->fetchColumn();
 
