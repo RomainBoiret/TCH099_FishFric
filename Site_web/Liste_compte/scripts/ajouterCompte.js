@@ -37,9 +37,11 @@ document.getElementById('btnAjouterCompte').addEventListener('click', function()
                 toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.succes;
                 toastBox.appendChild(toast);
 
+                //Fermer la fenêtre
                 setTimeout(() => {
                     toast.remove();
-                }, 4500);
+                    togglePopupNouveauCompte();
+                }, 1500);
 
             }
 

@@ -390,7 +390,6 @@ section {
 }
 
 section #txtBonjour {
-    width: 25rem;
     font-size: 2.5rem;
     padding-left: 2.9%;
 }
@@ -464,7 +463,7 @@ section #txtBonjour {
 #compte-content .compte-box {
     width: 100%;
     height: 18rem;
-    background-image: url('../Images/sticker-poisson.png') no-repeat;
+    background-image: url('../images/sticker-poisson.png') no-repeat;
     background-size: 120px;
     background-position: right 25% bottom 50%;
     color: var(--text-color);

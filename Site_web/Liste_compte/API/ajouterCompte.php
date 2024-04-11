@@ -44,7 +44,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             //Mettre l'intérêt selon le compte
             if ($typeCompte == 'Compte épargne') {
                 $interet = 3.00;
-                $soldeDeBase = 15.00;
+                $soldeDeBase = 0.00;
             }
 
             //Les cartes de crédit ont 0 solde et un intérêt de -9.99

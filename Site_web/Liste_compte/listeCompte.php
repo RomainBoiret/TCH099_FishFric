@@ -273,7 +273,6 @@ include "../verifSession.php";
                         <h4>Compte épargne</h4>
                         <p>
                         - Taux d'intérêt quotidien de 3% <br>
-                        - Solde de 15$ offert dès l'ouverture <br>
                         - Aucun frais mensuel <br>
                         </p>
                         <div class="input-box">

@@ -19,33 +19,33 @@ document.addEventListener("DOMContentLoaded", function() {
             let comptes = '';
             responseData.comptes.forEach(function(compte) {
                 //Mettre tout le code HTML de la structure d'un compte dans une string
-                //style="background-image: url(\'Images/poisson-globe.png\'); background-repeat: no-repeat;"
+                //style="background-image: url(\'images/poisson-globe.png\'); background-repeat: no-repeat;"
 
                 let compteHtml = '<div class="compte-box" id="compte-box"'
                 
                 //Ajouter une image selon le type de compte
                 if (compte.typeCompte == "Compte chèque")
                 {
-                    compteHtml += 'style="background-image: url(\'Images/sticker-poisson.png\'); background-repeat: no-repeat;"';
+                    compteHtml += 'style="background-image: url(\'images/sticker-poisson.png\'); background-repeat: no-repeat;"';
                 }
                 else if (compte.typeCompte == "Compte épargne")
                 {
-                    compteHtml += 'style="background-image: url(\'Images/sticker-dauphin.png\'); background-repeat: no-repeat;"';
+                    compteHtml += 'style="background-image: url(\'images/sticker-dauphin.png\'); background-repeat: no-repeat;"';
                 }
                 else if (compte.typeCompte == "Carte requin")
                 {
-                    compteHtml += 'style="background-image: url(\'Images/sticker-raie-manta.png\'); background-repeat: no-repeat;"';
+                    compteHtml += 'style="background-image: url(\'images/sticker-raie-manta.png\'); background-repeat: no-repeat;"';
                 }
                 else
                 {
-                    compteHtml += 'style="background-image: url(\'Images/sticker-recif-de-corail.png\'); background-repeat: no-repeat;"';
+                    compteHtml += 'style="background-image: url(\'images/sticker-recif-de-corail.png\'); background-repeat: no-repeat;"';
                 } 
                 
                 compteHtml += '><div class="box-header">';
                 compteHtml += '<h2>' + compte.typeCompte + '</h2>';
                 compteHtml += '<div class="montant-compte">';
                 compteHtml += '<div class="montant">' + compte.solde + '</div>';
-                compteHtml += '<img src="Images/fishcoin.png"></div></div>';
+                compteHtml += '<img src="images/fishcoin.png"></div></div>';
                 compteHtml += '<p>Numéro de compte: ' + compte.id + '</p>';
                 compteHtml += '<div class="btn-menu"><i class="bx bxs-right-arrow-circle">';
                 compteHtml += '</i><a href="/TCH099_FishFric/Site_web/consulterCompte/consulterCompte.php?id=' + compte.id + '">Détails du compte</a></div></div>';                                                              
@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                                 //Fermer la fenêtre
                                 setTimeout(() => {
-                                    togglePopupentrePersonne()
+                                    togglePopupentrePersonne();
                                 }, 1500);
 
                                 //Désactiver le bouton pour ne pas refaire un virement
@@ -630,6 +630,6 @@ let bonjour = document.getElementById('txtBonjour');
 bonjour.addEventListener('click', function () {
 
     let myAudio = document.createElement("audio");
-    myAudio.src = "./Images/welcome-aboard.mp3";
+    myAudio.src = "./images/welcome-aboard.mp3";
     myAudio.play();
 });

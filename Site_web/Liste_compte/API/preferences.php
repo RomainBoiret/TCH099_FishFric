@@ -192,33 +192,6 @@ else if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "DELE
 
 
 
-
-
-
-        // ALTER TABLE comptebancaire
-        // ADD CONSTRAINT comptebancaire_ibfk_1 FOREIGN KEY (compteId) 
-        // REFERENCES compte(id) ON DELETE CASCADE;
-
-        // ALTER TABLE transactionbancaire
-        // ADD CONSTRAINT transactionbancaire_ibfk_1 FOREIGN KEY (idCompteBancaireProvenant) 
-        // REFERENCES comptebancaire(id) ON DELETE CASCADE;
-
-        // ALTER TABLE transactionbancaire
-        // ADD CONSTRAINT transactionbancaire_ibfk_2 FOREIGN KEY (idCompteBancaireRecevant) 
-        // REFERENCES comptebancaire(id) ON DELETE CASCADE;
-
-
-        // ALTER TABLE demandeassistance
-        // ADD CONSTRAINT demandeassistance_ibfk_1 FOREIGN KEY(compteId)
-        // REFERENCES compte(id) ON DELETE CASCADE;
-
-        // ALTER TABLE notificationclient
-        // ADD CONSTRAINT notificationclient_ibfk_1 FOREIGN KEY(CompteId)
-        // REFERENCES compte(id) ON DELETE CASCADE;
-
-
-
-
     if(empty($erreurs)) {
         //S'il n'y a pas d'erreurs, faire la requête qui supprime l'utilisateur.
         $sql = "DELETE FROM Compte WHERE id=$idUtilisateur";
