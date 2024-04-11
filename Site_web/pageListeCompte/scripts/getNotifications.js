@@ -128,7 +128,7 @@ function recevoirVirement(idTransaction, decision) {
                 //Fermer la fenêtre
                 setTimeout(() => {
                     toast.remove()
-                }, 3000);
+                }, 4500);
             }
 
             else {
@@ -142,7 +142,7 @@ function recevoirVirement(idTransaction, decision) {
 
                     setTimeout(() => {
                         toast.remove();
-                    }, 3000);
+                    }, 4500);
                 })
             }
 
