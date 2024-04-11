@@ -274,7 +274,7 @@ include "../verifSession.php";
                         <p>
                         - Taux d'intérêt quotidien de 3% <br>
                         - Solde de 15$ offert dès l'ouverture <br>
-                        - Aucun frais mensuels <br>
+                        - Aucun frais mensuel <br>
                         </p>
                         <div class="input-box">
                             <input type="radio" name="choix" id="choix" placeholder="Compte épargne">
@@ -285,7 +285,7 @@ include "../verifSession.php";
                         <h4>Carte requin</h4>
                         <p>
                         - Aucun frais <br> 
-                        - Remises de 2% pour tous les achats <br>
+                        - Remise de 2% pour tous les achats <br>
                         - Taux d'intérêt de 9.99%
                         </p>
                         <div class="input-box">
@@ -392,7 +392,7 @@ include "../verifSession.php";
 <!-- footer design -->
 <footer class="footer">
     <div class="footer-text">
-        <p>Icones céées par <a href="https://www.flaticon.com/authors/Freepik" title="Freepik">Freepik</a> depuis <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+        <p>Stickers céées par <a href="https://www.flaticon.com/fr/auteurs/stickers" title="Stickers">Stickers</a> depuis <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
         <p>Copyright &copy; 2024 Fish&Fric | All Rights Reserved.</p>
     </div>
     

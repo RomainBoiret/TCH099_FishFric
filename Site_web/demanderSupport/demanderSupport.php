@@ -38,11 +38,11 @@ include "../verifSession.php";
 
                 <p>Vous rencontrez un problème ou vous avez des intérogations ?</p>
     
-                <p>Contactez un technicien !</p>
+                <p>Contactez un tech-Fisher !</p>
 
                 <p>Notre équipe d'assistance traitera votre demande dans les plus brefs délais et vous fournira une réponse ou une solution à votre problème. Nous sommes là pour vous aider à résoudre tout problème ou répondre à toute question que vous pourriez avoir concernant nos services.</p>
     
-                <p>Consultez notre FAQ pour vérifié que nous n'ayons pas déjà répondu à votre question !</p>
+                <p>Consultez notre FAQ pour vérifier que nous n'ayons pas déjà répondu à votre question !</p>
 
                 <div class="btn-box">
                     <a href="../FAQ/page_faq.html" class="btn">Consulter FAQ</a>
