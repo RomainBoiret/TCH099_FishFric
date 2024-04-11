@@ -192,8 +192,6 @@ else if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "DELE
         }
     }
 
-
-
     if(empty($erreurs)) {
         //S'il n'y a pas d'erreurs, faire la requête qui supprime l'utilisateur.
         $sql = "DELETE FROM Compte WHERE id=$idUtilisateur";
@@ -201,9 +199,7 @@ else if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "DELE
 
         //Mettre un message dans une variable de session et renvoyer l'utilisateur à la page de connexion
         $_SESSION["compteSupprime"] = "Votre compte Fish&Fric a bien été supprimé.";
-        // header("Location: /TCH099_FishFric/Site_web/Connexion/page_connexion.php");
-        // exit(); 
-
+        
         echo json_encode(['msgSucces' => "Succès"]);
     } 
     

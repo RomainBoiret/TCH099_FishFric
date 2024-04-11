@@ -126,6 +126,29 @@
 
             // $conn->query($requete);
 
+
+
+            //Créer événement qui prend le solde total tous les jours
+
+            //D'abord chercher l'ID de l'utilisateur
+            $sql = "SELECT id FROM Compte WHERE courriel LIKE '$courriel';";
+            $requete->execute();
+            $idUtilisateur = $requete->fetchColumn();
+
+            //Set le nom de l'événement
+            $eventNameSolde = "solde" . $idUtilisateur;
+            
+            //Faire l'évémeemt
+            $requete = "CREATE EVENT `projet_integrateur`.`$eventNameSolde`
+            ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
+
+            INSERT INTO SommeTotale (compteId, solde, dateSolde) 
+            VALUES ($idUtilisateur, (SELECT SUM(solde) AS total_solde FROM CompteBancaire WHERE compteId = $idUtilisateur), NOW();";
+                        
+
+
+            // $conn->query($requete);
+
             if($mobile)
             {
                 echo json_encode(['reponse'=>"Bienvenue chez Fish&Fric :) ", 'code'=>'201']);
