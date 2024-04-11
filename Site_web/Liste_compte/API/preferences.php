@@ -1,4 +1,8 @@
 <?php
+//Chercher l'ID de l'utilisateur conencté
+session_start();
+$idUtilisateur = $_SESSION["utilisateur"];
+
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
 
     try{
@@ -9,10 +13,6 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
     }
 
     include "../../Encryption/encryption.php";
-
-    //Chercher l'ID de l'utilisateur conencté
-    session_start();
-    $idUtilisateur = $_SESSION["utilisateur"];
 
     //Chercher les données
     $donneesJSON = json_decode(file_get_contents("php://input"), true);
@@ -130,11 +130,6 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
             $resultat = $conn->query($sql);
             $transactionsArray = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
-            // //Effacer les notifications
-            // $transactions = join("','",$transactionsArray);   
-            // $sql = "DELETE FROM NotificationClient WHERE idTransaction IN ('$transactions');";
-            // $conn->query($sql);
-
             // Création d'un tableau contenant uniquement les identifiants de transaction
             $transactionIds = array_map(function($transaction) {
                 return $transaction['id'];
@@ -166,15 +161,87 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
         }
     }
 
-    //-----------------------SUPPRIMER COMPTE-----------------------
-    else if (preg_match('/\/Liste_compte\/API\/preferences\.php\/compte$/', $_SERVER['REQUEST_URI'], $matches)) {
-        
-    }
-
     else { 
         echo json_encode(['erreur' => 'Mauvaise route.',
                           'code' => 404]);
     }
+}
+
+
+ //-----------------------SUPPRIMER COMPTE-----------------------
+else if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "DELETE"){
+
+    try{
+        require "../../connexion.php";
+    }catch(Exception $e)
+    {
+        die("Connexion échouée!: " .$e->getMessage());
+    }
+
+    //Vérifier que les comptes ont un solde de 0
+    $sql = "SELECT solde FROM CompteBancaire WHERE compteId=$idUtilisateur;";
+    $resultat = $conn->query($sql);
+    $soldes = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach($soldes as $solde) {
+        if($solde['solde'] != 0.00) {
+            $erreurs[] = "Le solde de tous vos comptes doivent être à 0.";
+            break;
+        }
+    }
+
+
+
+
+
+
+        // ALTER TABLE comptebancaire
+        // ADD CONSTRAINT comptebancaire_ibfk_1 FOREIGN KEY (compteId) 
+        // REFERENCES compte(id) ON DELETE CASCADE;
+
+        // ALTER TABLE transactionbancaire
+        // ADD CONSTRAINT transactionbancaire_ibfk_1 FOREIGN KEY (idCompteBancaireProvenant) 
+        // REFERENCES comptebancaire(id) ON DELETE CASCADE;
+
+        // ALTER TABLE transactionbancaire
+        // ADD CONSTRAINT transactionbancaire_ibfk_2 FOREIGN KEY (idCompteBancaireRecevant) 
+        // REFERENCES comptebancaire(id) ON DELETE CASCADE;
+
+
+        // ALTER TABLE demandeassistance
+        // ADD CONSTRAINT demandeassistance_ibfk_1 FOREIGN KEY(compteId)
+        // REFERENCES compte(id) ON DELETE CASCADE;
+
+        // ALTER TABLE notificationclient
+        // ADD CONSTRAINT notificationclient_ibfk_1 FOREIGN KEY(CompteId)
+        // REFERENCES compte(id) ON DELETE CASCADE;
+
+
+
+
+    if(empty($erreurs)) {
+        //S'il n'y a pas d'erreurs, faire la requête qui supprime l'utilisateur.
+        $sql = "DELETE FROM Compte WHERE id=$idUtilisateur";
+        $conn->query($sql);
+
+        //Mettre un message dans une variable de session et renvoyer l'utilisateur à la page de connexion
+        $_SESSION["compteSupprime"] = "Votre compte Fish&Fric a bien été supprimé.";
+        // header("Location: /TCH099_FishFric/Site_web/Connexion/page_connexion.php");
+        // exit(); 
+
+        echo json_encode(['msgSucces' => "Succès"]);
+    } 
+    
+    else {
+        echo json_encode(['erreurs' => $erreurs]);
+    }
+}
+
+
+else {
+    // Code HTTP 405 - Method Not Allowed
+    echo json_encode(['erreur' => 'Méthode non autorisée.',
+                    'code' => 405]);
 }
 
 

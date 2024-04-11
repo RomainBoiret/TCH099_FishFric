@@ -292,6 +292,15 @@ label {
     animation: anim 4.5s linear forwards;
 }
 
+
+.toast.success i {
+    color: green;
+}
+
+.toast.success::after {
+    background: green;
+}
+
 @keyframes anim {
     100% {
         width: 0;

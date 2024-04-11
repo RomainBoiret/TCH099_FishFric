@@ -1,8 +1,7 @@
 <?php
 session_start();
-
 //Vérifier que la session de l'utilisateur est en cours
-if (isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY']) < $_SESSION['DUREE_SESSION']) {
+if (!isset($_SESSION["compteSupprime"]) && isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY']) < $_SESSION['DUREE_SESSION']) {
     //Si c'est le cas, le rediriger directement sur sa liste de comptes, et mettre à jour le moment de dernière activité
     $_SESSION['LAST_ACTIVITY'] = time();
     header("Location: ../Liste_compte/listeCompte.php");
@@ -100,11 +99,30 @@ if (isset($_SESSION['utilisateur']) && isset($_SESSION['LAST_ACTIVITY']) && (tim
 </html>
 
 <?php
-//Si la session de la personne a expiré, l'afficher
-if (isset($_SESSION["SESSION_EXPIRED"])) {
+//Si l'utilisateur vient de fermer son compte
+if(isset( $_SESSION["compteSupprime"])) {
     echo "<script>";
-    echo "                    let toast = document.createElement('div');
+    echo "let toast = document.createElement('div');
     toast.classList.add('toast');
+    toast.classList.add('success');
+    toast.innerHTML = '<i class=\"bx bxs-check-circle\"></i>' + 'Votre compte Fish&Fric a bien été supprimé.';
+    toastBox.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);";
+    echo '</script>';    
+
+    //Vider la session
+    $_SESSION = [];
+}
+
+//Si la session de la personne a expiré, l'afficher
+else if (isset($_SESSION["SESSION_EXPIRED"])) {
+    echo "<script>";
+    echo "let toast = document.createElement('div');
+    toast.classList.add('toast');
+    toast.classList.add('error');
     toast.innerHTML = '<i class=\"bx bxs-error-circle\"></i>' + 'Votre session a expiré!';
     toastBox.appendChild(toast);
 
@@ -113,6 +131,7 @@ if (isset($_SESSION["SESSION_EXPIRED"])) {
     }, 3000);";
     echo '</script>';    
 
+    //Vider la session
     $_SESSION = [];
 }
 ?>

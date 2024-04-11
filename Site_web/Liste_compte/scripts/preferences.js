@@ -124,3 +124,51 @@ document.getElementById('btnNouveauMdp').addEventListener('click', function() {
     //Envoyer la requête
     requeteNouveauMdp.send(donneesJson);
 })
+
+
+
+
+//-----------------------------Supprimer compte fish&fric---------------------------
+document.getElementById('btnSupprimerCompte').addEventListener('click', function() {
+    requeteDelete = new XMLHttpRequest();
+    requeteDelete.open('DELETE', '/TCH099_FishFric/Site_web/Liste_compte/API/preferences.php', true);
+
+    //Messages d'erreurs ou de succès du virement
+    requeteDelete.onload = function() {
+        //Vérifier si la requête a marché
+        if (requeteDelete.readyState === 4 && requeteDelete.status === 200) {
+            //Décoder la réponse (qui est au format JSON)
+            let responseData = JSON.parse(requeteDelete.responseText);
+
+            //Afficher un message de succès si la reqûete renvoie "msgSucces"
+            if ("msgSucces" in responseData) {
+                //Rediriger la personne vers la page de connexion
+                window.location.href = '/TCH099_FishFric/Site_web/Connexion/page_connexion.php';
+            }
+
+            else if ("erreurs" in responseData) {
+                responseData.erreurs.forEach(function(message) {
+                    //Afficher chaque message d'erreur
+                    let toast = document.createElement('div');
+                    toast.classList.add('toast');
+                    toast.classList.add('error');
+                    toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
+                    toastBox.appendChild(toast);
+
+                    //Fermer la fenêtre
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 4500);
+                })
+            }
+        }
+    }
+
+    //Message d'erreur de la requête
+    requeteDelete.onerror = function() {
+        console.error('La requête n\'a pas fonctionné!');
+    };
+
+    //Envoyer la requête
+    requeteDelete.send();
+})
