@@ -144,10 +144,7 @@
 
             INSERT INTO SommeTotale (compteId, solde, dateSolde) 
             VALUES ($idUtilisateur, (SELECT SUM(solde) AS total_solde FROM CompteBancaire WHERE compteId = $idUtilisateur), NOW();";
-                        
-
-
-            // $conn->query($requete);
+            $conn->query($requete);
 
             if($mobile)
             {
