@@ -11,7 +11,7 @@
 
         $donneesJSON = json_decode(file_get_contents("php://input"), true);
 
-        if(empty($donneesJSON))
+        if(!empty($donneesJSON))
         {
 
             $idUser = $donneesJSON['idUser'];
