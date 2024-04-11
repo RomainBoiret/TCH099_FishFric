@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let requeteGetComptes = new XMLHttpRequest();
 
     //Configurer la requête, pour aller chercher les comptes
-    requeteGetComptes.open('GET', '/TCH099_FishFric/Site_web/Liste_compte/API/afficherComptes.php', true);
+    requeteGetComptes.open('GET', '/TCH099_FishFric/Site_web/pageListeCompte/API/afficherComptes.php', true);
 
     requeteGetComptes.onload = function() {
         //Vérifier si la requête a marché
@@ -19,33 +19,33 @@ document.addEventListener("DOMContentLoaded", function() {
             let comptes = '';
             responseData.comptes.forEach(function(compte) {
                 //Mettre tout le code HTML de la structure d'un compte dans une string
-                //style="background-image: url(\'Images/poisson-globe.png\'); background-repeat: no-repeat;"
+                //style="background-image: url(\'images/poisson-globe.png\'); background-repeat: no-repeat;"
 
                 let compteHtml = '<div class="compte-box" id="compte-box"'
                 
                 //Ajouter une image selon le type de compte
                 if (compte.typeCompte == "Compte chèque")
                 {
-                    compteHtml += 'style="background-image: url(\'Images/sticker-poisson.png\'); background-repeat: no-repeat;"';
+                    compteHtml += 'style="background-image: url(\'images/sticker-poisson.png\'); background-repeat: no-repeat;"';
                 }
                 else if (compte.typeCompte == "Compte épargne")
                 {
-                    compteHtml += 'style="background-image: url(\'Images/sticker-dauphin.png\'); background-repeat: no-repeat;"';
+                    compteHtml += 'style="background-image: url(\'images/sticker-dauphin.png\'); background-repeat: no-repeat;"';
                 }
                 else if (compte.typeCompte == "Carte requin")
                 {
-                    compteHtml += 'style="background-image: url(\'Images/sticker-raie-manta.png\'); background-repeat: no-repeat;"';
+                    compteHtml += 'style="background-image: url(\'images/sticker-raie-manta.png\'); background-repeat: no-repeat;"';
                 }
                 else
                 {
-                    compteHtml += 'style="background-image: url(\'Images/sticker-recif-de-corail.png\'); background-repeat: no-repeat;"';
+                    compteHtml += 'style="background-image: url(\'images/sticker-recif-de-corail.png\'); background-repeat: no-repeat;"';
                 } 
                 
                 compteHtml += '><div class="box-header">';
                 compteHtml += '<h2>' + compte.typeCompte + '</h2>';
                 compteHtml += '<div class="montant-compte">';
                 compteHtml += '<div class="montant">' + compte.solde + '</div>';
-                compteHtml += '<img src="Images/fishcoin.png"></div></div>';
+                compteHtml += '<img src="images/fishcoin.png"></div></div>';
                 compteHtml += '<p>Numéro de compte: ' + compte.id + '</p>';
                 compteHtml += '<div class="btn-menu"><i class="bx bxs-right-arrow-circle">';
                 compteHtml += '</i><a href="/TCH099_FishFric/Site_web/consulterCompte/consulterCompte.php?id=' + compte.id + '">Détails du compte</a></div></div>';                                                              
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //On peut commencer notre requête
                     requeteVirement = new XMLHttpRequest();
-                    requeteVirement.open('PUT', '/TCH099_FishFric/Site_web/Transfert/API/gestionTransfert.php/compte', true);
+                    requeteVirement.open('PUT', '/TCH099_FishFric/Site_web/transfert/API/gestionTransfert.php/compte', true);
                     
                     //Stocke les donnees a envoyer en format JSON
                     requeteVirement.setRequestHeader('Content-Type', 'application/json');
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //On peut commencer notre requête
                     requeteVirement = new XMLHttpRequest();
-                    requeteVirement.open('PUT', '/TCH099_FishFric/Site_web/Transfert/API/gestionTransfert.php/utilisateurEnvoi', true);
+                    requeteVirement.open('PUT', '/TCH099_FishFric/Site_web/transfert/API/gestionTransfert.php/utilisateurEnvoi', true);
                     
                     //Stocke les donnees a envoyer en format JSON
                     requeteVirement.setRequestHeader('Content-Type', 'application/json');
@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                                 //Fermer la fenêtre
                                 setTimeout(() => {
-                                    togglePopupentrePersonne()
+                                    togglePopupentrePersonne();
                                 }, 1500);
 
                                 //Désactiver le bouton pour ne pas refaire un virement
@@ -324,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //On peut commencer notre requête
                     requeteFacture = new XMLHttpRequest();
-                    requeteFacture.open('PUT', '/TCH099_FishFric/Site_web/Transfert/API/gestionTransfert.php/facture', true);
+                    requeteFacture.open('PUT', '/TCH099_FishFric/Site_web/transfert/API/gestionTransfert.php/facture', true);
                     
                     //Stocke les donnees a envoyer en format JSON
                     requeteFacture.setRequestHeader('Content-Type', 'application/json');
@@ -424,7 +424,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //On peut commencer notre requête
                     requeteSupprimerCptBancaire = new XMLHttpRequest();
-                    requeteSupprimerCptBancaire.open('PUT', '/TCH099_FishFric/Site_web/Liste_compte/API/preferences.php/compteBancaire', true);
+                    requeteSupprimerCptBancaire.open('PUT', '/TCH099_FishFric/Site_web/pageListeCompte/API/preferences.php/compteBancaire', true);
                     
                     //Stocke les donnees a envoyer en format JSON
                     requeteSupprimerCptBancaire.setRequestHeader('Content-Type', 'application/json');
@@ -630,6 +630,6 @@ let bonjour = document.getElementById('txtBonjour');
 bonjour.addEventListener('click', function () {
 
     let myAudio = document.createElement("audio");
-    myAudio.src = "./Images/welcome-aboard.mp3";
+    myAudio.src = "./images/welcome-aboard.mp3";
     myAudio.play();
 });

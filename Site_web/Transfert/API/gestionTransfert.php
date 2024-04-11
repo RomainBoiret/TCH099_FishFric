@@ -19,7 +19,7 @@
         //----------------------------VÉRIFICATIONS DES DONNÉES DU POST s'appliquant à TOUS les types de transfert SAUF réception de virement-------------------------
         //
         //On ne vérifie PAS le compte provenant et le montant si c'est pour une réception de virement
-        if (!preg_match('/\/Transfert\/API\/gestionTransfert\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches))  {
+        if (!preg_match('/\/transfert\/API\/gestionTransfert\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches))  {
             //Vérif. ID compte bancaire source du transfert
             if(isset($donnees["idCompteBancaireProvenant"]) 
             && is_numeric(trim($donnees["idCompteBancaireProvenant"]))) {
@@ -63,7 +63,7 @@
 
         //-----------------------------------------TRANSFERT ENTRE UTILISATEURS, ENVOI-----------------------------------------
         //
-        if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/utilisateurEnvoi$/', $_SERVER['REQUEST_URI'], $matches)) {
+        if (preg_match('/\/transfert\/API\/gestionTransfert\.php\/utilisateurEnvoi$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Vérifier qu'il y a un courriel de contact
             if(isset($donnees['courrielDest'])) {
                 $courrielDest = $donnees['courrielDest'];
@@ -168,7 +168,7 @@
 
         //-----------------------------------------TRANSFERT ENTRE UTILISATEURS, RECEPTION-----------------------------------------
         //
-        else if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches)) {
+        else if (preg_match('/\/transfert\/API\/gestionTransfert\.php\/utilisateurReception$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Vérifier qu'il y a une acceptation ou bien un refus du transfert
             if(isset($donnees['decision'])) {
                 $decision = $donnees['decision'];
@@ -320,7 +320,7 @@
 
         //-----------------------------------------TRANSFERT ENTRE comptes-----------------------------------------
         //
-        else if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/compte$/', $_SERVER['REQUEST_URI'], $matches)) {
+        else if (preg_match('/\/transfert\/API\/gestionTransfert\.php\/compte$/', $_SERVER['REQUEST_URI'], $matches)) {
             //Vérif. ID compte bancaire destinataire du transfert
             if(isset($donnees["idCompteBancaireRecevant"]) 
             && is_numeric(trim($donnees["idCompteBancaireRecevant"]))) {
@@ -392,7 +392,7 @@
 
         //-----------------------------------------PAIEMENT DE FACTURE-----------------------------------------
         //
-        else if (preg_match('/\/Transfert\/API\/gestionTransfert\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
+        else if (preg_match('/\/transfert\/API\/gestionTransfert\.php\/facture$/', $_SERVER['REQUEST_URI'], $matches)) { 
             //Vérifier que le nom d'établissement est présent
             if(isset($donnees['nomEtablissement']) && !empty($donnees['nomEtablissement'])) {
                 $nomEtablissement = $donnees['nomEtablissement'];

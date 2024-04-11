@@ -11,7 +11,7 @@ include "../verifSession.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste Compte</title>
-    <link rel="stylesheet" href="../Liste_compte/styles/style.css">
+    <link rel="stylesheet" href="../pageListeCompte/styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" href="/TCH099_FishFric/Site_web/favicon.ico">
 </head>
@@ -20,7 +20,7 @@ include "../verifSession.php";
 <!-- ------------------------------------MENU HAUT DE PAGE (Logo, notifs, déconnexion)------------------------------------ -->
 <header>
     <a href="../index.html" class="logo">
-        <img src="../Images/logo-website.jpg">
+        <img src="../imagesCommunes/logo-website.jpg">
         <div>Fish<span>&</span>Fric</div>
     </a>
 
@@ -90,7 +90,7 @@ include "../verifSession.php";
 
                         <p>Avez-vous des questions ?</p>
 
-                        <button class="btn"><a href="../demanderSupport/demanderSupport.php">Nous contacter</a></button>
+                        <button class="btn"><a href="../pageDemanderSupport/pageDemanderSupport.php">Nous contacter</a></button>
                     </div>
                 </div>
             </div>
@@ -273,7 +273,6 @@ include "../verifSession.php";
                         <h4>Compte épargne</h4>
                         <p>
                         - Taux d'intérêt quotidien de 3% <br>
-                        - Solde de 15$ offert dès l'ouverture <br>
                         - Aucun frais mensuel <br>
                         </p>
                         <div class="input-box">

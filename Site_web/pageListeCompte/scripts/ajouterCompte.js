@@ -3,7 +3,7 @@ document.getElementById('btnAjouterCompte').addEventListener('click', function()
 
     //Créer la requête
     let requeteAjouterCompte = new XMLHttpRequest();
-    requeteAjouterCompte.open('POST', '/TCH099_FishFric/Site_web/Liste_compte/API/ajouterCompte.php', true);
+    requeteAjouterCompte.open('POST', '/TCH099_FishFric/Site_web/pageListeCompte/API/ajouterCompte.php', true);
 
     //Chercher le compte à créer
     let typeCompte = '';
@@ -37,9 +37,11 @@ document.getElementById('btnAjouterCompte').addEventListener('click', function()
                 toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.succes;
                 toastBox.appendChild(toast);
 
+                //Fermer la fenêtre
                 setTimeout(() => {
                     toast.remove();
-                }, 4500);
+                    togglePopupNouveauCompte();
+                }, 1500);
 
             }
 

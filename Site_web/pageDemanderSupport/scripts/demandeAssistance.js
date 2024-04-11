@@ -2,7 +2,7 @@ document.getElementById("soumettre").addEventListener('click', function() {
     //Créer requête POST 
 
     let xhrDemanderAssistance = new XMLHttpRequest();
-    xhrDemanderAssistance.open('POST', '/TCH099_FishFric/Site_web/demanderSupport/API/demandeAssistance.php', true);
+    xhrDemanderAssistance.open('POST', '/TCH099_FishFric/Site_web/pageDemanderSupport/API/demandeAssistance.php', true);
 
     //Chercher les données
     let messageRecu = document.getElementById('messageRecu').value;

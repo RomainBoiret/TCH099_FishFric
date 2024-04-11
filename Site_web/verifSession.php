@@ -8,6 +8,6 @@
         session_unset();
         $_SESSION['SESSION_EXPIRED'] = "Votre session a expiré!";
         
-        header("Location: /TCH099_FishFric/Site_web/Connexion/page_connexion.php");
+        header("Location: /TCH099_FishFric/Site_web/pageConnexion/pageConnexion.php");
         exit(); 
     }

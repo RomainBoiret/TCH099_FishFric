@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let requeteGetCompte = new XMLHttpRequest();
 
     //Configurer la requête pour chercher les infos du compte en question
-    requeteGetCompte.open('GET', '/TCH099_FishFric/Site_web/consulterCompte/API/getCompte.php?compteId=' + compteId, true);
+    requeteGetCompte.open('GET', '/TCH099_FishFric/Site_web/pageConsulterCompte/API/getCompte.php?compteId=' + compteId, true);
 
     requeteGetCompte.onload = function() {
         //Vérifier si la requête a marché

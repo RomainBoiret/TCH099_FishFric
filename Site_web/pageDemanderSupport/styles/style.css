@@ -177,7 +177,7 @@ p {
 .main-container .assitance-container {
     width: 45%;
     height: 90%;
-    background: url('../Images/whale.png') no-repeat;
+    background: url('../images/whale.png') no-repeat;
     background-size: 180px;
     background-position: 100% 100%;;
 }
