@@ -51,7 +51,7 @@ if (!isset($_SESSION["compteSupprime"]) && isset($_SESSION['utilisateur']) && is
                     dès aujourd'hui.</p>
             </div>
 
-            <button class="btn-connecter" onclick="window.location.href='../Creer_un_compte/creerCompte.php'"><a>Créer un compte</a></button>
+            <button class="btn-connecter" onclick="window.location.href='../pageCreerCompte/pageCreerCompte.php'"><a>Créer un compte</a></button>
         </div>
 
         <div class="connexion-container">

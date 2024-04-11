@@ -630,6 +630,6 @@ let bonjour = document.getElementById('txtBonjour');
 bonjour.addEventListener('click', function () {
 
     let myAudio = document.createElement("audio");
-    myAudio.src = "./images/welcome-aboard.mp3";
+    myAudio.src = "../bandesSons/welcome-aboard.mp3";
     myAudio.play();
 });
