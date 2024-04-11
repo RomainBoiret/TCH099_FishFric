@@ -14,7 +14,7 @@
         if(!empty($donneesJSON))
         {
 
-            $idUser = $donneesJSON['idUser'];
+            $idUser = trim(implode($donneesJSON['idUser']));
 
             $requete = $conn->prepare("SELECT * FROM SommeTotale WHERE compteId = $idUser");
             $requete->execute();
