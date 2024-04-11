@@ -26,19 +26,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 //Ajouter une image selon le type de compte
                 if (compte.typeCompte == "Compte chèque")
                 {
-                    compteHtml += 'style="background-image: url(\'Images/poisson-globe.png\'); background-repeat: no-repeat;"';
+                    compteHtml += 'style="background-image: url(\'Images/sticker-poisson.png\'); background-repeat: no-repeat;"';
                 }
                 else if (compte.typeCompte == "Compte épargne")
                 {
-                    compteHtml += 'style="background-image: url(\'Images/poisson-koi.png\'); background-repeat: no-repeat;"';
+                    compteHtml += 'style="background-image: url(\'Images/sticker-dauphin.png\'); background-repeat: no-repeat;"';
                 }
                 else if (compte.typeCompte == "Carte requin")
                 {
-                    compteHtml += 'style="background-image: url(\'Images/requin.png\'); background-repeat: no-repeat;"';
+                    compteHtml += 'style="background-image: url(\'Images/sticker-raie-manta.png\'); background-repeat: no-repeat;"';
                 }
                 else
                 {
-                    compteHtml += 'style="background-image: url(\'Images/algue.png\'); background-repeat: no-repeat;"';
+                    compteHtml += 'style="background-image: url(\'Images/sticker-recif-de-corail.png\'); background-repeat: no-repeat;"';
                 } 
                 
                 compteHtml += '><div class="box-header">';
@@ -623,3 +623,13 @@ function setTargetDetail(targetDetail) {
     }
   });
 }
+
+// easter egg
+let bonjour = document.getElementById('txtBonjour');
+
+bonjour.addEventListener('click', function () {
+
+    let myAudio = document.createElement("audio");
+    myAudio.src = "./Images/welcome-aboard.mp3";
+    myAudio.play();
+});

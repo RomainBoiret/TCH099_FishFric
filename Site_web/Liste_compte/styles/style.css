@@ -65,6 +65,7 @@ header {
     font-weight: 600;
     padding: 0.5rem 10px;
     border-radius: 10px;
+    transition: .1s;
 }
 
 .logo:hover {
@@ -389,10 +390,10 @@ section {
 }
 
 section #txtBonjour {
+    width: 25rem;
     font-size: 2.5rem;
     padding-left: 2.9%;
 }
-
 
 .main-container {
     width: 100%;
@@ -463,8 +464,8 @@ section #txtBonjour {
 #compte-content .compte-box {
     width: 100%;
     height: 18rem;
-    background-image: url('../Images/poisson-globe.png') no-repeat;
-    background-size: 100px;
+    background-image: url('../Images/sticker-poisson.png') no-repeat;
+    background-size: 120px;
     background-position: right 25% bottom 50%;
     color: var(--text-color);
     border-bottom: 1px dashed var(--text-color);
@@ -614,18 +615,15 @@ section #txtBonjour {
     gap: 1rem;
     border-radius: 10px;
     padding: 3% 2%;
-    background-color: var(--white);
+    background: var(--white);
     color: var(--text-color);
     font-size: 1.5rem;
     font-weight: 550;
+    transition: .1s;
 }
 
 .navigation .btn:hover {
-    background-color: #e8ebee;
-    background-image: url('../images/poisson.png');
-    background-repeat: no-repeat;
-    background-size: 30px;
-    background-position: right 5% bottom 50%;
+    background: #e8ebee;
 }
 
 .navigation .btn i {
@@ -674,18 +672,15 @@ section #txtBonjour {
     gap: 1rem;
     border-radius: 10px;
     padding: 3% 2%;
-    background-color: var(--white);
+    background: var(--white);
     color: var(--text-color);
     font-size: 1.5rem;
     font-weight: 550;
+    transition: .1s;
 }
 
 .navigation-footer .btn:hover {
-    background-color: #e8ebee;
-    background-image: url('../images/poisson.png');
-    background-repeat: no-repeat;
-    background-size: 30px;
-    background-position: right 5% bottom 50%;
+    background: #e8ebee;
 }
 
 .navigation-footer .btn i {
@@ -1102,12 +1097,6 @@ label {
     border-radius: 5px;
     font-size: 1.4rem;
 }
-
-/* #msg-erreur-virement-compte, #msg-erreur-virement-personne, #msg-erreur-payer-facture {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.4rem;
-} */
 
 .main-content-part .payer-facture {
     width: 100%;
