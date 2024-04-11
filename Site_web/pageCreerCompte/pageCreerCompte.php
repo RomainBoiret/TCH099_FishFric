@@ -99,12 +99,12 @@
         <div class="illustration-container">
             <h1>Vous êtes déjà membre ?</h1>
 
-            <button class="btn-connecter"  onclick="window.location.href='../Connexion/page_connexion.php'"><a>Se connecter</a></button>
+            <button class="btn-connecter"  onclick="window.location.href='../pageConnexion/pageConnexion.php'"><a>Se connecter</a></button>
         </div>
     </div>
 </section>
 </main>
 </body>
-<script src="../Page_accueil/scripts/script.js"></script>
+<script src="../pageAccueil/scripts/script.js"></script>
 <script src="./scripts/verifCreerCompte.js"></script>
 </html>
