@@ -29,7 +29,7 @@
 
             
             //Encoder les informations des comptes en json
-            echo json_encode(["comptes" => $comptes, "code"=>"200"]);
+            echo json_encode(["comptes" => $sommes, "code"=>"200"]);
         }
         else
         {
