@@ -16,7 +16,7 @@
 
             $idUser = trim(implode($donneesJSON['idUser']));
 
-            $requete = $conn->prepare("SELECT * FROM SommeTotale WHERE compteId = $idUser");
+            $requete = $conn->prepare("SELECT * FROM SommeTotale WHERE compteId = $idUser AND dateSolde > CURRENT_DATE-2");
             $requete->execute();
             $sommes = $requete->fetchAll(PDO::FETCH_ASSOC);
 
