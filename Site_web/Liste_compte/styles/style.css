@@ -421,7 +421,7 @@ section #txtBonjour {
 
 .main-compte .header-compte {
     width: 100%;
-    height: 10%;
+    height: 45px;
     background: var(--bleu-ocean-surface);
     color: var(--text-color);
     display: flex;
@@ -565,7 +565,7 @@ section #txtBonjour {
 
 .header-nav .title-header-nav {
     width: 100%;
-    height: 20%;
+    height: 45px;
     background: var(--bleu-ocean-surface);
     color: var(--text-color);
     display: flex;
@@ -633,7 +633,7 @@ section #txtBonjour {
 
 .footer-nav .title-footer-nav {
     width: 100%;
-    height: 40%;
+    height: 100px;
     background: var(--bleu-ocean-surface);
     color: var(--text-color);
     display: flex;
@@ -1247,11 +1247,6 @@ label {
 
 /* Div messages erreur */
 
-/* #messages {
-    font-size: 1.5rem;
-    color: white;
-} */
-
 #toastBox {
     position: absolute;
     bottom: 30px;
@@ -1391,11 +1386,6 @@ label {
 .footer-iconTop a:hover i {
     color: var(--sable-dore);
 }
-
-
-
-
-
 
 /* MENU DE PRÉFÉRENCES */
 
