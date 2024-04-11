@@ -10,7 +10,7 @@
         }
 
         //Inclure fichier qui contient la fonction d'encryption
-        include "../../encryption/encryption.php";
+        include "../../Encryption/encryption.php";
 
         //Get les données du POST
         $donneesJSON = json_decode(file_get_contents("php://input"), true);

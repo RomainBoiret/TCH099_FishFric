@@ -89,7 +89,7 @@ document.querySelector('.messagerie').addEventListener('click', function() {
 function recevoirVirement(idTransaction, decision) {
     //On peut commencer notre requête
     requeteVirement = new XMLHttpRequest();
-    requeteVirement.open('PUT', '/TCH099_FishFric/Site_web/transfert/API/gestionTransfert.php/utilisateurReception', true);
+    requeteVirement.open('PUT', '/TCH099_FishFric/Site_web/Transfert/API/gestionTransfert.php/utilisateurReception', true);
 
     //Get la réponse
     let inputReponse = document.querySelector('#reponse-' + idTransaction).value;

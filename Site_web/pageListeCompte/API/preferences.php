@@ -12,7 +12,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
         die("Connexion échouée!: " .$e->getMessage());
     }
 
-    include "../../encryption/encryption.php";
+    include "../../Encryption/encryption.php";
 
     //Chercher les données
     $donneesJSON = json_decode(file_get_contents("php://input"), true);
