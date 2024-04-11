@@ -113,7 +113,7 @@
             //--À chaque jour, on met le montant gangé en intérêt dans les transactions
             //--et on actualise le solde
             $requete = "CREATE EVENT `projet_integrateur`.`$eventName`
-            ON SCHEDULE EVERY 30 SECONDS STARTS NOW() DO 
+            ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
                 INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
                 SELECT id, NOW(), solde*(1 + $interet/100) - solde, 'Intérêts' 
                 FROM CompteBancaire 
