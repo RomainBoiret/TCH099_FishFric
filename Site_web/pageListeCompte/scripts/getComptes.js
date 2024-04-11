@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 compteHtml += '<img src="images/fishcoin.png"></div></div>';
                 compteHtml += '<p>Numéro de compte: ' + compte.id + '</p>';
                 compteHtml += '<div class="btn-menu"><i class="bx bxs-right-arrow-circle">';
-                compteHtml += '</i><a href="/TCH099_FishFric/Site_web/consulterCompte/consulterCompte.php?id=' + compte.id + '">Détails du compte</a></div></div>';                                                              
+                compteHtml += '</i><a href="/TCH099_FishFric/Site_web/pageConsulterCompte/pageConsulterCompte.php?id=' + compte.id + '">Détails du compte</a></div></div>';                                                              
 
                 comptes += compteHtml;
 
