@@ -95,7 +95,7 @@ if (!isset($_SESSION["compteSupprime"]) && isset($_SESSION['utilisateur']) && is
 </section>
 </main>
 </body>
-<script src="../pageAccueil/scripts/script.js"></script>
+<script src="../scriptsCommuns/script.js"></script>
 <script src="./scripts/verifConnexion.js"></script>
 </html>
 

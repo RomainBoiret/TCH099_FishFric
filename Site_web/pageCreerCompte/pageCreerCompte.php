@@ -106,6 +106,6 @@
 </section>
 </main>
 </body>
-<script src="../pageAccueil/scripts/script.js"></script>
+<script src="../scriptsCommuns/script.js"></script>
 <script src="./scripts/verifCreerCompte.js"></script>
 </html>
