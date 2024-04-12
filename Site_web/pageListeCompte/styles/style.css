@@ -389,6 +389,17 @@ section {
     background: #d5deef;
 }
 
+#chartSection {
+    height: 45vh;
+    padding: 2rem 4%;
+    background: #d5deef;
+}
+
+#graph-container {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
 section #txtBonjour {
     font-size: 2.5rem;
     padding-left: 2.9%;
@@ -1566,6 +1577,12 @@ details{
   details[open] div{
     padding: .5rem 1.3rem;
   }
+
+
+#graph-container {
+    height: 100%;
+    width: 100%;
+}
 
 
 

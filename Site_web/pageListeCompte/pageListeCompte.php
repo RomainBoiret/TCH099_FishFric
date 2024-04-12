@@ -11,6 +11,7 @@ include "../verifSession.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste Compte</title>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
     <link rel="stylesheet" href="../pageListeCompte/styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" href="/TCH099_FishFric/Site_web/favicon.ico">
@@ -43,7 +44,7 @@ include "../verifSession.php";
 <main>
 
 <!-- ------------------------------------MENU COMPTES + MENU DROIT DE LA PAGE------------------------------------ -->
-<section>
+<section id="main">
     <h1 id="txtBonjour"> Bonjour <?php echo $_SESSION["nomUtilisateur"]; ?></h1>
     <div class="main-container">
         <div class="main-compte">
@@ -386,6 +387,12 @@ include "../verifSession.php";
     
     <div id="toastBox"></div>
 </section>
+
+
+<section id="chartSection">
+    <div id="graph-container"></div>
+</section>
+
 </main>
 
 <!-- footer design -->
@@ -404,4 +411,5 @@ include "../verifSession.php";
 <script src="./scripts/getNotifications.js"></script>
 <script src="./scripts/ajouterCompte.js"></script>
 <script src="./scripts/preferences.js"></script>
+<script src="./scripts/setGraph.js"></script>
 </html>
