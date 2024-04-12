@@ -33,7 +33,7 @@ if (!isset($_SESSION["compteSupprime"]) && isset($_SESSION['utilisateur']) && is
     <nav class="navigation">
         <a href="../index.html">Accueil</a>
         <a href="../pageFaq/pageFaq.html">Voir la FAQ</a>
-        <a href="#">Notre équipe</a>
+        <a href="../pageNotreEquipe/pageNotreEquipe.html">Notre équipe</a>
 
         <span class="active-nav"></span>
     </nav>
