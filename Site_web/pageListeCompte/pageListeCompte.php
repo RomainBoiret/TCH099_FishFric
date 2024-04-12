@@ -12,6 +12,7 @@ include "../verifSession.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste Compte</title>
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
+    <link rel="stylesheet" href="../stylesCommuns/style.css">
     <link rel="stylesheet" href="../pageListeCompte/styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" href="/TCH099_FishFric/Site_web/favicon.ico">
@@ -67,7 +68,7 @@ include "../verifSession.php";
                     <h4>Effectuer une opération</h4>
                 </div>
                 
-                <nav class="navigation">
+                <nav class="navigation-compte">
                     <div onclick="togglePopupentreCompte()" class="btn" id="btnPopupComptes"><i class='bx bx-transfer-alt'></i>Virer entre comptes</div>
                     <div onclick="togglePopupentrePersonne()" class="btn" id="btnPopupPersonnes"><i class='bx bx-group'></i>Virer entre personnes</div>
                     <div onclick="togglePopupFacture()" class="btn" id="btnPopupFacture"><i class='bx bx-money-withdraw'></i>Payer une facture</div>

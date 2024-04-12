@@ -1,0 +1,461 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --bleu-ocean-abysses: #004462;
+    --bleu-ocean-profond: #005a80;
+    --bleu-turquoise: #00b8d4;
+    --bleu-ocean-surface: #b1c9ef;
+    --vert-eau: #aee1cd;
+    --sable-dore: #e1c16e;
+    --corail-fonce: #ff4747;
+    --corail: #ff6b6b;
+    --text-color: #2b2d42;
+    --white: #f0f3fa; 
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bleu-ocean-abysses);
+}
+
+html {
+    font-size: 60%;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--white);
+    color: var(--text-color);
+}
+
+/*Header Design*/
+
+header {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    padding: 0 4.2%;
+    background: var(--bleu-ocean-profond);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    transition: 0.6s;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2.5rem;
+    color: var(--white);
+    font-weight: 600;
+    padding: 0.5rem 10px;
+    border-radius: 10px;
+    transition: .1s;
+}
+
+.logo:hover {
+    background: var(--bleu-ocean-abysses);
+}
+
+.logo img {
+    width: 45px;
+    border-radius: 15px;
+}
+
+.logo span {
+    color: #ffbc42;
+    font-size: 2.5rem;
+}
+
+.navigation a {
+    position: relative;
+    text-decoration: none;
+    color: var(--white);
+    font-size: 1.6rem;
+    font-weight: 600;
+    border-radius: 2px;
+    padding: 2rem 2rem;
+    transition: .1s;
+}
+
+.navigation a:hover {
+    background: var(--bleu-turquoise);
+    border-bottom: 5px solid var(--white);
+}
+
+.navigation .connexion:hover {
+    background: #ffbc42;
+    border-bottom: 5px solid var(--white);
+}
+
+header .btn-box {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.btn-box .btn-deconnexion {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    width: 20rem;
+    height: 5rem;
+    margin-right: 10px;
+    cursor: pointer;
+    background: var(--sable-dore);
+    border: .2rem solid var(--sable-dore);
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: .1rem;
+    color: var(--bleu-ocean-profond);
+    z-index: 1;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.btn-deconnexion:hover {
+    color: var(--sable-dore);
+}
+
+.btn-deconnexion::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--bleu-ocean-profond);
+    z-index: -1;
+    transition: .5s;
+}
+
+.btn-deconnexion:hover::before {
+    width: 100%;
+}
+
+.btn-deconnexion i {
+    font-size: 2.3rem;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.btn-deconnexion a {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--white);
+}
+
+#menu-icon {
+    font-size: 3.6rem;
+    color: var(--white);
+    cursor: pointer;
+    display: none;
+}
+
+/*Footer Design*/
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem 5%;
+    background: var(--bleu-ocean-abysses);
+}
+
+.footer-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.footer-text p {
+    color: var(--white);
+    font-size: 1.6rem;
+}
+
+.footer-text p a {
+    color: var(--sable-dore);
+    text-decoration: underline
+}
+
+.footer-iconTop a {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem;
+    background: var(--sable-dore);
+    border: .2rem solid var(--sable-dore);
+    border-radius: .6rem;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.footer-iconTop a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--bleu-ocean-abysses);
+    z-index: -1;
+    transition: .5s;
+}
+
+.footer-iconTop a:hover::before {
+    width: 100%;
+}
+
+.footer-iconTop a i {
+    font-size: 2.4rem;
+    color: var(--bleu-ocean-abysses);
+    transition: .5s;
+}
+
+.footer-iconTop a:hover i {
+    color: var(--sable-dore);
+}
+
+/*Div messages erreurs*/
+
+#toastBox {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 10px;
+    z-index: 200;
+}
+
+.toast {
+    width: 400px;
+    height: 80px;
+    background: var(--white);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 15px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transform: translateX(100%);
+    animation: moveleft .2s linear forwards;
+}
+
+@keyframes moveleft {
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.toast i {
+    margin: 0 20px;
+    font-size: 35px;
+    color: #e63946;
+}
+
+.toast.error i {
+    color: #e63946;
+}
+
+.toast.success i {
+    color: green;
+}
+
+.toast::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background: #e63946;
+    animation: anim 4.5s linear forwards;
+}
+
+.toast.error::after {
+    background: #e63946;
+}
+
+.toast.success::after {
+    background: green;
+}
+
+@keyframes anim {
+    100% {
+        width: 0;
+    }
+}
+
+/*Medias*/
+
+@media (max-width: 1100px) {
+    .footer {
+        padding: 2rem 4%;
+    }
+
+    #toastBox {
+        bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;
+    }
+
+    .navigation {
+        position: absolute;
+        top: 100%;
+        left: -100%;
+        width: 100%;
+        padding: 1rem 4%;
+        background: var(--bleu-ocean-abysses);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        z-index: 1;
+        transition: .25s ease;
+        transition-delay: .25s;
+    }
+
+    .navigation.active {
+        left: 0;
+        transition-delay: 0s;
+    }
+
+    .navigation .active-nav {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--bleu-ocean-profond);
+        border-top: .1rem solid rgba(0, 0, 0, .2);
+        z-index: -1;
+        transition: .25s ease;
+        transition-delay: 0s;
+    }
+
+    .navigation.active .active-nav {
+        left: 0;
+        transition-delay: .25s;
+    }
+
+    .navigation a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+        transform: translateX(-20rem);
+        transition: .25s ease;
+        transition-delay: 0s;
+        padding: 1rem 1.4rem;
+    }
+
+    .navigation a:hover {
+        border: none;
+        background: transparent;
+        color: #e1c16e;
+    }
+
+    .navigation.active a {
+        transform: translateX(0);
+        transition-delay: .25s;        
+    }
+
+    .footer {
+        flex-direction: column-reverse;
+    }
+
+    .footer p {
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    #toastBox {
+        position: absolute;
+        bottom: 30px;
+        right: 0px;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 1px;
+    }
+    
+    .toast {
+        width: 300px;
+        height: 80px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: var(--white);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: var(--bleu-ocean-abysses);
+    }
+}
+
+@media (max-width: 476px) {
+    header .btn-box {
+        gap: 1.5rem;
+    }
+    
+    .btn-box .btn-deconnexion {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.5rem;
+    }
+    
+    .btn-box .btn-deconnexion i {
+        font-size: 2rem;
+    }
+    
+    .btn-box .btn-deconnexion a {
+        display: none;
+    }
+
+    .toast {
+        width: 250px;
+        height: 50;
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    .toast i {
+        font-size: 25px;
+    }
+}
