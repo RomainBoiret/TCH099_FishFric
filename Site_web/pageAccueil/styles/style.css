@@ -1,3 +1,7 @@
+.logo img {
+    transition: transform 0.5s ease;
+}
+
 .accueil {
     height: 90vh;
     background: var(--white);
