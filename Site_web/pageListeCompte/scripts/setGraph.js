@@ -22,40 +22,49 @@ anychart.onDocumentReady(function() {
                 tableauData.push(tableauJour);
             });
 
-            console.log(tableauData)
 
-            // create a data set
-            var dataSet = anychart.data.set(tableauData);
+            //Créer le dataset
+            let dataSet = anychart.data.set(tableauData);
 
-            // map the data for all series
-            var firstSeriesData = dataSet.mapAs({x: 0, value: 1});
-            var chart = anychart.line();
+            //Faire la ligne
+            let firstSeriesData = dataSet.mapAs({x: 0, value: 1});
+            let chart = anychart.line();
 
-            var firstSeries = chart.line(firstSeriesData);
+            //Mettre le titre de la ligne
+            let firstSeries = chart.line(firstSeriesData);
+            firstSeries.name("Solde total");
 
-            chart.xAxis().title('Date');
+            //Nom de l'axe des Y
             chart.yAxis().title('Solde');
 
+            //Mettre background
             chart.container("graph-container");
-            chart.background({fill: "#2F2F2F 3.5"});
+            chart.background({fill: "#f0f3fa 3.5"});
 
+            //Set le style du titre
             chart.title("Votre solde total");
-
             let title = chart.title();
             title.fontSize('25');
             title.fontFamily('Poppins');
             title.fontWeight('700');
 
-            let labelX = chart.xAxis().title();
-            labelX.fontSize('15');
-            labelX.fontFamily('Poppins');
-            labelX.fontWeight('700');
+            title.useHtml(true);
+            title.text(
+                "<p style=\"color:#2b2d42;\">Votre solde total</p>"
+            )
 
+            //Set le style du label de l'axe Y
             let labelY = chart.yAxis().title();
             labelY.fontSize('15');
             labelY.fontFamily('Poppins');
             labelY.fontWeight('700');
 
+            labelY.useHtml(true);
+            labelY.text(
+                "<p style=\"color:#2b2d42;\">Solde</p>"
+            )
+
+            //Dessiner le tableau
             chart.draw();
         }
     }

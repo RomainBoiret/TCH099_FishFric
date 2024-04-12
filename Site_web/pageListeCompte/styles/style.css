@@ -1291,6 +1291,11 @@ details[open] div{
     width: 100%;
 }
 
+.anychart-credits-text, .anychart-credits-logo {
+    display: none;
+}
+
+
 @media (max-width: 1200px) {
     .main-side-bar .header-nav {
         height: 50%;
@@ -1327,12 +1332,12 @@ details[open] div{
     }
 
     main {
-        height: 120vh;
+        height: 100%;
     }
 
     section {
         padding: 1rem 3%;
-        height: 100%;
+        height: 110vh;
     }
 
     section #txtBonjour {
