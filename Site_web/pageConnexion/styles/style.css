@@ -3,6 +3,14 @@ header {
     height: 65px;
 }
 
+.logo:hover {
+    background: var(--bleu-ocean-profond);
+}
+
+.navigation a {
+    padding: 1.5rem 2rem;
+}
+
 body {
     background: var(--bleu-ocean-profond);
 }
