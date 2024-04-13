@@ -28,7 +28,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     //--------------------------------------REQUÊTE PUT VIREMENT--------------------------------------
     document.getElementById('btnVirerCompte').addEventListener('click', function() {
-        clic = true;
+        //Désactiver le bouton
+        document.getElementById('btnVirerCompte').setAttribute('disabled', 'true');
 
         //Chercher les données à envoyer à la requête
         let montant = document.getElementById("montant-virement-comptes").value;
@@ -89,9 +90,6 @@ document.addEventListener("DOMContentLoaded", async function() {
                     toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
                     toastBox.appendChild(toast);
 
-                    //Désactiver le bouton pour ne pas refaire un virement
-                    document.getElementById('btnVirerCompte').setAttribute('disabled', 'true');
-
                     //Fermer la fenêtre
                     setTimeout(() => {
                         togglePopupentreCompte();
@@ -99,10 +97,13 @@ document.addEventListener("DOMContentLoaded", async function() {
 
                         //Réactiver le bouton
                         document.getElementById('btnVirerCompte').removeAttribute('disabled');
-                    }, 1500);
+                    }, 1000);
                 }
 
                 else {
+                    //Remettre le bouton cliquable
+                    document.getElementById('btnVirerCompte').removeAttribute('disabled');
+
                     responseData.erreur.forEach(function(message) {
                         //Afficher chaque message d'erreur
                         let toast = document.createElement('div');
@@ -156,6 +157,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     //--------------------------------------REQUÊTE PUT VIREMENT--------------------------------------
     document.getElementById('btnVirerPersonne').addEventListener('click', function() {
+        //Désactiver le bouton
+        document.getElementById('btnVirerPersonne').setAttribute('disabled', 'true');
+
         //Chercher les données à envoyer à la requête
         let montant = document.getElementById("montant-virement-personne").value;
         let idCompteBancaireProvenant;
@@ -221,9 +225,6 @@ document.addEventListener("DOMContentLoaded", async function() {
                     toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
                     toastBox.appendChild(toast);
 
-                    //Désactiver le bouton pour ne pas refaire un virement
-                    document.getElementById('btnVirerPersonne').setAttribute('disabled', 'true');
-
                     //Fermer la fenêtre
                     setTimeout(() => {
                         togglePopupentrePersonne();
@@ -231,10 +232,13 @@ document.addEventListener("DOMContentLoaded", async function() {
 
                         //Réactiver le bouton
                         document.getElementById('btnVirerPersonne').removeAttribute('disabled');
-                    }, 1500);
+                    }, 1000);
                 }
 
                 else {
+                    //Réactiver le bouton
+                    document.getElementById('btnVirerPersonne').removeAttribute('disabled');
+
                     responseData.erreur.forEach(function(message) {
                         //Afficher chaque message d'erreur
                         let toast = document.createElement('div');
@@ -291,6 +295,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 
     document.getElementById('btnPayerFacture').addEventListener('click', function() {
+        //Désactiver le bouton virer
+        document.getElementById('btnPayerFacture').setAttribute('disabled', 'true');
+
         //Chercher les données à envoyer à la requête
         let montant = document.getElementById("montant-payer-facture").value;
         let idCompteBancaireProvenant;
@@ -362,11 +369,14 @@ document.addEventListener("DOMContentLoaded", async function() {
 
                         //Réactiver le bouton
                         document.getElementById('btnPayerFacture').removeAttribute('disabled');
-                    }, 1500);
+                    }, 1000);
                 }
 
                 //Sinon, afficher chaque erreur
                 else {
+                    //Réactiver le bouton
+                    document.getElementById('btnPayerFacture').removeAttribute('disabled');
+
                     responseData.erreur.forEach(function(message) {
                         //Afficher chaque message d'erreur
                         let toast = document.createElement('div');
@@ -418,6 +428,9 @@ document.addEventListener("DOMContentLoaded", async function() {
     });
 
     document.getElementById('btnSupprimerCompteBancaire').addEventListener('click', function() {
+        //Désactiver le bouton
+        document.getElementById('btnSupprimerCompteBancaire').setAttribute('disabled', 'true');
+
         //Chercher le compte que l'utilisateur a sélectionné 
         let idCompteBancaire;
 
@@ -474,12 +487,18 @@ document.addEventListener("DOMContentLoaded", async function() {
 
                     //Fermer la fenêtre
                     setTimeout(() => {
+                        //Réactiver le bouton
+                        document.getElementById('btnSupprimerCompteBancaire').removeAttribute('disabled');
+
                         toast.remove();
                         togglePopupPreferences();
-                    }, 1500);
+                    }, 1000);
                 }
 
                 else if ("erreurs" in responseData) {
+                    //Réactiver le bouton
+                    document.getElementById('btnSupprimerCompteBancaire').removeAttribute('disabled');
+
                     responseData.erreurs.forEach(function(message) {
                         //Afficher chaque message d'erreur
                         let toast = document.createElement('div');
@@ -520,11 +539,6 @@ let showOrHide = function() {
     } else {
         divContainer.style.display = 'none';
         isClicked = true;
-
-        //Recharger la page
-        setTimeout(function() {
-            location.reload();
-        }, 100);
     }
 }
 
@@ -534,11 +548,6 @@ function fermerMessagerie() {
     if (divContainer.style.display == 'block') {
         divContainer.style.display = 'none';
         isClicked = true;
-
-        //Recharger la page
-        setTimeout(function() {
-            location.reload();
-        }, 100);
     }
 }
 
@@ -604,6 +613,7 @@ bonjour.addEventListener('click', function () {
 
 
 //---------------------------------------FONCTION GET COMPTES-------------------------------------//
+// - Fait la requête pour afficher les comptes dans le div des comptes (et retourne le json de la liste des comptes)
 function getComptes() {
     return new Promise(function (resolve, reject) {
         //Créer la requête
