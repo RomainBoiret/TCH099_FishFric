@@ -30,6 +30,8 @@ document.getElementById('btnAjouterCompte').addEventListener('click', function()
             let responseData = JSON.parse(requeteAjouterCompte.responseText);
 
             if (responseData.succes) {
+                getComptes();
+
                 //Changer le texte pour dire que le compte a bien été crée
                 let toast = document.createElement('div');
                 toast.classList.add('toast');

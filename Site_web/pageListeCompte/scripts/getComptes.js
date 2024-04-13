@@ -345,8 +345,6 @@ document.addEventListener("DOMContentLoaded", async function() {
                     //Ajouter le HTML dans la table
                     document.getElementById('tableFacture').innerHTML = comptes;
 
-
-
                     //Mettre le message de succès
                     let toast = document.createElement('div');
                     toast.classList.add('toast');
@@ -417,82 +415,96 @@ document.addEventListener("DOMContentLoaded", async function() {
 
         //Ajouter le HTML dans la table
         document.getElementById('tableSupprimerCompte').innerHTML = comptes;
+    });
 
-        document.getElementById('btnSupprimerCompteBancaire').addEventListener('click', function() {
-            //Chercher le compte que l'utilisateur a sélectionné 
-            let idCompteBancaire;
+    document.getElementById('btnSupprimerCompteBancaire').addEventListener('click', function() {
+        //Chercher le compte que l'utilisateur a sélectionné 
+        let idCompteBancaire;
 
-            ["choix"].forEach(option => {
-                const selectedOption = document.querySelector(`input[name=${option}]:checked`);
+        ["choix"].forEach(option => {
+            const selectedOption = document.querySelector(`input[name=${option}]:checked`);
 
-                if (selectedOption) {
-                    idCompteBancaire = selectedOption.id;
-                }
-            });
+            if (selectedOption) {
+                idCompteBancaire = selectedOption.id;
+            }
+        });
 
-            //On peut commencer notre requête
-            requeteSupprimerCptBancaire = new XMLHttpRequest();
-            requeteSupprimerCptBancaire.open('PUT', '/TCH099_FishFric/Site_web/pageListeCompte/API/preferences.php/compteBancaire', true);
+        //On peut commencer notre requête
+        requeteSupprimerCptBancaire = new XMLHttpRequest();
+        requeteSupprimerCptBancaire.open('PUT', '/TCH099_FishFric/Site_web/pageListeCompte/API/preferences.php/compteBancaire', true);
+        
+        //Stocke les donnees a envoyer en format JSON
+        requeteSupprimerCptBancaire.setRequestHeader('Content-Type', 'application/json');
+        const donneesJsonSupprimerCptBancaire = JSON.stringify({"idCompteBancaire": idCompteBancaire});
+
+        console.log("ID:" + idCompteBancaire)
+
+        //Messages d'erreurs ou de succès du virement
+        requeteSupprimerCptBancaire.onload = async function() {
+            //Vérifier si la requête a marché
+            if (requeteSupprimerCptBancaire.readyState === 4 && requeteSupprimerCptBancaire.status === 200) {
+                //Décoder la réponse (qui est au format JSON)
+                let responseData = JSON.parse(requeteSupprimerCptBancaire.responseText);
+
+                //Afficher un message de succès si la reqûete renvoie "msgSucces"
+                if ("msgSucces" in responseData) {
+                    //Actualiser les comptes
+                    let responseData2 = await getComptes();
+                    responseData2 = JSON.parse(responseData2);
+
+                    //Reafficher les nouveaux comptes
+                    comptes = '<tr><th>Choix</th><th>Compte</th></tr>';
+        
+                    responseData2.comptes.forEach(function(compte) {
+                        //Afficher chaque compte dans le tableau, ajouter le HTML dynamiquement
+                        comptes += '<tr><td><input type="radio" name="choix" id="' + compte.id + '"></td>';
+                        comptes += '<td><span>' + compte.typeCompte + ' </span></td></tr>';            
+                    });
             
-            //Stocke les donnees a envoyer en format JSON
-            requeteSupprimerCptBancaire.setRequestHeader('Content-Type', 'application/json');
-            const donneesJsonSupprimerCptBancaire = JSON.stringify({"idCompteBancaire": idCompteBancaire});
+                    //Ajouter le HTML dans la table
+                    document.getElementById('tableSupprimerCompte').innerHTML = comptes;
 
-            console.log("ID:" + idCompteBancaire)
 
-            //Messages d'erreurs ou de succès du virement
-            requeteSupprimerCptBancaire.onload = function() {
-                //Vérifier si la requête a marché
-                if (requeteSupprimerCptBancaire.readyState === 4 && requeteSupprimerCptBancaire.status === 200) {
-                    //Décoder la réponse (qui est au format JSON)
-                    let responseData = JSON.parse(requeteSupprimerCptBancaire.responseText);
+                    //Mettre le message de succès
+                    let toast = document.createElement('div');
+                    toast.classList.add('toast');
+                    toast.classList.add('success');
+                    toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
+                    toastBox.appendChild(toast);
 
-                    //Afficher un message de succès si la reqûete renvoie "msgSucces"
-                    if ("msgSucces" in responseData) {
-                        //Mettre le message de succès
+                    //Fermer la fenêtre
+                    setTimeout(() => {
+                        toast.remove();
+                        togglePopupPreferences();
+                    }, 1500);
+                }
+
+                else if ("erreurs" in responseData) {
+                    responseData.erreurs.forEach(function(message) {
+                        //Afficher chaque message d'erreur
                         let toast = document.createElement('div');
                         toast.classList.add('toast');
-                        toast.classList.add('success');
-                        toast.innerHTML = '<i class="bx bxs-check-circle"></i>' + responseData.msgSucces;
+                        toast.classList.add('error');
+                        toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
                         toastBox.appendChild(toast);
-
+    
                         //Fermer la fenêtre
                         setTimeout(() => {
                             toast.remove();
-                            togglePopupPreferences();
-                        }, 1500);
-                    }
-
-                    else if ("erreurs" in responseData) {
-                        responseData.erreurs.forEach(function(message) {
-                            //Afficher chaque message d'erreur
-                            let toast = document.createElement('div');
-                            toast.classList.add('toast');
-                            toast.classList.add('error');
-                            toast.innerHTML = '<i class="bx bxs-error-circle"></i>' + message;
-                            toastBox.appendChild(toast);
-        
-                            //Fermer la fenêtre
-                            setTimeout(() => {
-                                toast.remove();
-                            }, 4500);
-                        })
-                    }
+                        }, 4500);
+                    })
                 }
             }
+        }
 
-            //Message d'erreur de la requête
-            requeteSupprimerCptBancaire.onerror = function() {
-                console.error('La requête n\'a pas fonctionné!');
-            };
+        //Message d'erreur de la requête
+        requeteSupprimerCptBancaire.onerror = function() {
+            console.error('La requête n\'a pas fonctionné!');
+        };
 
-            //Envoyer la requête
-            requeteSupprimerCptBancaire.send(donneesJsonSupprimerCptBancaire);
-
-        });
-
+        //Envoyer la requête
+        requeteSupprimerCptBancaire.send(donneesJsonSupprimerCptBancaire);
     });
-
 });
 
 //--------------------------------------AFFICHER/CACHER la Messagerie--------------------------------------
@@ -558,13 +570,6 @@ function togglePopupNouveauCompte()  {
 function togglePopupPreferences()  {
     let popup = document.getElementById("popup-5");
     popup.classList.toggle("active");
-
-    //Rafraîchir la page au bout de 100ms lorsqu'on ferme la popup
-    if (!document.getElementById("popup-5").classList.contains("active")) {
-        setTimeout(function() {
-            location.reload();
-        }, 100);
-    }
 }
 
 //--------------------------Fonction pour fermer les divs de détails dans la popup préférences-------------------------
