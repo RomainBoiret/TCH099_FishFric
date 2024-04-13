@@ -16,6 +16,7 @@ if (!isset($_SESSION["compteSupprime"]) && isset($_SESSION['utilisateur']) && is
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentification</title>
+    <link rel="stylesheet" href="../stylesCommuns/style.css">
     <link rel="stylesheet" href="./styles/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" href="/TCH099_FishFric/Site_web/favicon.ico">
@@ -94,7 +95,7 @@ if (!isset($_SESSION["compteSupprime"]) && isset($_SESSION['utilisateur']) && is
 </section>
 </main>
 </body>
-<script src="../pageAccueil/scripts/script.js"></script>
+<script src="../scriptsCommuns/script.js"></script>
 <script src="./scripts/verifConnexion.js"></script>
 </html>
 

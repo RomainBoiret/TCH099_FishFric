@@ -1,16 +1,3 @@
-// toggle icon navigation
-let menuIcon = document.querySelector('#menu-icon');
-let navigation = document.querySelector('.navigation');
-
-menuIcon.onclick = () => {
-    menuIcon.classList.toggle('bx-x');
-    navigation.classList.toggle('active');
-}
-
-// remove toggle icon and navbar when click navigation links (scroll)
-menuIcon.classList.remove('bx-x');
-navigation.classList.remove('active');
-
 // faire nager les poissons quand on clique 3 fois de suite sur l'écran
 const mainContainer = document.getElementById('main-container');
 const poissons = document.querySelectorAll('#poisson');
@@ -22,27 +9,27 @@ document.addEventListener('click', function() {
     clearTimeout(timer);
     timer = setTimeout(() => {
         clickCount = 0;
-    }, 300); // Réinitialise le compteur après 300ms
+    }, 300);
 
     if (clickCount === 3) {
-        // Tremblement de la section contenant l'id 'main-container'
+
         mainContainer.classList.add('trembler');
         setTimeout(() => {
             mainContainer.classList.remove('trembler');
-        }, 2000); // Retire la classe 'trembler' après 600ms
+        }, 2000);
 
         setTimeout(() => {
             poissons.forEach((poisson) => {
-                poisson.classList.add('nager'); // Ajoute la classe 'nager' à chaque image pour l'animation de nage
+                poisson.classList.add('nager');
             });
-        }, 2000); // Commence l'animation de nage après 600ms
+        }, 2000);
 
         setTimeout(() => {
             poissons.forEach((poisson) => {
-                poisson.classList.remove('nager'); // Supprime la classe 'nager' après 2 secondes
+                poisson.classList.remove('nager');
             });
-        }, 4000); // Arrête l'animation de nage après 2.6 secondes
+        }, 4000);
 
-        clickCount = 0; // Réinitialise le compteur après avoir déclenché l'animation
+        clickCount = 0;
     }
 });
