@@ -112,18 +112,19 @@
             //Écrire le sql de la requête
             //--À chaque jour, on met le montant gangé en intérêt dans les transactions
             //--et on actualise le solde
-            $requete = "CREATE EVENT `projet_integrateur`.`$eventName`
-            ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
-                INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
-                SELECT id, NOW(), solde*(1 + $interet/100) - solde, 'Intérêts' 
-                FROM CompteBancaire 
-                WHERE CompteBancaire.id = $idCompteCheque;
-            
-                UPDATE CompteBancaire 
-                SET solde = solde*(1 + $interet/100)
-                WHERE id = $idCompteCheque;";
 
-            $conn->query($requete);
+            // $requete = "CREATE EVENT `projet_integrateur`.`$eventName`
+            // ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
+            //     INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
+            //     SELECT id, NOW(), solde*(1 + $interet/100) - solde, 'Intérêts' 
+            //     FROM CompteBancaire 
+            //     WHERE CompteBancaire.id = $idCompteCheque;
+            
+            //     UPDATE CompteBancaire 
+            //     SET solde = solde*(1 + $interet/100)
+            //     WHERE id = $idCompteCheque;";
+
+            // $conn->query($requete);
 
 
 
@@ -137,12 +138,12 @@
             $eventNameSolde = "solde" . $idUtilisateur;
             
             //Faire l'événement
-            $requete = "CREATE EVENT `projet_integrateur`.`$eventNameSolde`
-            ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
-            INSERT INTO SommeTotale (compteId, solde, dateSolde) 
-            VALUES ($idUtilisateur, (SELECT SUM(solde) AS total_solde FROM CompteBancaire WHERE compteId = $idUtilisateur), NOW());";
+            // $requete = "CREATE EVENT `projet_integrateur`.`$eventNameSolde`
+            // ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
+            // INSERT INTO SommeTotale (compteId, solde, dateSolde) 
+            // VALUES ($idUtilisateur, (SELECT SUM(solde) AS total_solde FROM CompteBancaire WHERE compteId = $idUtilisateur), NOW());";
 
-            $conn->prepare($requete)->execute();
+            // $conn->prepare($requete)->execute();
 
             if($mobile)
             {
