@@ -24,9 +24,9 @@
     //     die("Connexion echouee avec PDO : " . $conn->connect_error);
     // }
 
+    //Nouvelle BD avec les crédits
     try{
         $conn = new PDO("mysql:host=34.152.28.23;dbname=projet_integrateur","felix","admin");
-
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }catch(PDOException $e)
     {

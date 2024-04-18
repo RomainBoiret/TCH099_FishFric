@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             comptes += '<td><input type="radio" name="option-2" id="' + compte.id + '"></td>';
             comptes += '<td><span>' + compte.typeCompte + ' </span>';
             comptes += '<span>ID: ' + compte.id + ' </span>';
-            comptes += '</td><td><span class="solde-transfert-' + compte.id + '">' + compte.solde + '</span></td></tr>';                  
+            comptes += '</td><td><span class="solde-transfert-' + compte.id + '">' + compte.solde + '</span></td></tr>';       
         });
 
         //Ajouter le HTML dans la table

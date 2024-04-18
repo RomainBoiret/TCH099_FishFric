@@ -27,33 +27,44 @@
                 $idCompteBancaireProvenant = $donnees["idCompteBancaireProvenant"];
                 $idCompteBancaireProvenant = intval(trim($idCompteBancaireProvenant));
 
-                //Vérifier qu'il y a un montant
-                if(isset($donnees["montant"]) && is_numeric($donnees["montant"])) {
-                    $montant = $donnees["montant"];
-                    $montant = floatval(trim($montant));
+                //Vérifier que le compte est bien le compte de notre utilisateur
+                $requete = $conn->prepare("SELECT id FROM CompteBancaire WHERE compteId=$compteIdProvenant");
+                $requete->execute();
+                $listeIdComptes = $requete->fetchAll(PDO::FETCH_COLUMN);  
+                
+                //Si le compte n'est pas dans le tableau, cela veut dire que l'ID a été trafiquée
+                if (!(in_array($idCompteBancaireProvenant, $listeIdComptes)))
+                    $erreurs[] = "Le compte provenant ne vous appartient pas.";
 
-                    //VÉRIF SOLDE - Requête pour checker si solde <= 0
-                    $requete = $conn->prepare("SELECT solde, typeCompte FROM CompteBancaire WHERE id = '$idCompteBancaireProvenant'");
-                    $requete->execute();
-                    $result = $requete->fetch(PDO::FETCH_ASSOC);
-            
-                    //Si le solde est pas suffisant ou bien nul, on met une erreur
-                    if($result['solde'] < $montant && $result['typeCompte'] != 'Carte requin')
-                        $erreurs[] = "Le montant est supérieur au solde"; 
+                if(empty($erreurs)) {
+                    //Vérifier qu'il y a un montant
+                    if(isset($donnees["montant"]) && is_numeric($donnees["montant"])) {
+                        $montant = $donnees["montant"];
+                        $montant = floatval(trim($montant));
 
-                    //Une carte de crédit a une limite de crédit de 5000$
-                    if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"]) && is_numeric($donnees["montant"])) {
-                        //Si le solde fait 
-                        if($result['solde'] - $montant < -5000)
-                            $erreurs[] = "La carte de crédit a une limite de 5000$";
+                        //VÉRIF SOLDE - Requête pour checker si solde <= 0
+                        $requete = $conn->prepare("SELECT solde, typeCompte FROM CompteBancaire WHERE id = '$idCompteBancaireProvenant'");
+                        $requete->execute();
+                        $result = $requete->fetch(PDO::FETCH_ASSOC);
+                
+                        //Si le solde est pas suffisant ou bien nul, on met une erreur
+                        if($result['solde'] < $montant && $result['typeCompte'] != 'Carte requin')
+                            $erreurs[] = "Le montant est supérieur au solde"; 
+
+                        //Une carte de crédit a une limite de crédit de 5000$
+                        if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"]) && is_numeric($donnees["montant"])) {
+                            //Si le solde fait 
+                            if($result['solde'] - $montant < -5000)
+                                $erreurs[] = "La carte de crédit a une limite de 5000$";
+                        }
+
+                        if($montant == 0)
+                            $erreurs[] = "Le montant du virement ne peut pas être nul"; 
                     }
 
-                    if($montant == 0)
-                        $erreurs[] = "Le montant du virement ne peut pas être nul"; 
+                    else
+                        $erreurs[] = "Montant non reçu ou non valide";
                 }
-
-                else
-                    $erreurs[] = "Montant non reçu ou non valide";
             }    
 
             else
@@ -327,18 +338,26 @@
                 $idCompteBancaireRecevant = $donnees["idCompteBancaireRecevant"];
                 $idCompteBancaireRecevant = intval(trim($idCompteBancaireRecevant));
 
-                //VÉRIFIER SI LE COMPTE EST UNE CARTE DE CRÉDIT
-                //Les cartes de crédit peuvent avoir SEULEMENT un solde négatif
-                $requete = $conn->prepare("SELECT solde, typeCompte FROM CompteBancaire WHERE id = '$idCompteBancaireRecevant'");
-                $requete->execute();
-                $result = $requete->fetch(PDO::FETCH_ASSOC);
+                //Vérifier que le compte est bien le compte de notre utilisateur
+                //Si le compte n'est pas dans le tableau, cela veut dire que l'ID a été trafiquée
+                if (!(in_array($idCompteBancaireRecevant, $listeIdComptes)))
+                    $erreurs[] = "Le compte recevant ne vous appartient pas.";
+
+                //Sinon, on peut continuer nos vérifications
+                else {
+                    //VÉRIFIER SI LE COMPTE EST UNE CARTE DE CRÉDIT
+                    //Les cartes de crédit peuvent avoir SEULEMENT un solde négatif
+                    $requete = $conn->prepare("SELECT solde, typeCompte FROM CompteBancaire WHERE id = '$idCompteBancaireRecevant'");
+                    $requete->execute();
+                    $result = $requete->fetch(PDO::FETCH_ASSOC);
 
 
-                if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"]) && is_numeric($donnees["montant"])) {
-                    //Si le montant reçu fait que le solde de la carte de crédit sera positif,
-                    //on met une erreur
-                    if($result['solde'] + $montant > 0)
-                        $erreurs[] = "Le solde de carte de crédit ne peut pas être positif";
+                    if($result['typeCompte'] == 'Carte requin' && isset($donnees["montant"]) && is_numeric($donnees["montant"])) {
+                        //Si le montant reçu fait que le solde de la carte de crédit sera positif,
+                        //on met une erreur
+                        if($result['solde'] + $montant > 0)
+                            $erreurs[] = "Le solde de carte de crédit ne peut pas être positif";
+                    }
                 }
 
             } else 
