@@ -3,7 +3,7 @@
 }
 
 .accueil {
-    height: 90vh;
+    height: 70rem;
     background: var(--white);
 }
 
@@ -171,7 +171,7 @@ p {
 }
 
 .services {
-    height: 70vh;
+    height: 55rem;
     background: var(--white);
     padding: 2.3% 5%;
 }
@@ -221,7 +221,7 @@ p {
 }
 
 .aquarium {
-    height: 120vh;
+    height: 95rem;
     background: url('../images/background-aquarium.png') no-repeat;
     background-size: cover;
     background-position: center;
@@ -316,7 +316,7 @@ p {
 }
 
 .mobile {
-    height: 90vh;
+    height: 65rem;
     background: var(--vert-eau);
     padding: 0 4%;
 }
@@ -387,7 +387,7 @@ p {
 }
 
 .assistance {
-    height: 80vh;
+    height: 60rem;
     background: var(--bleu-ocean-surface);
     padding: 0 5%;
 }
@@ -475,7 +475,7 @@ p {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .accueil {
         max-height: 100vh;
     }

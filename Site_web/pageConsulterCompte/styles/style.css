@@ -1,11 +1,21 @@
+header {
+    background: var(--bleu-ocean-abysses);
+}
+
+.logo:hover {
+    background: var(--bleu-ocean-profond);
+}
+
+body {
+    background: var(--bleu-ocean-profond);
+}
+
 section {
-    height: auto;
+    height: 90vh;
     padding: 2rem 4%;
     display: flex;
     justify-content: center;
-    background: url('../images/background-compte.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
+    align-items: center;
 }
 
 ::-webkit-scrollbar {
