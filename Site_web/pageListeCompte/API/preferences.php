@@ -25,6 +25,11 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
         if (isset($donneesJSON['nouveauCourriel']) && !empty($donneesJSON['nouveauCourriel'])) {
             $nouveauCourriel = $donneesJSON['nouveauCourriel'];
 
+            //Chercher le courriel de l'utilisateur
+            $requete = $conn->prepare("SELECT courriel FROM Compte WHERE id=$idUtilisateur");
+            $requete->execute();
+            $ancienCourriel = $requete->fetchColumn();
+
             //Verifie si courriel suit le bon format
             if(!filter_var($nouveauCourriel, FILTER_VALIDATE_EMAIL))
                 $erreurs[] = "Le courriel saisi n'est pas valide!";
@@ -49,6 +54,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
             $requete = $conn->prepare("UPDATE Compte SET courriel = :nouveauCourriel WHERE id = :idUtilisateur");
             $requete->bindParam(':nouveauCourriel', $nouveauCourriel);
             $requete->bindParam(':idUtilisateur', $idUtilisateur, PDO::PARAM_INT);
+            $requete->execute();
+
+            //Changer le courriel de l'utilisateur dans toutes les transactions dont il est l'envoyeur
+            $requete = $conn->prepare("UPDATE TransactionBancaire SET nomEtablissement = :nouveauCourriel WHERE nomEtablissement = :ancienCourriel");
+            $requete->bindParam(':nouveauCourriel', $nouveauCourriel);
+            $requete->bindParam(':ancienCourriel', $ancienCourriel);
             $requete->execute();
 
             echo json_encode(['msgSucces' => "Le courriel a bien été modifié."]);
