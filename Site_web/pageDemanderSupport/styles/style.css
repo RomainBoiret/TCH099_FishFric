@@ -1,6 +1,6 @@
 section {
     height: 90vh;
-    padding: 2rem 5%;
+    padding: 3rem 5%;
     background: #d5deef;
 }
 
@@ -25,14 +25,14 @@ p {
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: row;
     gap: 8rem;
-    padding: 2rem 0;
 }
 
 .main-container .assitance-container {
-    width: 45%;
-    height: 90%;
+    width: 65rem;
+    height: 55rem;
     background: url('../images/whale.png') no-repeat;
     background-size: 180px;
     background-position: 100% 100%;;
@@ -72,8 +72,8 @@ p {
 }
 
 .main-container .message-container {
-    width: 55%;
-    height: 100%;
+    width: 75rem;
+    height: 55rem;
     background: var(--white);
     border-radius: 20px;
     display: flex;

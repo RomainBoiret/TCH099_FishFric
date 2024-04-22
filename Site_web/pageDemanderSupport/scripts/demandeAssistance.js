@@ -33,6 +33,9 @@ document.getElementById("soumettre").addEventListener('click', function() {
                         container: 'my-swal-container'
                     }
                 });
+
+                document.getElementById('titreRecu').value = "";
+                document.getElementById('messageRecu').value = "";
             }
 
             else {
