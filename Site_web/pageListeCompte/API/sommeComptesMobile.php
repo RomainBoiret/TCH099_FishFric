@@ -3,7 +3,7 @@
     if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
         //Update Solde total du compte apres une transaction
-        if (preg_match('/\/pageListeCompte\/API\/gestionTransfertmobile\.php\/updateSolde$/', $_SERVER['REQUEST_URI'], $matches))
+        if (preg_match('/\/pageListeCompte\/API\/sommeComptesMobile\.php\/updateSolde$/', $_SERVER['REQUEST_URI'], $matches))
         {
             //Gérer la connexion à la base de données
             try {
