@@ -141,7 +141,7 @@
             
             //Faire l'événement
             $requete = "CREATE EVENT `projet_integrateur`.`$eventNameSolde`
-            ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
+            ON SCHEDULE EVERY 1 DAY STARTS CURRENT_DATE + INTERVAL 1 DAY DO 
             INSERT INTO SommeTotale (compteId, solde, dateSolde) 
             VALUES ($idUtilisateur, (SELECT SUM(solde) AS total_solde FROM CompteBancaire WHERE compteId = $idUtilisateur), NOW());";
 

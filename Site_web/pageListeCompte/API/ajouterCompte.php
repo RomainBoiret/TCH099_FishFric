@@ -75,6 +75,7 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
             $requete = "CREATE EVENT `projet_integrateur`.`$eventName`
             ON SCHEDULE EVERY 1 DAY STARTS NOW() DO 
+            BEGIN
                 INSERT INTO TransactionBancaire (idCompteBancaireRecevant, dateTransaction, montant, typeTransaction) 
                 SELECT id, NOW(), solde*(1 + $interet/100) - solde, 'Intérêts' 
                 FROM CompteBancaire 
@@ -82,7 +83,8 @@ if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             
                 UPDATE CompteBancaire 
                 SET solde = solde*(1 + $interet/100)
-                WHERE id = $idCompte;";
+                WHERE id = $idCompte;
+            END;";
 
             $conn->query($requete);
 
