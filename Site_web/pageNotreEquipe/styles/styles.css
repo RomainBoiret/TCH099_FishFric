@@ -28,9 +28,11 @@ section {
 .illustration-header {
     width: 100%;
     height: 50rem;
-    border: 2px solid red;
+    background: url('../images/groupe.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;
-    margin-top: 12rem;
+    margin-top: 6rem;
 }
 
 .section-member {
@@ -42,17 +44,20 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 5rem;
 }
 
 .member-container .member-box {
     width: 100%;
-    height: 45rem;
+    height: 50rem;
+    background: #f6faff;
+    border-radius: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 8rem;
+    padding: 50px;
 }
 
 .member-container .member-box:nth-child(2n) {
@@ -63,12 +68,40 @@ section {
     width: 55rem;
     height: 100%;
     border-radius: 10px;
-    background: url('../images/notre-équipe.gif') no-repeat;
+}
+
+.member-box:nth-child(1) .photo-member-container {
+    background: url('../images/Martin.jpg');
     background-size: cover;
     background-position: center;
 }
 
-.member-box .text-container {
+.member-box:nth-child(2) .photo-member-container {
+    background: url('../images/Romain.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.member-box:nth-child(3) .photo-member-container {
+    background: url('../images/Felix.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.member-box:nth-child(4) .photo-member-container {
+    background: url('../images/Jonathan.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.member-box:nth-child(5) .photo-member-container {
+    background: url('../images/Charles.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.member-box .text-container,
+.member-box:nth-child(2n) .text-container {
     width: 55rem;
     height: 100%;
     display: flex;
@@ -79,9 +112,9 @@ section {
 }
 
 .text-container .title {
-    width: auto;
     display: flex;
     flex-direction: row;
+    justify-content: start;
     align-items: center;
     gap: 1.5rem;
 }
